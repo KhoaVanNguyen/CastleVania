@@ -12,27 +12,28 @@ int QGameObject::RemoveAllObjectInCamera(D3DXVECTOR2 viewport)
 	while (it != _dynamicObject->end())
 	{
 		GameObject* other = (*it);
-		if(other->active && !(other->posX + other->width / 2 <= viewport.x 
-			|| other->posX - other->width/2 >=  viewport.x + G_ScreenWidth
-			|| other->posY + other->height/2 <= viewport.y - G_ScreenHeight
-			|| other->posY - other->height/2 >= viewport.y))
+		if (other->active && !(other->posX + other->width / 2 <= viewport.x
+			|| other->posX - other->width / 2 >= viewport.x + G_ScreenWidth
+			|| other->posY + other->height / 2 <= viewport.y - G_ScreenHeight
+			|| other->posY - other->height / 2 >= viewport.y))
 		{
-			if(other->type == ObjectType::Enemy_Type)
+			if (other->type == ObjectType::Enemy_Type)
 			{
-				switch(other->id)
+				switch (other->id)
 				{
 				case EnumID::PhantomBat_ID:
 				case EnumID::QueenMedusa_ID:
-					if(other->sprite->GetIndex() != 0)
+					if (other->sprite->GetIndex() != 0)
 						other->point -= 4;
 					++it;
 					break;
-				default:					
+				default:
 					score += other->point;
 					_dynamicObject->erase(it++);
 					break;
 				}
-			} else ++it;
+			}
+			else ++it;
 		}
 		else ++it;
 	}
@@ -42,24 +43,24 @@ int QGameObject::RemoveAllObjectInCamera(D3DXVECTOR2 viewport)
 
 QGameObject::QGameObject(string fileName)
 {
-	ifstream map (fileName);
+	ifstream map(fileName);
 
 	_staticObject = new list<GameObject*>();
 	_dynamicObject = new list<GameObject*>();
 
-	if(map.is_open())
-	{		
+	if (map.is_open())
+	{
 		float posX, posY; int width, height, value;
 		int count;
-		map>> count >> width >> height;
-		int id; 
+		map >> count >> width >> height;
+		int id;
 		int x = 0;
 		for (int i = 0; i < count; i++)
 		{
 			//so thu tu dong - idObj -...
-			map>> id >> value >> posX >> posY >> width >> height;		
+			map >> id >> value >> posX >> posY >> width >> height;
 
-			switch(value)
+			switch (value)
 			{
 			case 0:
 				_staticObject->push_back(new Brick(posX, posY, width, height));
@@ -88,13 +89,13 @@ QGameObject::QGameObject(string fileName)
 			case 8:
 				_dynamicObject->push_back(new FishMan(posX, posY));
 				break;
-			case 9: 
+			case 9:
 				_dynamicObject->push_back(new VampireBat(posX, posY));
 				break;
 			case 10:
 				_dynamicObject->push_back(new Zombie(posX, posY));
 				break;
-			case 11:				
+			case 11:
 				_phantomBat = new PhantomBat(posX, posY, EnumID::PhantomBat_ID);
 				_dynamicObject->push_back(_phantomBat);
 				break;
@@ -108,18 +109,18 @@ QGameObject::QGameObject(string fileName)
 				_dynamicObject->push_back(new DragonSkullCannon(posX, posY));
 				break;
 			case 15:
-				_queenMedusa = new QueenMedusa(posX, posY,EnumID::QueenMedusa_ID);
+				_queenMedusa = new QueenMedusa(posX, posY, EnumID::QueenMedusa_ID);
 				_dynamicObject->push_back(_queenMedusa);
 				break;
 			case 16:
 				_dynamicObject->push_back(new MovingPlatform(posX, posY));
 				break;
 			case 17:
-				{
-				_staticObject->push_back(new StupidDoor(posX, posY, 1040, 900 + (x % 3)*8));
+			{
+				_staticObject->push_back(new StupidDoor(posX, posY, 1040, 900 + (x % 3) * 8));
 				x++;
-				}
-				break;
+			}
+			break;
 			case 20:
 				_staticObject->push_back(new CastleGate(posX, posY, width, height));
 				break;
@@ -130,10 +131,10 @@ QGameObject::QGameObject(string fileName)
 				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorRight_ID));
 				break;
 			case 23:
-				_staticObject->push_back(new Door(posX, posY,  width, height, EnumID::DoorUp_ID));
+				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorUp_ID));
 				break;
 			case 24:
-				_staticObject->push_back(new Door(posX, posY,  width, height, EnumID::DoorDown_ID));
+				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorDown_ID));
 				break;
 			case 25:
 				posDoor.x = posX;
@@ -163,7 +164,7 @@ void QGameObject::Draw(CCamera *camera)
 	for (list<GameObject*>::iterator i = _staticObject->begin(); i != _staticObject->end(); i++)
 	{
 		GameObject* obj = (*i);
-		if(obj->active)
+		if (obj->active)
 		{
 			obj->Draw(camera);
 		}
@@ -172,7 +173,7 @@ void QGameObject::Draw(CCamera *camera)
 	for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
 	{
 		GameObject* obj = (*i);
-		if(obj->active)
+		if (obj->active)
 		{
 			obj->Draw(camera);
 		}
@@ -183,7 +184,7 @@ void QGameObject::Update(int deltaTime)
 	list<GameObject*>::iterator it = _staticObject->begin();
 	while (it != _staticObject->end())
 	{
-		if((*it)->death)
+		if ((*it)->death)
 		{
 			_staticObject->erase(it++);
 		}
@@ -197,21 +198,21 @@ void QGameObject::Update(int deltaTime)
 	it = _dynamicObject->begin();
 	while (it != _dynamicObject->end())
 	{
-		if(!IsHurt() || (IsHurt() && (*it)->type != ObjectType::Enemy_Type))
+		if (!IsHurt() || (IsHurt() && (*it)->type != ObjectType::Enemy_Type))
 		{
-			if((*it)->id == EnumID::QueenMedusa_ID)
+			if ((*it)->id == EnumID::QueenMedusa_ID)
 			{
-				if(((QueenMedusa*)*it)->GetState())
+				if (((QueenMedusa*)*it)->GetState())
 				{
-				_dynamicObject->push_back(new MagicalCrystal((*it)->posX, (*it)->posY));
-				_dynamicObject->erase(it++);
+					_dynamicObject->push_back(new MagicalCrystal((*it)->posX, (*it)->posY));
+					_dynamicObject->erase(it++);
 				}
 				else ++it;
 			}
-			else 
-				if((*it)->id == EnumID::PhantomBat_ID)
+			else
+				if ((*it)->id == EnumID::PhantomBat_ID)
 				{
-					if(((PhantomBat*)*it)->GetState())
+					if (((PhantomBat*)*it)->GetState())
 					{
 						_dynamicObject->push_back(new MagicalCrystal((*it)->posX, (*it)->posY));
 						_dynamicObject->erase(it++);
@@ -220,13 +221,13 @@ void QGameObject::Update(int deltaTime)
 				}
 				else
 				{
-					if((*it)->death)
+					if ((*it)->death)
 					{
 						_dynamicObject->erase(it++);
 					}
 					else
 					{
-						if((*it)->active)
+						if ((*it)->active)
 						{
 							(*it)->Update(deltaTime);
 						}
@@ -242,7 +243,7 @@ void QGameObject::Collision(int dt)
 {
 	for (list<GameObject*>::reverse_iterator i = _staticObject->rbegin(); i != _staticObject->rend(); i++)
 	{
-		if((*i)->canMove)
+		if ((*i)->canMove)
 		{
 			(*i)->Collision((*_staticObject), dt);
 		}
@@ -259,7 +260,7 @@ void QGameObject::Collision(int dt)
 
 	for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
 	{
-		if((*i)->active)
+		if ((*i)->active)
 		{
 			(*i)->Collision((*_staticObject), dt);
 		}
@@ -284,11 +285,11 @@ void QGameObject::Initialize()
 
 bool QGameObject::IsHurt()
 {
-	if(!bActiveHurt)
+	if (!bActiveHurt)
 		return false;
 	DWORD now = GetTickCount();
 	DWORD deltaTime = now - _localHurtTime;
-	if(deltaTime >= 1500)
+	if (deltaTime >= 1500)
 	{
 		bActiveHurt = false;
 		return false;

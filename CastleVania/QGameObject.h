@@ -5,7 +5,7 @@
 #include <map>
 #include "HeaderObj.h"
 #include "Singleton.h"
-#include "CCamera.h"
+#include "GCamera.h"
 #include <fstream>
 #include <iostream>
 #include <conio.h>
@@ -14,13 +14,11 @@
 #include <time.h>
 #include <random>
 
-//using namespace std;
+using namespace std;
 
 class QGameObject
 {
 protected:
-	PhantomBat* _phantomBat;
-	QueenMedusa* _queenMedusa;
 
 	D3DXVECTOR2 posDoor;
 public:
@@ -28,23 +26,18 @@ public:
 	DWORD _deltaHurtTime;
 	bool bActiveHurt;
 	bool IsHurt();
-	void Initialize();	
-
-	list<GameObject*> *_staticObject;
-	list<GameObject*> *_dynamicObject;
+	void Initialize();
 
 	QGameObject(void);
 	~QGameObject(void);
 
 	QGameObject(string);
 	D3DXVECTOR2 GetPosDoor();	//Lay vi tri de ve canh cua qua stage
-	void Draw(CCamera *camera);
+	void Draw(GCamera *camera);
 	void Update(int deltaTime);
 	void Collision(int dt);
-	int RemoveAllObjectInCamera(D3DXVECTOR2 );
+	int RemoveAllObjectInCamera(D3DXVECTOR2);
 	void RemoveAllObject();
-	QueenMedusa* getQueenMedusa();
-	PhantomBat* getPhantomBat();
 	void PauseUpdate();
 };
 

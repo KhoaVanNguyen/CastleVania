@@ -4,7 +4,7 @@
 QNode::QNode(void)
 {
 	left = 0;
-	top	 = 0;
+	top = 0;
 	size = 0;
 	leftTop = NULL;
 	rightBottom = NULL;
@@ -15,7 +15,7 @@ QNode::QNode(void)
 QNode::QNode(int _left, int _top, int _size, list<int> _list)
 {
 	left = _left;
-	top	 = _top;
+	top = _top;
 	size = _size;
 	leftTop = NULL;
 	rightBottom = NULL;

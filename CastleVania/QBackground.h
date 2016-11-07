@@ -3,7 +3,7 @@
 
 #include <list>
 #include <map>
-
+#include "Singleton.h"
 #include "GCamera.h"
 #include <fstream>
 #include <iostream>
@@ -17,7 +17,7 @@ using namespace std;
 class QBackground
 {
 	void Load(int, QNode*&);
-	void GetNodeObject(int , int , QNode*);
+	void GetNodeObject(int, int, QNode*);
 public:
 	QNode *tree;
 	GSprite* bgSprite;
@@ -26,10 +26,10 @@ public:
 	list<int> *_listTile;
 
 	QBackground(void);
-	QBackground(int);
+	//QBackground(int);
 	void LoadTree();
 	void GetTreeObject(int, int);
-	//void Draw(CCamera *camera);
+	void Draw(GCamera *camera);
 	~QBackground(void);
 };
 
