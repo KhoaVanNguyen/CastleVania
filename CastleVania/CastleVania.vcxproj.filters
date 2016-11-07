@@ -35,6 +35,9 @@
     <Filter Include="QuadTree">
       <UniqueIdentifier>{0ac1d61d-2f29-4143-bfa1-350e65f3edcf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{7b06271d-9000-40bc-8014-99d0407eecaa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -82,17 +85,29 @@
     <ClCompile Include="Singleton.cpp">
       <Filter>Enum</Filter>
     </ClCompile>
-    <ClCompile Include="CastleVania\QBackground.cpp">
+    <ClCompile Include="QBackground.cpp">
       <Filter>QuadTree</Filter>
     </ClCompile>
-    <ClCompile Include="CastleVania\QGameObject.cpp">
+    <ClCompile Include="QNode.cpp">
       <Filter>QuadTree</Filter>
     </ClCompile>
-    <ClCompile Include="CastleVania\QNode.cpp">
+    <ClCompile Include="Tile.cpp">
       <Filter>QuadTree</Filter>
     </ClCompile>
-    <ClCompile Include="CastleVania\Tile.cpp">
+    <ClCompile Include="QGameObject.cpp">
       <Filter>QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Candle.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Simon.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,17 +159,31 @@
     <ClInclude Include="Singleton.h">
       <Filter>Enum</Filter>
     </ClInclude>
-    <ClInclude Include="CastleVania\QBackground.h">
+    <ClInclude Include="QBackground.h">
       <Filter>QuadTree</Filter>
     </ClInclude>
-    <ClInclude Include="CastleVania\QGameObject.h">
+    <ClInclude Include="QNode.h">
       <Filter>QuadTree</Filter>
     </ClInclude>
-    <ClInclude Include="CastleVania\QNode.h">
+    <ClInclude Include="Tile.h">
       <Filter>QuadTree</Filter>
     </ClInclude>
-    <ClInclude Include="CastleVania\Tile.h">
+    <ClInclude Include="HeaderObj.h" />
+    <ClInclude Include="SweptAABB.h" />
+    <ClInclude Include="QGameObject.h">
       <Filter>QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Candle.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Simon.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

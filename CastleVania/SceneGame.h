@@ -1,17 +1,35 @@
-#ifndef _SCENEGAME_H_
-#define _SCENEGAME_H_
+#ifndef _SCENE1_H_
+#define _SCENE1_H_
+
+#include "HeaderObj.h"
+#include "QBackground.h"
+#include "QGameObject.h"
 #include "Scene.h"
+using namespace std;
+
 class SceneGame : public Scene
 {
 public:
+
 	SceneGame();
 	~SceneGame();
+protected:
+
+	LPDIRECT3DSURFACE9 BackgroundWhite;
+
+	QBackground *bg;
+
+	/*QGameObject* qGameObject;*/
+	
+	GameObject* intro;
+	GCamera *camera;
 
 
-	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);
-	virtual void ProcessInput(int keyCode);
-	virtual void LoadResources(LPDIRECT3DDEVICE9 d3ddv);
-	virtual void OnKeyDown(int KeyCode);
+
+	void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);
+	void ProcessInput(int keyCode);
+	void LoadResources(LPDIRECT3DDEVICE9 d3ddv);
+
+	void OnKeyDown(int KeyCode);
 };
-
 #endif

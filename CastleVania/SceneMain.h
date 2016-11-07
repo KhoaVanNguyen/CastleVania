@@ -5,6 +5,7 @@
 #include "CEnum.h"
 #include "Scene.h"
 #include "SceneMenu.h"
+#include "SceneGame.h"
 class SceneMain: public CGame
 {
 public: 	

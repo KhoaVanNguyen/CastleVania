@@ -20,4 +20,11 @@ enum EnumID
 	Candle_ID,
 	LargeCandle_ID,
 };
+
+enum ObjectType {
+	None,
+	Item,
+	Enemy,
+	Other
+};
 #endif

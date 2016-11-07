@@ -1,29 +1,18 @@
 #include "QBackground.h"
 
-//QBackground::QBackground(void)
-//{
-//	tree = NULL;
-//	_myObject = NULL;
-//	_nodeOfTree = NULL;
-//	_listTile = NULL;
-//}
+QBackground::QBackground(void)
+{
+	tree = NULL;
+	_myObject = NULL;
+	_nodeOfTree = NULL;
+	_listTile = NULL;
+}
 
-QBackground::QBackground(void/*int level*/)
+QBackground::QBackground(int)
 {
 	string fileName;
 	fileName = "Resources\\Maps\\Level1.txt";
-	//switch (level)
-	//{
-	//case 1:
-	//	fileName = "Resources\\Maps\\Level1.txt";
-	//	break;
-	//case 2:
-	//	fileName = "Resources\\Maps\\Level2.txt";
-	//	break;
-	//case 3:
-	//	fileName = "Resources\\Maps\\Level3.txt";
-	//	break;
-	/*}*/
+
 
 	ifstream map(fileName);
 
@@ -36,17 +25,6 @@ QBackground::QBackground(void/*int level*/)
 		map >> count;
 		bgSprite = new GSprite(new GTexture("Resources\\Maps\\Level1.png", count, 1, count), 1000);
 
-		//switch (level)
-		//{
-		//case 1:
-		//	break;
-		//case 2:
-		//	bgSprite = new GSprite(new GTexture("Resources\\Maps\\Level2.png", count, 1, count), 1000);
-		//	break;
-		//case 3:
-		//	bgSprite = new GSprite(new GTexture("Resources\\Maps\\Level3.png", count, 1, count), 1000);
-		//	break;
-		//}
 		map >> count >> G_MapWidth >> G_MapHeight;
 		int id;
 		_myObject = new std::map<int, Tile*>();

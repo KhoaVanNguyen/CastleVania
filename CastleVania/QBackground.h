@@ -26,7 +26,7 @@ public:
 	list<int> *_listTile;
 
 	QBackground(void);
-	//QBackground(int);
+	QBackground(int);
 	void LoadTree();
 	void GetTreeObject(int, int);
 	void Draw(GCamera *camera);
