@@ -9,15 +9,15 @@ GTexture::GTexture(char* _fileName, int cols, int rows, int count)
 	this->Load();
 }
 
-GTexture::GTexture( const GTexture &ctexture)
+GTexture::GTexture( const GTexture &GTexture)
 {		
-	this->FileName=ctexture.FileName;
-	this->Size=ctexture.Size;
-	this->Cols=ctexture.Cols;
-	this->Rows=ctexture.Rows;
-	this->Count=ctexture.Count;
-	this->FrameHeight=ctexture.FrameHeight;
-	this->FrameWidth=ctexture.FrameWidth;
+	this->FileName=GTexture.FileName;
+	this->Size=GTexture.Size;
+	this->Cols=GTexture.Cols;
+	this->Rows=GTexture.Rows;
+	this->Count=GTexture.Count;
+	this->FrameHeight=GTexture.FrameHeight;
+	this->FrameWidth=GTexture.FrameWidth;
 	this->Load();
 }
 

@@ -86,6 +86,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CastleVania\QBackground.cpp" />
+    <ClCompile Include="CastleVania\QGameObject.cpp" />
+    <ClCompile Include="CastleVania\QNode.cpp" />
+    <ClCompile Include="CastleVania\Tile.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GAudio.cpp" />
     <ClCompile Include="GCamera.cpp" />
@@ -99,9 +103,14 @@
     <ClCompile Include="GSprite.cpp" />
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
+    <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CastleVania\QBackground.h" />
+    <ClInclude Include="CastleVania\QGameObject.h" />
+    <ClInclude Include="CastleVania\QNode.h" />
+    <ClInclude Include="CastleVania\Tile.h" />
     <ClInclude Include="CEnum.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GAudio.h" />
@@ -116,6 +125,7 @@
     <ClInclude Include="GSprite.h" />
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="SceneMenu.h" />
+    <ClInclude Include="Singleton.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>

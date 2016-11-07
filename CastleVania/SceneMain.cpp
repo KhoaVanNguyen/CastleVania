@@ -38,7 +38,7 @@ void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 
 void SceneMain::OnKeyDown(int KeyCode)
 {
-
+	sceneNow->OnKeyDown(KeyCode);
 }
 
 SceneMain::~SceneMain(void)

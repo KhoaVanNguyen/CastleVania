@@ -1,5 +1,5 @@
-﻿#ifndef CTEXTURE_H
-#define CTEXTURE_H
+﻿#ifndef GTEXTURE_H
+#define GTEXTURE_H
 
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -17,7 +17,7 @@ public:
 	int FrameWidth;		//width of 1 frame
 	int FrameHeight;	//height of 1 frame
 
-	GTexture( const GTexture &ctexture);
+	GTexture( const GTexture &GTexture);
 	GTexture(char* _fileName, int cols = 1, int rows = 1, int count = 1);
 	~GTexture();
 	//vẽ texture tại vị trí (x, y) trên màn hình

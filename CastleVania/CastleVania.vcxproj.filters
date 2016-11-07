@@ -29,6 +29,12 @@
     <Filter Include="Font">
       <UniqueIdentifier>{c3d31c46-2e33-44b5-8374-4c6fbd3ab26b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Enum">
+      <UniqueIdentifier>{9fded7f9-75e6-4090-a40b-5b442e128b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="QuadTree">
+      <UniqueIdentifier>{0ac1d61d-2f29-4143-bfa1-350e65f3edcf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -73,6 +79,21 @@
     <ClCompile Include="SceneMenu.cpp">
       <Filter>FrameWork\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>Enum</Filter>
+    </ClCompile>
+    <ClCompile Include="CastleVania\QBackground.cpp">
+      <Filter>QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="CastleVania\QGameObject.cpp">
+      <Filter>QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="CastleVania\QNode.cpp">
+      <Filter>QuadTree</Filter>
+    </ClCompile>
+    <ClCompile Include="CastleVania\Tile.cpp">
+      <Filter>QuadTree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -105,7 +126,6 @@
     <ClInclude Include="Scene.h">
       <Filter>FrameWork\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="CEnum.h" />
     <ClInclude Include="SceneMain.h">
       <Filter>FrameWork\Scenes</Filter>
     </ClInclude>
@@ -117,6 +137,24 @@
     </ClInclude>
     <ClInclude Include="SceneMenu.h">
       <Filter>FrameWork\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnum.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Enum</Filter>
+    </ClInclude>
+    <ClInclude Include="CastleVania\QBackground.h">
+      <Filter>QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="CastleVania\QGameObject.h">
+      <Filter>QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="CastleVania\QNode.h">
+      <Filter>QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="CastleVania\Tile.h">
+      <Filter>QuadTree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
