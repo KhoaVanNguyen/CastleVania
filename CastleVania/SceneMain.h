@@ -8,7 +8,6 @@ class SceneMain: public CGame
 public: 	
 	SceneMain(int _nCmdShow);
 	~SceneMain();	
-
 protected:	
 
 	virtual void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);

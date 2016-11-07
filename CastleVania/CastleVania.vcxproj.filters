@@ -26,6 +26,9 @@
     <Filter Include="FrameWork\Scenes">
       <UniqueIdentifier>{ea983e39-557e-4be5-bd77-e8b97a55d64d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Font">
+      <UniqueIdentifier>{c3d31c46-2e33-44b5-8374-4c6fbd3ab26b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -43,9 +46,6 @@
     <ClCompile Include="dsutil.cpp">
       <Filter>FrameWork\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
     <ClCompile Include="GTexture.cpp">
       <Filter>FrameWork</Filter>
     </ClCompile>
@@ -59,6 +59,18 @@
       <Filter>FrameWork\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
+      <Filter>FrameWork\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGame.cpp">
+      <Filter>FrameWork\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>FrameWork\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Font</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
       <Filter>FrameWork\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -78,9 +90,6 @@
     <ClInclude Include="dxutil.h">
       <Filter>FrameWork\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>Game</Filter>
-    </ClInclude>
     <ClInclude Include="GTexture.h">
       <Filter>FrameWork</Filter>
     </ClInclude>
@@ -97,6 +106,18 @@
       <Filter>FrameWork\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="CEnum.h" />
+    <ClInclude Include="SceneMain.h">
+      <Filter>FrameWork\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGame.h">
+      <Filter>FrameWork\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Font</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>FrameWork\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
