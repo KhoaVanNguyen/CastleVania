@@ -43,10 +43,10 @@ void SceneMenu::_openOption()
 	switch (_currentSelection)
 	{
 	case 0:
-		sceneState = ESceneState::Game_Scene;
+		sceneState = ESceneState::Scene_Game;
 		break;
 	case 1:
-		sceneState = ESceneState::Game_Scene;
+		sceneState = ESceneState::Scene_Game;
 		break;
 	case 2:
 		PostMessage(G_hWnd, WM_QUIT, 0, 0);
@@ -56,7 +56,7 @@ void SceneMenu::_openOption()
 	}
 }
 
-SceneMenu::SceneMenu(void) : Scene(ESceneState::Menu_Scene)
+SceneMenu::SceneMenu(void) : Scene(ESceneState::Scene_Menu)
 {
 	_initialize();
 }

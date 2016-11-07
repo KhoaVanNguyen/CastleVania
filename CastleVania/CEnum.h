@@ -4,9 +4,9 @@
 
 static enum ESceneState
 {
-	Menu_Scene,
-	Intro_Scene,
-	Game_Scene,
-	EndGame_Scene
+	Scene_Menu,
+	Scene_Intro,
+	Scene_Game,
+	Scene_End
 } EnumSceneState;
 #endif

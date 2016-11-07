@@ -2,9 +2,9 @@
 
 
 
-SceneGame::SceneGame()
+SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	Scene::Scene();
+	
 }
 
 
