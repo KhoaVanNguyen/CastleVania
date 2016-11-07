@@ -23,6 +23,9 @@
     <Filter Include="FrameWork\Camera">
       <UniqueIdentifier>{20a531ec-1814-4bef-924c-4cb850fc992a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FrameWork\Scenes">
+      <UniqueIdentifier>{ea983e39-557e-4be5-bd77-e8b97a55d64d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -54,6 +57,9 @@
     </ClCompile>
     <ClCompile Include="GCamera.cpp">
       <Filter>FrameWork\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>FrameWork\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -87,5 +93,12 @@
     <ClInclude Include="GCamera.h">
       <Filter>FrameWork\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>FrameWork\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnum.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
