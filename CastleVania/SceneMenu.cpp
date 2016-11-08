@@ -74,18 +74,20 @@ void SceneMenu::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 
 void SceneMenu::OnKeyDown(int KeyCode)
 {
+	int pre = 0;
+	int next = 0;
 	switch (KeyCode)
 	{
 	case DIK_UP:
-		_currentSelection = (_currentSelection - 1) % MENU_MAX_OPTION;
-		if (_currentSelection<0)
-			_currentSelection += 3;
-		//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_Select);
+
+		_currentSelection = _currentSelection - 1;
+		if (_currentSelection < 0) _currentSelection = 2;
 		break;
 	case DIK_DOWN:
-		_currentSelection = (_currentSelection + 1) % MENU_MAX_OPTION;
-		//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_Select);
+		_currentSelection += 1;
+		if (_currentSelection > 2) _currentSelection = 0;
 		break;
+
 	case DIK_RETURN:
 		this->_openOption();
 		break;
