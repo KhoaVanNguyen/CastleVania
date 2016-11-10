@@ -100,8 +100,8 @@ void SceneMenu::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 
 	D3DXCreateSprite(d3ddv, &G_SpriteHandler);
 
-	Background = CreateSurfaceFromFile(d3ddv, BACKGROUND_FILE);
 
+	Background = CreateSurfaceFromFile(d3ddv, BACKGROUND_FILE);
 	HRESULT res = D3DXCreateSprite(d3ddv, &G_SpriteHandler);
 
 	_smallFont = new Font(d3ddv, 22, G_ScreenWidth, G_ScreenHeight);

@@ -37,11 +37,16 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
+	d3ddv->StretchRect(
+		Background,			// from 
+		NULL,				// which portion?
+		G_BackBuffer,		// to 
+		NULL,				// which portion?
+		D3DTEXF_NONE);
 	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 	bg->GetTreeObject(500, camera->viewport.y);
 	bg->Draw(camera);
 	G_SpriteHandler->End();
-
 }
 
 void SceneGame::ProcessInput(int KeyCode) {
