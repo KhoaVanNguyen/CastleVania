@@ -1,9 +1,9 @@
 #include <windows.h>
-#include "SceneMain.h"
+#include "SceneControl.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
-	SceneMain *game = new SceneMain(nCmdShow);
+	SceneControl *game = new SceneControl(nCmdShow);
 	game->InitGame();
 	game->GameRun();
 	game->GameEnd();

@@ -2,7 +2,7 @@
 #define _HEADEROBJ_H_
 
 #include "Singleton.h"
-#include "Simon.h"
+#include "Player.h"
 #include "Brick.h"
 #include "Candle.h"
 //#include "LargeCandle.h"

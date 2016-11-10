@@ -8,9 +8,6 @@
     <Filter Include="FrameWork">
       <UniqueIdentifier>{4082bdfb-5745-4916-8403-58be6d981bce}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{0bc8853f-ee62-4ad8-8a4b-26768f8846b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="WinMain">
       <UniqueIdentifier>{7d39dec8-7f8e-4e9d-b091-d005312c5909}</UniqueIdentifier>
     </Filter>
@@ -22,9 +19,6 @@
     </Filter>
     <Filter Include="FrameWork\Camera">
       <UniqueIdentifier>{20a531ec-1814-4bef-924c-4cb850fc992a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FrameWork\Scenes">
-      <UniqueIdentifier>{ea983e39-557e-4be5-bd77-e8b97a55d64d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Font">
       <UniqueIdentifier>{c3d31c46-2e33-44b5-8374-4c6fbd3ab26b}</UniqueIdentifier>
@@ -38,10 +32,28 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{7b06271d-9000-40bc-8014-99d0407eecaa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\DynamicGameObject">
+      <UniqueIdentifier>{4ed29dd8-4cae-4149-aa18-6cdd9a063935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\StaticGameObject">
+      <UniqueIdentifier>{32eb485b-ca27-4f47-a64c-d4f24f70994b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Graphic">
+      <UniqueIdentifier>{76d4f71c-1ef6-4805-a3b8-e7ada1eea0d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{ea983e39-557e-4be5-bd77-e8b97a55d64d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Player">
+      <UniqueIdentifier>{43691058-fbae-4a82-8379-00b45a88ab27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Game">
+      <UniqueIdentifier>{0bc8853f-ee62-4ad8-8a4b-26768f8846b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
-      <Filter>Game</Filter>
+      <Filter>FrameWork\Game</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Utils</Filter>
@@ -55,12 +67,6 @@
     <ClCompile Include="dsutil.cpp">
       <Filter>FrameWork\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="GTexture.cpp">
-      <Filter>FrameWork</Filter>
-    </ClCompile>
-    <ClCompile Include="GSprite.cpp">
-      <Filter>FrameWork</Filter>
-    </ClCompile>
     <ClCompile Include="GAudio.cpp">
       <Filter>FrameWork\Sound</Filter>
     </ClCompile>
@@ -68,19 +74,16 @@
       <Filter>FrameWork\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
-      <Filter>FrameWork\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="SceneGame.cpp">
-      <Filter>FrameWork\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
-      <Filter>FrameWork\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
       <Filter>Font</Filter>
     </ClCompile>
     <ClCompile Include="SceneMenu.cpp">
-      <Filter>FrameWork\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Singleton.cpp">
       <Filter>Enum</Filter>
@@ -100,19 +103,29 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="SceneControl.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
     <ClCompile Include="Brick.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\StaticGameObject</Filter>
     </ClCompile>
     <ClCompile Include="Candle.cpp">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\StaticGameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Simon.cpp">
-      <Filter>GameObject</Filter>
+    <ClCompile Include="GSprite.cpp">
+      <Filter>FrameWork\Graphic</Filter>
     </ClCompile>
+    <ClCompile Include="GTexture.cpp">
+      <Filter>FrameWork\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
-      <Filter>Game</Filter>
+      <Filter>FrameWork\Game</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Utils</Filter>
@@ -126,12 +139,6 @@
     <ClInclude Include="dxutil.h">
       <Filter>FrameWork\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="GTexture.h">
-      <Filter>FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="GSprite.h">
-      <Filter>FrameWork</Filter>
-    </ClInclude>
     <ClInclude Include="GAudio.h">
       <Filter>FrameWork\Sound</Filter>
     </ClInclude>
@@ -139,19 +146,16 @@
       <Filter>FrameWork\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
-      <Filter>FrameWork\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>FrameWork\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="SceneGame.h">
-      <Filter>FrameWork\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Font</Filter>
     </ClInclude>
     <ClInclude Include="SceneMenu.h">
-      <Filter>FrameWork\Scenes</Filter>
+      <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="CEnum.h">
       <Filter>Enum</Filter>
@@ -168,23 +172,37 @@
     <ClInclude Include="Tile.h">
       <Filter>QuadTree</Filter>
     </ClInclude>
-    <ClInclude Include="HeaderObj.h" />
-    <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="QGameObject.h">
       <Filter>QuadTree</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="SceneControl.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
     <ClInclude Include="Brick.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\StaticGameObject</Filter>
     </ClInclude>
     <ClInclude Include="Candle.h">
-      <Filter>GameObject</Filter>
+      <Filter>GameObject\StaticGameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Simon.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="SweptAABB.h">
+      <Filter>FrameWork</Filter>
     </ClInclude>
+    <ClInclude Include="GSprite.h">
+      <Filter>FrameWork\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="GTexture.h">
+      <Filter>FrameWork\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderObj.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

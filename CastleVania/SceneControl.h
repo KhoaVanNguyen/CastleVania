@@ -1,16 +1,16 @@
-#ifndef _SCENEMAIN_H_
-#define _SCENEMAIN_H_
+#ifndef _SCENECONTROL_H_
+#define _SCENECONTROL_H_
 
 #include "Game.h"
 #include "CEnum.h"
 #include "Scene.h"
 #include "SceneMenu.h"
 #include "SceneGame.h"
-class SceneMain: public CGame
+class SceneControl: public CGame
 {
 public: 	
-	SceneMain(int _nCmdShow);
-	~SceneMain();	
+	SceneControl(int _nCmdShow);
+	~SceneControl();	
 	Scene *sceneNow;
 	ESceneState currentStateScene;
 protected:	

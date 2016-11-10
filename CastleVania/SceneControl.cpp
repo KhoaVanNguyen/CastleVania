@@ -1,14 +1,13 @@
 
-#include "SceneMain.h"
-
-SceneMain::SceneMain(int _nCmdShow): CGame(_nCmdShow)
+#include "SceneControl.h"
+SceneControl::SceneControl(int _nCmdShow): CGame(_nCmdShow)
 {
 	sceneNow = new SceneMenu();
 	currentStateScene = ESceneState::Scene_Menu;
 
 }
 
-void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
+void SceneControl::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 {
 
 
@@ -31,20 +30,20 @@ void SceneMain::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 	sceneNow->RenderFrame(d3ddv, t);
 }
 
-void SceneMain::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta)
+void SceneControl::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta)
 {
 }
 
-void SceneMain::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
+void SceneControl::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 {
 	sceneNow->LoadResources(d3ddv);
 }
 
-void SceneMain::OnKeyDown(int KeyCode)
+void SceneControl::OnKeyDown(int KeyCode)
 {
 	sceneNow->OnKeyDown(KeyCode);
 }
 
-SceneMain::~SceneMain(void)
+SceneControl::~SceneControl(void)
 {
 }
