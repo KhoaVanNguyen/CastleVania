@@ -19,14 +19,10 @@ GameObject::GameObject(float _posX, float _posY, EnumID _id)
 	vX = 0;
 	vY = 0;
 	id = _id;
-	hearts = 0;
-	hp = 1;
-	damage = 1;
-	point = 0;
+	
 	type = ObjectType::None;
 	canMove = false;
-	active = true;
-	death = false;
+	
 	CreateSprite();
 	if (sprite != NULL)
 	{
@@ -39,7 +35,7 @@ void GameObject::CreateSprite()
 {
 	switch (id)
 	{
-	case EnumID::Simon_ID:
+	case EnumID::Player_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID::Brick_ID:
@@ -68,10 +64,6 @@ void GameObject::Draw(GCamera* camera)
 		sprite->Draw(center.x, center.y);
 	}
 }
-
-
-
-
 void GameObject::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int t) {}
 void GameObject::OnKeyDown(int KeyCode) {}
 GameObject::~GameObject(void) {}

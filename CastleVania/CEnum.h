@@ -13,8 +13,8 @@ enum EnumID
 {
 	None_ID,
 
-	Simon_ID,
-	SimonDeath_ID,
+	Player_ID,
+	PlayerDeath_ID,
 
 	Brick_ID,
 	Candle_ID,
@@ -26,5 +26,16 @@ enum ObjectType {
 	Item,
 	Enemy,
 	Other
+};
+enum Action
+{
+	Idle,
+	Run_Right,
+	Run_Left,
+	Jump,
+	Fight,
+	Sit,
+	Fall,
+	IntoCastle
 };
 #endif

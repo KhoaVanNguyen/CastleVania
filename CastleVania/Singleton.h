@@ -6,8 +6,8 @@
 class Singleton
 {
 private:
-	GTexture* simon;
-	GTexture* simonDeath;
+	GTexture* player;
+	GTexture* playerDeath;
 
 	//ground
 	GTexture* candle;

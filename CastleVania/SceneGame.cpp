@@ -1,7 +1,6 @@
 #include "SceneGame.h"
 
 #define BACKGROUND_FILE "Resources/black.png"
-#define BACKGROUND_WHITE_FILE "Resources/white.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	camera = new GCamera();
@@ -22,7 +21,6 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	D3DXCreateSprite(d3ddv, &G_SpriteHandler);
 	
 	Background = CreateSurfaceFromFile(d3ddv, BACKGROUND_FILE);
-	BackgroundWhite = CreateSurfaceFromFile(d3ddv, BACKGROUND_WHITE_FILE);
 	HRESULT res = D3DXCreateSprite(d3ddv, &G_SpriteHandler);
 	
 	if (bg != NULL)
@@ -31,6 +29,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	camera->viewport.y = 450;
 	bg = new QBackground(1);
 	bg->LoadTree();
+	player = new Player(50, 64);
 	//camera->SetSizeMap(G_MaxSize, G_MinSize);
 	
 	

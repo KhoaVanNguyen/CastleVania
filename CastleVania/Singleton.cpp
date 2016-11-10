@@ -18,9 +18,8 @@ Singleton* Singleton::getInstance()
 
 Singleton::Singleton()
 {
-	simon = new GTexture("Resources/simon.png", 8, 3, 24);
-	simonDeath = new GTexture("Resources/simondeath.png", 1, 1, 1);
-
+	player = new GTexture("Resources/player.png", 8, 3, 24);
+	playerDeath = new GTexture("Resources/playerdeath.png", 1, 1, 1);
 	candle = new GTexture("Resources/static_object/1.png", 2, 1, 2);
 	largeCandle = new GTexture("Resources/static_object/0.png", 2, 1, 2);
 }
@@ -29,10 +28,10 @@ GTexture* Singleton::getTexture(EnumID id)
 {
 	switch (id)
 	{
-	case EnumID::Simon_ID:
-		return simon;
-	case EnumID::SimonDeath_ID:
-		return simonDeath;
+	case EnumID::Player_ID:
+		return player;
+	case EnumID::PlayerDeath_ID:
+		return playerDeath;
 
 	case EnumID::Candle_ID:
 		return candle;

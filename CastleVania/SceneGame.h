@@ -4,6 +4,7 @@
 #include "HeaderObj.h"
 #include "QBackground.h"
 #include "QGameObject.h"
+#include "Player.h"
 #include "Scene.h"
 using namespace std;
 
@@ -23,7 +24,7 @@ protected:
 	
 	GameObject* intro;
 	GCamera *camera;
-
+	Player* player;
 
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);

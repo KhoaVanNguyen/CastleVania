@@ -121,7 +121,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>GameObject\Player</Filter>
     </ClCompile>
-    <ClCompile Include="DynamicObject.cpp" />
+    <ClCompile Include="DynamicObject.cpp">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -202,7 +204,9 @@
     <ClInclude Include="Player.h">
       <Filter>GameObject\Player</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicObject.h" />
+    <ClInclude Include="DynamicObject.h">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -19,24 +19,19 @@ public:
 	ObjectType type;
 	bool canMove;
 	bool active;
-	bool death;
+	//bool death;
 	//Cac thong so
 	EnumID id;
-	int hearts;
-	int hp;
-	int damage;
-	int point;
+	//int hearts;
+	//int hp;
+	//int damage;
+	//int point;
 
 	virtual void Update(int dt);
 	virtual void Draw(GCamera*);
 	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int t);
 	virtual void OnKeyDown(int KeyCode);
 	virtual void CreateSprite();
-
-
-
-
-
 	GameObject(void);
 	GameObject(float posX, float posY, EnumID id);
 	~GameObject(void);

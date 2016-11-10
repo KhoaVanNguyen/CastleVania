@@ -8,12 +8,12 @@ DynamicObject::DynamicObject(void) : GameObject()
 DynamicObject::DynamicObject(float _posX, float _posY, float _vX, float _vY, EnumID id)
 	: GameObject(_posX, _posY, id)
 {
-	////Di nguoc huong lai simon
-	//vX = _vX;
-	//vY = _vY;
-	//canMove = true;
+	//Di nguoc huong lai player
+	vX = _vX;
+	vY = _vY;
+	canMove = true;
 	//active = false;
-	//Initialize();
+	Initialize();
 }
 
 void DynamicObject::Update(int deltaTime)
@@ -55,24 +55,24 @@ DynamicObject::~DynamicObject(void)
 {
 }
 
-void DynamicObject::Collision(list<GameObject*> obj, int dt)
-{
-	//list<GameObject*>::iterator _itBegin;
-	//for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
-	//{
-	//	float moveX;
-	//	float moveY;
-	//	float normalx;
-	//	float normaly;
-	//	GameObject* other = (*_itBegin);
-	//}
-}
+//void DynamicObject::Collision(list<GameObject*> obj, int dt)
+//{
+//	//list<GameObject*>::iterator _itBegin;
+//	//for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
+//	//{
+//	//	float moveX;
+//	//	float moveY;
+//	//	float normalx;
+//	//	float normaly;
+//	//	GameObject* other = (*_itBegin);
+//	//}
+//}
 
-Box DynamicObject::GetBox()
-{
-	Box result(posX - width / 2, posY + height / 2, width, height, vX, 0);
-	return result;
-}
+//Box DynamicObject::GetBox()
+//{
+//	Box result(posX - width / 2, posY + height / 2, width, height, vX, 0);
+//	return result;
+//}
 
 void DynamicObject::Initialize()
 {
@@ -80,29 +80,29 @@ void DynamicObject::Initialize()
 	//_localHurtTime = 0;
 }
 
-bool DynamicObject::IsHurt()
-{
-	//if (!bActiveHurt)
-	//	return false;
-	//DWORD now = GetTickCount();
-	//DWORD deltaTime = now - _localHurtTime;
-	//if (deltaTime >= 300)
-	//{
-	//	bActiveHurt = false;
-	//}
-	return true;
-}
-
-void DynamicObject::ReceiveDamage(int damagePoint)
-{
-	//if (!IsHurt())
-	//{
-	//	if (hp <= 0)
-	//		return;
-	//	hp -= damagePoint;
-	//	if (hp == 0)
-	//		death = true;
-	//	bActiveHurt = true;
-	//	_localHurtTime = GetTickCount();
-	//}
-}
+//bool DynamicObject::IsHurt()
+//{
+//	//if (!bActiveHurt)
+//	//	return false;
+//	//DWORD now = GetTickCount();
+//	//DWORD deltaTime = now - _localHurtTime;
+//	//if (deltaTime >= 300)
+//	//{
+//	//	bActiveHurt = false;
+//	//}
+//	return true;
+//}
+//
+//void DynamicObject::ReceiveDamage(int damagePoint)
+//{
+//	//if (!IsHurt())
+//	//{
+//	//	if (hp <= 0)
+//	//		return;
+//	//	hp -= damagePoint;
+//	//	if (hp == 0)
+//	//		death = true;
+//	//	bActiveHurt = true;
+//	//	_localHurtTime = GetTickCount();
+//	//}
+//}
