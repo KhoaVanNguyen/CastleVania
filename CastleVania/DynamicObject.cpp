@@ -12,30 +12,31 @@ DynamicObject::DynamicObject(float _posX, float _posY, float _vX, float _vY, Enu
 	vX = _vX;
 	vY = _vY;
 	canMove = true;
-	//active = false;
+	active = false;
 	Initialize();
+	//
 }
 
 void DynamicObject::Update(int deltaTime)
 {
-	//if (sprite == NULL || !active)
-	//	return;
-	//posX += vX*deltaTime;
-	//if (posX <= width / 2 + 2 || posX >= G_MapWidth - (width / 2 - 2))
-	//	vX = -vX;
-	//posY += vY*deltaTime;
-	//sprite->Update(deltaTime);
+	if (sprite == NULL || !active)
+		return;
+	posX += vX*deltaTime;
+	if (posX <= width / 2 + 2 || posX >= G_MapWidth - (width / 2 - 2))
+		vX = -vX;
+	posY += vY*deltaTime;
+	sprite->Update(deltaTime);
 }
 
 void DynamicObject::Draw(GCamera* camera)
 {
-	//if (sprite == NULL || !active)
-	//	return;
-	//D3DXVECTOR2 center = camera->Transform(posX, posY);
-	//if (vX > 0)
-	//	sprite->DrawFlipX(center.x, center.y);
-	//else
-	//	sprite->Draw(center.x, center.y);
+	if (sprite == NULL || !active)
+		return;
+	D3DXVECTOR2 center = camera->Transform(posX, posY);
+	if (vX > 0)
+		sprite->DrawFlipX(center.x, center.y);
+	else
+		sprite->Draw(center.x, center.y);
 }
 
 void DynamicObject::SetActive(float x, float y)
@@ -44,7 +45,7 @@ void DynamicObject::SetActive(float x, float y)
 	//if (abs(posX - x) <= 350 && abs(posY - y) <= 200)
 	//{
 	//	if (posX - x > 0)
-	//	{
+	//	{	
 	//		vX = -vX;
 	//	}
 	//	active = true;

@@ -5,9 +5,7 @@ SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	camera = new GCamera();
 	bg = NULL;
-	if (Background != NULL){
-		delete Background;
-	}
+	_cameraState = ECameraState::Update;
 }
 
 
@@ -30,12 +28,21 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	bg = new QBackground(1);
 	bg->LoadTree();
 	player = new Player(50, 64);
-	//camera->SetSizeMap(G_MaxSize, G_MinSize);
-	
-	
 
+	camera->SetSizeMap(1520,16);
+	
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
+
+	bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
+	player->Update(t);
+
+	if (_cameraState== ECameraState::Update)
+	{
+		camera->UpdateCamera(player->posX);
+	}
+
+
 	d3ddv->StretchRect(
 		Background,			// from 
 		NULL,				// which portion?
@@ -43,14 +50,34 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		NULL,				// which portion?
 		D3DTEXF_NONE);
 	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
-	bg->GetTreeObject(500, camera->viewport.y);
 	bg->Draw(camera);
+	player->Draw(camera);
 	G_SpriteHandler->End();
 }
 
 void SceneGame::ProcessInput(int KeyCode) {
 
+	switch (KeyCode)
+	{
+	case DIK_RIGHT:
+		player->TurnRight();
+	case DIK_D:
+		player->TurnRight();
+		break;
+	case DIK_LEFT:
+		player->TurnLeft();
+	case DIK_A:
+		player->TurnLeft();
+		break;
+	case DIK_DOWN:
+	case DIK_S:
+		player->Sit();
+		break;
+	
+
+	}
 }
+	
 
 void SceneGame::OnKeyDown(int KeyCode) {
 

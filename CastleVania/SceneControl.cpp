@@ -32,6 +32,33 @@ void SceneControl::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t)
 
 void SceneControl::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta)
 {
+	if (currentStateScene == ESceneState::Scene_Game)
+	{
+		if (IsKeyDown(DIK_RIGHT) || IsKeyDown(DIK_D))
+		{
+			sceneNow->ProcessInput(DIK_RIGHT);
+		}
+		else if (IsKeyDown(DIK_LEFT) || IsKeyDown(DIK_A))
+		{
+			sceneNow->ProcessInput(DIK_LEFT);
+		}
+		else if (IsKeyDown(DIK_DOWN) || IsKeyDown(DIK_S))
+		{
+			sceneNow->ProcessInput(DIK_DOWN);
+		}
+		else if (IsKeyDown(DIK_UP) || IsKeyDown(DIK_W))
+		{
+			sceneNow->ProcessInput(DIK_UP);
+		}
+		else if (IsKeyDown(DIK_Q))
+		{
+			sceneNow->ProcessInput(DIK_Q);
+		}
+		else
+		{
+			sceneNow->ProcessInput(DIK_0);
+		}
+	}
 }
 
 void SceneControl::LoadResources(LPDIRECT3DDEVICE9 d3ddv)

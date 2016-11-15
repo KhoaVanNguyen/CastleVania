@@ -1,6 +1,7 @@
 ﻿#include "GCamera.h"
 
 GCamera::GCamera()
+
 {
 	viewport.x = 1;
 	viewport.y = G_ScreenHeight;
@@ -35,7 +36,17 @@ D3DXVECTOR3 GCamera::CenterSprite(int x, int y)
 
 void GCamera::UpdateCamera(int x)
 {
-	//Tự viết dự vào hướng dẫn của GV LT
+	if (x > viewport.x + G_ScreenWidth || x < viewport.x)
+	{
+		viewport.x = x - G_ScreenWidth / 2;
+	}
+
+	if (x  < _maxSize - G_ScreenWidth / 2)
+		viewport.x = x - G_ScreenWidth / 2;
+	if (viewport.x < _minSize)
+		viewport.x = _minSize;
+	if (viewport.x + G_ScreenWidth > _maxSize)
+		viewport.x = _maxSize - G_ScreenWidth;
 }
 
 void GCamera::UpdateCamera(int &w, int &h)

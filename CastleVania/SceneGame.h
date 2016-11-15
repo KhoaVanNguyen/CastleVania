@@ -17,15 +17,15 @@ public:
 protected:
 
 	LPDIRECT3DSURFACE9 BackgroundWhite;
-
+	D3DXVECTOR2 posCamera;
 	QBackground *bg;
-
 	/*QGameObject* qGameObject;*/
 	
 	GameObject* intro;
 	GCamera *camera;
 	Player* player;
-
+	ECameraState _cameraState;
+	bool _beginMoveCamera;
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);
 	void ProcessInput(int keyCode);

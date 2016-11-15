@@ -8,18 +8,15 @@ using namespace std;
 
 class Player : public DynamicObject
 {
-protected:
-	bool bActiveHurt;
-	bool _bHurt;
-	DWORD _localHurtTime;
-	DWORD _deltaHurtTime;
-	bool _usingCross;
-	bool _usingWatch;
+//protected:
+//	bool bActiveHurt;
+//	bool _bHurt;
+//	DWORD _localHurtTime;
+//	DWORD _deltaHurtTime;
+//	bool _usingCross;
+//	bool _usingWatch;
 public:
-	EnumID _weaponID;
-	bool _hasWeapon;
-
-	GSprite *simonJump;
+	GSprite *playerJump;
 
 	float _vLast;
 	Action _action;
@@ -44,8 +41,12 @@ public:
 	void Jump();
 	//void KnockBack();
 	//void Stop();
-	void Draw(GCamera*);
 
+	
+	void Draw(GCamera*);
+	//virtual void SetActive(float x, float y);
+
+	void Fall();
 	void Sit();
 	bool IsFight();
 	void Initialize();

@@ -20,12 +20,6 @@
     <Filter Include="FrameWork\Camera">
       <UniqueIdentifier>{20a531ec-1814-4bef-924c-4cb850fc992a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Font">
-      <UniqueIdentifier>{c3d31c46-2e33-44b5-8374-4c6fbd3ab26b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Enum">
-      <UniqueIdentifier>{9fded7f9-75e6-4090-a40b-5b442e128b76}</UniqueIdentifier>
-    </Filter>
     <Filter Include="QuadTree">
       <UniqueIdentifier>{0ac1d61d-2f29-4143-bfa1-350e65f3edcf}</UniqueIdentifier>
     </Filter>
@@ -44,11 +38,17 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{ea983e39-557e-4be5-bd77-e8b97a55d64d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Player">
-      <UniqueIdentifier>{43691058-fbae-4a82-8379-00b45a88ab27}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FrameWork\Game">
       <UniqueIdentifier>{0bc8853f-ee62-4ad8-8a4b-26768f8846b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils\Enum">
+      <UniqueIdentifier>{9fded7f9-75e6-4090-a40b-5b442e128b76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Font">
+      <UniqueIdentifier>{c3d31c46-2e33-44b5-8374-4c6fbd3ab26b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\DynamicGameObject\Player">
+      <UniqueIdentifier>{43691058-fbae-4a82-8379-00b45a88ab27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -80,13 +80,13 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Font.cpp">
-      <Filter>Font</Filter>
+      <Filter>FrameWork\Font</Filter>
     </ClCompile>
     <ClCompile Include="SceneMenu.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Singleton.cpp">
-      <Filter>Enum</Filter>
+      <Filter>Utils\Enum</Filter>
     </ClCompile>
     <ClCompile Include="QBackground.cpp">
       <Filter>QuadTree</Filter>
@@ -119,7 +119,7 @@
       <Filter>FrameWork\Graphic</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>GameObject\Player</Filter>
+      <Filter>GameObject\DynamicGameObject\Player</Filter>
     </ClCompile>
     <ClCompile Include="DynamicObject.cpp">
       <Filter>GameObject\DynamicGameObject</Filter>
@@ -154,16 +154,16 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Font.h">
-      <Filter>Font</Filter>
+      <Filter>FrameWork\Font</Filter>
     </ClInclude>
     <ClInclude Include="SceneMenu.h">
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="CEnum.h">
-      <Filter>Enum</Filter>
+      <Filter>Utils\Enum</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">
-      <Filter>Enum</Filter>
+      <Filter>Utils\Enum</Filter>
     </ClInclude>
     <ClInclude Include="QBackground.h">
       <Filter>QuadTree</Filter>
@@ -202,7 +202,7 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>GameObject\Player</Filter>
+      <Filter>GameObject\DynamicGameObject\Player</Filter>
     </ClInclude>
     <ClInclude Include="DynamicObject.h">
       <Filter>GameObject\DynamicGameObject</Filter>

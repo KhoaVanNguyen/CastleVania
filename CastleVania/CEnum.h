@@ -38,4 +38,9 @@ enum Action
 	Fall,
 	IntoCastle
 };
+enum ECameraState
+{
+	Update,
+	NoUpdate
+};
 #endif
