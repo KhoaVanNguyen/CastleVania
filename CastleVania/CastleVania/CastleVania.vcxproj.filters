@@ -14,14 +14,17 @@
     <Filter Include="WinMain">
       <UniqueIdentifier>{7d39dec8-7f8e-4e9d-b091-d005312c5909}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{3d0a8537-6548-4bd1-93da-06d3e265d92e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FrameWork\Sound">
       <UniqueIdentifier>{7205ba17-0871-44b5-a9a8-84c298ad8cdf}</UniqueIdentifier>
     </Filter>
     <Filter Include="FrameWork\Camera">
       <UniqueIdentifier>{20a531ec-1814-4bef-924c-4cb850fc992a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{41772d82-c298-4f78-a005-b2ed646f0745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{3d0a8537-6548-4bd1-93da-06d3e265d92e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +58,12 @@
     <ClCompile Include="GCamera.cpp">
       <Filter>FrameWork\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Singleton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -87,5 +96,13 @@
     <ClInclude Include="GCamera.h">
       <Filter>FrameWork\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Enum.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SweptAABB.h" />
   </ItemGroup>
 </Project>
