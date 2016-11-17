@@ -30,7 +30,7 @@ GameObject::GameObject(float _posX, float _posY, EnumID _id)
 		height = sprite->_texture->FrameHeight;
 	}
 }
-
+#pragma region
 void GameObject::CreateSprite()
 {
 	switch (id)
@@ -39,15 +39,14 @@ void GameObject::CreateSprite()
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID::Brick_ID:
-
 		sprite = NULL;
 		break;
-	
 	default:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 100);
 		break;
 	}
 }
+#pragma endregion Tao sprite cho cac ID Object
 
 
 void GameObject::Update(int deltaTime)

@@ -54,6 +54,10 @@ void SceneControl::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta)
 		{
 			sceneNow->ProcessInput(DIK_Q);
 		}
+		else if (IsKeyDown(DIK_J))
+		{
+			sceneNow->ProcessInput(DIK_J);
+		}
 		else
 		{
 			sceneNow->ProcessInput(DIK_0);

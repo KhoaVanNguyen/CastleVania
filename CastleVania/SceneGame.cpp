@@ -26,9 +26,10 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 
 	camera->viewport.y = 450;
 	bg = new QBackground(1);
-	bg->LoadTree();
+	bg->LoadTree(); 
 	player = new Player(50, 64);
 
+	//qGameObject = new QGameObject("Resources/Maps/Stage1.txt");
 	camera->SetSizeMap(1520,16);
 	
 }
@@ -56,25 +57,30 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 }
 
 void SceneGame::ProcessInput(int KeyCode) {
-
+	
 	switch (KeyCode)
 	{
 	case DIK_RIGHT:
+		
 		player->TurnRight();
+		break;
 	case DIK_D:
 		player->TurnRight();
 		break;
 	case DIK_LEFT:
 		player->TurnLeft();
+		break;
 	case DIK_A:
 		player->TurnLeft();
 		break;
-	case DIK_DOWN:
+	case DIK_J:
+		player->Jump();
+		break;
+	//case DIK_DOWN:
 	case DIK_S:
 		player->Sit();
 		break;
 	
-
 	}
 }
 	

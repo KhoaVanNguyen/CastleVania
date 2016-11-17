@@ -6,6 +6,7 @@
 #include "QGameObject.h"
 #include "Player.h"
 #include "Scene.h"
+#include "QGameObject.h"
 using namespace std;
 
 class SceneGame : public Scene
@@ -19,7 +20,7 @@ protected:
 	LPDIRECT3DSURFACE9 BackgroundWhite;
 	D3DXVECTOR2 posCamera;
 	QBackground *bg;
-	/*QGameObject* qGameObject;*/
+	//QGameObject* qGameObject;
 	
 	GameObject* intro;
 	GCamera *camera;
@@ -30,7 +31,7 @@ protected:
 	void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);
 	void ProcessInput(int keyCode);
 	void LoadResources(LPDIRECT3DDEVICE9 d3ddv);
-
 	void OnKeyDown(int KeyCode);
+
 };
 #endif

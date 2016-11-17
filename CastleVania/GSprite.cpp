@@ -90,6 +90,7 @@ void GSprite::Draw(int X, int Y)
 	D3DXVECTOR3 center(0, 0, 0);
 	position.x = X - _texture->FrameWidth/2;
 	position.y = Y - _texture->FrameHeight/2;
+
 	G_SpriteHandler->Draw(
 		_texture->Texture,
 		&srect,

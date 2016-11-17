@@ -38,42 +38,45 @@ void Player::Update(int deltaTime)
 	{
 	case Action::Run_Left:
 		sprite->Update(deltaTime);
+		posX += vX * deltaTime;
 		break;
 	case Action::Run_Right:
 		sprite->Update(deltaTime);
+		posX += vX * deltaTime;
+
 		break;
-
+	case Action::Jump:
+		sprite->Update(deltaTime);
+		sprite->SelectIndex(10);
+		posY += vY *deltaTime;
+	case Action::Idle:
+		sprite->SelectIndex(0);
+		break;
 	}
-	posX += vX * deltaTime;
-	//posY += vY *deltaTime;
+		if (_hasJump)
+		{
+			posY += vY * deltaTime + 0.5 * deltaTime * deltaTime * _a;
+			if (vY > -0.6f)
+				vY += _a * deltaTime;
+			return;
+		}
+		this->Stop();
 }
-
-
-
-
 void Player::Draw(GCamera* camera)
 {
 	//---------Ve Player------------
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
-	if (vX > 0 || _vLast > 0)
+	if (vX > 0 ||_vLast >0)
 	{
-		if ((_hasJump && vY > (-0.5f)/*&& _heightJump >= MAX_HEIGHT / 2*/) || _hasSit)
-		{
-			playerJump->DrawFlipX(center.x, center.y);
-			return;
-		}
-
 		sprite->DrawFlipX(center.x, center.y);
 	}
 	else
 	{
-
 		if ((_hasJump && vY >= (-0.5f)/*&& _heightJump >= MAX_HEIGHT / 2*/) || _hasSit)
 		{
-			playerJump->Draw(center.x, center.y);
+			playerJump->DrawFlipX(center.x, center.y);
 			return;
 		}
-
 		sprite->Draw(center.x, center.y);
 	}
 }
@@ -82,15 +85,8 @@ void Player::TurnLeft()
 {
 	if (_allowPress)
 	{
-		if (_action == Action::Fall)
-			return;
-		if (_action == Action::Fight)
-			return;
-		if (_hasJump || _hasSit)
-			return;
 		vX = -SPEED_X;
 		_vLast = vX;
-		_hasSit = false;
 		_action = Action::Run_Left;
 	}
 }
@@ -99,16 +95,8 @@ void Player::TurnRight()
 {
 	if (_allowPress)
 	{
-
-		if (_action == Action::Fall)
-			return;
-		if (_action == Action::Fight)
-			return;
-		if (_hasJump || _hasSit)
-			return;
 		vX = SPEED_X;
 		_vLast = vX;
-		_hasSit = false;
 		_action = Action::Run_Right;
 
 	}
@@ -118,13 +106,7 @@ void Player::Jump()
 {
 	if (_allowPress)
 	{
-		if (_action == Action::Fall)
-			return;
-		if (_action == Action::Fight)
-			return;
-		if (_hasSit)
-			return;
-
+		
 		if (!_hasJump)
 		{
 			_a = -A;
@@ -182,7 +164,16 @@ D3DXVECTOR2* Player::getPos()
 }
 
 
+void Player::Stop()
+{
+	vX= 0;
+	_action = Action::Idle;
+}
 
 
+Box Player::GetBox()
+{
+	return Box(0, 0, 0, 0, 0, 0);
+}
 
 

@@ -32,3 +32,6 @@ void Scene::OnKeyDown(int KeyCode)
 Scene::~Scene(void)
 {
 }
+int Scene::IsKeyUp(int KeyCode){
+	return (_KeyStates[KeyCode] & 0x80) < 0;
+}

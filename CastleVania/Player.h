@@ -3,7 +3,7 @@
 
 #include "DynamicObject.h"
 #include <math.h>
-
+#include "SweptAABB.h"
 using namespace std;
 
 class Player : public DynamicObject
@@ -40,12 +40,12 @@ public:
 	void TurnRight();
 	void Jump();
 	//void KnockBack();
-	//void Stop();
+	void Stop();
 
-	
+	Box GetBox();
 	void Draw(GCamera*);
 	//virtual void SetActive(float x, float y);
-
+	void GetCollision(list<GameObject*> &obj, float dt);
 	void Fall();
 	void Sit();
 	bool IsFight();
