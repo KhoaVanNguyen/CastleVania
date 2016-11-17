@@ -34,13 +34,13 @@ public:
 	Player(int, int, LPDIRECT3DDEVICE9);
 
 	~Player(void);
-	//----Simon Action----------------
+	//---- Action----------------
 	void Update(int deltaTime);
 	void TurnLeft();
 	void TurnRight();
 	void Jump();
 	//void KnockBack();
-	//void Stop();
+	void Stop();
 
 	
 	void Draw(GCamera*);

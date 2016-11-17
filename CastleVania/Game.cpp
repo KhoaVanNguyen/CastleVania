@@ -256,12 +256,12 @@ void CGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) { }
 
 void CGame::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int Delta) 
 {
-	/*HRESULT hr = G_KeyBoard->GetDeviceState(sizeof(_KeyStates), (LPVOID)&_KeyStates);
+	HRESULT hr = G_KeyBoard->GetDeviceState(sizeof(_KeyStates), (LPVOID)&_KeyStates);
 		if(hr != S_OK)
 		{
 			hr = G_KeyBoard->Acquire();
 			G_KeyBoard->GetDeviceState(sizeof(_KeyStates), (LPVOID)&_KeyStates);
-		}*/
+		}
 }
 
 int CGame::IsKeyDown(int KeyCode)

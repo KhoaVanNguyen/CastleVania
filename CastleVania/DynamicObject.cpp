@@ -33,7 +33,7 @@ void DynamicObject::Draw(GCamera* camera)
 	if (sprite == NULL || !active)
 		return;
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
-	if (vX > 0)
+	if (vX < 0)
 		sprite->DrawFlipX(center.x, center.y);
 	else
 		sprite->Draw(center.x, center.y);

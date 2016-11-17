@@ -72,9 +72,8 @@ void SceneGame::ProcessInput(int KeyCode) {
 	case DIK_DOWN:
 	case DIK_S:
 		player->Sit();
+		player->TurnLeft();
 		break;
-	
-
 	}
 }
 	
