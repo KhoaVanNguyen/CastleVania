@@ -16,6 +16,8 @@ public:
 	float _heightJump; 
 	bool _allowPress;
 	bool _hasSit;
+	bool _hasJump;
+	float _a;
 	//----------------Khoi Tao
 	Player(void);
 	Player(int, int);
@@ -27,7 +29,6 @@ public:
 	void TurnLeft();
 	void TurnRight();
 	void Jump();
-	//void KnockBack();
 	void Stop();
 	void Draw(GCamera*);
 	void Fall();

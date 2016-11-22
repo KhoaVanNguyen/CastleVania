@@ -8,10 +8,6 @@
 #define SPEED_Y 0.4f
 #define MAX_HEIGHT 70.0f
 #define A 0.005f
-
-#define MAX_HEIGHT_KNOCKBACK 32.0f
-#define MAX_WIDTH_KNOCKBACK 40.0f
-
 Player::Player(void) : DynamicObject()
 {
 }
@@ -19,8 +15,10 @@ Player::Player(void) : DynamicObject()
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
 	_action = Action::Idle;
+	_a = 0.005f;
 	_allowPress = true;
 	_hasSit = false;
+	_hasJump = false;
 	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
 	Initialize();
 }
@@ -38,15 +36,27 @@ void Player::Update(int deltaTime)
 	case Action::Idle:
 		sprite->SelectIndex(0);
 		break;
-	//case Action::Sit:
-	//	sprite->Update(deltaTime);
-	//	break;
 	}
 	posX += vX * deltaTime;
+#pragma region Xu ly nhay
+	if (_hasJump)
+	{
+		posY += vY * deltaTime + 0.5 * deltaTime * deltaTime * _a;
+		if (vY > -0.6f)
+			vY += _a * deltaTime;
+		if (posY < 64)
+		{
+			posY = 64;
+			sprite->SelectIndex(0);
+		}	
+		return;
+	}
+#pragma endregion
+
+	//posY += vY *deltaTime;
 }
 void Player::Draw(GCamera* camera)
 {
-	//---------Ve Player------------
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
 	if (vX > 0 || _vLast > 0)
 	{
@@ -62,17 +72,20 @@ void Player::TurnLeft()
 {
 	if (_allowPress)
 	{
+		if (_hasJump || _hasSit)
+			return;
 		vX = -SPEED_X;
 		_vLast = vX;
 		_hasSit = false;
 		_action = Action::Run_Left;
 	}
 }
-
 void Player::TurnRight()
 {
 	if (_allowPress)
 	{
+		if (_hasJump|| _hasSit)
+			return;
 		vX = SPEED_X;
 		_vLast = vX;
 		_hasSit = false;
@@ -81,41 +94,56 @@ void Player::TurnRight()
 }
 void Player::Jump()
 {
+	if (_allowPress)
+	{
+		if (_hasSit)
+			return;
+		if (!_hasJump)
+		{
+			vY = -10;
+			posY += 30;
+			_a = -A;
+			vY = sqrt(-2 * _a*MAX_HEIGHT);
+			//_heightJump = 0;
+			sprite->SelectIndex(4);
+			_action = Action::Jump;
+			_hasJump = true;
+		}
+	}
 }
 void Player::Fall()
 {
-	_action = Action::Fall;
-	vX = 0;
-	vY = -(SPEED_Y + 0.4f);
 }
 
 void Player::Sit()
 {
-	if (_allowPress && !_hasSit)
+	if (_allowPress && !_hasSit&& !_hasJump)
 	{
 		sprite->SelectIndex(4);
 		vX = 0;
-		posY -= 20;
-//		vY = -(SPEED_Y + 0.3f);
+		posY -= 18;
 		_hasSit = true;
 		_action = Action::Sit;
 	}
 }
-
 void Player::Stop() {
 	_action = Action::Idle;
 	vX = 0;
 	if (_hasSit == true)
 	{
-		posY += 20;
+		posY = 64;
 		_hasSit = false;
+	}
+	if (_hasJump == true && posY == 64)
+	{
+		_hasJump == false;
+		_a = 0;
 	}
 
 }
 Player::~Player(void)
 {
 }
-
 D3DXVECTOR2* Player::getPos()
 {
 	return new D3DXVECTOR2(this->posX, this->posY);

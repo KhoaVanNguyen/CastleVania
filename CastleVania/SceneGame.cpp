@@ -68,6 +68,10 @@ void SceneGame::ProcessInput(int KeyCode) {
 	case DIK_S:
 		player->Sit();
 		break;
+	case DIK_UP:
+	case DIK_W:
+		player->Jump();
+		break;
 	default:
 		player->Stop();
 		break;
