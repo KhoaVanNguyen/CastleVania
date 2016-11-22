@@ -41,13 +41,13 @@ void Player::Update(int deltaTime)
 #pragma region Xu ly nhay
 	if (_hasJump)
 	{
-		posY += vY * deltaTime + 0.5 * deltaTime * deltaTime * _a;
+		posY += vY * deltaTime + 0.4 * deltaTime * deltaTime * _a;
 		if (vY > -0.6f)
 			vY += _a * deltaTime;
-		if (posY < 64)
+		if (posY < 64)//xét va chạm thì thay tại đây
 		{
-			posY = 64;
-			sprite->SelectIndex(0);
+			posY = 64;// xét va chạm thì thay tại đây
+			//sprite->SelectIndex(0);
 		}	
 		return;
 	}
@@ -72,7 +72,9 @@ void Player::TurnLeft()
 {
 	if (_allowPress)
 	{
-		if (_hasJump || _hasSit)
+		if (_hasJump)
+			return;
+		if (_hasSit)
 			return;
 		vX = -SPEED_X;
 		_vLast = vX;
@@ -84,7 +86,9 @@ void Player::TurnRight()
 {
 	if (_allowPress)
 	{
-		if (_hasJump|| _hasSit)
+		if (_hasJump)
+			return;
+		if (_hasSit)
 			return;
 		vX = SPEED_X;
 		_vLast = vX;
@@ -127,16 +131,23 @@ void Player::Sit()
 	}
 }
 void Player::Stop() {
-	_action = Action::Idle;
+	if (_hasJump == true)
+	{
+	}
+	else
+	{
+		_action = Action::Idle;
 	vX = 0;
+	}
 	if (_hasSit == true)
 	{
-		posY = 64;
+		posY = 64;// va chạm thay tại đây.
 		_hasSit = false;
 	}
-	if (_hasJump == true && posY == 64)
+	if ((_hasJump == true && posY == 64))
 	{
-		_hasJump == false;
+		_hasJump = false;
+		sprite->SelectIndex(0);
 		_a = 0;
 	}
 
