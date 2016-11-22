@@ -12,7 +12,14 @@ private:
 	//ground
 	GTexture* candle;
 	GTexture* largeCandle;
+
+
+	//weapon
+	GTexture* morningStar;
 	static Singleton *single;
+
+
+
 	Singleton();
 
 public:

@@ -50,6 +50,9 @@
     <Filter Include="GameObject\DynamicGameObject\Player">
       <UniqueIdentifier>{43691058-fbae-4a82-8379-00b45a88ab27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Weapon">
+      <UniqueIdentifier>{5e310190-2b34-4442-89a7-0b73e30b31ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -120,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="DynamicObject.cpp">
       <Filter>GameObject\DynamicGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MorningStar.cpp">
+      <Filter>GameObject\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +206,9 @@
     </ClInclude>
     <ClInclude Include="DynamicObject.h">
       <Filter>GameObject\DynamicGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MorningStar.h">
+      <Filter>GameObject\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
