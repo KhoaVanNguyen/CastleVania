@@ -47,7 +47,9 @@ void Player::Update(int deltaTime)
 		if (posY < 64)//xét va chạm thì thay tại đây
 		{
 			posY = 64;// xét va chạm thì thay tại đây
-			//sprite->SelectIndex(0);
+			sprite->SelectIndex(0); // khi rơi xuống, posY sẽ <0, nên pải đưa về selectIndex = 0 
+			_a = 0; // khi chạm đất rồi, a =0;
+			_hasJump = false;// chạm đất r thì không còn nhảy
 		}	
 		return;
 	}
@@ -137,7 +139,7 @@ void Player::Stop() {
 	else
 	{
 		_action = Action::Idle;
-	vX = 0;
+		vX = 0;
 	}
 	if (_hasSit == true)
 	{

@@ -68,9 +68,6 @@ void SceneGame::ProcessInput(int KeyCode) {
 	case DIK_S:
 		player->Sit();
 		break;
-	case DIK_UP:
-		player->Jump();
-		break;
 	//case DIK_SPACE:
 	//	player->Jump();
 	default:
@@ -85,8 +82,5 @@ void SceneGame::OnKeyDown(int KeyCode) {
 	{
 	case DIK_SPACE:
 		player->Jump();
-	default:
-		player->Stop();
-		break;
 	}
 }
