@@ -8,7 +8,6 @@ SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 	_cameraState = ECameraState::Update;
 }
 
-
 SceneGame::~SceneGame()
 {
 
@@ -28,9 +27,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	bg = new QBackground(1);
 	bg->LoadTree();
 	player = new Player(50, 64);
-
 	camera->SetSizeMap(1520,16);
-	
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
@@ -41,13 +38,11 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	{
 		camera->UpdateCamera(player->posX);
 	}
-
-
 	d3ddv->StretchRect(
-		Background,			// from 
-		NULL,				// which portion?
-		G_BackBuffer,		// to 
-		NULL,				// which portion?
+		Background,	
+		NULL,	
+		G_BackBuffer,
+		NULL,	
 		D3DTEXF_NONE);
 	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 	bg->Draw(camera);
@@ -72,12 +67,14 @@ void SceneGame::ProcessInput(int KeyCode) {
 	case DIK_DOWN:
 	case DIK_S:
 		player->Sit();
-		player->TurnLeft();
+		break;
+	default:
+		player->Stop();
 		break;
 	}
 }
 	
 
 void SceneGame::OnKeyDown(int KeyCode) {
-
+	
 }

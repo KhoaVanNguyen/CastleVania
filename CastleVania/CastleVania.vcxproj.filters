@@ -97,9 +97,6 @@
     <ClCompile Include="Tile.cpp">
       <Filter>QuadTree</Filter>
     </ClCompile>
-    <ClCompile Include="QGameObject.cpp">
-      <Filter>QuadTree</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -172,9 +169,6 @@
       <Filter>QuadTree</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>QuadTree</Filter>
-    </ClInclude>
-    <ClInclude Include="QGameObject.h">
       <Filter>QuadTree</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">

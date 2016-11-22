@@ -1,4 +1,4 @@
-#ifndef _QBACKGROUND_H_
+﻿#ifndef _QBACKGROUND_H_
 #define _QBACKGROUND_H_
 
 #include <list>
@@ -17,7 +17,7 @@ using namespace std;
 class QBackground
 {
 	void Load(int, QNode*&);
-	void GetNodeObject(int, int, QNode*);
+	void GetNodeObject(int, int, QNode*);// lấy all các object xuất hiện trên màn hình.
 public:
 	QNode *tree;
 	GSprite* bgSprite;

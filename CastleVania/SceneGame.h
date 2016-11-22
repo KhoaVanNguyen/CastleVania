@@ -3,7 +3,6 @@
 
 #include "HeaderObj.h"
 #include "QBackground.h"
-#include "QGameObject.h"
 #include "Player.h"
 #include "Scene.h"
 using namespace std;

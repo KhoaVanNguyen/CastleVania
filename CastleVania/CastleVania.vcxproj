@@ -96,7 +96,6 @@
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
-    <ClCompile Include="QGameObject.cpp" />
     <ClCompile Include="QNode.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneGame.cpp" />
@@ -125,7 +124,6 @@
     <ClInclude Include="HeaderObj.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />
-    <ClInclude Include="QGameObject.h" />
     <ClInclude Include="QNode.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGame.h" />
