@@ -11,7 +11,7 @@ class Player : public DynamicObject
 public:
 	GSprite *playerJump;
 
-	float _vLast;
+	float _direction;
 	Action _action;
 	float _heightJump; 
 	bool _allowPress;
