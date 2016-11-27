@@ -86,7 +86,7 @@ void SceneGame::OnKeyDown(int KeyCode) {
 		player->Fight();
 		break;
 	case DIK_SPACE:
-		player->Fight();
+		player->Jump();
 	}
 	
 }

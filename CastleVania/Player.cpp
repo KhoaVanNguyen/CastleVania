@@ -67,14 +67,32 @@ void Player::Update(int deltaTime)
 void Player::Draw(GCamera* camera)
 {
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
+	// đi sang phải
 	if (vX > 0 || _vLast > 0)
 	{
+		if (_action == Action::Fight){
+			if (!_hasSit){
+				fightingSprite->DrawFlipX(center.x, center.y);
+			}
+
+			// vẽ Fight rồi return luôn
+			return;
+		}
 		sprite->DrawFlipX(center.x, center.y);
 	}
+	// đi sang trái
 	else
 	{
+		if (_action == Action::Fight){
+			if (!_hasSit){
+				fightingSprite->Draw(center.x, center.y);
+			}
+			return;
+		}
 		sprite->Draw(center.x, center.y);
 	}
+
+	
 }
 
 void Player::TurnLeft()
@@ -132,6 +150,8 @@ void Player::Sit()
 {
 	if (_allowPress && !_hasSit&& !_hasJump)
 	{
+		if (_action == Action::Fight)
+			return;
 		sprite->SelectIndex(4);
 		vX = 0;
 		posY -= 18;
@@ -142,9 +162,10 @@ void Player::Sit()
 void Player::Fight(){
 	if (_allowPress)
 	{
-		/*if (_action == Action::Fight)
-			return;*/
-		if (!_hasJump) vX = 0;
+		if (_action == Action::Fight)
+			return;
+		if (!_hasJump)
+			vX = 0;
 	
 		_action = Action::Fight;
 	}
@@ -154,15 +175,16 @@ void Player::OnFight(int t)
 	if (_hasSit){
 		fightingSittingSprite->Update(t);
 	}
-
-	fightingSprite->Update(t);
-	
-	/*if (!_hasSit && _simonFightingSprite->GetIndex() >= 8)
+	else{
+		fightingSprite->Update(t);
+	}
+	if (!_hasSit && fightingSprite->GetIndex() >= 8)
 	{
 		_action = Action::Idle;
-		_simonFightingSprite->Reset();
-		_morningStar->reset();
+		fightingSprite->Reset();
+		
 	}
+	/*
 	else if (_hasSit && _simonFightingSittingSprite->GetIndex() >= 18)
 	{
 		_action = Action::Sit;
@@ -172,15 +194,23 @@ void Player::OnFight(int t)
 }
 
 void Player::Stop() {
-	if (_hasJump == true)
+	/*if (_hasJump == true)
 	{
 	}
 	else
 	{
 		_action = Action::Idle;
 		vX = 0;
+	}*/
+
+	switch (_action)
+	{
+	case Action::Idle:
+	case Action::Fight:
+	case Action::Fall:
+		return;
 	}
-	if (_hasSit == true)
+	if (_hasSit)
 	{
 		posY = 64;// va chạm thay tại đây.
 		_hasSit = false;
