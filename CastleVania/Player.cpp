@@ -40,9 +40,9 @@ void Player::Update(int deltaTime)
 	case Action::Fight:
 		this->OnFight(deltaTime);
 		break;
-	case Action::Idle:
+	/*case Action::Idle:
 		sprite->SelectIndex(0);
-		break;
+		break;*/
 	}
 	posX += vX * deltaTime;
 #pragma region Xu ly nhay
@@ -74,7 +74,9 @@ void Player::Draw(GCamera* camera)
 			if (!_hasSit){
 				fightingSprite->DrawFlipX(center.x, center.y);
 			}
-
+			else {
+				fightingSittingSprite->DrawFlipX(center.x, center.y);
+			}
 			// vẽ Fight rồi return luôn
 			return;
 		}
@@ -86,6 +88,9 @@ void Player::Draw(GCamera* camera)
 		if (_action == Action::Fight){
 			if (!_hasSit){
 				fightingSprite->Draw(center.x, center.y);
+			}
+			else {
+				fightingSittingSprite->Draw(center.x, center.y);
 			}
 			return;
 		}
@@ -184,13 +189,12 @@ void Player::OnFight(int t)
 		fightingSprite->Reset();
 		
 	}
-	/*
-	else if (_hasSit && _simonFightingSittingSprite->GetIndex() >= 18)
+	
+	else if (_hasSit && fightingSittingSprite->GetIndex() >= 18)
 	{
 		_action = Action::Sit;
-		_simonFightingSittingSprite->Reset();
-		_morningStar->reset();
-	}*/
+		fightingSittingSprite->Reset();
+	}
 }
 
 void Player::Stop() {
@@ -202,7 +206,8 @@ void Player::Stop() {
 		_action = Action::Idle;
 		vX = 0;
 	}*/
-
+	// Xử lý tạm thôi
+	vX = 0;
 	switch (_action)
 	{
 	case Action::Idle:
@@ -221,6 +226,8 @@ void Player::Stop() {
 		sprite->SelectIndex(0);
 		_a = 0;
 	}
+	_action = Action::Idle;
+	sprite->SelectIndex(0);
 
 }
 Player::~Player(void)
