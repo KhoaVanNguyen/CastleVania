@@ -19,6 +19,7 @@ enum EnumID
 	Brick_ID,
 	Candle_ID,
 	LargeCandle_ID,
+	MorningStar_ID
 };
 
 enum ObjectType {

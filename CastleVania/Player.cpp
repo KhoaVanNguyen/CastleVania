@@ -24,6 +24,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 
 	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
 	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
+	
+	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	Initialize();
 }
 
@@ -73,6 +75,7 @@ void Player::Draw(GCamera* camera)
 		if (_action == Action::Fight){
 			if (!_hasSit){
 				fightingSprite->DrawFlipX(center.x, center.y);
+				morningStar->Draw(camera);
 			}
 			else {
 				fightingSittingSprite->DrawFlipX(center.x, center.y);
@@ -88,6 +91,7 @@ void Player::Draw(GCamera* camera)
 		if (_action == Action::Fight){
 			if (!_hasSit){
 				fightingSprite->Draw(center.x, center.y);
+				morningStar->Draw(camera);
 			}
 			else {
 				fightingSittingSprite->Draw(center.x, center.y);
@@ -183,17 +187,28 @@ void Player::OnFight(int t)
 	else{
 		fightingSprite->Update(t);
 	}
+
+	morningStar->Update(t);
+
+	// Update the Vx of morningStar
+	float morningStarVx = -1;
+	if (vX > 0 || _vLast > 0)
+		morningStarVx = -morningStarVx;
+	morningStar->updateVx(morningStarVx);
+
+	morningStar->updateXY(posX, posY);
 	if (!_hasSit && fightingSprite->GetIndex() >= 8)
 	{
 		_action = Action::Idle;
 		fightingSprite->Reset();
-		
+		morningStar->reset();
 	}
 	
 	else if (_hasSit && fightingSittingSprite->GetIndex() >= 18)
 	{
 		_action = Action::Sit;
 		fightingSittingSprite->Reset();
+		morningStar->reset();
 	}
 }
 

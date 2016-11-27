@@ -127,6 +127,12 @@
     <ClCompile Include="MorningStar.cpp">
       <Filter>GameObject\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="LKRect.cpp">
+      <Filter>GameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="MorningStarSprite.cpp">
+      <Filter>GameObject\Weapon</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -208,6 +214,12 @@
       <Filter>GameObject\DynamicGameObject</Filter>
     </ClInclude>
     <ClInclude Include="MorningStar.h">
+      <Filter>GameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="MorningStarSprite.h">
+      <Filter>GameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="LKRect.h">
       <Filter>GameObject\Weapon</Filter>
     </ClInclude>
   </ItemGroup>
