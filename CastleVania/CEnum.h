@@ -19,7 +19,12 @@ enum EnumID
 	Brick_ID,
 	Candle_ID,
 	LargeCandle_ID,
-	MorningStar_ID
+	MorningStar_ID,
+
+	StairUpLeft_ID,
+	StairUpRight_ID,
+	StairDownLeft_ID,
+	StairDownRight_ID,
 };
 
 enum ObjectType {
@@ -43,5 +48,13 @@ enum ECameraState
 {
 	Update,
 	NoUpdate
+};
+enum EKindStair
+{
+	UpRight,
+	UpLeft,
+	DownRight,
+	DownLeft,
+	None
 };
 #endif
