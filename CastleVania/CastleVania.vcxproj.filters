@@ -127,10 +127,10 @@
     <ClCompile Include="MorningStar.cpp">
       <Filter>GameObject\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="LKRect.cpp">
+    <ClCompile Include="MorningStarSprite.cpp">
       <Filter>GameObject\Weapon</Filter>
     </ClCompile>
-    <ClCompile Include="MorningStarSprite.cpp">
+    <ClCompile Include="CustomRect.cpp">
       <Filter>GameObject\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
@@ -219,7 +219,7 @@
     <ClInclude Include="MorningStarSprite.h">
       <Filter>GameObject\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="LKRect.h">
+    <ClInclude Include="CustomRect.h">
       <Filter>GameObject\Weapon</Filter>
     </ClInclude>
   </ItemGroup>

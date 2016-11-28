@@ -41,17 +41,17 @@ Box MorningStar::GetBox()
 	int currentState = _morningStarSprite->GetIndex();
 	if (currentState < 0 || currentState > 8)
 		return Box(0, 0, 0, 0);
-	LKRect* morningStarSize = this->_morningStarSprite->getMorningStarSize().at(currentState);
+	CustomRect* morningStarSize = this->_morningStarSprite->getMorningStarSize().at(currentState);
 	return Box(posX - morningStarSize->width / 2, posY + morningStarSize->height / 2, morningStarSize->width, morningStarSize->height);
 }
 
-void MorningStar::updateXY(int posX_, int posY_)
+void MorningStar::updateXY(int _posX, int _posY)
 {
 	float morningStarX = 0;
 	float morningStarY = 0;
 	int morningState = this->_morningStarSprite->GetIndex();
-	posX = posX_;
-	posY = posY_;
+	posX = _posX;
+	posY = _posY;
 	switch (morningState % 3)
 	{
 	case 0:
@@ -63,28 +63,30 @@ void MorningStar::updateXY(int posX_, int posY_)
 		morningStarY = posY + 2;
 		break;
 	case 2:
-		morningStarX = posX + 50;
+		morningStarX = posX + 50; // morningStar's width = 56
 		morningStarY = posY + 8;
 		break;
 	default:
 		int i = 0;
 		break;
 	}
-	if (vX > 0)
+
+	if (vX <= 0)
 	{
-	}
-	else
-	{
+		// làm ngược lại, đưa roi ra phía sau Player
+		// player's width = 60
 		switch (morningState % 3)
 		{
 		case 0:
-			morningStarX = (posX + 60) + (posX - morningStarX - 16 - 40);
+
+			//							                       - W  - 
+			morningStarX = (posX + 60) + (posX - morningStarX - 16 - 30); // 40
 			break;
 		case 1:
-			morningStarX = (posX + 60) + (posX - morningStarX - 32 - 30);
+			morningStarX = (posX + 60)  + (posX - morningStarX - 32 - 25); // 30
 			break;
 		case 2:
-			morningStarX = (posX + 60) + (posX - morningStarX - 56 - 5);
+			morningStarX = (posX + 60) + (posX - morningStarX - 56 - 0); //5
 			break;
 		default:
 			break;
@@ -92,11 +94,16 @@ void MorningStar::updateXY(int posX_, int posY_)
 	}
 	this->posX = morningStarX;
 	this->posY = morningStarY;
+
+	// if not handle position
+	/*this->posX = _posX;
+	this->posY = _posY;*/
+
 }
 
-void MorningStar::updateVx(float vx_)
+void MorningStar::updateVx(float vx)
 {
-	vX = vx_;
+	vX = vx;
 }
 void MorningStar::updateLevel()
 {

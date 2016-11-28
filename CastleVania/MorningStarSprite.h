@@ -2,7 +2,7 @@
 #define _MORNINGSTARSPRITE_H_
 
 #include "GSprite.h"
-#include "LKRect.h"
+#include "CustomRect.h"
 #include "GTexture.h"
 #include <vector>
 using namespace std;
@@ -11,7 +11,7 @@ class MorningStarSprite :
 	public GSprite
 {
 protected:
-	vector<LKRect*> _vMorningStarSize;
+	vector<CustomRect*> _vMorningStarSize;
 	int _MorningStarLevel;
 	void _initializeMorningStarState();
 
@@ -23,7 +23,7 @@ public:
 	void updateLevel();
 	void Draw(int x_, int y_);
 	void DrawFlipX(int x_, int y_);
-	vector<LKRect*> getMorningStarSize();
+	vector<CustomRect*> getMorningStarSize();
 	~MorningStarSprite(void);
 };
 

@@ -1,12 +1,12 @@
-#include "LKRect.h"
+#include "CustomRect.h"
 
 
-LKRect::LKRect(void)
+CustomRect::CustomRect(void)
 {
 	x = y = width = height = 0;
 }
 
-LKRect::LKRect(float x_, float y_, float width_, float height_)
+CustomRect::CustomRect(float x_, float y_, float width_, float height_)
 {
 	x = x_;
 	y = y_;
@@ -14,7 +14,7 @@ LKRect::LKRect(float x_, float y_, float width_, float height_)
 	height = height_;
 }
 
-bool LKRect::intersect(LKRect rect_) //rect_ => object rect
+bool CustomRect::intersect(CustomRect rect_) //rect_ => object rect
 {
 	int x1 = x;
 	int x2 = x + width;
@@ -32,7 +32,7 @@ bool LKRect::intersect(LKRect rect_) //rect_ => object rect
 	return true;
 }
 
-RECT* LKRect::toRect()
+RECT* CustomRect::toRect()
 {
 	RECT* rect = new RECT;
 	rect->left = this->x;
@@ -42,6 +42,6 @@ RECT* LKRect::toRect()
 	return rect;
 }
 
-LKRect::~LKRect(void)
+CustomRect::~CustomRect(void)
 {
 }

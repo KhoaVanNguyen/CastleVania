@@ -4,16 +4,19 @@
 
 void MorningStarSprite::_initializeMorningStarState()
 {
-	_vMorningStarSize = vector<LKRect*>();
-	_vMorningStarSize.push_back(new LKRect(136, 18, 16, 48));
-	_vMorningStarSize.push_back(new LKRect(280, 12, 32, 38));
-	_vMorningStarSize.push_back(new LKRect(352, 16, 56, 18));
-	_vMorningStarSize.push_back(new LKRect(136, 86, 16, 48));
-	_vMorningStarSize.push_back(new LKRect(280, 80, 32, 38));
-	_vMorningStarSize.push_back(new LKRect(352, 90, 56, 12));
-	_vMorningStarSize.push_back(new LKRect(136, 154, 16, 48));
-	_vMorningStarSize.push_back(new LKRect(280, 148, 32, 38));
-	_vMorningStarSize.push_back(new LKRect(320, 158, 88, 12));
+	_vMorningStarSize = vector<CustomRect*>();
+	
+	// morningStar.png size = 640x204 
+	// using Paint to calculate the size!!
+	_vMorningStarSize.push_back(new CustomRect(137, 18, 16, 48));
+	_vMorningStarSize.push_back(new CustomRect(280, 12, 32, 38));
+	_vMorningStarSize.push_back(new CustomRect(352, 16, 56, 18));
+	_vMorningStarSize.push_back(new CustomRect(136, 86, 16, 48));
+	_vMorningStarSize.push_back(new CustomRect(280, 80, 32, 38));
+	_vMorningStarSize.push_back(new CustomRect(352, 90, 56, 12));
+	_vMorningStarSize.push_back(new CustomRect(136, 154, 16, 48));
+	_vMorningStarSize.push_back(new CustomRect(280, 148, 32, 38));
+	_vMorningStarSize.push_back(new CustomRect(320, 158, 88, 12));
 }
 
 MorningStarSprite::MorningStarSprite() :GSprite()
@@ -31,6 +34,7 @@ MorningStarSprite::MorningStarSprite(GTexture* texture, int start, int end, int 
 
 void MorningStarSprite::updateLevel()
 {
+	// there are 9 sprites 
 	int currentLevel = _start / 3;
 	if (currentLevel == 2)
 		return;
@@ -44,8 +48,10 @@ void MorningStarSprite::Draw(int x_, int y_)
 {
 	if (_index>8)
 		return;
-	LKRect* rect = _vMorningStarSize.at(_index);
+	CustomRect* rect = _vMorningStarSize.at(_index);
 	RECT* srect = rect->toRect();
+
+	
 	D3DXVECTOR3 center(0, 0, 0);
 	D3DXVECTOR3 position(0, 0, 0);
 	position.x = x_ - rect->width / 2;
@@ -56,7 +62,7 @@ void MorningStarSprite::Draw(int x_, int y_)
 		srect,
 		&center,
 		&position,
-		D3DCOLOR_XRGB(255, 255, 255)	// Hardcode!
+		D3DCOLOR_XRGB(255, 255, 255)
 		);
 	delete srect;
 }
@@ -81,7 +87,7 @@ void MorningStarSprite::DrawFlipX(int x, int y)
 	G_SpriteHandler->SetTransform(&oldMt);
 }
 
-vector<LKRect*> MorningStarSprite::getMorningStarSize()
+vector<CustomRect*> MorningStarSprite::getMorningStarSize()
 {
 	return _vMorningStarSize;
 }
