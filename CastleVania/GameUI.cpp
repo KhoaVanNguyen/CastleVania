@@ -59,6 +59,7 @@ void GameUI::drawScore()
 	_arial->render(_gameStage, 490, 0);
 	_arial->render("PLAYER", 5, 20);
 	_arial->render("ENEMY", 5, 40);
+	_arial->render("PASS GAME :))", 5, 60);
 	_arial->render(_weaponCount, 420, 30);
 	_arial->render(_liveCount, 430, 50);
 }
