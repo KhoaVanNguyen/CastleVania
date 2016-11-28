@@ -15,16 +15,17 @@ enum EnumID
 
 	Player_ID,
 	PlayerDeath_ID,
-
+	Zombie_ID,
 	Brick_ID,
 	Candle_ID,
 	LargeCandle_ID,
+	MorningStar_ID
 };
 
 enum ObjectType {
 	None,
 	Item,
-	Enemy,
+	Enemy_Type,
 	Other
 };
 enum Action

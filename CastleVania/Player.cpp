@@ -1,6 +1,6 @@
 ﻿#include "Player.h"
 
-#define Player_FIGHT_RATE 20
+#define PLAYER_FIGHT_RATE 20
 #define Player_RATE 10
 #define HURT_STATE 25
 
@@ -10,6 +10,7 @@
 #define A 0.005f
 Player::Player(void) : DynamicObject()
 {
+
 }
 
 Player::Player(int _posX, int _posY) : DynamicObject
@@ -23,6 +24,16 @@ Player::Player(int _posX, int _posY) : DynamicObject
 	_hasJump = false;
 	playerJump = new GSprite(Singleton::getInstance()->getTexture
 	(EnumID::Player_ID), 4, 4, 300);
+
+	_hasJump = false; 
+
+	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
+
+	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
+	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
+	
+	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
+	Initialize();
 }
 
 void Player::Update(int deltaTime)
@@ -35,9 +46,12 @@ void Player::Update(int deltaTime)
 	case Action::Run_Right:
 		sprite->Update(deltaTime);
 		break;
-	case Action::Idle:
-		sprite->SelectIndex(0);
+	case Action::Fight:
+		this->OnFight(deltaTime);
 		break;
+	/*case Action::Idle:
+		sprite->SelectIndex(0);
+		break;*/
 	}
 	posX += vX * deltaTime;
 #pragma region Xu ly nhay
@@ -62,18 +76,49 @@ void Player::Update(int deltaTime)
 void Player::Draw(GCamera* camera)
 {
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
+
 	if (vX > 0 || _direction > 0)
 	{
 		sprite->DrawFlipX(center.x, center.y);// vẽ hình nhìn về phía phải
+
+		// đi sang phải
+		if (vX > 0 || _vLast > 0)
+		{
+			if (_action == Action::Fight){
+				if (!_hasSit){
+					fightingSprite->DrawFlipX(center.x, center.y);
+					morningStar->Draw(camera);
+				}
+				else {
+					fightingSittingSprite->DrawFlipX(center.x, center.y);
+				}
+				// vẽ Fight rồi return luôn
+				return;
+			}
+			sprite->DrawFlipX(center.x, center.y);
+
+		}
+		// đi sang trái
+		else
+		{
+			if (_action == Action::Fight){
+				if (!_hasSit){
+					fightingSprite->Draw(center.x, center.y);
+					morningStar->Draw(camera);
+				}
+				else {
+					fightingSittingSprite->Draw(center.x, center.y);
+				}
+				return;
+			}
+			sprite->Draw(center.x, center.y);
+		}
+
 	}
-	else
-	{
-		sprite->Draw(center.x, center.y);
-	}
+	
 }
 
-void Player::TurnLeft()
-{
+void Player::TurnLeft(){
 	if (_allowPress)
 	{
 		if (_hasJump)
@@ -133,10 +178,66 @@ void Player::Sit()
 		_action = Action::Sit;// đưa hành động về Sit
 	}
 }
-void Player::Stop() // hàm đưa về vị trí đâu (selec index = 0)
-					//stop dc gọi khi k ấn nút
+//void Player::Stop() // hàm đưa về vị trí đâu (selec index = 0)
+//					//stop dc gọi khi k ấn nút
+//{
+//	if (_hasJump == true)	
+//
+//		if (_action == Action::Fight)
+//			return;
+//		sprite->SelectIndex(4);
+//		vX = 0;
+//		posY -= 18;
+//		_hasSit = true;
+//		_action = Action::Sit;
+//}
+void Player::Fight(){
+	if (_allowPress)
+	{
+		if (_action == Action::Fight)
+			return;
+		if (!_hasJump)
+			vX = 0;
+	
+		_action = Action::Fight;
+	}
+}
+void Player::OnFight(int t)
 {
-	if (_hasJump == true)	
+	if (_hasSit){
+		fightingSittingSprite->Update(t);
+	}
+	else{
+		fightingSprite->Update(t);
+	}
+
+	morningStar->Update(t);
+
+	// Update the Vx of morningStar
+	float morningStarVx = -1;
+	if (vX > 0 || _vLast > 0)
+		morningStarVx = -morningStarVx;
+	morningStar->updateVx(morningStarVx);
+
+	morningStar->updateXY(posX, posY);
+	if (!_hasSit && fightingSprite->GetIndex() >= 8)
+	{
+		_action = Action::Idle;
+		fightingSprite->Reset();
+		morningStar->reset();
+	}
+	
+	else if (_hasSit && fightingSittingSprite->GetIndex() >= 18)
+	{
+		_action = Action::Sit;
+		fightingSittingSprite->Reset();
+		morningStar->reset();
+	}
+}
+
+void Player::Stop() {
+	/*if (_hasJump == true)
+>>>>>>> origin/AddFight
 	{
 		// đang nhảy thì tiếp tục giữ nguyên, đợi khi về vị trí ban đầu,
 		//code ở dưới sẽ trả về false.
@@ -145,9 +246,20 @@ void Player::Stop() // hàm đưa về vị trí đâu (selec index = 0)
 	{
 		_action = Action::Idle;
 		vX = 0;
+	}*/
+	// Xử lý tạm thôi
+	vX = 0;
+	switch (_action)
+	{
+	case Action::Idle:
+	case Action::Fight:
+	case Action::Fall:
+		return;
 	}
 
+
 	if (_hasSit == true)
+	if (_hasSit)
 	{
 		// nếu nhân vật hết ngồi
 		posY = 64;// va chạm thay tại đây.
@@ -164,6 +276,10 @@ void Player::Stop() // hàm đưa về vị trí đâu (selec index = 0)
 		vX = 0;
 		_a = 0;
 	}
+
+	_action = Action::Idle;
+	sprite->SelectIndex(0);
+
 }
 
 Player::~Player(void)
