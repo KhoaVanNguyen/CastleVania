@@ -51,12 +51,13 @@ void Player::Update(int deltaTime)
 	}
 	if (_hasStair)
 	{
-		UpdateSimonStair(deltaTime);
+		UpdatePlayerStair(deltaTime);
 	}
 	posX += vX * deltaTime;
 #pragma region Xu ly nhay
 	if (_hasJump)
 	{
+		sprite->SelectIndex(4);
 		posY += vY * deltaTime + 0.4 * deltaTime * deltaTime * _a;
 		if (vY > -0.6f)
 			vY += _a * deltaTime;
@@ -110,62 +111,179 @@ void Player::Draw(GCamera* camera)
 
 
 }
-void Player::UpdateSimonStair(int t)
+void Player::UpdatePlayerStair(int t)
 {
-	if (!_downStair)
+	if (_onStair)
 	{
-		_upStair = true;
-		if (_onStair)
+		if (_upStair)
+		{
+			if (_kindStair == EKindStair::UpRight)
+			{
+				_vLast = vX = 1;
+				_timeSpawn += 1;
+				if (_timeSpawn <= 10)
+				{
+
+					posX += 1.6;
+					posY += 1.6;
+					if (_timeSpawn > 1 && _timeSpawn < 7)
+						playerStair->SelectIndex(13);
+					else
+					{
+						playerStair->SelectIndex(12);
+					}
+					if (_timeSpawn == 10)
+					{
+						_stopOnStair = true;
+						_timeSpawn = 0;
+						return;
+					}
+				}
+			}
+			else if (_kindStair == EKindStair::UpLeft)
+			{
+				_vLast = vX = -1;
+				_timeSpawn += 1;
+				if (_timeSpawn <= 10)
+				{
+
+					posX -= 1.6;
+					posY += 1.6;
+					if (_timeSpawn > 1 && _timeSpawn < 7)
+						playerStair->SelectIndex(13);
+					else
+					{
+						playerStair->SelectIndex(12);
+					}
+					if (_timeSpawn == 10)
+					{
+						_stopOnStair = true;
+						_timeSpawn = 0;
+						return;
+					}
+				}
+			}
+		}
+		else if (_downStair)
 		{
 			if (_kindStair == EKindStair::DownLeft)
 			{
-				vX = _vLast = -1;
-				_kindStair = EKindStair::UpRight;
+				_vLast = vX = -1;
+				_timeSpawn += 1;
+				if (_timeSpawn <= 10)
+				{
+					posX -= 1.6;
+					posY -= 1.6;
+					if (_timeSpawn > 1 && _timeSpawn < 7)
+						playerStair->SelectIndex(11);
+					else
+					{
+						playerStair->SelectIndex(10);
+					}
+					if (_timeSpawn == 10)
+					{
+						_stopOnStair = true;
+						_timeSpawn = 0;
+						return;
+					}
+				}
 			}
-			if (_kindStair == EKindStair::DownRight)
+			else if (_kindStair == EKindStair::DownRight)
 			{
-				vX = _vLast = 1;
-				_kindStair = EKindStair::UpLeft;
+				_vLast = vX = 1;
+				_timeSpawn += 1;
+				if (_timeSpawn <= 10)
+				{
+					posX += 1.6;
+					posY -= 1.6;
+					if (_timeSpawn > 1 && _timeSpawn < 7)
+						playerStair->SelectIndex(11);
+					else
+					{
+						playerStair->SelectIndex(10);
+					}
+					if (_timeSpawn == 10)
+					{
+						_stopOnStair = true;
+						_timeSpawn = 0;
+						return;
+					}
+				}
 			}
 		}
 	}
-	if (_hasJump)
-		return;
-	if (_action == Action::Fight)
-		return;
-	if (_hasStair)
-		return;
-	if (abs(rangeStair) <= 40)
+	else
 	{
-		if (_colStair && (_stair->id == EnumID::StairUpLeft_ID || _stair->id == EnumID::StairUpRight_ID))
+		if (_hasStair)
 		{
-			if (!_hasStair)
-				_hasStair = true;
-			else
+			if (rangeStair < 0)
 			{
-				_onStair = true;
-				_timeSpawn = 0;
+				_vLast = vX = 1;
+				posX += 1;
+				rangeStair += 1;
 			}
-			if (rangeStair != 0)
+			else if (rangeStair > 0)
 			{
-				_onStair = false;
+				_vLast = vX = -1;
+				posX -= 1;
+				rangeStair -= 1;
 			}
-			else
+			if (rangeStair == 0)
 			{
-				_onStair = true;
-				if (_kindStair == EKindStair::DownLeft)
+				switch (_stair->id)
 				{
-					vX = _vLast = -1;
+				case EnumID::StairDownLeft_ID:
+					_kindStair = EKindStair::DownLeft;
+					break;
+				case EnumID::StairDownRight_ID:
+					_kindStair = EKindStair::DownRight;
+					break;
+				case EnumID::StairUpLeft_ID:
+					_kindStair = EKindStair::UpLeft;
+					break;
+				case EnumID::StairUpRight_ID:
 					_kindStair = EKindStair::UpRight;
+					break;
+				default:
+					break;
 				}
-				if (_kindStair == EKindStair::DownRight)
+
+
+				//------------------Thay van toc
+				if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::DownRight)
 				{
 					vX = _vLast = 1;
-					_kindStair = EKindStair::UpLeft;
 				}
-				playerStair->SelectIndex(13);
+				else if (_kindStair == EKindStair::UpLeft || _kindStair == EKindStair::DownLeft)
+				{
+					vX = _vLast = -1;
+				}
+
+				_onStair = true;
 				_timeSpawn = 0;
+				if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::UpLeft)
+				{
+					posY += 2;
+					playerStair->SelectIndex(12);
+				}
+				else if (_kindStair == EKindStair::DownLeft)
+				{
+					posY -= 16;
+					playerStair->SelectIndex(10);
+				}
+				else if (_kindStair == EKindStair::DownRight)
+				{
+					posY -= 16;
+					playerStair->SelectIndex(10);
+				}
 			}
+			sprite->Update(t);
+		}
+		else if (_outStair)
+		{
+			sprite->SelectIndex(0);
+			_kindStair = EKindStair::None_Kind;
+			_action = Action::Idle;
 		}
 	}
 }
@@ -312,6 +430,12 @@ void Player::Stop() {
 void Player::UpStair()
 {
 
+}
+bool Player::OnStair()
+{
+	if ((_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID)) || _onStair)
+		return true;
+	return false;
 }
 Player::~Player(void)
 {

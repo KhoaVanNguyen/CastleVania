@@ -32,11 +32,14 @@ public:
 	EKindStair _kindStair;
 	bool _upStair;
 	bool _downStair;
+	bool OnStair();
+	bool _stopOnStair;	// len, xuong, dung im tren cau thang
 	int rangeStair; // Khoang cach tu simon den chan cau thang
 	bool _colStair;	//kiem tra xem simon co cham 2 dau cau thang ko
 	bool _outStair; //kiem tra cho phep simon ra khoi cau thang
 	int _timeSpawn;	//
-	//----------------Khoi Tao
+	
+					//----------------Khoi Tao
 	Player(void);
 	Player(int, int);
 	Player(int, int, LPDIRECT3DDEVICE9);
@@ -52,7 +55,8 @@ public:
 	void OnFight(int t);
 	//--------------// Stair
 	void UpStair();
-	void UpdateSimonStair(int t);
+	void UpdatePlayerStair(int t);
+	void ResetStair();
 	//-------------// 
 	void Draw(GCamera*);
 	void Fall();

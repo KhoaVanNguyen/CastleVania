@@ -33,6 +33,16 @@ enum ObjectType {
 	Enemy,
 	Other
 };
+
+enum EKindStair
+{
+	UpRight,
+	UpLeft,
+	DownRight,
+	DownLeft,
+	None_Kind
+};
+
 enum Action
 {
 	Idle,
@@ -44,17 +54,13 @@ enum Action
 	Fall,
 	IntoCastle
 };
+
 enum ECameraState
 {
 	Update,
 	NoUpdate
 };
-enum EKindStair
-{
-	UpRight,
-	UpLeft,
-	DownRight,
-	DownLeft,
-	None
-};
+
+
+
 #endif
