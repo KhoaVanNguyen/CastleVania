@@ -3,6 +3,8 @@
 #define BACKGROUND_FILE "Resources/black.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
+	_levelNow = 1;
+	_stageNow = 1;
 	camera = new GCamera();
 	bg = NULL;
 	_cameraState = ECameraState::Update;
@@ -23,15 +25,61 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	if (bg != NULL)
 		delete bg;
 
-	camera->viewport.y = 450;
-	bg = new QBackground(1);
-	bg->LoadTree();
-	player = new Player(50, 64);
+	LoadLevel(_levelNow);
+	LoadStage(_stageNow);
+
+
 	camera->SetSizeMap(1520,16);
+}void SceneGame::LoadLevel(int level)
+{
+	//ResetLevel();
+	if (qGameObject != NULL)
+		delete qGameObject;
+	switch (level)
+	{
+	case 1:
+	{
+		camera->viewport.y = 450;
+		bg = new QBackground(level);
+		bg->LoadTree();
+		player = new Player(150, 64);
+		
+
+	}
+	break;
+	case 2:
+	{
+		camera->viewport.y = 834;
+		bg = new QBackground(level);
+		bg->LoadTree();
+		player->posX = 50;
+		player->posY = 450;
+		player->_action = Action::Idle;
+		//_stageReset = 2;
+		
+	}
+	break;
+	case 3:
+	{
+		camera->viewport.y = 482;
+		bg = new QBackground(level);
+		bg->LoadTree();
+		player->posX = 3776;
+		player->posY = 96;
+		
+	}
+	break;
+	default:
+		break;
+	}
+	//posStageToReset.x = simon->posX;
+	//posStageToReset.y = simon->posY;
+	posCamera = camera->viewport;
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
-
+	//qGameObject->Update(t);
 	bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
+	
 	player->Update(t);
 
 	if (_cameraState== ECameraState::Update)
@@ -45,9 +93,39 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		NULL,	
 		D3DTEXF_NONE);
 	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+
 	bg->Draw(camera);
+	qGameObject->Draw(camera);
 	player->Draw(camera);
+
 	G_SpriteHandler->End();
+}
+
+void SceneGame::LoadStage(int stage)
+{
+	switch (stage)
+	{
+	case 1:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage1.txt");
+		
+	}
+	break;
+	case 4:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage4.txt");
+		//posDoor = qGameObject->GetPosDoor();
+		//_phantomBatBoss = qGameObject->getPhantomBat();
+		
+	}
+
+	break;
+
+	default:
+		break;
+	}
+	camera->SetSizeMap(G_MaxSize, G_MinSize);
+	//openDoor = new OpenDoor(posDoor.x, posDoor.y);
 }
 
 void SceneGame::ProcessInput(int KeyCode) {

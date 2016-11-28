@@ -12,7 +12,7 @@ DynamicObject::DynamicObject(float _posX, float _posY, float _vX, float _vY, Enu
 	vX = _vX;
 	vY = _vY;
 	canMove = true;
-	active = false;
+	active = true;
 	Initialize();
 	//
 }

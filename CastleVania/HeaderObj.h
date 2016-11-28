@@ -6,5 +6,6 @@
 #include "Brick.h"
 #include "Candle.h"
 //#include "LargeCandle.h"
+#include "Zombie.h"
 
 #endif
