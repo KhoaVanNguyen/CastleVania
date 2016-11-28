@@ -14,9 +14,6 @@
     <ClCompile Include="GSprite.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="GCamera.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
     <ClCompile Include="GAudio.cpp">
       <Filter>Framework</Filter>
     </ClCompile>
@@ -86,6 +83,12 @@
     <ClCompile Include="main.cpp">
       <Filter>MainWindow</Filter>
     </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="GCamera.cpp">
+      <Filter>Framework\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h" />
@@ -100,12 +103,6 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="GTexture.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="GCamera.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="GAudio.h">
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="DynamicObject.h">
@@ -180,6 +177,15 @@
     <ClInclude Include="CEnum.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="GCamera.h">
+      <Filter>Framework\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="GAudio.h">
+      <Filter>Framework\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Framework">
@@ -200,11 +206,17 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{ad7a77d9-a476-41ff-96ee-63341a15419e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainWindow">
+      <UniqueIdentifier>{f6b8a676-9b71-4418-b42f-de383c22ce02}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Utils">
       <UniqueIdentifier>{69f2f0ae-f156-43ee-96cc-7a31141ce1c3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainWindow">
-      <UniqueIdentifier>{f6b8a676-9b71-4418-b42f-de383c22ce02}</UniqueIdentifier>
+    <Filter Include="Framework\Camera">
+      <UniqueIdentifier>{6a417ad0-298f-46e2-b257-cadcd8f2dd78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Graphics">
+      <UniqueIdentifier>{8cafab50-e6c5-45d7-8bd5-14bfb05aacb4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

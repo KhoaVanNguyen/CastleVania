@@ -24,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -91,6 +91,7 @@
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameUI.cpp" />
     <ClCompile Include="GAudio.cpp" />
     <ClCompile Include="GCamera.cpp" />
     <ClCompile Include="dsutil.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameUI.h" />
     <ClInclude Include="GAudio.h" />
     <ClInclude Include="GCamera.h" />
     <ClInclude Include="dsutil.h" />

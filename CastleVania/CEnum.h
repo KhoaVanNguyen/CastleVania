@@ -25,6 +25,12 @@ enum EnumID
 	StairUpRight_ID,
 	StairDownLeft_ID,
 	StairDownRight_ID,
+
+
+
+
+	HP_ID,
+	GameUI_ID,
 };
 enum EKindStair
 {

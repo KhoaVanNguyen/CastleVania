@@ -8,6 +8,7 @@ SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 	camera = new GCamera();
 	bg = NULL;
 	_cameraState = ECameraState::Update;
+	gameUI = NULL;
 }
 
 SceneGame::~SceneGame()
@@ -43,6 +44,8 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		bg = new QBackground(level);
 		bg->LoadTree();
 		player = new Player(150, 64);
+		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
+		gameUI->initTimer(200);
 		
 
 	}

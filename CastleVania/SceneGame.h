@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Scene.h"
 #include "QGameObject.h"
+#include "GameUI.h"
 using namespace std;
 
 class SceneGame : public Scene
@@ -26,6 +27,11 @@ protected:
 	Player* player;
 	ECameraState _cameraState;
 	bool _beginMoveCamera;
+
+
+
+
+	GameUI* gameUI;
 
 	void RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t);
 	void ProcessInput(int keyCode);
