@@ -124,6 +124,11 @@
     <ClCompile Include="DynamicObject.cpp">
       <Filter>GameObject\DynamicGameObject</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="QGameObject.cpp" />
+    <ClCompile Include="QueenMedusa.cpp" />
+    <ClCompile Include="Zombie.cpp" />
+=======
     <ClCompile Include="MorningStar.cpp">
       <Filter>GameObject\Weapon</Filter>
     </ClCompile>
@@ -133,6 +138,7 @@
     <ClCompile Include="CustomRect.cpp">
       <Filter>GameObject\Weapon</Filter>
     </ClCompile>
+>>>>>>> origin/AddFight
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -213,6 +219,11 @@
     <ClInclude Include="DynamicObject.h">
       <Filter>GameObject\DynamicGameObject</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="QGameObject.h" />
+    <ClInclude Include="QueenMedusa.h" />
+    <ClInclude Include="Zombie.h" />
+=======
     <ClInclude Include="MorningStar.h">
       <Filter>GameObject\Weapon</Filter>
     </ClInclude>
@@ -222,6 +233,7 @@
     <ClInclude Include="CustomRect.h">
       <Filter>GameObject\Weapon</Filter>
     </ClInclude>
+>>>>>>> origin/AddFight
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

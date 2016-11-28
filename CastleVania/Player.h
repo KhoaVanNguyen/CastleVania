@@ -16,7 +16,7 @@ public:
 
 	MorningStar* morningStar;
 
-	float _vLast;
+	float _direction;
 	Action _action;
 	float _heightJump; 
 	bool _allowPress;

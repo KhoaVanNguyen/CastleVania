@@ -99,7 +99,9 @@
     <ClCompile Include="MorningStarSprite.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
+    <ClCompile Include="QGameObject.cpp" />
     <ClCompile Include="QNode.cpp" />
+    <ClCompile Include="QueenMedusa.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneGame.cpp" />
     <ClCompile Include="SceneControl.cpp" />
@@ -112,6 +114,7 @@
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Brick.h" />
@@ -130,7 +133,9 @@
     <ClInclude Include="MorningStarSprite.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />
+    <ClInclude Include="QGameObject.h" />
     <ClInclude Include="QNode.h" />
+    <ClInclude Include="QueenMedusa.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGame.h" />
     <ClInclude Include="SceneControl.h" />
@@ -143,6 +148,7 @@
     <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Utils.h" />
+    <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

@@ -48,6 +48,7 @@ void GTexture::Load()
 
 	if (result != D3D_OK)
 	{
+		GLMessage("Loi o load Gtexture");
 		GLMessage("Can not load texture");
 		GLTrace("[texture.h] Failed to get information from image file [%s]", FileName);
 		OutputDebugString(FileName);

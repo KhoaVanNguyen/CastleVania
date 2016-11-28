@@ -22,6 +22,7 @@ GameObject::GameObject(float _posX, float _posY, EnumID _id)
 	
 	type = ObjectType::None;
 	canMove = false;
+	active = true;
 	
 	CreateSprite();
 	if (sprite != NULL)
@@ -39,9 +40,9 @@ void GameObject::CreateSprite()
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID::Brick_ID:
-		sprite = NULL;
+	case EnumID:: Candle_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;
-	
 	default:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 100);
 		break;

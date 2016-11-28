@@ -12,12 +12,19 @@ Player::Player(void) : DynamicObject()
 {
 }
 
-Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
+Player::Player(int _posX, int _posY) : DynamicObject
+(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
 	_action = Action::Idle;
 	_a = 0.005f;
+	_direction = 0.1;// hướng nhìn nhân vật qua phải (nếu >0), nhìn qua trái (nếu <=0)
 	_allowPress = true;
 	_hasSit = false;
+<<<<<<< HEAD
+	_hasJump = false;
+	playerJump = new GSprite(Singleton::getInstance()->getTexture
+	(EnumID::Player_ID), 4, 4, 300);
+=======
 	_hasJump = false; 
 
 	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
@@ -27,6 +34,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	Initialize();
+>>>>>>> origin/AddFight
 }
 
 void Player::Update(int deltaTime)
@@ -69,6 +77,11 @@ void Player::Update(int deltaTime)
 void Player::Draw(GCamera* camera)
 {
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
+<<<<<<< HEAD
+	if (vX > 0 || _direction > 0)
+	{
+		sprite->DrawFlipX(center.x, center.y);// vẽ hình nhìn về phía phải
+=======
 	// đi sang phải
 	if (vX > 0 || _vLast > 0)
 	{
@@ -84,6 +97,7 @@ void Player::Draw(GCamera* camera)
 			return;
 		}
 		sprite->DrawFlipX(center.x, center.y);
+>>>>>>> origin/AddFight
 	}
 	// đi sang trái
 	else
@@ -113,7 +127,7 @@ void Player::TurnLeft()
 		if (_hasSit)
 			return;
 		vX = -SPEED_X;
-		_vLast = vX;
+		_direction = vX;
 		_hasSit = false;
 		_action = Action::Run_Left;
 	}
@@ -127,7 +141,7 @@ void Player::TurnRight()
 		if (_hasSit)
 			return;
 		vX = SPEED_X;
-		_vLast = vX;
+		_direction = vX;
 		_hasSit = false;
 		_action = Action::Run_Right;
 	}
@@ -140,11 +154,9 @@ void Player::Jump()
 			return;
 		if (!_hasJump)
 		{
-			vY = -10;
 			posY += 30;
 			_a = -A;
 			vY = sqrt(-2 * _a*MAX_HEIGHT);
-			//_heightJump = 0;
 			sprite->SelectIndex(4);
 			_action = Action::Jump;
 			_hasJump = true;
@@ -157,8 +169,22 @@ void Player::Fall()
 
 void Player::Sit()
 {
-	if (_allowPress && !_hasSit&& !_hasJump)
+	if (_allowPress && !_hasSit&& !_hasJump) // nếu mà chưa ngồi,
+									//và chưa nhảy thì được ngồi
 	{
+<<<<<<< HEAD
+		sprite->SelectIndex(4);//khi ngồi thì vẽ hình số 4
+		vX = 0;// vận tốc = 0.
+		posY -= 18;//vị trí bị giảm xuống 18 cho đẹp, ngồi sát đất
+		_hasSit = true;// xác nhận là đã ngồi
+		_action = Action::Sit;// đưa hành động về Sit
+	}
+}
+void Player::Stop() // hàm đưa về vị trí đâu (selec index = 0)
+					//stop dc gọi khi k ấn nút
+{
+	if (_hasJump == true)	
+=======
 		if (_action == Action::Fight)
 			return;
 		sprite->SelectIndex(4);
@@ -214,9 +240,12 @@ void Player::OnFight(int t)
 
 void Player::Stop() {
 	/*if (_hasJump == true)
+>>>>>>> origin/AddFight
 	{
+		// đang nhảy thì tiếp tục giữ nguyên, đợi khi về vị trí ban đầu,
+		//code ở dưới sẽ trả về false.
 	}
-	else
+	else // các trường hợp còn lại (hông di chuyển) là đưa về vị trí ban đầu
 	{
 		_action = Action::Idle;
 		vX = 0;
@@ -230,21 +259,36 @@ void Player::Stop() {
 	case Action::Fall:
 		return;
 	}
+<<<<<<< HEAD
+
+	if (_hasSit == true)
+=======
 	if (_hasSit)
+>>>>>>> origin/AddFight
 	{
+		// nếu nhân vật hết ngồi
 		posY = 64;// va chạm thay tại đây.
+		//đưa về vị trí cũ, vì khi ngồi hình bị đổi posision
 		_hasSit = false;
+		//đưa về là không ngồi
 	}
 	if ((_hasJump == true && posY == 64))
+		//nếu mà nhân vật đã chạm đất (khi nhảy xong).
 	{
+		//đưa về vị trí đầu
 		_hasJump = false;
-		sprite->SelectIndex(0);
+		_action = Action::Idle;
+		vX = 0;
 		_a = 0;
 	}
+<<<<<<< HEAD
+=======
 	_action = Action::Idle;
 	sprite->SelectIndex(0);
 
+>>>>>>> origin/AddFight
 }
+
 Player::~Player(void)
 {
 }
