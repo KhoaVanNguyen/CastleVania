@@ -3,13 +3,18 @@
 
 #include "DynamicObject.h"
 #include <math.h>
-
+#include "MorningStar.h"
 using namespace std;
 
 class Player : public DynamicObject
 {
 public:
 	GSprite *playerJump;
+	GSprite *fightingSprite;
+	GSprite *fightingSittingSprite;
+
+
+	MorningStar* morningStar;
 
 	float _direction;
 	Action _action;
@@ -30,6 +35,9 @@ public:
 	void TurnRight();
 	void Jump();
 	void Stop();
+	void Fight();
+	void OnFight(int t);
+
 	void Draw(GCamera*);
 	void Fall();
 	void Sit();

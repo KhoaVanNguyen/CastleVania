@@ -94,6 +94,9 @@
     <ClCompile Include="GAudio.cpp" />
     <ClCompile Include="GCamera.cpp" />
     <ClCompile Include="dsutil.cpp" />
+    <ClCompile Include="CustomRect.cpp" />
+    <ClCompile Include="MorningStar.cpp" />
+    <ClCompile Include="MorningStarSprite.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
     <ClCompile Include="QGameObject.cpp" />
@@ -125,6 +128,9 @@
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="dxutil.h" />
     <ClInclude Include="HeaderObj.h" />
+    <ClInclude Include="CustomRect.h" />
+    <ClInclude Include="MorningStar.h" />
+    <ClInclude Include="MorningStarSprite.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />
     <ClInclude Include="QGameObject.h" />

@@ -21,6 +21,7 @@ private:
 	//ground
 	GTexture* candle;
 	GTexture* largeCandle;
+<<<<<<< HEAD
 	GTexture* movingPlatform;
 	GTexture* openDoor;
 	GTexture* stupidDoor;
@@ -64,7 +65,16 @@ private:
 	GTexture* fallingCastle;
 	GTexture* playerInCastle;
 
+=======
+
+
+	//weapon
+	GTexture* morningStar;
+>>>>>>> origin/AddFight
 	static Singleton *single;
+
+
+
 	Singleton();
 
 public:

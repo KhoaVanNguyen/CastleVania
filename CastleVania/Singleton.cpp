@@ -19,6 +19,8 @@ Singleton* Singleton::getInstance()
 Singleton::Singleton()
 {
 	player = new GTexture("Resources/player.png", 8, 3, 24);
+
+	morningStar = new GTexture("Resources/morningstar.png", 3, 3, 9);
 	//playerDeath = new GTexture("Resources/playerdeath.png", 1, 1, 1);
 
 	
@@ -89,5 +91,8 @@ GTexture* Singleton::getTexture(EnumID id)
 		return candle;
 	case EnumID::LargeCandle_ID:
 		return largeCandle;
+
+	case EnumID::MorningStar_ID:
+		return morningStar;
 	}
 }

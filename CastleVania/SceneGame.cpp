@@ -132,6 +132,8 @@ void SceneGame::ProcessInput(int KeyCode) {
 
 	switch (KeyCode)
 	{
+
+	
 	case DIK_RIGHT:
 		player->TurnRight();
 	case DIK_D:
@@ -158,7 +160,11 @@ void SceneGame::ProcessInput(int KeyCode) {
 void SceneGame::OnKeyDown(int KeyCode) {
 	switch (KeyCode)
 	{
+	case DIK_RETURN:
+		player->Fight();
+		break;
 	case DIK_SPACE:
 		player->Jump();
 	}
+	
 }
