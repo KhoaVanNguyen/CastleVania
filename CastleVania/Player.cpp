@@ -28,6 +28,8 @@ Player::Player(int _posX, int _posY) : DynamicObject
 
 	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
 	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
+	
+	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	Initialize();
 }
 
@@ -44,9 +46,9 @@ void Player::Update(int deltaTime)
 	case Action::Fight:
 		this->OnFight(deltaTime);
 		break;
-	case Action::Idle:
+	/*case Action::Idle:
 		sprite->SelectIndex(0);
-		break;
+		break;*/
 	}
 	posX += vX * deltaTime;
 #pragma region Xu ly nhay
@@ -71,14 +73,45 @@ void Player::Update(int deltaTime)
 void Player::Draw(GCamera* camera)
 {
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
+<<<<<<< HEAD
 	if (vX > 0 || _direction > 0)
 	{
 		sprite->DrawFlipX(center.x, center.y);// vẽ hình nhìn về phía phải
+=======
+	// đi sang phải
+	if (vX > 0 || _vLast > 0)
+	{
+		if (_action == Action::Fight){
+			if (!_hasSit){
+				fightingSprite->DrawFlipX(center.x, center.y);
+				morningStar->Draw(camera);
+			}
+			else {
+				fightingSittingSprite->DrawFlipX(center.x, center.y);
+			}
+			// vẽ Fight rồi return luôn
+			return;
+		}
+		sprite->DrawFlipX(center.x, center.y);
+>>>>>>> ed451801e9964360a3ce3ac34af1c94e1e8314e6
 	}
+	// đi sang trái
 	else
 	{
+		if (_action == Action::Fight){
+			if (!_hasSit){
+				fightingSprite->Draw(center.x, center.y);
+				morningStar->Draw(camera);
+			}
+			else {
+				fightingSittingSprite->Draw(center.x, center.y);
+			}
+			return;
+		}
 		sprite->Draw(center.x, center.y);
 	}
+
+	
 }
 
 void Player::TurnLeft()
@@ -135,19 +168,30 @@ void Player::Sit()
 	if (_allowPress && !_hasSit&& !_hasJump) // nếu mà chưa ngồi,
 									//và chưa nhảy thì được ngồi
 	{
+<<<<<<< HEAD
 		sprite->SelectIndex(4);//khi ngồi thì vẽ hình số 4
 		vX = 0;// vận tốc = 0.
 		posY -= 18;//vị trí bị giảm xuống 18 cho đẹp, ngồi sát đất
 		_hasSit = true;// xác nhận là đã ngồi
 		_action = Action::Sit;// đưa hành động về Sit
+=======
+		if (_action == Action::Fight)
+			return;
+		sprite->SelectIndex(4);
+		vX = 0;
+		posY -= 18;
+		_hasSit = true;
+		_action = Action::Sit;
+>>>>>>> ed451801e9964360a3ce3ac34af1c94e1e8314e6
 	}
 }
 void Player::Fight(){
 	if (_allowPress)
 	{
-		/*if (_action == Action::Fight)
-			return;*/
-		if (!_hasJump) vX = 0;
+		if (_action == Action::Fight)
+			return;
+		if (!_hasJump)
+			vX = 0;
 	
 		_action = Action::Fight;
 	}
@@ -157,27 +201,43 @@ void Player::OnFight(int t)
 	if (_hasSit){
 		fightingSittingSprite->Update(t);
 	}
+	else{
+		fightingSprite->Update(t);
+	}
 
-	fightingSprite->Update(t);
-	
-	/*if (!_hasSit && _simonFightingSprite->GetIndex() >= 8)
+	morningStar->Update(t);
+
+	// Update the Vx of morningStar
+	float morningStarVx = -1;
+	if (vX > 0 || _vLast > 0)
+		morningStarVx = -morningStarVx;
+	morningStar->updateVx(morningStarVx);
+
+	morningStar->updateXY(posX, posY);
+	if (!_hasSit && fightingSprite->GetIndex() >= 8)
 	{
 		_action = Action::Idle;
-		_simonFightingSprite->Reset();
-		_morningStar->reset();
+		fightingSprite->Reset();
+		morningStar->reset();
 	}
-	else if (_hasSit && _simonFightingSittingSprite->GetIndex() >= 18)
+	
+	else if (_hasSit && fightingSittingSprite->GetIndex() >= 18)
 	{
 		_action = Action::Sit;
-		_simonFightingSittingSprite->Reset();
-		_morningStar->reset();
-	}*/
+		fightingSittingSprite->Reset();
+		morningStar->reset();
+	}
 }
 
+<<<<<<< HEAD
 void Player::Stop()// hàm đưa về vị trí đâu (selec index = 0)
 					//stop dc gọi khi k ấn nút
 {
 	if (_hasJump == true)
+=======
+void Player::Stop() {
+	/*if (_hasJump == true)
+>>>>>>> ed451801e9964360a3ce3ac34af1c94e1e8314e6
 	{
 		// đang nhảy thì tiếp tục giữ nguyên, đợi khi về vị trí ban đầu,
 		//code ở dưới sẽ trả về false.
@@ -186,9 +246,22 @@ void Player::Stop()// hàm đưa về vị trí đâu (selec index = 0)
 	{
 		_action = Action::Idle;
 		vX = 0;
+	}*/
+	// Xử lý tạm thôi
+	vX = 0;
+	switch (_action)
+	{
+	case Action::Idle:
+	case Action::Fight:
+	case Action::Fall:
+		return;
 	}
+<<<<<<< HEAD
 
 	if (_hasSit == true)
+=======
+	if (_hasSit)
+>>>>>>> ed451801e9964360a3ce3ac34af1c94e1e8314e6
 	{
 		// nếu nhân vật hết ngồi
 		posY = 64;// va chạm thay tại đây.
@@ -205,6 +278,12 @@ void Player::Stop()// hàm đưa về vị trí đâu (selec index = 0)
 		vX = 0;
 		_a = 0;
 	}
+<<<<<<< HEAD
+=======
+	_action = Action::Idle;
+	sprite->SelectIndex(0);
+
+>>>>>>> ed451801e9964360a3ce3ac34af1c94e1e8314e6
 }
 
 Player::~Player(void)

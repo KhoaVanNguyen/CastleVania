@@ -121,7 +121,19 @@
     <ClCompile Include="DynamicObject.cpp">
       <Filter>GameObject\DynamicGameObject</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="MorningStar.cpp" />
+=======
+    <ClCompile Include="MorningStar.cpp">
+      <Filter>GameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="LKRect.cpp">
+      <Filter>GameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="MorningStarSprite.cpp">
+      <Filter>GameObject\Weapon</Filter>
+    </ClCompile>
+>>>>>>> ed451801e9964360a3ce3ac34af1c94e1e8314e6
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -202,7 +214,19 @@
     <ClInclude Include="DynamicObject.h">
       <Filter>GameObject\DynamicGameObject</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="MorningStar.h" />
+=======
+    <ClInclude Include="MorningStar.h">
+      <Filter>GameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="MorningStarSprite.h">
+      <Filter>GameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="LKRect.h">
+      <Filter>GameObject\Weapon</Filter>
+    </ClInclude>
+>>>>>>> ed451801e9964360a3ce3ac34af1c94e1e8314e6
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

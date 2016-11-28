@@ -3,7 +3,7 @@
 
 #include "DynamicObject.h"
 #include <math.h>
-
+#include "MorningStar.h"
 using namespace std;
 
 class Player : public DynamicObject
@@ -13,6 +13,14 @@ public:
 	float _direction;
 	GSprite *fightingSprite;
 	GSprite *fightingSittingSprite;
+<<<<<<< HEAD
+=======
+
+
+	MorningStar* morningStar;
+
+	float _vLast;
+>>>>>>> ed451801e9964360a3ce3ac34af1c94e1e8314e6
 	Action _action;
 	float _heightJump; 
 	bool _allowPress;

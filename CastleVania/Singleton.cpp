@@ -39,5 +39,8 @@ GTexture* Singleton::getTexture(EnumID id)
 		return candle;
 	case EnumID::LargeCandle_ID:
 		return largeCandle;
+
+	case EnumID::MorningStar_ID:
+		return morningStar;
 	}
 }
