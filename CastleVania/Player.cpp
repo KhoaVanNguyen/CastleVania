@@ -10,6 +10,7 @@
 #define A 0.005f
 Player::Player(void) : DynamicObject()
 {
+
 }
 
 Player::Player(int _posX, int _posY) : DynamicObject
@@ -20,11 +21,10 @@ Player::Player(int _posX, int _posY) : DynamicObject
 	_direction = 0.1;// hướng nhìn nhân vật qua phải (nếu >0), nhìn qua trái (nếu <=0)
 	_allowPress = true;
 	_hasSit = false;
-<<<<<<< HEAD
 	_hasJump = false;
 	playerJump = new GSprite(Singleton::getInstance()->getTexture
 	(EnumID::Player_ID), 4, 4, 300);
-=======
+
 	_hasJump = false; 
 
 	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
@@ -34,7 +34,6 @@ Player::Player(int _posX, int _posY) : DynamicObject
 	
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	Initialize();
->>>>>>> origin/AddFight
 }
 
 void Player::Update(int deltaTime)
@@ -77,49 +76,49 @@ void Player::Update(int deltaTime)
 void Player::Draw(GCamera* camera)
 {
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
-<<<<<<< HEAD
+
 	if (vX > 0 || _direction > 0)
 	{
 		sprite->DrawFlipX(center.x, center.y);// vẽ hình nhìn về phía phải
-=======
-	// đi sang phải
-	if (vX > 0 || _vLast > 0)
-	{
-		if (_action == Action::Fight){
-			if (!_hasSit){
-				fightingSprite->DrawFlipX(center.x, center.y);
-				morningStar->Draw(camera);
-			}
-			else {
-				fightingSittingSprite->DrawFlipX(center.x, center.y);
-			}
-			// vẽ Fight rồi return luôn
-			return;
-		}
-		sprite->DrawFlipX(center.x, center.y);
->>>>>>> origin/AddFight
-	}
-	// đi sang trái
-	else
-	{
-		if (_action == Action::Fight){
-			if (!_hasSit){
-				fightingSprite->Draw(center.x, center.y);
-				morningStar->Draw(camera);
-			}
-			else {
-				fightingSittingSprite->Draw(center.x, center.y);
-			}
-			return;
-		}
-		sprite->Draw(center.x, center.y);
-	}
 
+		// đi sang phải
+		if (vX > 0 || _vLast > 0)
+		{
+			if (_action == Action::Fight){
+				if (!_hasSit){
+					fightingSprite->DrawFlipX(center.x, center.y);
+					morningStar->Draw(camera);
+				}
+				else {
+					fightingSittingSprite->DrawFlipX(center.x, center.y);
+				}
+				// vẽ Fight rồi return luôn
+				return;
+			}
+			sprite->DrawFlipX(center.x, center.y);
+
+		}
+		// đi sang trái
+		else
+		{
+			if (_action == Action::Fight){
+				if (!_hasSit){
+					fightingSprite->Draw(center.x, center.y);
+					morningStar->Draw(camera);
+				}
+				else {
+					fightingSittingSprite->Draw(center.x, center.y);
+				}
+				return;
+			}
+			sprite->Draw(center.x, center.y);
+		}
+
+	}
 	
 }
 
-void Player::TurnLeft()
-{
+void Player::TurnLeft(){
 	if (_allowPress)
 	{
 		if (_hasJump)
@@ -172,7 +171,6 @@ void Player::Sit()
 	if (_allowPress && !_hasSit&& !_hasJump) // nếu mà chưa ngồi,
 									//và chưa nhảy thì được ngồi
 	{
-<<<<<<< HEAD
 		sprite->SelectIndex(4);//khi ngồi thì vẽ hình số 4
 		vX = 0;// vận tốc = 0.
 		posY -= 18;//vị trí bị giảm xuống 18 cho đẹp, ngồi sát đất
@@ -180,20 +178,19 @@ void Player::Sit()
 		_action = Action::Sit;// đưa hành động về Sit
 	}
 }
-void Player::Stop() // hàm đưa về vị trí đâu (selec index = 0)
-					//stop dc gọi khi k ấn nút
-{
-	if (_hasJump == true)	
-=======
-		if (_action == Action::Fight)
-			return;
-		sprite->SelectIndex(4);
-		vX = 0;
-		posY -= 18;
-		_hasSit = true;
-		_action = Action::Sit;
-	}
-}
+//void Player::Stop() // hàm đưa về vị trí đâu (selec index = 0)
+//					//stop dc gọi khi k ấn nút
+//{
+//	if (_hasJump == true)	
+//
+//		if (_action == Action::Fight)
+//			return;
+//		sprite->SelectIndex(4);
+//		vX = 0;
+//		posY -= 18;
+//		_hasSit = true;
+//		_action = Action::Sit;
+//}
 void Player::Fight(){
 	if (_allowPress)
 	{
@@ -259,12 +256,10 @@ void Player::Stop() {
 	case Action::Fall:
 		return;
 	}
-<<<<<<< HEAD
+
 
 	if (_hasSit == true)
-=======
 	if (_hasSit)
->>>>>>> origin/AddFight
 	{
 		// nếu nhân vật hết ngồi
 		posY = 64;// va chạm thay tại đây.
@@ -281,12 +276,10 @@ void Player::Stop() {
 		vX = 0;
 		_a = 0;
 	}
-<<<<<<< HEAD
-=======
+
 	_action = Action::Idle;
 	sprite->SelectIndex(0);
 
->>>>>>> origin/AddFight
 }
 
 Player::~Player(void)

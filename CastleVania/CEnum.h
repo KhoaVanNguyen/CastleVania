@@ -18,12 +18,8 @@ enum EnumID
 	Zombie_ID,
 	Brick_ID,
 	Candle_ID,
-<<<<<<< HEAD
-	LargeCandle_ID
-=======
 	LargeCandle_ID,
 	MorningStar_ID
->>>>>>> origin/AddFight
 };
 
 enum ObjectType {

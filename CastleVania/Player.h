@@ -23,6 +23,7 @@ public:
 	bool _hasSit;
 	bool _hasJump;
 	float _a;
+	float _vLast;
 	//----------------Khoi Tao
 	Player(void);
 	Player(int, int);
