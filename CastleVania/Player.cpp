@@ -1,6 +1,5 @@
 ﻿#include "Player.h"
-
-#define Player_FIGHT_RATE 20
+#define PLAYER_FIGHT_RATE 20
 #define Player_RATE 10
 #define HURT_STATE 25
 
@@ -23,6 +22,13 @@ Player::Player(int _posX, int _posY) : DynamicObject
 	_hasJump = false;
 	playerJump = new GSprite(Singleton::getInstance()->getTexture
 	(EnumID::Player_ID), 4, 4, 300);
+	_hasJump = false; 
+
+	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
+
+	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
+	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
+	Initialize();
 }
 
 void Player::Update(int deltaTime)
@@ -34,6 +40,9 @@ void Player::Update(int deltaTime)
 		break;
 	case Action::Run_Right:
 		sprite->Update(deltaTime);
+		break;
+	case Action::Fight:
+		this->OnFight(deltaTime);
 		break;
 	case Action::Idle:
 		sprite->SelectIndex(0);
@@ -133,10 +142,42 @@ void Player::Sit()
 		_action = Action::Sit;// đưa hành động về Sit
 	}
 }
-void Player::Stop() // hàm đưa về vị trí đâu (selec index = 0)
+void Player::Fight(){
+	if (_allowPress)
+	{
+		/*if (_action == Action::Fight)
+			return;*/
+		if (!_hasJump) vX = 0;
+	
+		_action = Action::Fight;
+	}
+}
+void Player::OnFight(int t)
+{
+	if (_hasSit){
+		fightingSittingSprite->Update(t);
+	}
+
+	fightingSprite->Update(t);
+	
+	/*if (!_hasSit && _simonFightingSprite->GetIndex() >= 8)
+	{
+		_action = Action::Idle;
+		_simonFightingSprite->Reset();
+		_morningStar->reset();
+	}
+	else if (_hasSit && _simonFightingSittingSprite->GetIndex() >= 18)
+	{
+		_action = Action::Sit;
+		_simonFightingSittingSprite->Reset();
+		_morningStar->reset();
+	}*/
+}
+
+void Player::Stop()// hàm đưa về vị trí đâu (selec index = 0)
 					//stop dc gọi khi k ấn nút
 {
-	if (_hasJump == true)	
+	if (_hasJump == true)
 	{
 		// đang nhảy thì tiếp tục giữ nguyên, đợi khi về vị trí ban đầu,
 		//code ở dưới sẽ trả về false.

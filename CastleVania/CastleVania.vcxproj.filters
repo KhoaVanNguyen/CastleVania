@@ -38,9 +38,6 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{ea983e39-557e-4be5-bd77-e8b97a55d64d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FrameWork\Game">
-      <UniqueIdentifier>{0bc8853f-ee62-4ad8-8a4b-26768f8846b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Utils\Enum">
       <UniqueIdentifier>{9fded7f9-75e6-4090-a40b-5b442e128b76}</UniqueIdentifier>
     </Filter>
@@ -50,10 +47,13 @@
     <Filter Include="GameObject\DynamicGameObject\Player">
       <UniqueIdentifier>{43691058-fbae-4a82-8379-00b45a88ab27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{0bc8853f-ee62-4ad8-8a4b-26768f8846b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
-      <Filter>FrameWork\Game</Filter>
+      <Filter>Game</Filter>
     </ClCompile>
     <ClCompile Include="Utils.cpp">
       <Filter>Utils</Filter>
@@ -121,10 +121,11 @@
     <ClCompile Include="DynamicObject.cpp">
       <Filter>GameObject\DynamicGameObject</Filter>
     </ClCompile>
+    <ClCompile Include="MorningStar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
-      <Filter>FrameWork\Game</Filter>
+      <Filter>Game</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Utils</Filter>
@@ -201,6 +202,7 @@
     <ClInclude Include="DynamicObject.h">
       <Filter>GameObject\DynamicGameObject</Filter>
     </ClInclude>
+    <ClInclude Include="MorningStar.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

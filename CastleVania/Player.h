@@ -10,8 +10,9 @@ class Player : public DynamicObject
 {
 public:
 	GSprite *playerJump;
-
 	float _direction;
+	GSprite *fightingSprite;
+	GSprite *fightingSittingSprite;
 	Action _action;
 	float _heightJump; 
 	bool _allowPress;
@@ -30,6 +31,9 @@ public:
 	void TurnRight();
 	void Jump();
 	void Stop();
+	void Fight();
+	void OnFight(int t);
+
 	void Draw(GCamera*);
 	void Fall();
 	void Sit();
