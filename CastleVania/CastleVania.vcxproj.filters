@@ -1,241 +1,215 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="FrameWork">
-      <UniqueIdentifier>{4082bdfb-5745-4916-8403-58be6d981bce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="WinMain">
-      <UniqueIdentifier>{7d39dec8-7f8e-4e9d-b091-d005312c5909}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{3d0a8537-6548-4bd1-93da-06d3e265d92e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FrameWork\Sound">
-      <UniqueIdentifier>{7205ba17-0871-44b5-a9a8-84c298ad8cdf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FrameWork\Camera">
-      <UniqueIdentifier>{20a531ec-1814-4bef-924c-4cb850fc992a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="QuadTree">
-      <UniqueIdentifier>{0ac1d61d-2f29-4143-bfa1-350e65f3edcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject">
-      <UniqueIdentifier>{7b06271d-9000-40bc-8014-99d0407eecaa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\DynamicGameObject">
-      <UniqueIdentifier>{4ed29dd8-4cae-4149-aa18-6cdd9a063935}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\StaticGameObject">
-      <UniqueIdentifier>{32eb485b-ca27-4f47-a64c-d4f24f70994b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FrameWork\Graphic">
-      <UniqueIdentifier>{76d4f71c-1ef6-4805-a3b8-e7ada1eea0d6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scenes">
-      <UniqueIdentifier>{ea983e39-557e-4be5-bd77-e8b97a55d64d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FrameWork\Game">
-      <UniqueIdentifier>{0bc8853f-ee62-4ad8-8a4b-26768f8846b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils\Enum">
-      <UniqueIdentifier>{9fded7f9-75e6-4090-a40b-5b442e128b76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FrameWork\Font">
-      <UniqueIdentifier>{c3d31c46-2e33-44b5-8374-4c6fbd3ab26b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\DynamicGameObject\Player">
-      <UniqueIdentifier>{43691058-fbae-4a82-8379-00b45a88ab27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Weapon">
-      <UniqueIdentifier>{5e310190-2b34-4442-89a7-0b73e30b31ba}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Game.cpp">
-      <Filter>FrameWork\Game</Filter>
+      <Filter>Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Utils.cpp">
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GTexture.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="GSprite.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="GCamera.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="GAudio.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp">
+      <Filter>GameObject\Dynamic Object</Filter>
+    </ClCompile>
+    <ClCompile Include="MorningStar.cpp">
+      <Filter>GameObject\Dynamic Object\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="MorningStarSprite.cpp">
+      <Filter>GameObject\Dynamic Object\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="QBackground.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="QGameObject.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="QNode.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Candle.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject\Dynamic Object</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneControl.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGame.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="dsutil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Global.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>WinMain</Filter>
-    </ClCompile>
-    <ClCompile Include="dsutil.cpp">
-      <Filter>FrameWork\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="GAudio.cpp">
-      <Filter>FrameWork\Sound</Filter>
-    </ClCompile>
-    <ClCompile Include="GCamera.cpp">
-      <Filter>FrameWork\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGame.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>FrameWork\Font</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMenu.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Singleton.cpp">
-      <Filter>Utils\Enum</Filter>
-    </ClCompile>
-    <ClCompile Include="QBackground.cpp">
-      <Filter>QuadTree</Filter>
-    </ClCompile>
-    <ClCompile Include="QNode.cpp">
-      <Filter>QuadTree</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>QuadTree</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
+    <ClCompile Include="Zombie.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="SceneControl.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>GameObject\StaticGameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Candle.cpp">
-      <Filter>GameObject\StaticGameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="GSprite.cpp">
-      <Filter>FrameWork\Graphic</Filter>
-    </ClCompile>
-    <ClCompile Include="GTexture.cpp">
-      <Filter>FrameWork\Graphic</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameObject\DynamicGameObject\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="DynamicObject.cpp">
-      <Filter>GameObject\DynamicGameObject</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="QGameObject.cpp" />
-    <ClCompile Include="QueenMedusa.cpp" />
-    <ClCompile Include="Zombie.cpp" />
-=======
-    <ClCompile Include="MorningStar.cpp">
-      <Filter>GameObject\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="MorningStarSprite.cpp">
-      <Filter>GameObject\Weapon</Filter>
+    <ClCompile Include="QueenMedusa.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="CustomRect.cpp">
-      <Filter>GameObject\Weapon</Filter>
+      <Filter>Utils</Filter>
     </ClCompile>
->>>>>>> origin/AddFight
+    <ClCompile Include="Utils.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>MainWindow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="Game.h">
-      <Filter>FrameWork\Game</Filter>
+      <Filter>Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Utils.h">
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GSprite.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="GTexture.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="GCamera.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="GAudio.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h">
+      <Filter>GameObject\Dynamic Object</Filter>
+    </ClInclude>
+    <ClInclude Include="MorningStar.h">
+      <Filter>GameObject\Dynamic Object\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="MorningStarSprite.h">
+      <Filter>GameObject\Dynamic Object\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="QBackground.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="QGameObject.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="QNode.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Candle.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject\Dynamic Object</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneControl.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGame.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="dsutil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="dxutil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="dsutil.h">
-      <Filter>FrameWork\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="dxutil.h">
-      <Filter>FrameWork\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="GAudio.h">
-      <Filter>FrameWork\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="GCamera.h">
-      <Filter>FrameWork\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGame.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>FrameWork\Font</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMenu.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="CEnum.h">
-      <Filter>Utils\Enum</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
-      <Filter>Utils\Enum</Filter>
-    </ClInclude>
-    <ClInclude Include="QBackground.h">
-      <Filter>QuadTree</Filter>
-    </ClInclude>
-    <ClInclude Include="QNode.h">
-      <Filter>QuadTree</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>QuadTree</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneControl.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>GameObject\StaticGameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Candle.h">
-      <Filter>GameObject\StaticGameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="SweptAABB.h">
-      <Filter>FrameWork</Filter>
-    </ClInclude>
-    <ClInclude Include="GSprite.h">
-      <Filter>FrameWork\Graphic</Filter>
-    </ClInclude>
-    <ClInclude Include="GTexture.h">
-      <Filter>FrameWork\Graphic</Filter>
-    </ClInclude>
     <ClInclude Include="HeaderObj.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameObject\DynamicGameObject\Player</Filter>
+    <ClInclude Include="Zombie.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="DynamicObject.h">
-      <Filter>GameObject\DynamicGameObject</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="QGameObject.h" />
-    <ClInclude Include="QueenMedusa.h" />
-    <ClInclude Include="Zombie.h" />
-=======
-    <ClInclude Include="MorningStar.h">
-      <Filter>GameObject\Weapon</Filter>
-    </ClInclude>
-    <ClInclude Include="MorningStarSprite.h">
-      <Filter>GameObject\Weapon</Filter>
+    <ClInclude Include="QueenMedusa.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="CustomRect.h">
-      <Filter>GameObject\Weapon</Filter>
+      <Filter>Utils</Filter>
     </ClInclude>
->>>>>>> origin/AddFight
+    <ClInclude Include="Utils.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnum.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <Filter Include="Framework">
+      <UniqueIdentifier>{aefd4d5e-5272-4c36-8fde-7d3075f6fabb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{63b11fe9-5191-40d7-bc57-836d8b7e1489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Dynamic Object">
+      <UniqueIdentifier>{041f66e8-85a7-444c-9d00-039a374603c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Dynamic Object\Weapons">
+      <UniqueIdentifier>{9aa121cd-4601-48aa-9599-709b754535f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quadtree">
+      <UniqueIdentifier>{74594d27-1d6a-49ea-b1e4-36b98a0b7224}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{ad7a77d9-a476-41ff-96ee-63341a15419e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{69f2f0ae-f156-43ee-96cc-7a31141ce1c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainWindow">
+      <UniqueIdentifier>{f6b8a676-9b71-4418-b42f-de383c22ce02}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd">
+      <Filter>Utils</Filter>
+    </None>
   </ItemGroup>
 </Project>
