@@ -94,5 +94,11 @@ GTexture* Singleton::getTexture(EnumID id)
 
 	case EnumID::MorningStar_ID:
 		return morningStar;
+
+	case EnumID::HP_ID:
+		return hp;
+
+	case EnumID::GameUI_ID:
+		return gameScore;
 	}
 }

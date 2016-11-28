@@ -45,9 +45,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		bg->LoadTree();
 		player = new Player(150, 64);
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
-		gameUI->initTimer(200);
-		
-
+		gameUI->initTimer(196);
 	}
 	break;
 	case 2:
@@ -99,9 +97,13 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
 	bg->Draw(camera);
 	qGameObject->Draw(camera);
+
+	gameUI->drawTable();
 	player->Draw(camera);
 
 	G_SpriteHandler->End();
+
+	gameUI->drawScore();
 }
 
 void SceneGame::LoadStage(int stage)

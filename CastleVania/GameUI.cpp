@@ -1,4 +1,4 @@
-#include "GameUI.h"
+﻿#include "GameUI.h"
 
 
 void GameUI::_initialize()
@@ -10,14 +10,18 @@ void GameUI::_initialize()
 
 	_gameTimer = 0;
 }
-
+GameUI::GameUI(LPDIRECT3DDEVICE9 d3ddev_, int size_, int screenWidth_, int screenHeight_)
+{
+	this->_initialize();
+	_sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::GameUI_ID), 1);
+	_arial = new Font(d3ddev_, size_, screenWidth_, screenHeight_);
+}
 void GameUI::drawTable()
 {
 	// draw table
 	_sprite->Draw(260, 40);
 
 	// draw hp
-	//simon
 	for (int i = 0; i<_simonHP; i++)
 	{
 		_hpSprite->DrawIndex(0, 100 + 10 * i, 30);
@@ -38,16 +42,16 @@ void GameUI::drawTable()
 
 
 	// draw weapon
-	if (_currentWeapon != -1)
+	/*if (_currentWeapon != -1)
 	{
 		_vWeaponSprite.at(_currentWeapon)->Draw(345, 48);
-	}
+	}*/
 }
 
 void GameUI::drawScore()
 {
 	_arial->onLost();
-	_arial->render("SCORE", 5, 0);
+	_arial->render("Score", 5, 0);
 	_arial->render(_simonScore, 100, 0);
 	_arial->render("TIME", 230, 0);
 	_arial->render(_gameTimer / 1000, 310, 0);
@@ -94,12 +98,7 @@ GameUI::GameUI(void)
 
 }
 
-GameUI::GameUI(LPDIRECT3DDEVICE9 d3ddev_, int size_, int screenWidth_, int screenHeight_)
-{
-	this->_initialize();
-	_sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::GameUI_ID), 1);
-	_arial = new Font(d3ddev_, size_, screenWidth_, screenHeight_);
-}
+
 
 
 void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
