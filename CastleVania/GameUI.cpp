@@ -22,11 +22,11 @@ void GameUI::drawTable()
 	_sprite->Draw(260, 40);
 
 	// draw hp
-	for (int i = 0; i<_simonHP; i++)
+	for (int i = 0; i<_playerHP; i++)
 	{
 		_hpSprite->DrawIndex(0, 100 + 10 * i, 30);
 	}
-	for (int i = _simonHP; i<MAX_HP; i++)
+	for (int i = _playerHP; i<MAX_HP; i++)
 	{
 		_hpSprite->DrawIndex(1, 100 + 10 * i, 30);
 	}
@@ -52,7 +52,7 @@ void GameUI::drawScore()
 {
 	_arial->onLost();
 	_arial->render("Score", 5, 0);
-	_arial->render(_simonScore, 100, 0);
+	_arial->render(_playerScore, 100, 0);
 	_arial->render("TIME", 230, 0);
 	_arial->render(_gameTimer / 1000, 310, 0);
 	_arial->render("STAGE", 400, 0);
@@ -91,7 +91,7 @@ void GameUI::SetWeaponCount(int x)
 
 void GameUI::SetSimonScore(int x)
 {
-	_simonScore += x;
+	_playerScore += x;
 }
 
 GameUI::GameUI(void)
@@ -102,17 +102,18 @@ GameUI::GameUI(void)
 
 
 
-void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
+void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, int enemyHP_)
 {
+//(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
 	_gameStage = gameStage_;
-	_simonScore = simonScore_;
+	_playerScore = simonScore_;
 	if (_gameTimer <= 0)
 	{
 	}
 	else
 		_gameTimer = _gameTimer - deltaTime_;
-	_weaponCount = weaponCount_;
-	_simonHP = simonHP_;
+	//_weaponCount = weaponCount_;
+	_playerHP = simonHP_;
 	_enemyHP = enemyHP_;
 	_liveCount = liveCount_;
 
