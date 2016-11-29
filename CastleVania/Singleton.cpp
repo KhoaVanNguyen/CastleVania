@@ -24,7 +24,7 @@ Singleton::Singleton()
 	//playerDeath = new GTexture("Resources/playerdeath.png", 1, 1, 1);
 
 	
-	zombie = new GTexture("Resources/enemy/1.png", 2, 1, 2);
+	Ghouls = new GTexture("Resources/enemy/1.png", 2, 1, 2);
 	
 	
 	medusa = new GTexture("Resources/enemy/6.png", 2, 1, 2);
@@ -83,8 +83,8 @@ GTexture* Singleton::getTexture(EnumID id)
 		return playerDeath;
 
 
-	case EnumID::Zombie_ID:
-		return zombie;
+	case EnumID::Ghouls_ID:
+		return Ghouls;
 
 
 	case EnumID::Candle_ID:

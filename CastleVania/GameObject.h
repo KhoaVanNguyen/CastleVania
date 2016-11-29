@@ -32,6 +32,8 @@ public:
 	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int t);
 	virtual void OnKeyDown(int KeyCode);
 	virtual void CreateSprite();
+	virtual void SetActive(float x, float y);
+	virtual void SetActive();
 	GameObject(void);
 	GameObject(float posX, float posY, EnumID id);
 	~GameObject(void);

@@ -68,9 +68,6 @@
     <ClCompile Include="Global.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Zombie.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="QueenMedusa.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -88,6 +85,9 @@
     </ClCompile>
     <ClCompile Include="GCamera.cpp">
       <Filter>Framework\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghouls.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,9 +162,6 @@
     <ClInclude Include="HeaderObj.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Zombie.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="QueenMedusa.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -185,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="GAudio.h">
       <Filter>Framework\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Ghouls.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

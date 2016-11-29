@@ -11,7 +11,7 @@ private:
 	GTexture* playerDeath;
 
 	//enemy
-	GTexture* zombie;
+	GTexture* Ghouls;
 	GTexture* blackKnight;
 	GTexture* blackLeopard;
 	GTexture* fishMan;

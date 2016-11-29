@@ -67,3 +67,9 @@ void GameObject::Draw(GCamera* camera)
 void GameObject::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int t) {}
 void GameObject::OnKeyDown(int KeyCode) {}
 GameObject::~GameObject(void) {}
+void GameObject::SetActive(float x, float y){}
+void GameObject::SetActive()
+{
+	if (!active)
+		active = true;
+}

@@ -78,7 +78,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	posCamera = camera->viewport;
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
-	//qGameObject->Update(t);
+	qGameObject->Update(t);
 	bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
 	
 	player->Update(t);

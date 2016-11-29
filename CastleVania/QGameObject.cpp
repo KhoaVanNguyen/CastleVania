@@ -68,7 +68,7 @@ QGameObject::QGameObject(string fileName)
 				break;
 		
 			case 10:
-				_dynamicObject->push_back(new Zombie(posX, posY));
+				_dynamicObject->push_back(new Ghouls(posX, posY));
 				break;
 		
 			case 25:
@@ -131,7 +131,11 @@ void QGameObject::Update(int deltaTime)
 	it = _dynamicObject->begin();
 	while (it != _dynamicObject->end())
 	{
-		
+		if ((*it)->active)
+		{
+			(*it)->Update(deltaTime);
+		}
+		++it;
 	}
 }
 
