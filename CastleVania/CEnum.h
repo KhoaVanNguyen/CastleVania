@@ -15,7 +15,7 @@ enum EnumID
 
 	Player_ID,
 	PlayerDeath_ID,
-	Zombie_ID,
+	Ghouls_ID,
 	Brick_ID,
 	Candle_ID,
 	LargeCandle_ID,
