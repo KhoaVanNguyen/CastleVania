@@ -1,4 +1,4 @@
-#ifndef _PLAYER_H_
+﻿#ifndef _PLAYER_H_
 #define _PLAYER_H_
 
 #include "DynamicObject.h"
@@ -30,10 +30,10 @@ public:
 	float _a; // gia toc
 
 	bool _onStair;
-	EKindStair _kindStair;
-	bool _upStair;
-	bool _downStair;
-	bool OnStair();
+	EKindStair _kindStair; // kiểu đứng trên cầu thang
+	bool _upStair; // đang lên cầu thang 
+	bool _downStair; // đang xuống cầu thang
+	bool OnStair(); // đang ở giữa cầu thang.
 	bool _stopOnStair;	// len, xuong, dung im tren cau thang
 	int rangeStair; // Khoang cach tu simon den chan cau thang
 	bool _colStair;	//kiem tra xem simon co cham 2 dau cau thang ko
