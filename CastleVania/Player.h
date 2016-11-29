@@ -29,11 +29,15 @@ public:
 	bool _hasStair; // co len cau thang 
 	float _a; // gia toc
 
-	bool _onStair;
+
+	//gia sử cầu thang tại vị trí (400,64)
+	int posX1;
+	int posY1;
+	bool _onStair; 
 	EKindStair _kindStair; // kiểu đứng trên cầu thang
 	bool _upStair; // đang lên cầu thang 
 	bool _downStair; // đang xuống cầu thang
-	bool OnStair(); // đang ở giữa cầu thang.
+	bool OnStair(); // đang ở trên cầu thang. -> để xét bên hàm xuống cầu thang nếu đang ở trên cầu thang.
 	bool _stopOnStair;	// len, xuong, dung im tren cau thang
 	int rangeStair; // Khoang cach tu simon den chan cau thang
 	bool _colStair;	//kiem tra xem simon co cham 2 dau cau thang ko

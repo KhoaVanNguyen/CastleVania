@@ -16,10 +16,13 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 {
 	_action = Action::Idle;
 	_a = 0.005f;
+	// vị trí cầu thang
+	posX1 = 400;
+	posY1 = 64;
 	_allowPress = true;
 	_hasSit = false;
 	_hasJump = false;
-	_hasStair = false;
+	_hasStair = true;
 	_upStair = false;
 	_downStair = false;
 	_stair = NULL;
@@ -116,7 +119,14 @@ void Player::Draw(GCamera* camera)
 }
 void Player::UpdatePlayerStair(int t)
 {
-
+//vị trí cầu thang: posX1 = 400, posY1=64 (đầu dưới).
+	// posX2 = 480, posY2 = 128 (đầu trên)
+	if (!_onStair) // nếu không trên cầu thang thì đi lên được.
+	{
+		if()
+		rangeStair = posX - posX1;
+	}
+	
 }
 void Player::TurnLeft()
 {
@@ -201,7 +211,6 @@ void Player::OnFight(int t)
 	else {
 		fightingSprite->Update(t);
 	}
-
 	morningStar->Update(t);
 
 	// Update the Vx of morningStar
@@ -264,8 +273,6 @@ void Player::UpStair()
 }
 bool Player::OnStair()
 {
-	if ((_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID)) || _onStair)
-		return true;
 	return false;
 }
 Player::~Player(void)
