@@ -82,11 +82,13 @@ void Player::Draw(GCamera* camera)
 		if (_action == Action::Fight) {
 			if (!_hasSit) {
 				fightingSprite->DrawFlipX(center.x, center.y);
-				morningStar->Draw(camera);
+				
 			}
 			else {
 				fightingSittingSprite->DrawFlipX(center.x, center.y);
+				
 			}
+			morningStar->Draw(camera);
 			// vẽ Fight rồi return luôn
 			return;
 		}
@@ -98,11 +100,13 @@ void Player::Draw(GCamera* camera)
 		if (_action == Action::Fight) {
 			if (!_hasSit) {
 				fightingSprite->Draw(center.x, center.y);
-				morningStar->Draw(camera);
+				
 			}
 			else {
 				fightingSittingSprite->Draw(center.x, center.y);
+				
 			}
+			morningStar->Draw(camera);
 			return;
 		}
 		sprite->Draw(center.x, center.y);
