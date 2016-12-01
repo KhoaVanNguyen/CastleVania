@@ -20,7 +20,7 @@ class QGameObject
 {
 protected:
 	
-
+	PhantomBat* _phantomBat;
 	D3DXVECTOR2 posDoor;
 public:
 	DWORD _localHurtTime;

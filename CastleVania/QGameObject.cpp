@@ -62,15 +62,31 @@ QGameObject::QGameObject(string fileName)
 			case 0:
 				_staticObject->push_back(new Brick(posX, posY, width, height));
 				break;
-			
+			case 5:
+				_staticObject->push_back(new LargeCandle(posX, posY));
+				break;
 			case 6:
 				_staticObject->push_back(new Candle(posX, posY));
 				break;
-		
+			case 7:
+				_dynamicObject->push_back(new Panthers(posX, posY));
+				break;
+			case 8:
+				_dynamicObject->push_back(new Fishmen(posX, posY));
+				break;
+			case 9:
+				_dynamicObject->push_back(new Bats(posX, posY));
+				break;
 			case 10:
 				_dynamicObject->push_back(new Ghouls(posX, posY));
 				break;
-		
+			case 11:
+				_phantomBat = new PhantomBat(posX, posY, EnumID::PhantomBat_ID);
+				_dynamicObject->push_back(_phantomBat);
+				break;
+			case 12:
+				_dynamicObject->push_back(new MedusaHeads(posX, posY));
+				break;
 			case 25:
 				posDoor.x = posX;
 				posDoor.y = posY;
@@ -86,7 +102,7 @@ QGameObject::QGameObject(string fileName)
 			}
 		}
 	}
-	
+
 }
 
 D3DXVECTOR2 QGameObject::GetPosDoor()
