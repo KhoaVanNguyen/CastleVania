@@ -62,6 +62,10 @@ public:
 	void Draw(GCamera*);
 	void Fall();
 	void Sit();
+
+
+	//--------------Collision
+	void Collision(list<GameObject*> &obj, float dt);
 	D3DXVECTOR2* getPos();
 };
 

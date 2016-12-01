@@ -86,6 +86,7 @@
     <ClCompile Include="Ghouls.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="MedusaHeads.cpp" />
     <ClCompile Include="Bats.cpp" />
     <ClCompile Include="Panthers.cpp" />
@@ -94,6 +95,9 @@
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="LargeCandle.cpp" />
     <ClCompile Include="PhantomBat.cpp" />
+=======
+    <ClCompile Include="RewardItem.cpp" />
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h" />
@@ -188,6 +192,7 @@
     <ClInclude Include="Ghouls.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="MedusaHeads.h" />
     <ClInclude Include="Bats.h" />
     <ClInclude Include="Panthers.h" />
@@ -196,6 +201,9 @@
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="LargeCandle.h" />
     <ClInclude Include="PhantomBat.h" />
+=======
+    <ClInclude Include="RewardItem.h" />
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Framework">

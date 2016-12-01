@@ -52,7 +52,7 @@ private:
 	GTexture* queenMedusaHeads;
 	GTexture* littleSnake;
 	//other
-	GTexture* fireDie;
+	GTexture* rewardItem;
 	GTexture* water;
 	GTexture* fireBall;
 

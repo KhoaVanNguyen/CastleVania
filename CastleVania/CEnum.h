@@ -41,6 +41,7 @@ enum EnumID
 	Water_ID,
 	FireBall_ID,
 
+	Reward_ID,
 	HP_ID,
 	GameUI_ID,
 };

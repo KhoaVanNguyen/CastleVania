@@ -3,6 +3,7 @@
 
 DynamicObject::DynamicObject(void) : GameObject()
 {
+	canBeKilled = true;
 }
 
 DynamicObject::DynamicObject(float _posX, float _posY, float _vX, float _vY, EnumID id)

@@ -18,14 +18,16 @@ public:
 	float vX, vY;
 	ObjectType type;
 	bool canMove;
+	bool canBeKilled;
 	bool active;
-	//bool death;
+	bool death;
+	
 	//Cac thong so
 	EnumID id;
-	//int hearts;
-	//int hp;
-	//int damage;
-	//int point;
+	int hearts;
+	int hp;
+	int damage;
+	int point;
 
 	virtual void Update(int dt);
 	virtual void Draw(GCamera*);
@@ -34,6 +36,14 @@ public:
 	virtual void CreateSprite();
 	virtual void SetActive(float x, float y);
 	virtual void SetActive();
+	
+	
+
+	virtual void Collision(list<GameObject*> obj, int dt);
+	virtual Box GetBox();
+	virtual void ReceiveDamage(int damage);
+
+	virtual void Remove();
 	GameObject(void);
 	GameObject(float posX, float posY, EnumID id);
 	~GameObject(void);

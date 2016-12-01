@@ -132,6 +132,34 @@ void QGameObject::Draw(GCamera *camera)
 		}
 	}
 }
+void QGameObject::Collision(int dt)
+{
+	for (list<GameObject*>::reverse_iterator i = _staticObject->rbegin(); i != _staticObject->rend(); i++)
+	{
+		if ((*i)->canMove)
+		{
+			(*i)->Collision((*_staticObject), dt);
+		}
+	}
+
+	//for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
+	//{
+	//	if((*i)->active && (*i)->id != EnumID::PhantomBat_ID && (*i)->id != EnumID::QueenMedusa_ID)
+	//	{
+	//		if(!IsHurt() || (IsHurt() && (*i)->type != ObjectType::Enemy_Type))
+	//			(*i)->Collision((*_staticObject), dt);
+	//	}
+	//}
+
+	for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
+	{
+		if ((*i)->active)
+		{
+			(*i)->Collision((*_staticObject), dt);
+		}
+	}
+}
+
 void QGameObject::Update(int deltaTime)
 {
 	list<GameObject*>::iterator it = _staticObject->begin();

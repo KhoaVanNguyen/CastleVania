@@ -53,9 +53,7 @@ Singleton::Singleton()
 	phantombat = new GTexture("Resources/boss/0.png", 3, 1, 3);
 	queenMedusaHeads = new GTexture("Resources/boss/1.png", 5, 1, 5);
 	littleSnake = new GTexture("Resources/boss/2.png", 2, 1, 2);
-	
-	//other
-	fireDie = new GTexture("Resources/other/1.png", 3, 1, 3);
+	rewardItem = new GTexture("Resources/other/1.png", 3, 1, 3);
 	water = new GTexture("Resources/other/2.png", 1, 1, 1);
 	fireBall = new GTexture("Resources/fireball.png", 1, 1, 1);
 
@@ -122,5 +120,8 @@ GTexture* Singleton::getTexture(EnumID id)
 
 	case EnumID::GameUI_ID:
 		return gameScore;
+
+	case EnumID::Reward_ID:
+		return rewardItem;
 	}
 }

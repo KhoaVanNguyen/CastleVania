@@ -9,6 +9,7 @@ GameObject::GameObject(void)
 	width = 0;
 	height = 0;
 	canMove = false;
+	canBeKilled = true;
 }
 
 
@@ -20,6 +21,8 @@ GameObject::GameObject(float _posX, float _posY, EnumID _id)
 	vY = 0;
 	id = _id;
 	
+	hp = 1;
+	point = 1;
 	type = ObjectType::None;
 	canMove = false;
 	active = true;
@@ -74,6 +77,28 @@ void GameObject::Draw(GCamera* camera)
 		D3DXVECTOR2 center = camera->Transform(posX, posY);
 		sprite->Draw(center.x, center.y);
 	}
+}
+void GameObject::ReceiveDamage(int damage)
+{
+	if (hp > 0) {
+		hp -= damage;
+	}
+	else {
+		death = true;
+	}
+}
+void GameObject::Collision(list<GameObject*> obj, int dt)
+{
+}
+void GameObject::Remove()
+{
+	active = false;
+	death = true;
+}
+Box GameObject::GetBox()
+{
+	Box result(posX - width / 2, posY + height / 2, width, height);
+	return result;
 }
 void GameObject::ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int t) {}
 void GameObject::OnKeyDown(int KeyCode) {}
