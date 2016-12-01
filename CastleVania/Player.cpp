@@ -22,7 +22,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_allowPress = true;
 	_hasSit = false;
 	_hasJump = false;
-	_hasStair = true;
+	_hasStair = false;
 	_upStair = false;
 	_downStair = false;
 	_stair = NULL;
@@ -51,6 +51,7 @@ void Player::Update(int deltaTime)
 		sprite->SelectIndex(0);
 		break;*/
 	}
+	rangeStair = posX - posX1;
 	if (_hasStair)
 	{
 		UpdatePlayerStair(deltaTime);
@@ -126,29 +127,76 @@ void Player::UpdatePlayerStair(int t)
 {
 //vị trí cầu thang: posX1 = 400, posY1=64 (đầu dưới).
 	// posX2 = 480, posY2 = 128 (đầu trên)
-	//if (!_onStair) // nếu không trên cầu thang thì đi lên được. tính khoảng cách
-	//{
-	//	if (_hasStair) // nếu có cầu thang thì xử lý lên xuống cầu thang được
-	//	{
+	if (!_onStair) // nếu không trên cầu thang thì đi lên, xuống được (nếu đủ khoảng cách với cầu thang).
+	{
+		if (_hasStair) // nếu được lên cầu thang.
+		{
+			if (rangeStair < 0) // xét nhân vật bên phải cầu thang -- đi qua hướng cầu thang
+			{
+				_vLast = vX = 1;
+				posX += 1;
+				rangeStair += 1;
+			}
+			else if (rangeStair > 0) // xét nhân vật bên trái cầu thang -- đi qua hướng cầu thang
+			{
+				_vLast = vX = -1;
+				posX -= 1;
+				rangeStair -= 1;
+			}
+			// khi đã đi lại cầu thang rồi tức là rangeStair == 0
+			// thì xét hướng của cầu thang, ở đây xét StairUpRight
+			if (rangeStair == 0) _kindStair = EKindStair::UpRight;
+			if (_kindStair == EKindStair::UpRight) // nếu đi lên phía bên phải 
+			{
+				vX = _vLast = 1; // đi qua bên phải với V = 1;
+			}
+			else if (_kindStair == EKindStair::UpLeft)//nếu đi lên về phía trái
+			{
+				vX = _vLast = - 1; // đi qua bên trái với V = 1;
+			}
+			_onStair = true;
+			_timeSpawn = 0;
+#pragma region Xét ảnh theo hướng.
+			if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::UpLeft)
+			{
+				posY += 2;
+				playerStair->SelectIndex(12);
+			}
+			else if (_kindStair == EKindStair::DownLeft)
+			{
+				posY -= 16;
+				playerStair->SelectIndex(10);
+			}
+			else if (_kindStair == EKindStair::DownRight)
+			{
+				posY -= 16;
+				playerStair->SelectIndex(10);
+			}
+#pragma endregion
+
 	//		rangeStair = posX - posX1;
-	//	}
+		}
+		sprite->Update(t);
 	//	else if (_outStair) // nếu ra ngoài cầu thang
 	//	{
 	//		sprite->SelectIndex(0);
 	//		_kindStair = EKindStair::None_Kind;
 	//		_action = Action::Idle;
-	//	}
+	}
 	//}
 	//else //  trên cầu thang ->đi lên, đi xuống đc.
 	//{
 
 	//}
-	if (_hasStair)
-	{
-		rangeStair = posX - posX1;
-	}
-	
-	playerStair->SelectIndex(12);
+	//if (_hasStair)
+	//{
+	//	rangeStair = posX - posX1;
+	//}
+	//if (_onStair)
+	//{
+	//	playerStair->SelectIndex(12);
+	//	_onStair = false;
+	//}
 	//sprite->Update(t);
 }
 void Player::TurnLeft()
@@ -269,6 +317,13 @@ void Player::Stop() {
 	}*/
 	// Xử lý tạm thôi
 	vX = 0;
+	if (_stopOnStair && _timeSpawn == 0) // khi _timeSpawn = 10 player sẽ bị ngừng.
+	{
+		_upStair = false;
+		_downStair = false;
+		_stopOnStair = false;
+		return;
+	}
 	switch (_action)
 	{
 	case Action::Idle:
@@ -292,19 +347,49 @@ void Player::Stop() {
 }
 void Player::UpStair()
 {
-	if (_allowPress && _hasStair)
-	{
-		if (abs(rangeStair) < 20)
+	// nếu mà đang nhảy, đang đánh, hoặc đang  thì không lên cầu thang được
+	if (_hasJump || _action == Action::Fight || _hasStair || _action == Action::Run_Right|| _action == Action::Run_Left)
+		return;
+	if (abs(rangeStair) <= 40)
 		{
-			_upStair = true;
-			//posX += 16;
-			//posY += 3;
-			//sprite->Update(1);
-			posY += 3;
-			playerStair->SelectIndex(13);
-			//vY = sqrt(-2 * _a*MAX_HEIGHT);
+			if(_colStair)
+			{
+				if (!_hasStair)
+					_hasStair = true;
+				else
+				{
+					_onStair = true;
+					_timeSpawn = 0;
+				}
+///////////////{} tại đây phải code đoạn làm sao để xác định được việc player 
+				// đã ra khỏi cầu thang, dùng biến _onStair = false.
+				// dựa vào độ cao của cầu thang.
+			/*else*/ // ngược lại đang trên cầu thang.
+				{
+					_onStair = true;
+					if (_kindStair == EKindStair::DownLeft)
+					{
+						vX = _vLast = -1;
+						_kindStair = EKindStair::UpRight;
+					}
+					if (_kindStair == EKindStair::DownRight)
+					{
+						vX = _vLast = 1;
+						_kindStair = EKindStair::UpLeft;
+					}
+					playerStair->SelectIndex(13);
+					_timeSpawn = 0;
+				}
+
+			//posX += 1.6;
+			////posY += 3;
+			////sprite->Update(1);
+			//posY += 1.6;
+			//playerStair->SelectIndex(10);
+			////vY = sqrt(-2 * _a*MAX_HEIGHT);
 		}
 	}
+
 }
 bool Player::OnStair()
 {
