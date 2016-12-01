@@ -3,6 +3,7 @@
 
 DynamicObject::DynamicObject(void) : GameObject()
 {
+	canBeKilled = true;
 }
 
 DynamicObject::DynamicObject(float _posX, float _posY, float _vX, float _vY, EnumID id)
@@ -34,9 +35,9 @@ void DynamicObject::Draw(GCamera* camera)
 		return;
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
 	if (vX < 0)
-		sprite->DrawFlipX(center.x, center.y);
-	else
 		sprite->Draw(center.x, center.y);
+	else
+		sprite->DrawFlipX(center.x, center.y);
 }
 
 void DynamicObject::SetActive(float x, float y)

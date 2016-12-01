@@ -24,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -103,6 +103,7 @@
     <ClCompile Include="QGameObject.cpp" />
     <ClCompile Include="QNode.cpp" />
     <ClCompile Include="QueenMedusa.cpp" />
+    <ClCompile Include="RewardItem.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneGame.cpp" />
     <ClCompile Include="SceneControl.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="QGameObject.h" />
     <ClInclude Include="QNode.h" />
     <ClInclude Include="QueenMedusa.h" />
+    <ClInclude Include="RewardItem.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGame.h" />
     <ClInclude Include="SceneControl.h" />

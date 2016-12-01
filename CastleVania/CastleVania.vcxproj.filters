@@ -89,6 +89,7 @@
     <ClCompile Include="Ghouls.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="RewardItem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Ghouls.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="RewardItem.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Framework">

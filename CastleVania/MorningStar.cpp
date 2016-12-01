@@ -2,6 +2,7 @@
 
 MorningStar::MorningStar(void) :GameObject()
 {
+	
 }
 
 MorningStar::MorningStar(int posX_, int posY_, float vx_, float vy_, EnumID id_, int timeAnimation_) : GameObject(posX_, posY_, id_)
@@ -9,6 +10,8 @@ MorningStar::MorningStar(int posX_, int posY_, float vx_, float vy_, EnumID id_,
 	vX = vx_;
 	vY = vy_;
 
+	damage = 50;
+	point = 0;
 
 	_morningStarSprite = new MorningStarSprite(Singleton::getInstance()->getTexture(EnumID::MorningStar_ID), 0, 2, timeAnimation_);
 }
@@ -111,7 +114,35 @@ void MorningStar::updateLevel()
 }
 
 void MorningStar::Collision(list<GameObject*> &obj, int dt){
+	list<GameObject*>::reverse_iterator _itBegin;
+	for (_itBegin = obj.rbegin(); _itBegin != obj.rend(); _itBegin++)
+	{
+		GameObject* other = (*_itBegin);
+	
+			float moveX = 0;
+			float moveY = 0;
 
+			Box box = this->GetBox();
+			Box boxOther = other->GetBox();
+
+
+			// edit AABB later
+			if (AABB(box, boxOther, moveX, moveY) == true)
+			{
+				
+					if ( other->canBeKilled )
+					{
+						other->ReceiveDamage(damage);
+						if (other->hp <= 0)
+						{
+							point += other->point;
+							(*_itBegin) = new RewardItem(other->posX, other->posY);
+						}
+					}
+				return;
+			}
+		}
+	
 }
 
 MorningStar::~MorningStar(void)

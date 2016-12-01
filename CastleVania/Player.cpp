@@ -448,3 +448,13 @@ D3DXVECTOR2* Player::getPos()
 {
 	return new D3DXVECTOR2(this->posX, this->posY);
 }
+
+void Player::Collision(list<GameObject*> &obj, float dt) {
+	if (_action == Action::Fight)
+	{
+		morningStar->Collision(obj, dt);
+		point += morningStar->point;
+		morningStar->point = 0;
+	}
+
+}
