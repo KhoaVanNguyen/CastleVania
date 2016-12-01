@@ -136,10 +136,9 @@ void MorningStar::Collision(list<GameObject*> &obj, int dt){
 						if (other->hp <= 0)
 						{
 							point += other->point;
-							//(*_itBegin) = new RewardItem(other->posX, other->posY);
+							(*_itBegin) = new RewardItem(other->posX, other->posY);
 						}
 					}
-				
 				return;
 			}
 		}

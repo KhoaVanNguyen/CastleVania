@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "MorningStarSprite.h"
 #include <vector>
+#include "RewardItem.h"
 using namespace std;
 
 class MorningStar :

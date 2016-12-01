@@ -7,7 +7,7 @@ RewardItem::RewardItem(void) : DynamicObject()
 
 RewardItem::RewardItem(float x, float y) : DynamicObject(x, y, 0, -0.4f, EnumID::Reward_ID)
 {
-	deltatime = 0; 
+	deltatime = 0;
 	active = true;
 }
 
@@ -23,9 +23,10 @@ void RewardItem::Update(int dt)
 			this->Remove();
 	}
 
+	sprite->Update(dt);
 
-		width = sprite->_texture->FrameWidth;
-		height = sprite->_texture->FrameHeight;
+	width = sprite->_texture->FrameWidth;
+	height = sprite->_texture->FrameHeight;
 
 }
 void RewardItem::Collision(list<GameObject*> obj, int dt)
