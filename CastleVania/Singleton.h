@@ -12,18 +12,22 @@ private:
 
 	//enemy
 	GTexture* Ghouls;
+	GTexture* Bats;
+	GTexture* MedusaHeads;
+	GTexture* Panthers;
+	GTexture* Fishmen;
+
 	GTexture* blackKnight;
-	GTexture* blackLeopard;
-	GTexture* fishMan;
+	
 	GTexture* dragonSkullCannon;
-	GTexture* vampireBat;
-	GTexture* medusa;
+	
 	//ground
 	GTexture* candle;
 	GTexture* largeCandle;
 	GTexture* movingPlatform;
 	GTexture* openDoor;
 	GTexture* stupidDoor;
+	
 	//weapon
 	GTexture* morningStar;
 	GTexture* fireBomb;
@@ -45,7 +49,7 @@ private:
 	GTexture* magicalCrystal;
 	//boss
 	GTexture* phantombat;
-	GTexture* queenMedusa;
+	GTexture* queenMedusaHeads;
 	GTexture* littleSnake;
 	//other
 	GTexture* fireDie;

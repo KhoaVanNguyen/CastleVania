@@ -21,13 +21,25 @@ enum EnumID
 	LargeCandle_ID,
 	MorningStar_ID,
 
+	//enemy
+	MedusaHeads_ID,
+	Bats_ID,
+	Panthers_ID,
+	Fishmen_ID,
+
+	//groud
+
 	StairUpLeft_ID,
 	StairUpRight_ID,
 	StairDownLeft_ID,
 	StairDownRight_ID,
 
+	//boss
+	PhantomBat_ID,
 
-
+	//other
+	Water_ID,
+	FireBall_ID,
 
 	HP_ID,
 	GameUI_ID,

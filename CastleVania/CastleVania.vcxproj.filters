@@ -68,9 +68,6 @@
     <ClCompile Include="Global.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="QueenMedusa.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="CustomRect.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -89,6 +86,14 @@
     <ClCompile Include="Ghouls.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="MedusaHeads.cpp" />
+    <ClCompile Include="Bats.cpp" />
+    <ClCompile Include="Panthers.cpp" />
+    <ClCompile Include="Fishmen.cpp" />
+    <ClCompile Include="Water.cpp" />
+    <ClCompile Include="FireBall.cpp" />
+    <ClCompile Include="LargeCandle.cpp" />
+    <ClCompile Include="PhantomBat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Singleton.h" />
@@ -162,9 +167,6 @@
     <ClInclude Include="HeaderObj.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="QueenMedusa.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="CustomRect.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -186,6 +188,14 @@
     <ClInclude Include="Ghouls.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="MedusaHeads.h" />
+    <ClInclude Include="Bats.h" />
+    <ClInclude Include="Panthers.h" />
+    <ClInclude Include="Fishmen.h" />
+    <ClInclude Include="Water.h" />
+    <ClInclude Include="FireBall.h" />
+    <ClInclude Include="LargeCandle.h" />
+    <ClInclude Include="PhantomBat.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Framework">
