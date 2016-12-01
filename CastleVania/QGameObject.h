@@ -39,6 +39,7 @@ public:
 	void Draw(GCamera *camera);
 	void Update(int deltaTime);
 	
+	void Collision(int dt);
 	int RemoveAllObjectInCamera(D3DXVECTOR2);
 	void RemoveAllObject();
 	

@@ -87,6 +87,12 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	{
 		camera->UpdateCamera(player->posX);
 	}
+
+	player->Collision(*(qGameObject->_staticObject), t);
+	player->Collision(*(qGameObject->_dynamicObject), t);
+
+
+	qGameObject->Collision(t);
 	d3ddv->StretchRect(
 		Background,	
 		NULL,	
@@ -98,7 +104,8 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	bg->Draw(camera);
 	qGameObject->Draw(camera);
 
-	gameUI->updateScore(1, 69, t, 10, 1, 5, 5);
+	
+	gameUI->updateScore(1, player->point, t, 10, 1, 5, 5);
 	gameUI->drawTable();
 	player->Draw(camera);
 
