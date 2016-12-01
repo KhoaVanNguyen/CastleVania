@@ -28,7 +28,7 @@ enum EnumID
 
 
 
-
+	Reward_ID,
 	HP_ID,
 	GameUI_ID,
 };
