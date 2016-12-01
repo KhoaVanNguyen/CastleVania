@@ -6,7 +6,7 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define MAX_HEIGHT 70.0f
+#define MAX_HEIGHT 100.0f
 #define A 0.005f
 Player::Player(void) : DynamicObject()
 {
@@ -17,7 +17,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_action = Action::Idle;
 	_a = 0.005f;
 	// vị trí cầu thang
-	posX1 = 400;
+	posX1 = 160;
 	posY1 = 64;
 	_allowPress = true;
 	_hasSit = false;
@@ -60,7 +60,7 @@ void Player::Update(int deltaTime)
 	if (_hasJump)
 	{
 		sprite->SelectIndex(4);
-		posY += vY * deltaTime + 0.4 * deltaTime * deltaTime * _a;
+		posY += vY * deltaTime + 0.5* deltaTime * deltaTime * _a;
 		if (vY > -0.6f)
 			vY += _a * deltaTime;
 		if (posY < 64)//xét va chạm thì thay tại đây
@@ -114,6 +114,11 @@ void Player::Draw(GCamera* camera)
 		}
 		sprite->Draw(center.x, center.y);
 	}
+	if (_onStair)
+	{
+		playerStair->DrawFlipX(center.x, center.y);
+		return;
+	}
 
 
 }
@@ -121,12 +126,30 @@ void Player::UpdatePlayerStair(int t)
 {
 //vị trí cầu thang: posX1 = 400, posY1=64 (đầu dưới).
 	// posX2 = 480, posY2 = 128 (đầu trên)
-	if (!_onStair) // nếu không trên cầu thang thì đi lên được.
+	//if (!_onStair) // nếu không trên cầu thang thì đi lên được. tính khoảng cách
+	//{
+	//	if (_hasStair) // nếu có cầu thang thì xử lý lên xuống cầu thang được
+	//	{
+	//		rangeStair = posX - posX1;
+	//	}
+	//	else if (_outStair) // nếu ra ngoài cầu thang
+	//	{
+	//		sprite->SelectIndex(0);
+	//		_kindStair = EKindStair::None_Kind;
+	//		_action = Action::Idle;
+	//	}
+	//}
+	//else //  trên cầu thang ->đi lên, đi xuống đc.
+	//{
+
+	//}
+	if (_hasStair)
 	{
-		if()
 		rangeStair = posX - posX1;
 	}
 	
+	playerStair->SelectIndex(12);
+	//sprite->Update(t);
 }
 void Player::TurnLeft()
 {
@@ -164,8 +187,8 @@ void Player::Jump()
 			return;
 		if (!_hasJump)
 		{
-			vY = -10;
-			posY += 30;
+			//vY = -10;
+			posY += 1;
 			_a = -A;
 			vY = sqrt(-2 * _a*MAX_HEIGHT);
 			//_heightJump = 0;
@@ -269,7 +292,19 @@ void Player::Stop() {
 }
 void Player::UpStair()
 {
-
+	if (_allowPress && _hasStair)
+	{
+		if (abs(rangeStair) < 20)
+		{
+			_upStair = true;
+			//posX += 16;
+			//posY += 3;
+			//sprite->Update(1);
+			posY += 3;
+			playerStair->SelectIndex(13);
+			//vY = sqrt(-2 * _a*MAX_HEIGHT);
+		}
+	}
 }
 bool Player::OnStair()
 {

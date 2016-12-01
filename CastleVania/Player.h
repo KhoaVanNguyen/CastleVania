@@ -33,6 +33,7 @@ public:
 	//gia sử cầu thang tại vị trí (400,64)
 	int posX1;
 	int posY1;
+	int time;
 	bool _onStair; 
 	EKindStair _kindStair; // kiểu đứng trên cầu thang
 	bool _upStair; // đang lên cầu thang 

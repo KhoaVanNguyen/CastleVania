@@ -216,7 +216,7 @@ void CGame::GameRun()
 
 	while (!done) 
 	{
-		if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
+	if (PeekMessage(&msg,NULL,0,0,PM_REMOVE))
 		{
 			if (msg.message==WM_QUIT) done=1;
 

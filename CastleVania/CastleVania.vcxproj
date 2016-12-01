@@ -102,7 +102,6 @@
     <ClCompile Include="QBackground.cpp" />
     <ClCompile Include="QGameObject.cpp" />
     <ClCompile Include="QNode.cpp" />
-    <ClCompile Include="QueenMedusa.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneGame.cpp" />
     <ClCompile Include="SceneControl.cpp" />
@@ -137,7 +136,6 @@
     <ClInclude Include="QBackground.h" />
     <ClInclude Include="QGameObject.h" />
     <ClInclude Include="QNode.h" />
-    <ClInclude Include="QueenMedusa.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGame.h" />
     <ClInclude Include="SceneControl.h" />
@@ -154,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
