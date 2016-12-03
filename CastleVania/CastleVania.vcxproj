@@ -86,9 +86,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bats.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Candle.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
+    <ClCompile Include="FireBall.cpp" />
+    <ClCompile Include="Fishmen.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameUI.cpp" />
@@ -96,13 +99,16 @@
     <ClCompile Include="GCamera.cpp" />
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="CustomRect.cpp" />
+    <ClCompile Include="LargeCandle.cpp" />
+    <ClCompile Include="MedusaHeads.cpp" />
     <ClCompile Include="MorningStar.cpp" />
     <ClCompile Include="MorningStarSprite.cpp" />
+    <ClCompile Include="Panthers.cpp" />
+    <ClCompile Include="PhantomBat.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
     <ClCompile Include="QGameObject.cpp" />
     <ClCompile Include="QNode.cpp" />
-    <ClCompile Include="QueenMedusa.cpp" />
     <ClCompile Include="RewardItem.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneGame.cpp" />
@@ -117,12 +123,16 @@
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Ghouls.cpp" />
+    <ClCompile Include="Water.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bats.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Candle.h" />
     <ClInclude Include="CEnum.h" />
     <ClInclude Include="DynamicObject.h" />
+    <ClInclude Include="FireBall.h" />
+    <ClInclude Include="Fishmen.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameUI.h" />
@@ -132,13 +142,16 @@
     <ClInclude Include="dxutil.h" />
     <ClInclude Include="HeaderObj.h" />
     <ClInclude Include="CustomRect.h" />
+    <ClInclude Include="LargeCandle.h" />
+    <ClInclude Include="MedusaHeads.h" />
     <ClInclude Include="MorningStar.h" />
     <ClInclude Include="MorningStarSprite.h" />
+    <ClInclude Include="Panthers.h" />
+    <ClInclude Include="PhantomBat.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />
     <ClInclude Include="QGameObject.h" />
     <ClInclude Include="QNode.h" />
-    <ClInclude Include="QueenMedusa.h" />
     <ClInclude Include="RewardItem.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGame.h" />
@@ -153,6 +166,7 @@
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Ghouls.h" />
+    <ClInclude Include="Water.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

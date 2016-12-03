@@ -43,8 +43,19 @@ void GameObject::CreateSprite()
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID::Brick_ID:
+		sprite = NULL;
+		break;
 	case EnumID:: Candle_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		break;
+	case EnumID ::MedusaHeads_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 1, 100);
+		break;
+	case EnumID::Bats_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		break;
+	case EnumID::Fishmen_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 150);
 		break;
 	default:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 100);
