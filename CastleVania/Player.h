@@ -29,6 +29,13 @@ public:
 	bool _hasStair; // co len cau thang 
 	float _a; // gia toc
 
+
+
+	bool _isHurted; // Có đang bị mất máu không?
+	bool _onMovingPlatform;
+	bool _onLand;
+	bool _beFallOutScreen; // rớt ra khỏi màn hình
+
 	bool _onStair;
 	EKindStair _kindStair;
 	bool _upStair;

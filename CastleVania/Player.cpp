@@ -14,6 +14,8 @@ Player::Player(void) : DynamicObject()
 
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
+	hp = 20;
+	_isHurted = false;
 	_action = Action::Idle;
 	_a = 0.005f;
 	_allowPress = true;
@@ -61,18 +63,18 @@ void Player::Update(int deltaTime)
 		posY += vY * deltaTime + 0.4 * deltaTime * deltaTime * _a;
 		if (vY > -0.6f)
 			vY += _a * deltaTime;
-		if (posY < 64)//xét va chạm thì thay tại đây
-		{
-			posY = 64;// xét va chạm thì thay tại đây
-			sprite->SelectIndex(0); // khi rơi xuống, posY sẽ <0, nên pải đưa về selectIndex = 0 
-			_a = 0; // khi chạm đất rồi, a =0;
-			_hasJump = false;// chạm đất r thì không còn nhảy
-		}
+		//if (posY < 64)//xét va chạm thì thay tại đây
+		//{
+		//	posY = 64;// xét va chạm thì thay tại đây
+		//	sprite->SelectIndex(0); // khi rơi xuống, posY sẽ <0, nên pải đưa về selectIndex = 0 
+		//	_a = 0; // khi chạm đất rồi, a =0;
+		//	_hasJump = false;// chạm đất r thì không còn nhảy
+		//}
 		return;
 	}
 #pragma endregion
 
-	//posY += vY *deltaTime;
+	posY += vY *deltaTime;
 }
 void Player::Draw(GCamera* camera)
 {
@@ -327,8 +329,8 @@ void Player::Jump()
 			return;
 		if (!_hasJump)
 		{
-			vY = -10;
-			posY += 30;
+			//vY = -10;
+			//posY += 30;
 			_a = -A;
 			vY = sqrt(-2 * _a*MAX_HEIGHT);
 			//_heightJump = 0;
@@ -340,19 +342,27 @@ void Player::Jump()
 }
 void Player::Fall()
 {
+	_action = Action::Fall;
+	vX = 0;
+	vY = -(SPEED_Y + 0.4f);
 }
 
 void Player::Sit()
 {
-	if (_allowPress && !_hasSit && !_hasJump)
+	if (_allowPress )
 	{
 		if (_action == Action::Fight)
 			return;
-		sprite->SelectIndex(4);
-		vX = 0;
-		posY -= 18;
-		_hasSit = true;
-		_action = Action::Sit;
+		if (_hasSit) {
+			return;
+		}
+		if (!_hasJump) {
+			sprite->SelectIndex(4);
+			vX = 0;
+			vY = -(SPEED_Y + 0.3f);
+			_hasSit = true;
+			_action = Action::Sit;
+		}
 	}
 }
 void Player::Fight() {
@@ -500,6 +510,117 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 
 
+
+				else {
+					switch (other->id)
+					{
+#pragma region
+					case EnumID::Brick_ID:
+						_onMovingPlatform = false;
+						if (vY < 0 && moveY < 16)
+						{
+							//Neu dang rot ma chua cham dat thi rot tiep
+							if (_action == Action::Fall)
+							{
+								if (moveY != 0)
+								{
+									posY += moveY;
+									vY = 0;
+									_a = 0;
+									_action = Action::Idle;
+									_onLand = true;
+									Stop();
+								}
+							}
+							else
+							{
+								if (moveY > 0)
+								{
+									posY += moveY;
+									if ( _hasJump ) // && _heightJump <= 0* || _hasKnockBack)
+									{
+										_hasJump = false;
+										/*if (_hasKnockBack)
+										{
+											if (!bActiveHurt)
+											{
+												bActiveHurt = true;
+												_localHurtTime = GetTickCount();
+												if (hp > 0)
+												{
+													if (hp <= 3)
+													{
+														hp -= 1;
+													}
+													else
+														hp -= other->damage;
+												}
+
+											}
+											_hasKnockBack = false;
+										}*/
+										vY = 0;
+										vX = 0;
+										_a = 0;
+										_allowPress = true;
+										sprite->SelectIndex(0);
+										if (boxSimon.h < 60)
+											posY += 16;
+									}
+									else
+										if (!_hasJump)
+										{
+											_a = 0;
+											vY = 0;
+										}
+								}
+							}
+						}
+						//Xu ly rot khoi cuc gach (new)
+						if ((!_onLand || _action != Action::Idle) && !_hasJump)
+						{
+							vY = -(SPEED_Y + 0.4f);
+							_beFallOutScreen = true;
+						}
+						//--------------------
+						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform )// && !_hasKnockBack)
+						{
+							posX += moveX;
+						}
+						break;
+
+#pragma endregion Va Chạm Gạch
+
+#pragma region
+				
+#pragma endregion Va chạm cầu thang
+#pragma region
+
+#pragma endregion Va chạm với cửa
+#pragma region
+
+#pragma endregion Va chạm với nước
+					default:
+
+						switch (other->type)
+						{
+#pragma region
+						case ObjectType::Enemy_Type:
+							if (!_isHurted) {
+								_isHurted = true;
+									hp -= 1;
+								
+							}
+							break;
+#pragma endregion Va cham Enemy
+						default:
+							
+							break;
+						}
+						break;
+					}
+				
+				}
 
 			}
 

@@ -49,9 +49,6 @@ void RewardItem::Update(int dt)
 		}
 		else {
 			random = rand() % (11);
-
-
-			random = 1;
 			switch (random)
 			{
 				

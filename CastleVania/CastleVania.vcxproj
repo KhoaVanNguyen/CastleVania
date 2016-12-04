@@ -120,10 +120,12 @@
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="ThrowAxe.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
+    <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bats.h" />
@@ -163,10 +165,12 @@
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SweptAABB.h" />
+    <ClInclude Include="ThrowAxe.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
