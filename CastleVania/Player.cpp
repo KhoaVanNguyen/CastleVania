@@ -24,7 +24,9 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_hasStair = false;
 	_upStair = false;
 	_downStair = false;
+	hearts = 10;
 
+	_weapons = new list<Weapon*>();
 	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
 
 	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
@@ -36,6 +38,19 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 
 void Player::Update(int deltaTime)
 {
+
+	list<Weapon*>::iterator it = _weapons->begin();
+	while (it != _weapons->end())
+	{
+		if (!(*it)->active)
+			_weapons->erase(it++);
+		else
+		{
+			(*it)->Update(deltaTime);
+			++it;
+		}
+	}
+
 	switch (_action)
 	{
 	case Action::Run_Left:
@@ -79,6 +94,14 @@ void Player::Update(int deltaTime)
 void Player::Draw(GCamera* camera)
 {
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
+
+
+	for (list<Weapon*>::iterator i = _weapons->begin(); i != _weapons->end(); i++)
+	{
+		if ((*i)->active)
+			(*i)->Draw(camera);
+	}
+
 	// đi sang phải
 	if (vX > 0 || _vLast > 0)
 	{
@@ -373,6 +396,12 @@ void Player::Fight() {
 		if (!_hasJump)
 			vX = 0;
 
+
+		if (_usingWeapon && !_hasWeapon && hearts > 0)
+		{
+			_hasWeapon = true;
+			hearts -= 1;
+		}
 		_action = Action::Fight;
 	}
 }
@@ -385,6 +414,11 @@ void Player::OnFight(int t)
 		fightingSprite->Update(t);
 	}
 
+
+	if (_usingWeapon && _hasWeapon)
+	{
+		this->SetWeapon();
+	}
 	morningStar->Update(t);
 
 	// Update the Vx of morningStar
@@ -626,5 +660,35 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 		}
 	}
+
+}
+
+void Player::UseWeapon() {
+	if (!_usingWeapon)
+	{
+		_usingWeapon = true;
+	}
+}
+void Player::SetWeapon() {
+	switch (_weaponID)
+	{
+	//case EnumID::Dagger:
+	//	_weapon->push_back(new Dagger(posX, posY, _vLast));
+	//	break;
+	//case EnumID::Boomerang:
+	//	_weapon->push_back(new Boomerang(posX, posY, _vLast));
+	//	break;
+	//case EnumID::Stop_Watch:
+	//	_usingWatch = true;
+	//	break;
+	case EnumID::Throw_Axe:
+		_weapons->push_back(new ThrowAxe(posX, posY, _vLast));
+		break;
+	
+	}
+	_hasWeapon = false;
+}
+void Player::ChangeWeapon(EnumID weaponId) {
+	_weaponID = weaponId;
 
 }

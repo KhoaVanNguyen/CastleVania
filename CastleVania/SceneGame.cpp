@@ -161,8 +161,9 @@ void SceneGame::ProcessInput(int KeyCode) {
 	case DIK_S:
 		player->Sit();
 		break;
-	//case DIK_SPACE:
-	//	player->Jump();
+	case DIK_Q:
+		player->UseWeapon();
+		break;
 	default:
 		player->Stop();
 		break;
@@ -178,6 +179,9 @@ void SceneGame::OnKeyDown(int KeyCode) {
 		break;
 	case DIK_SPACE:
 		player->Jump();
+	case DIK_M:
+		player->ChangeWeapon(EnumID::Throw_Axe);
+		break;
 	}
 	
 }

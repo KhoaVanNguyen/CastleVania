@@ -11,7 +11,7 @@ public:
 	Weapon(float x, float y, float _huong, EnumID id);
 	virtual void Draw(GCamera*);
 	virtual void Collision(list<GameObject*> &obj, int dt);
-	virtual void Collision(Box simonBox);
+	//virtual void Collision(Box simonBox);
 	void Update(int dt);
 	~Weapon(void);
 };
