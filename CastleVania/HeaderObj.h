@@ -15,4 +15,5 @@
 #include "FireBall.h"
 #include "LargeCandle.h"
 #include "PhantomBat.h"
+#include "Stair.h"
 #endif

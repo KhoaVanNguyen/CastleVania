@@ -1,245 +1,91 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Singleton.cpp" />
-    <ClCompile Include="Game.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="GTexture.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="GSprite.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="GAudio.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="DynamicObject.cpp">
-      <Filter>GameObject\Dynamic Object</Filter>
-    </ClCompile>
-    <ClCompile Include="MorningStar.cpp">
-      <Filter>GameObject\Dynamic Object\Weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="MorningStarSprite.cpp">
-      <Filter>GameObject\Dynamic Object\Weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="QBackground.cpp">
-      <Filter>Quadtree</Filter>
-    </ClCompile>
-    <ClCompile Include="QGameObject.cpp">
-      <Filter>Quadtree</Filter>
-    </ClCompile>
-    <ClCompile Include="QNode.cpp">
-      <Filter>Quadtree</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Quadtree</Filter>
-    </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Candle.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameObject\Dynamic Object</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneControl.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGame.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMenu.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="dsutil.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Font.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Global.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomRect.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>MainWindow</Filter>
-    </ClCompile>
-    <ClCompile Include="GameUI.cpp">
-      <Filter>Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="GCamera.cpp">
-      <Filter>Framework\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Ghouls.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="MedusaHeads.cpp" />
     <ClCompile Include="Bats.cpp" />
-    <ClCompile Include="Panthers.cpp" />
-    <ClCompile Include="Fishmen.cpp" />
-    <ClCompile Include="Water.cpp" />
+    <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Candle.cpp" />
+    <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="FireBall.cpp" />
+    <ClCompile Include="Fishmen.cpp" />
+    <ClCompile Include="Font.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameUI.cpp" />
+    <ClCompile Include="GAudio.cpp" />
+    <ClCompile Include="GCamera.cpp" />
+    <ClCompile Include="dsutil.cpp" />
+    <ClCompile Include="CustomRect.cpp" />
     <ClCompile Include="LargeCandle.cpp" />
+    <ClCompile Include="MedusaHeads.cpp" />
+    <ClCompile Include="MorningStar.cpp" />
+    <ClCompile Include="MorningStarSprite.cpp" />
+    <ClCompile Include="Panthers.cpp" />
     <ClCompile Include="PhantomBat.cpp" />
-=======
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="QBackground.cpp" />
+    <ClCompile Include="QGameObject.cpp" />
+    <ClCompile Include="QNode.cpp" />
     <ClCompile Include="RewardItem.cpp" />
->>>>>>> master
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneGame.cpp" />
+    <ClCompile Include="SceneControl.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="GSprite.cpp" />
+    <ClCompile Include="GTexture.cpp" />
+    <ClCompile Include="SceneMenu.cpp" />
+    <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Ghouls.cpp" />
+    <ClCompile Include="Water.cpp" />
+    <ClCompile Include="Stair.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bats.h" />
+    <ClInclude Include="Brick.h" />
+    <ClInclude Include="Candle.h" />
+    <ClInclude Include="CEnum.h" />
+    <ClInclude Include="DynamicObject.h" />
+    <ClInclude Include="FireBall.h" />
+    <ClInclude Include="Fishmen.h" />
+    <ClInclude Include="Font.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameUI.h" />
+    <ClInclude Include="GAudio.h" />
+    <ClInclude Include="GCamera.h" />
+    <ClInclude Include="dsutil.h" />
+    <ClInclude Include="dxutil.h" />
+    <ClInclude Include="HeaderObj.h" />
+    <ClInclude Include="CustomRect.h" />
+    <ClInclude Include="LargeCandle.h" />
+    <ClInclude Include="MedusaHeads.h" />
+    <ClInclude Include="MorningStar.h" />
+    <ClInclude Include="MorningStarSprite.h" />
+    <ClInclude Include="Panthers.h" />
+    <ClInclude Include="PhantomBat.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="QBackground.h" />
+    <ClInclude Include="QGameObject.h" />
+    <ClInclude Include="QNode.h" />
+    <ClInclude Include="RewardItem.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneGame.h" />
+    <ClInclude Include="SceneControl.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="GSprite.h" />
+    <ClInclude Include="GTexture.h" />
+    <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="SweptAABB.h" />
-    <ClInclude Include="Game.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="GSprite.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="GTexture.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="DynamicObject.h">
-      <Filter>GameObject\Dynamic Object</Filter>
-    </ClInclude>
-    <ClInclude Include="MorningStar.h">
-      <Filter>GameObject\Dynamic Object\Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="MorningStarSprite.h">
-      <Filter>GameObject\Dynamic Object\Weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="QBackground.h">
-      <Filter>Quadtree</Filter>
-    </ClInclude>
-    <ClInclude Include="QGameObject.h">
-      <Filter>Quadtree</Filter>
-    </ClInclude>
-    <ClInclude Include="QNode.h">
-      <Filter>Quadtree</Filter>
-    </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>Quadtree</Filter>
-    </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Candle.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameObject\Dynamic Object</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneControl.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGame.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMenu.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="dsutil.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="dxutil.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Font.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Global.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="HeaderObj.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="CustomRect.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="CEnum.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="GameUI.h">
-      <Filter>Framework</Filter>
-    </ClInclude>
-    <ClInclude Include="GCamera.h">
-      <Filter>Framework\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="GAudio.h">
-      <Filter>Framework\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Ghouls.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="MedusaHeads.h" />
-    <ClInclude Include="Bats.h" />
-    <ClInclude Include="Panthers.h" />
-    <ClInclude Include="Fishmen.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
-    <ClInclude Include="FireBall.h" />
-    <ClInclude Include="LargeCandle.h" />
-    <ClInclude Include="PhantomBat.h" />
-=======
-    <ClInclude Include="RewardItem.h" />
->>>>>>> master
+    <ClInclude Include="Stair.h" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Framework">
-      <UniqueIdentifier>{aefd4d5e-5272-4c36-8fde-7d3075f6fabb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject">
-      <UniqueIdentifier>{63b11fe9-5191-40d7-bc57-836d8b7e1489}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Dynamic Object">
-      <UniqueIdentifier>{041f66e8-85a7-444c-9d00-039a374603c7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameObject\Dynamic Object\Weapons">
-      <UniqueIdentifier>{9aa121cd-4601-48aa-9599-709b754535f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Quadtree">
-      <UniqueIdentifier>{74594d27-1d6a-49ea-b1e4-36b98a0b7224}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scene">
-      <UniqueIdentifier>{ad7a77d9-a476-41ff-96ee-63341a15419e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainWindow">
-      <UniqueIdentifier>{f6b8a676-9b71-4418-b42f-de383c22ce02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Utils">
-      <UniqueIdentifier>{69f2f0ae-f156-43ee-96cc-7a31141ce1c3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Camera">
-      <UniqueIdentifier>{6a417ad0-298f-46e2-b257-cadcd8f2dd78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\Graphics">
-      <UniqueIdentifier>{8cafab50-e6c5-45d7-8bd5-14bfb05aacb4}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd">
-      <Filter>Utils</Filter>
-    </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

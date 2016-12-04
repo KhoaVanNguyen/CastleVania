@@ -62,6 +62,18 @@ QGameObject::QGameObject(string fileName)
 			case 0:
 				_staticObject->push_back(new Brick(posX, posY, width, height));
 				break;
+			case 1:
+				_staticObject->push_back(new Stair(posX, posY, width + 32, height, EnumID::StairUpLeft_ID));
+				break;
+			case 2:
+				_staticObject->push_back(new Stair(posX, posY, width + 32, height, EnumID::StairUpRight_ID));
+				break;
+			case 3:
+				_staticObject->push_back(new Stair(posX, posY, width + 32, height, EnumID::StairDownRight_ID));
+				break;
+			case 4:
+				_staticObject->push_back(new Stair(posX, posY, width + 32, height, EnumID::StairDownLeft_ID));
+				break;
 			case 5:
 				_staticObject->push_back(new LargeCandle(posX, posY));
 				break;
@@ -105,6 +117,12 @@ QGameObject::QGameObject(string fileName)
 
 }
 
+PhantomBat* QGameObject::getPhantomBat()
+{
+	return _phantomBat;
+
+
+}
 D3DXVECTOR2 QGameObject::GetPosDoor()
 {
 	return posDoor;

@@ -120,6 +120,7 @@
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Stair.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Ghouls.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Stair.h" />
     <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Utils.h" />
