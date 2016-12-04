@@ -63,6 +63,7 @@ public:
 	void Fall();
 	void Sit();
 
+	void UpgradeMorningStar();
 
 	//--------------Collision
 	void Collision(list<GameObject*> &obj, float dt);

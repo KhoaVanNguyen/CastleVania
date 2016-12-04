@@ -83,12 +83,12 @@ GTexture* Singleton::getTexture(EnumID id)
 	case EnumID::PlayerDeath_ID:
 		return playerDeath;
 
-//Enemy
+		//Enemy
 	case EnumID::Ghouls_ID:
 		return Ghouls;
 	case EnumID::MedusaHeads_ID:
 		return MedusaHeads;
-	case EnumID :: Bats_ID:
+	case EnumID::Bats_ID:
 		return Bats;
 	case EnumID::Panthers_ID:
 		return Panthers;
@@ -104,7 +104,7 @@ GTexture* Singleton::getTexture(EnumID id)
 	case EnumID::LargeCandle_ID:
 		return largeCandle;
 
-	
+
 	case EnumID::MorningStar_ID:
 		return morningStar;
 	case EnumID::Water_ID:
@@ -112,7 +112,7 @@ GTexture* Singleton::getTexture(EnumID id)
 		//Boss
 	case EnumID::PhantomBat_ID:
 		return phantombat;
-// Other
+		// Other
 
 
 	case EnumID::HP_ID:
@@ -123,5 +123,12 @@ GTexture* Singleton::getTexture(EnumID id)
 
 	case EnumID::Reward_ID:
 		return rewardItem;
+
+
+		// Items:
+	case EnumID::Large_Heart:
+		return largeHeartItem;
+	case EnumID::Small_Heart:
+		return smallHeartItem;
 	}
 }

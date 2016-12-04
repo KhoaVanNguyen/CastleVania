@@ -449,12 +449,61 @@ D3DXVECTOR2* Player::getPos()
 	return new D3DXVECTOR2(this->posX, this->posY);
 }
 
+void Player::UpgradeMorningStar() {
+
+}
+
 void Player::Collision(list<GameObject*> &obj, float dt) {
 	if (_action == Action::Fight)
 	{
 		morningStar->Collision(obj, dt);
 		point += morningStar->point;
 		morningStar->point = 0;
+	}
+
+	for (list<GameObject*>::iterator _itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
+	{
+		GameObject* other = (*_itBegin);
+		float moveX = 0;
+		float moveY = 0;
+		float normalx;
+		float normaly;
+
+		Box boxSimon = this->GetBox();
+		Box boxOther = other->GetBox();
+		if (other->active)
+		{
+			if (AABB(boxSimon, boxOther, moveX, moveY) == true) {
+
+#pragma region
+				if (other->type == ObjectType::Item && other->id != EnumID::Reward_ID) {
+					other->Remove(); // deactive here!
+					switch (other->id)
+					{
+
+					case EnumID::Whip_Upgrade:
+						this->UpgradeMorningStar();
+						break;
+					case EnumID::Small_Heart:
+					case EnumID::Large_Heart:
+						hearts += other->hearts;
+						break;
+					case EnumID::Red_Money_Bag:
+					case EnumID::Purple_Money_Bag:
+					case EnumID::White_Money_Bag:
+						//cong tien
+						point += other->point;
+						break;
+					}
+				}
+#pragma endregion Va chạm với item
+
+
+
+
+			}
+
+		}
 	}
 
 }

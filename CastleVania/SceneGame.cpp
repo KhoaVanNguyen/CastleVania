@@ -105,7 +105,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	qGameObject->Draw(camera);
 
 	
-	gameUI->updateScore(1, player->point, t, 10, 1, 5, 5);
+	gameUI->updateScore(1, player->point, t, 10, player->hearts, 5, 5);
 	gameUI->drawTable();
 	player->Draw(camera);
 
