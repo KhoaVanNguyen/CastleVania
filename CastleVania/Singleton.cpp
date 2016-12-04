@@ -37,16 +37,20 @@ Singleton::Singleton()
 
 	
 
-	largeHeartItem = new GTexture("Resources/item/1.png", 1, 1, 1);
-	smallHeartItem = new GTexture("Resources/item/0.png", 1, 1, 1);
+	largeHeart = new GTexture("Resources/item/1.png", 1, 1, 1);
+	smallHeart = new GTexture("Resources/item/0.png", 1, 1, 1);
 	moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
 	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
-	morningStarItem = new GTexture("Resources/item/3.png", 1, 1, 1);
-	fireBombItem = new GTexture("Resources/item/9.png", 1, 1, 1);
-	daggerItem = new GTexture("Resources/item/4.png", 1, 1, 1);
+
+	// remove later 
+	whipUpgrade = new GTexture("Resources/item/3.png", 1, 1, 1);
+	
+
+	holyWater = new GTexture("Resources/item/9.png", 1, 1, 1);
+	dagger = new GTexture("Resources/item/4.png", 1, 1, 1);
 	boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
-	axeItem = new GTexture("Resources/item/7.png", 1, 1, 1);
-	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
+	throwAxe = new GTexture("Resources/item/7.png", 1, 1, 1);
+	stopWatch = new GTexture("Resources/item/5.png", 1, 1, 1);
 
 	magicalCrystal = new GTexture("Resources/item/13.png", 2, 1, 2);
 
@@ -115,20 +119,56 @@ GTexture* Singleton::getTexture(EnumID id)
 		// Other
 
 
+
+	// GameUI
 	case EnumID::HP_ID:
 		return hp;
 
 	case EnumID::GameUI_ID:
 		return gameScore;
 
-	case EnumID::Reward_ID:
-		return rewardItem;
 
 
 		// Items:
+
+	case EnumID::Reward_ID:
+		return rewardItem;
 	case EnumID::Large_Heart:
-		return largeHeartItem;
+		return largeHeart;
 	case EnumID::Small_Heart:
-		return smallHeartItem;
+		return smallHeart;
+
+	case EnumID::Red_Money_Bag:
+		return moneyBagItem;
+
+	case EnumID::Purple_Money_Bag:
+		return moneyBagItem;
+	case EnumID::White_Money_Bag:
+		return  moneyBagItem;
+	
+	case EnumID::Whip_Upgrade:
+		return whipUpgrade;
+	case EnumID::Dagger:
+		return  dagger;
+	case EnumID::Throw_Axe:
+		return throwAxe;
+	case EnumID::Holy_Watter:
+		return holyWater;
+	case EnumID::Boomerang:
+		return boomerang;
+	case EnumID::Stop_Watch:
+		return stopWatch;
+
+
+		/*moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
+		crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
+		morningStarItem = new GTexture("Resources/item/3.png", 1, 1, 1);
+		fireBombItem = new GTexture("Resources/item/9.png", 1, 1, 1);
+		daggerItem = new GTexture("Resources/item/4.png", 1, 1, 1);
+		boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
+		axeItem = new GTexture("Resources/item/7.png", 1, 1, 1);
+		watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
+
+		magicalCrystal = new GTexture("Resources/item/13.png", 2, 1, 2);*/
 	}
 }

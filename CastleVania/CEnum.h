@@ -59,7 +59,14 @@ enum EnumID
 	Large_Heart,
 	Red_Money_Bag,
 	Purple_Money_Bag,
-	White_Money_Bag
+	White_Money_Bag,
+
+	//weapon
+	Dagger,
+	Throw_Axe,
+	Holy_Watter,
+	Boomerang,
+	Stop_Watch
 };
 enum EKindStair
 {
