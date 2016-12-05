@@ -612,15 +612,15 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 								if (moveY > 0)
 								{
 									posY += moveY;
-									if ( _hasJump ) // && _heightJump <= 0* || _hasKnockBack)
+									if ( _hasJump || _hasKnockBack)
 									{
 										_hasJump = false;
-										/*if (_hasKnockBack)
+										if (_hasKnockBack)
 										{
-											if (!bActiveHurt)
+											if (!_isHurted)
 											{
-												bActiveHurt = true;
-												_localHurtTime = GetTickCount();
+												_isHurted = true;
+												//_localHurtTime = GetTickCount();
 												if (hp > 0)
 												{
 													if (hp <= 3)
@@ -633,7 +633,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 											}
 											_hasKnockBack = false;
-										}*/
+										}
 										vY = 0;
 										vX = 0;
 										_a = 0;
@@ -668,6 +668,9 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 #pragma region
 				
+
+
+
 #pragma endregion Va chạm cầu thang
 #pragma region
 
@@ -681,10 +684,28 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						{
 #pragma region
 						case ObjectType::Enemy_Type:
-							if (!_isHurted) {
-								_isHurted = true;
-									hp -= 1;
-								
+							if (!_onStair && !_hasStair)
+							{
+								if (!_isHurted)
+									KnockBack();
+							}
+							else
+							{
+								if (!_isHurted)
+								{
+									_isHurted = true;
+									//_localHurtTime = GetTickCount();
+									if (hp > 0)
+									{
+										if (hp <= 3)
+										{
+											hp -= 1;
+										}
+										else
+											hp -= other->damage;
+									}
+
+								}
 							}
 							break;
 #pragma endregion Va cham Enemy
