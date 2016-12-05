@@ -27,10 +27,10 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		delete bg;
 
 	LoadLevel(_levelNow);
+
 	LoadStage(_stageNow);
 
-
-	camera->SetSizeMap(1520,16);
+	camera->SetSizeMap(5632,16);
 }void SceneGame::LoadLevel(int level)
 {
 	//ResetLevel();
@@ -53,8 +53,9 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		camera->viewport.y = 834;
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player->posX = 50;
-		player->posY = 450;
+		player = new Player(50, 450);
+		//player->posX = 460;
+		//player->posY = 64;
 		player->_action = Action::Idle;
 		//_stageReset = 2;
 		
@@ -65,8 +66,9 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		camera->viewport.y = 482;
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player->posX = 3776;
-		player->posY = 96;
+		player = new Player(3776,96);
+		//player->posX = 3776;
+		//player->posY = 96;
 		
 	}
 	break;
@@ -105,6 +107,9 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	qGameObject->Draw(camera);
 
 	
+	//gameUI->updateScore(1, player->point, t, 10, 1, 5, 5);
+	//gameUI->drawTable();
+	
 	gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, 5);
 	gameUI->drawTable();
 	player->Draw(camera);
@@ -124,16 +129,36 @@ void SceneGame::LoadStage(int stage)
 		
 	}
 	break;
+
+	case 2:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage2.txt");
+
+	}
+	break;
+	case 3:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage3.txt");
+
+	}
+	break;
+
 	case 4:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage4.txt");
 		//posDoor = qGameObject->GetPosDoor();
-		//_phantomBatBoss = qGameObject->getPhantomBat();
+		_phantomBat = qGameObject->getPhantomBat();
 		
 	}
 
 	break;
+	case 5:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage5.txt");
+		//posDoor = qGameObject->GetPosDoor();
 
+	}
+	break;
 	default:
 		break;
 	}
