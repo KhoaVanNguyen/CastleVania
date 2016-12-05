@@ -44,6 +44,29 @@ enum EnumID
 	Reward_ID,
 	HP_ID,
 	GameUI_ID,
+
+
+	//Item
+	Cross,
+	Invisibility_Potion,
+	Pork_Chop,
+	Double_Shot,
+	Triple_Shot,
+	Bonuses,
+	Crystal_Ball,
+	Whip_Upgrade,
+	Small_Heart,
+	Large_Heart,
+	Red_Money_Bag,
+	Purple_Money_Bag,
+	White_Money_Bag,
+
+	//weapon
+	Dagger,
+	Throw_Axe,
+	Holy_Watter,
+	Boomerang,
+	Stop_Watch
 };
 enum EKindStair
 {

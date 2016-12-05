@@ -35,16 +35,15 @@ private:
 	GTexture* boomerang;
 	GTexture* axe;
 	//item
-	GTexture* largeHeartItem;
-	GTexture* smallHeartItem;
+	GTexture* largeHeart;
+	GTexture* smallHeart;
 	GTexture* moneyBagItem;
 	GTexture* crossItem;
-	GTexture* morningStarItem;
-	GTexture* fireBombItem;
-	GTexture* daggerItem;
+	GTexture* whipUpgrade;
+	GTexture* holyWater;
 	GTexture* boomerangItem;
-	GTexture* axeItem;
-	GTexture* watchItem;
+	GTexture* throwAxe;
+	GTexture* stopWatch;
 
 	GTexture* magicalCrystal;
 	//boss

@@ -43,6 +43,11 @@ void GameObject::CreateSprite()
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID::Brick_ID:
+	case EnumID::StairUpRight_ID:
+	case EnumID::StairUpLeft_ID:
+	case EnumID::StairDownLeft_ID:
+	case EnumID::StairDownRight_ID:
+	
 		sprite = NULL;
 		break;
 	case EnumID:: Candle_ID:

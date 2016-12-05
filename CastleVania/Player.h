@@ -5,7 +5,14 @@
 #include <math.h>
 #include "MorningStar.h"
 #include "CEnum.h"
+#include "Weapon.h"
+#include "ThrowAxe.h"
 using namespace std;
+
+#define MAX_HEIGHT_KNOCKBACK 32.0f
+#define MAX_WIDTH_KNOCKBACK 40.0f
+
+
 
 class Player : public DynamicObject
 {
@@ -14,6 +21,7 @@ public:
 	GSprite *fightingSprite;
 	GSprite *fightingSittingSprite;
 	GSprite *playerStair;
+	GSprite *playerKnockBack;
 
 	GameObject* _stair;	//Thong tin stair;
 
@@ -24,10 +32,18 @@ public:
 	float _heightJump;
 	bool _allowPress;
 	bool _hasSit;
+	bool _hasKnockBack;
 	//----stair//
 	bool _hasJump;
 	bool _hasStair; // co len cau thang 
 	float _a; // gia toc
+
+
+
+	bool _isHurted; // Có đang bị mất máu không?
+	bool _onMovingPlatform;
+	bool _onLand;
+	bool _beFallOutScreen; // rớt ra khỏi màn hình
 
 	bool _onStair;
 	EKindStair _kindStair;
@@ -59,14 +75,26 @@ public:
 	void UpdatePlayerStair(int t);
 	void ResetStair();
 	//-------------// 
+	//------------Weapon
+
+	list<Weapon*> *_weapons;
+	EnumID _weaponID;
+	bool _usingWeapon; //Co cho su dung dung vk ko? - co dang nhan DIK_Q?
+	bool _hasWeapon;
+	void UseWeapon();
+	void SetWeapon();
+	void ChangeWeapon(EnumID weaponID);
+
 	void Draw(GCamera*);
 	void Fall();
 	void Sit();
 
+	void UpgradeMorningStar();
 
 	//--------------Collision
 	void Collision(list<GameObject*> &obj, float dt);
 	D3DXVECTOR2* getPos();
+	void KnockBack();
 };
 
 #endif
