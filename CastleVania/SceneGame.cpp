@@ -109,11 +109,14 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 	
 	//gameUI->updateScore(1, player->point, t, 10, 1, 5, 5);
 	//gameUI->drawTable();
+	
+	gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, 5);
+	gameUI->drawTable();
 	player->Draw(camera);
 
 	G_SpriteHandler->End();
 
-	//gameUI->drawScore();
+	gameUI->drawScore();
 }
 
 void SceneGame::LoadStage(int stage)
@@ -183,8 +186,9 @@ void SceneGame::ProcessInput(int KeyCode) {
 	case DIK_S:
 		player->Sit();
 		break;
-	//case DIK_SPACE:
-	//	player->Jump();
+	case DIK_Q:
+		player->UseWeapon();
+		break;
 	default:
 		player->Stop();
 		break;
@@ -200,6 +204,9 @@ void SceneGame::OnKeyDown(int KeyCode) {
 		break;
 	case DIK_SPACE:
 		player->Jump();
+	case DIK_M:
+		player->ChangeWeapon(EnumID::Throw_Axe);
+		break;
 	}
 	
 }

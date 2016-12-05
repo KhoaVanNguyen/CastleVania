@@ -39,7 +39,12 @@
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Stair.cpp" />
+=======
+    <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="ThrowAxe.cpp" />
+>>>>>>> PlayerCollision
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bats.h" />
@@ -83,7 +88,12 @@
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
+<<<<<<< HEAD
     <ClInclude Include="Stair.h" />
+=======
+    <ClInclude Include="Weapon.h" />
+    <ClInclude Include="ThrowAxe.h" />
+>>>>>>> PlayerCollision
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

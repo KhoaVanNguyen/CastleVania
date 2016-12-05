@@ -60,8 +60,8 @@ void GameUI::drawScore()
 	_arial->render("PLAYER", 5, 20);
 	_arial->render("ENEMY", 5, 40);
 	_arial->render("PASS GAME :))", 5, 60);
-	_arial->render(_weaponCount, 420, 30);
-	_arial->render(_liveCount, 430, 50);
+	_arial->render(_liveCount, 420, 30);
+	_arial->render(_weaponCount, 430, 50);
 }
 
 void GameUI::initTimer(int deltaTime_)
