@@ -20,7 +20,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_hasSit = false;
 	_hasJump = false;
 	_hasStair = false;
-	_upStair = false;
+	_hasKnockBack = false;
+    _upStair = false;
 	_downStair = false;
 
 	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
@@ -29,6 +30,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
 	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
+	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
 	Initialize();
 }
 
@@ -49,11 +51,36 @@ void Player::Update(int deltaTime)
 		sprite->SelectIndex(0);
 		break;*/
 	}
+#pragma region
+	if (_hasKnockBack)
+	{
+		posY += vY * deltaTime + 0.5 * deltaTime * deltaTime * _a;
+		if (_vLast > 0)
+		{
+			posX += vX * deltaTime + 0.5 * deltaTime * deltaTime * (_a);
+			if (vX < 0)
+				vX += (-_a) * deltaTime;
+			else vX = 0;
+		}
+		else if (_vLast < 0)
+		{
+			posX += vX * deltaTime + 0.5 * deltaTime * deltaTime * (_a);
+			if (vX > 0)
+				vX += (_a)* deltaTime;
+			else vX = 0;
+		}
+		if (vY > -0.6f)
+			vY += _a * deltaTime;
+		return;
+	}
+#pragma endregion Xu ly Knockback
+
 	if (_hasStair)
 	{
 		UpdatePlayerStair(deltaTime);
 	}
 	posX += vX * deltaTime;
+
 #pragma region Xu ly nhay
 	if (_hasJump)
 	{
@@ -113,7 +140,21 @@ void Player::Draw(GCamera* camera)
 		sprite->Draw(center.x, center.y);
 	}
 
-
+#pragma region Ve khi has KnockBack
+	if (_hasKnockBack)
+	{
+		if (_vLast > 0)
+		{
+			playerKnockBack->Draw(center.x, center.y);
+			return;
+		}
+		else if (_vLast < 0)
+		{
+			playerKnockBack->DrawFlipX(center.x, center.y);
+			return;
+		}
+	}
+#pragma endregion 
 }
 void Player::UpdatePlayerStair(int t)
 {
@@ -455,6 +496,23 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		morningStar->Collision(obj, dt);
 		point += morningStar->point;
 		morningStar->point = 0;
+	}
+
+}
+void Player::KnockBack()
+{
+	if (!_hasKnockBack)
+	{
+		_allowPress = false;
+		_a = -A;
+		if (vX > 0 || _vLast > 0)
+			vX = -(sqrt(-2 * _a * MAX_WIDTH_KNOCKBACK));
+		else if (vX < 0 || _vLast < 0)
+			vX = (sqrt(-2 * _a * MAX_WIDTH_KNOCKBACK));
+		vY = sqrt(-2 * _a * MAX_HEIGHT_KNOCKBACK);
+		_heightJump = 0;
+		_hasJump = false;
+		_hasKnockBack = true;
 	}
 
 }

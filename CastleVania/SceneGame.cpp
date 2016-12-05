@@ -3,8 +3,8 @@
 #define BACKGROUND_FILE "Resources/black.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 3;
-	_stageNow = 5;
+	_levelNow = 1;
+	_stageNow = 1;
 	camera = new GCamera();
 	bg = NULL;
 	_cameraState = ECameraState::Update;

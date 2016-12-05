@@ -7,6 +7,11 @@
 #include "CEnum.h"
 using namespace std;
 
+#define MAX_HEIGHT_KNOCKBACK 32.0f
+#define MAX_WIDTH_KNOCKBACK 40.0f
+
+
+
 class Player : public DynamicObject
 {
 public:
@@ -14,6 +19,7 @@ public:
 	GSprite *fightingSprite;
 	GSprite *fightingSittingSprite;
 	GSprite *playerStair;
+	GSprite *playerKnockBack;
 
 	GameObject* _stair;	//Thong tin stair;
 
@@ -24,6 +30,7 @@ public:
 	float _heightJump;
 	bool _allowPress;
 	bool _hasSit;
+	bool _hasKnockBack;
 	//----stair//
 	bool _hasJump;
 	bool _hasStair; // co len cau thang 
@@ -67,6 +74,7 @@ public:
 	//--------------Collision
 	void Collision(list<GameObject*> &obj, float dt);
 	D3DXVECTOR2* getPos();
+	void KnockBack();
 };
 
 #endif
