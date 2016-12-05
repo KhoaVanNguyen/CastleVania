@@ -8,11 +8,23 @@ QBackground::QBackground(void)
 	_listTile = NULL;
 }
 
-QBackground::QBackground(int)
+QBackground::QBackground(int level)
 {
 	string fileName;
-	fileName = "Resources\\Maps\\Level1.txt";
-
+	switch(level)
+	{
+		case 1:
+			fileName = "Resources\\Maps\\Level1.txt";
+			break;
+		case 2:
+			fileName = "Resources\\Maps\\Level2.txt";
+			break;
+		case 3:
+			fileName = "Resources\\Maps\\Level3.txt";
+			break;
+		default:
+			break;
+	}
 
 	ifstream map(fileName);
 
@@ -23,7 +35,7 @@ QBackground::QBackground(int)
 		float posX, posY; int value;
 		int count;
 		map >> count;
-		bgSprite = new GSprite(new GTexture("Resources\\Maps\\Level1.png", count, 1, count), 1000);
+		bgSprite = new GSprite(new GTexture("Resources\\Maps\\Level3.png", count, 1, count), 1000);
 
 		map >> count >> G_MapWidth >> G_MapHeight;
 		int id;

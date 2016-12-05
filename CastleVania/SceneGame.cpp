@@ -3,8 +3,8 @@
 #define BACKGROUND_FILE "Resources/black.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 1;
-	_stageNow = 1;
+	_levelNow = 3;
+	_stageNow = 5;
 	camera = new GCamera();
 	bg = NULL;
 	_cameraState = ECameraState::Update;
@@ -30,7 +30,8 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 
 	LoadStage(_stageNow);
 
-	camera->SetSizeMap(5632,16);
+	camera->SetSizeMap(4096,16);
+
 }void SceneGame::LoadLevel(int level)
 {
 	//ResetLevel();
@@ -69,6 +70,8 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		player = new Player(3776,96);
 		//player->posX = 3776;
 		//player->posY = 96;
+		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
+		gameUI->initTimer(100);
 		
 	}
 	break;
