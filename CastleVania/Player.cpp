@@ -130,7 +130,22 @@ void Player::Draw(GCamera* camera)
 		if ((*i)->active)
 			(*i)->Draw(camera);
 	}
+#pragma region Ve khi has KnockBack
+	if (_hasKnockBack)
+	{
+		if (_vLast > 0)
+		{
+			playerKnockBack->Draw(center.x, center.y);
+			return;
+		}
+		else if (_vLast < 0)
+		{
+			playerKnockBack->DrawFlipX(center.x, center.y);
+			return;
+		}
+	}
 
+#pragma endregion 
 	// đi sang phải
 	if (vX > 0 || _vLast > 0)
 	{
@@ -169,22 +184,7 @@ void Player::Draw(GCamera* camera)
 		sprite->Draw(center.x, center.y);
 	}
 	
-#pragma region Ve khi has KnockBack
-	if (_hasKnockBack)
-	{
-		if (_vLast > 0)
-		{
-			playerKnockBack->Draw(center.x, center.y);
-			return;
-		}
-		else if (_vLast < 0)
-		{
-			playerKnockBack->DrawFlipX(center.x, center.y);
-			return;
-		}
-	}
-	
-#pragma endregion 
+
 }
 void Player::UpdatePlayerStair(int t)
 {
