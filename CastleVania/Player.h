@@ -72,6 +72,8 @@ public:
 	void OnFight(int t);
 	//--------------// Stair
 	void UpStair();
+	void DownStair();
+	void OutStair();
 	void UpdatePlayerStair(int t);
 	void ResetStair();
 	//-------------// 

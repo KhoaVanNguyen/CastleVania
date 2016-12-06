@@ -23,8 +23,11 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_hasJump = false;
 	_hasStair = false;
 	_hasKnockBack = false;
-    _upStair = false;
+	_colStair = false;
+	_upStair = false;
 	_downStair = false;
+	_stopOnStair = false;
+	_outStair = false;
 	hearts = 10;
 
 	_weapons = new list<Weapon*>();
@@ -116,7 +119,7 @@ void Player::Update(int deltaTime)
 	}
 #pragma endregion
 
-	posY += vY *deltaTime;
+	//posY += vY *deltaTime;
 }
 void Player::Draw(GCamera* camera)
 {
@@ -190,7 +193,7 @@ void Player::UpdatePlayerStair(int t)
 			if (_kindStair == EKindStair::UpRight)
 			{
 				_vLast = vX = 1;
-				_timeSpawn += 1;
+				_timeSpawn += 5;
 				if (_timeSpawn <= 10)
 				{
 
@@ -494,6 +497,13 @@ void Player::Stop() {
 	vX = 0;
 	}*/
 	// Xử lý tạm thôi
+	if (_stopOnStair && _timeSpawn == 0)
+	{
+		_upStair = false;
+		_downStair = false;
+		_stopOnStair = false;
+		return;
+	}
 	vX = 0;
 	switch (_action)
 	{
@@ -518,7 +528,150 @@ void Player::Stop() {
 }
 void Player::UpStair()
 {
-
+	if (!_downStair)
+	{
+		_upStair = true;
+		if (_onStair)
+		{
+			if (_kindStair == EKindStair::DownLeft)
+			{
+				vX = _vLast = -1;
+				_kindStair = EKindStair::UpRight;
+			}
+			if (_kindStair == EKindStair::DownRight)
+			{
+				vX = _vLast = 1;
+				_kindStair = EKindStair::UpLeft;
+			}
+		}
+	}
+	if (_hasJump)
+		return;
+	if (_action == Action::Fight)
+		return;
+	if (_hasStair)
+		return;
+	if (abs(rangeStair) <= 40)
+	{
+		if (_colStair && (_stair->id == EnumID::StairUpLeft_ID || _stair->id == EnumID::StairUpRight_ID))
+		{
+			if (!_hasStair)
+				_hasStair = true;
+			else
+			{
+				_onStair = true;
+				_timeSpawn = 0;
+			}
+			if (rangeStair != 0)
+			{
+				_onStair = false;
+			}
+			else
+			{
+				_onStair = true;
+				if (_kindStair == EKindStair::DownLeft)
+				{
+					vX = _vLast = -1;
+					_kindStair = EKindStair::UpRight;
+				}
+				if (_kindStair == EKindStair::DownRight)
+				{
+					vX = _vLast = 1;
+					_kindStair = EKindStair::UpLeft;
+				}
+				playerStair->SelectIndex(13);
+				_timeSpawn = 0;
+			}
+		}
+	}
+}
+void Player::DownStair()
+{
+	if (!_upStair)
+	{
+		_downStair = true;
+		if (_onStair)
+		{
+			if (_kindStair == EKindStair::UpRight)
+			{
+				_kindStair = EKindStair::DownLeft;
+				vX = _vLast = -1;
+			}
+			if (_kindStair == EKindStair::UpLeft)
+			{
+				vX = _vLast = 1;
+				_kindStair = EKindStair::DownRight;
+			}
+		}
+	}
+	if (_hasJump)
+		return;
+	if (_action == Action::Fight)
+		return;
+	if (_hasStair)
+		return;
+	if (abs(rangeStair) < 40)
+	{
+		if (_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID))
+		{
+			if (!_hasStair) _hasStair = true;
+			else
+			{
+				_onStair = true;
+				_timeSpawn = 0;
+			}
+			if (rangeStair != 0)
+			{
+				_onStair = false;
+			}
+			else
+			{
+				if (_kindStair == EKindStair::UpRight)
+				{
+					_kindStair = EKindStair::DownLeft;
+					vX = _vLast = -1;
+				}
+				if (_kindStair == EKindStair::UpLeft)
+				{
+					vX = _vLast = 1;
+					_kindStair = EKindStair::DownRight;
+				}
+				_onStair = true;
+				playerStair->SelectIndex(11);
+				_timeSpawn = 0;
+			}
+		}
+	}
+}
+void Player::OutStair()
+{
+	if (_upStair || _downStair)
+	{
+		_upStair = false;
+		_downStair = false;
+		_hasStair = false;
+		_onStair = false;
+		vY = -SPEED_Y;
+		vX = 0;
+		sprite->SelectIndex(0);
+		switch (_stair->id)
+		{
+		case EnumID::StairDownLeft_ID:
+			_kindStair = EKindStair::DownLeft;
+			break;
+		case EnumID::StairDownRight_ID:
+			_kindStair = EKindStair::DownRight;
+			break;
+		case EnumID::StairUpLeft_ID:
+			_kindStair = EKindStair::UpLeft;
+			break;
+		case EnumID::StairUpRight_ID:
+			_kindStair = EKindStair::UpRight;
+			break;
+		default:
+			break;
+		}
+	}
 }
 bool Player::OnStair()
 {
@@ -667,10 +820,88 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma endregion Va Chạm Gạch
 
 #pragma region
-				
+					case EnumID::StairUpRight_ID:
+					{
+						if (_colStair == false)
+							_colStair = true;
+						if (!_hasStair)
+							rangeStair = posX - (other->posX - 11);
+						_stair = other;
+						if (_upStair && _onStair)
+						{
+							_kindStair = EKindStair::UpRight;
+						}
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						if (_compareHeigh < 2 && _kindStair == EKindStair::DownLeft)
+						{
+							_outStair = true;
+							OutStair();
+						}
 
+					}
+					break;
+					case EnumID::StairUpLeft_ID:
+					{
+						if (_colStair == false)
+							_colStair = true;
+						if (!_hasStair)
+							rangeStair = posX - (other->posX + 11);
 
+						_stair = other;
+						if (_upStair && _onStair)
+						{
+							_kindStair = EKindStair::UpLeft;
+						}
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						if (_compareHeigh < 2 && _kindStair == EKindStair::DownRight)
+						{
+							_outStair = true;
+							OutStair();
+						}
+					}
+					break;
+					case EnumID::StairDownLeft_ID:
+					{
+						if (_colStair == false)
+							_colStair = true;
+						if (!_hasStair)
+							rangeStair = posX - (other->posX - 32);
 
+						_stair = other;
+
+						if (_downStair && _onStair)
+						{
+							_kindStair = EKindStair::DownLeft;
+						}
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						if (_compareHeigh < 2 && _kindStair == EKindStair::UpRight)
+						{
+							_outStair = true;
+							OutStair();
+						}
+					}
+					break;
+					case EnumID::StairDownRight_ID:
+					{
+						if (_colStair == false)
+							_colStair = true;
+						if (!_hasStair)
+							rangeStair = posX - (other->posX + 32);
+
+						_stair = other;
+
+						if (_downStair && _onStair)
+						{
+							_kindStair = EKindStair::DownRight;
+						}
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						if (_compareHeigh < 2 && _kindStair == EKindStair::UpLeft)
+						{
+							_outStair = true;
+							OutStair();
+						}
+					}
+					break;
 #pragma endregion Va chạm cầu thang
 #pragma region
 
