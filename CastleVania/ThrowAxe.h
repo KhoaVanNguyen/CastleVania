@@ -3,7 +3,7 @@
 
 #include "Weapon.h"
 
-#define THROW_AXE_ANPHA 70
+#define THROW_AXE_ANPHA 45
 #define THROW_AXE_SPEED_X 1.5
 #define G 0.01f
 
@@ -20,7 +20,7 @@ public:
 	ThrowAxe(void);
 	ThrowAxe(float x_, float y_, float huong_);
 	virtual void Update(int deltaTime_);
-	void prepareFighting(float simonX_, float simonY_, float direct_);
+	void prepare(float simonX_, float simonY_, float direct_);
 	~ThrowAxe(void);
 };
 

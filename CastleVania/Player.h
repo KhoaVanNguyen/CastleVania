@@ -10,7 +10,7 @@
 using namespace std;
 
 #define MAX_HEIGHT_KNOCKBACK 32.0f
-#define MAX_WIDTH_KNOCKBACK 40.0f
+#define MAX_WIDTH_KNOCKBACK 50.0f
 
 
 

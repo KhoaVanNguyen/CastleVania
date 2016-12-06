@@ -17,7 +17,7 @@ void ThrowAxe::_initialize()
 ThrowAxe::ThrowAxe(float x_, float y_, float huong_) : Weapon(x_, y_, huong_, EnumID::Throw_Axe)
 {
 	_initialize();
-	prepareFighting(x_, y_, huong_);
+	prepare(x_, y_, huong_);
 }
 
 void ThrowAxe::Update(int deltaTime_)
@@ -28,11 +28,9 @@ void ThrowAxe::Update(int deltaTime_)
 	posX += vX*deltaTime_;
 	float deltaPosX = posX - _posX0;
 	posY = _posY0 + vY*deltaPosX / vX - 0.5*G*pow((deltaPosX / vX), 2);
-
 }
 
-
-void ThrowAxe::prepareFighting(float simonX_, float simonY_, float direct_)
+void ThrowAxe::prepare(float simonX_, float simonY_, float direct_)
 {
 	if (direct_>0)
 	{

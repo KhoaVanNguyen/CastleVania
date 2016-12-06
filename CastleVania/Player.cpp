@@ -14,7 +14,7 @@ Player::Player(void) : DynamicObject()
 
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
-	hp = 20;
+	hp = 10;
 	_isHurted = false;
 	_action = Action::Idle;
 	_a = 0.005f;
@@ -23,7 +23,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_hasJump = false;
 	_hasStair = false;
 	_hasKnockBack = false;
-    _upStair = false;
+	_upStair = false;
 	_downStair = false;
 	hearts = 10;
 
@@ -38,9 +38,11 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	Initialize();
 }
 
+
 void Player::Update(int deltaTime)
 {
 
+	
 	list<Weapon*>::iterator it = _weapons->begin();
 	while (it != _weapons->end())
 	{
@@ -133,15 +135,17 @@ void Player::Draw(GCamera* camera)
 	if (vX > 0 || _vLast > 0)
 	{
 		if (_action == Action::Fight) {
+			if (!_usingWeapon)
+				morningStar->Draw(camera);
 			if (!_hasSit) {
 				fightingSprite->DrawFlipX(center.x, center.y);
-				
+
 			}
 			else {
 				fightingSittingSprite->DrawFlipX(center.x, center.y);
-				
+
 			}
-			morningStar->Draw(camera);
+			
 			// vẽ Fight rồi return luôn
 			return;
 		}
@@ -153,18 +157,18 @@ void Player::Draw(GCamera* camera)
 		if (_action == Action::Fight) {
 			if (!_hasSit) {
 				fightingSprite->Draw(center.x, center.y);
-				
+
 			}
 			else {
 				fightingSittingSprite->Draw(center.x, center.y);
-				
+
 			}
 			morningStar->Draw(camera);
 			return;
 		}
 		sprite->Draw(center.x, center.y);
 	}
-
+	
 #pragma region Ve khi has KnockBack
 	if (_hasKnockBack)
 	{
@@ -179,6 +183,7 @@ void Player::Draw(GCamera* camera)
 			return;
 		}
 	}
+	
 #pragma endregion 
 }
 void Player::UpdatePlayerStair(int t)
@@ -361,6 +366,8 @@ void Player::TurnLeft()
 {
 	if (_allowPress)
 	{
+		if (_usingWeapon)
+			_usingWeapon = false;
 		if (_hasJump)
 			return;
 		if (_hasSit)
@@ -375,6 +382,8 @@ void Player::TurnRight()
 {
 	if (_allowPress)
 	{
+		if (_usingWeapon)
+			_usingWeapon = false;
 		if (_hasJump)
 			return;
 		if (_hasSit)
@@ -408,12 +417,12 @@ void Player::Fall()
 {
 	_action = Action::Fall;
 	vX = 0;
-	vY = -(SPEED_Y + 0.4f);
+	vY = -(SPEED_Y + 0.3f);
 }
 
 void Player::Sit()
 {
-	if (_allowPress )
+	if (_allowPress)
 	{
 		if (_action == Action::Fight)
 			return;
@@ -495,6 +504,8 @@ void Player::Stop() {
 	}*/
 	// Xử lý tạm thôi
 	vX = 0;
+	if (_usingWeapon)
+		_usingWeapon = false;
 	switch (_action)
 	{
 	case Action::Idle:
@@ -559,14 +570,13 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		if (other->active)
 		{
 			if (AABB(boxSimon, boxOther, moveX, moveY) == true) {
-
 #pragma region
 				if (other->type == ObjectType::Item && other->id != EnumID::Reward_ID) {
 					other->Remove(); // deactive here!
 					switch (other->id)
 					{
 
-					case EnumID::Whip_Upgrade:
+					case EnumID::Whip_Upgrade: // not yet
 						this->UpgradeMorningStar();
 						break;
 					case EnumID::Small_Heart:
@@ -584,8 +594,6 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma endregion Va chạm với item
 
 
-
-
 				else {
 					switch (other->id)
 					{
@@ -594,71 +602,58 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						_onMovingPlatform = false;
 						if (vY < 0 && moveY < 16)
 						{
-							//Neu dang rot ma chua cham dat thi rot tiep
-							if (_action == Action::Fall)
-							{
-								if (moveY != 0)
-								{
-									posY += moveY;
-									vY = 0;
-									_a = 0;
-									_action = Action::Idle;
-									_onLand = true;
-									Stop();
-								}
-							}
-							else
-							{
-								if (moveY > 0)
-								{
-									posY += moveY;
-									if ( _hasJump || _hasKnockBack)
-									{
-										_hasJump = false;
-										if (_hasKnockBack)
-										{
-											if (!_isHurted)
-											{
-												_isHurted = true;
-												//_localHurtTime = GetTickCount();
-												if (hp > 0)
-												{
-													if (hp <= 3)
-													{
-														hp -= 1;
-													}
-													else
-														hp -= other->damage;
-												}
+							//đang rơi xuống
 
-											}
-											_hasKnockBack = false;
-										}
-										vY = 0;
-										vX = 0;
-										_a = 0;
-										_allowPress = true;
-										sprite->SelectIndex(0);
-										if (boxSimon.h < 60)
-											posY += 16;
-									}
-									else
-										if (!_hasJump)
+							if (moveY > 0)
+							{
+								posY += moveY;
+								if (_hasJump || _hasKnockBack)
+								{
+									_hasJump = false;
+									if (_hasKnockBack)
+									{
+										if (!_isHurted)
 										{
-											_a = 0;
-											vY = 0;
+											_isHurted = true;
+
+											if (hp > 0)
+											{
+												if (hp <= 3)
+												{
+													hp -= 1;
+												}
+												else
+													hp -= other->damage;
+											}
+
 										}
+										_hasKnockBack = false;
+									}
+									vY = 0;
+									vX = 0;
+									_a = 0;
+									_allowPress = true;
+									sprite->SelectIndex(0);
+									if (boxSimon.h < 60)
+										posY += 16;
 								}
+								else
+									if (!_hasJump)
+									{
+										_a = 0;
+										vY = 0;
+									}
 							}
+
 						}
-						//Xu ly rot khoi cuc gach (new)
+						//Xu ly rot khoi cuc gach 
 						if ((!_onLand || _action != Action::Idle) && !_hasJump)
 						{
 							vY = -(SPEED_Y + 0.4f);
 							_beFallOutScreen = true;
 						}
 						//--------------------
-						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform )// && !_hasKnockBack)
+						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
 						{
 							posX += moveX;
 						}
@@ -667,7 +662,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma endregion Va Chạm Gạch
 
 #pragma region
-				
+
 
 
 
@@ -688,34 +683,29 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							{
 								if (!_isHurted)
 									KnockBack();
+
+								_isHurted = false;
 							}
 							else
 							{
+								 // chưa có cầu thang
 								if (!_isHurted)
 								{
-									_isHurted = true;
-									//_localHurtTime = GetTickCount();
-									if (hp > 0)
-									{
-										if (hp <= 3)
-										{
-											hp -= 1;
-										}
-										else
-											hp -= other->damage;
-									}
+
+									// trừ Hp ở đây
+									_isHurted = false;
 
 								}
 							}
 							break;
 #pragma endregion Va cham Enemy
 						default:
-							
+
 							break;
 						}
 						break;
 					}
-				
+
 				}
 
 			}
@@ -728,6 +718,12 @@ void Player::KnockBack()
 {
 	if (!_hasKnockBack)
 	{
+
+		if (hp > 0)
+		{
+			hp -= 1;
+			//hp -= other->damage;
+		}
 		_allowPress = false;
 		_a = -A;
 		if (vX > 0 || _vLast > 0)
@@ -738,6 +734,7 @@ void Player::KnockBack()
 		_heightJump = 0;
 		_hasJump = false;
 		_hasKnockBack = true;
+		_isHurted = true;
 	}
 }
 void Player::UseWeapon() {
@@ -749,19 +746,19 @@ void Player::UseWeapon() {
 void Player::SetWeapon() {
 	switch (_weaponID)
 	{
-	//case EnumID::Dagger:
-	//	_weapon->push_back(new Dagger(posX, posY, _vLast));
-	//	break;
-	//case EnumID::Boomerang:
-	//	_weapon->push_back(new Boomerang(posX, posY, _vLast));
-	//	break;
-	//case EnumID::Stop_Watch:
-	//	_usingWatch = true;
-	//	break;
+		//case EnumID::Dagger:
+		//	_weapon->push_back(new Dagger(posX, posY, _vLast));
+		//	break;
+		//case EnumID::Boomerang:
+		//	_weapon->push_back(new Boomerang(posX, posY, _vLast));
+		//	break;
+		//case EnumID::Stop_Watch:
+		//	_usingWatch = true;
+		//	break;
 	case EnumID::Throw_Axe:
 		_weapons->push_back(new ThrowAxe(posX, posY, _vLast));
 		break;
-	
+
 	}
 	_hasWeapon = false;
 }

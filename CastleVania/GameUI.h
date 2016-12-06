@@ -20,7 +20,7 @@ protected:
 	int _enemyHP;
 	int _liveCount;
 	int _currentWeapon;
-	vector<GSprite*> _vWeaponSprite;
+	vector<GSprite*> weapons;
 	GSprite* _hpSprite;
 	void _initialize();
 

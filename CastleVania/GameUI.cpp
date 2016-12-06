@@ -4,7 +4,7 @@
 void GameUI::_initialize()
 {
 	// init weaponSprite
-
+	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe), 1));
 	// init hp sprite
 	_hpSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::HP_ID), 1);
 
@@ -42,10 +42,8 @@ void GameUI::drawTable()
 
 
 	// draw weapon
-	/*if (_currentWeapon != -1)
-	{
-		_vWeaponSprite.at(_currentWeapon)->Draw(345, 48);
-	}*/
+	weapons.at(0)->Draw(345, 48);
+
 }
 
 void GameUI::drawScore()

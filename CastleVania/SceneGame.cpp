@@ -43,7 +43,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		camera->viewport.y = 450;
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player = new Player(150, 64);
+		player = new Player(150, 60);
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
 	}
