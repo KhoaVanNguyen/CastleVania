@@ -16,7 +16,7 @@ public:
 	SceneGame();
 	~SceneGame();
 protected:
-	PhantomBat* _phantomBat;
+//	PhantomBat* _phantomBat;
 	LPDIRECT3DSURFACE9 BackgroundWhite;
 	D3DXVECTOR2 posCamera;
 	QBackground *bg;

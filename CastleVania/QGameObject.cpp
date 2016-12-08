@@ -93,8 +93,8 @@ QGameObject::QGameObject(string fileName)
 				_dynamicObject->push_back(new Ghouls(posX, posY));
 				break;
 			case 11:
-				_phantomBat = new PhantomBat(posX, posY, EnumID::PhantomBat_ID);
-				_dynamicObject->push_back(_phantomBat);
+//				_phantomBat = new PhantomBat(posX, posY, EnumID::PhantomBat_ID);
+//				_dynamicObject->push_back(_phantomBat);
 				break;
 			case 12:
 				_dynamicObject->push_back(new MedusaHeads(posX, posY));
@@ -117,12 +117,12 @@ QGameObject::QGameObject(string fileName)
 
 }
 
-PhantomBat* QGameObject::getPhantomBat()
-{
-	return _phantomBat;
-
-
-}
+//PhantomBat* QGameObject::getPhantomBat()
+//{
+//	return _phantomBat;
+//
+//
+//}
 D3DXVECTOR2 QGameObject::GetPosDoor()
 {
 	return posDoor;

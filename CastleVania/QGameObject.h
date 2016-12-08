@@ -20,7 +20,7 @@ class QGameObject
 {
 protected:
 	
-	PhantomBat* _phantomBat;
+//	PhantomBat* _phantomBat;
 	D3DXVECTOR2 posDoor;
 public:
 	DWORD _localHurtTime;
@@ -38,7 +38,7 @@ public:
 	D3DXVECTOR2 GetPosDoor();	//Lay vi tri de ve canh cua qua stage
 	void Draw(GCamera *camera);
 	void Update(int deltaTime);
-	PhantomBat* getPhantomBat();
+	//PhantomBat* getPhantomBat();
 	void Collision(int dt);
 	int RemoveAllObjectInCamera(D3DXVECTOR2);
 	void RemoveAllObject();

@@ -19,7 +19,6 @@
     <ClCompile Include="MorningStar.cpp" />
     <ClCompile Include="MorningStarSprite.cpp" />
     <ClCompile Include="Panthers.cpp" />
-    <ClCompile Include="PhantomBat.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
     <ClCompile Include="QGameObject.cpp" />
@@ -35,16 +34,13 @@
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Stair.cpp" />
+    <ClCompile Include="ThrowAxe.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="Stair.cpp" />
-=======
     <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="ThrowAxe.cpp" />
->>>>>>> PlayerCollision
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bats.h" />
@@ -68,7 +64,6 @@
     <ClInclude Include="MorningStar.h" />
     <ClInclude Include="MorningStarSprite.h" />
     <ClInclude Include="Panthers.h" />
-    <ClInclude Include="PhantomBat.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />
     <ClInclude Include="QGameObject.h" />
@@ -83,17 +78,14 @@
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Stair.h" />
     <ClInclude Include="SweptAABB.h" />
+    <ClInclude Include="ThrowAxe.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
-<<<<<<< HEAD
-    <ClInclude Include="Stair.h" />
-=======
     <ClInclude Include="Weapon.h" />
-    <ClInclude Include="ThrowAxe.h" />
->>>>>>> PlayerCollision
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

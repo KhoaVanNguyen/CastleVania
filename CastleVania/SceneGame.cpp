@@ -147,7 +147,7 @@ void SceneGame::LoadStage(int stage)
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage4.txt");
 		//posDoor = qGameObject->GetPosDoor();
-		_phantomBat = qGameObject->getPhantomBat();
+//		_phantomBat = qGameObject->getPhantomBat();
 		
 	}
 
