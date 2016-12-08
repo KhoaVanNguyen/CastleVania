@@ -22,6 +22,7 @@ public:
 	GSprite *fightingSittingSprite;
 	GSprite *playerStair;
 	GSprite *playerKnockBack;
+	GSprite *playerUpStair;
 
 	GameObject* _stair;	//Thong tin stair;
 
@@ -72,6 +73,8 @@ public:
 	void OnFight(int t);
 	//--------------// Stair
 	void UpStair();
+	void DownStair();
+	void OutStair();
 	void UpdatePlayerStair(int t);
 	void ResetStair();
 	//-------------// 
