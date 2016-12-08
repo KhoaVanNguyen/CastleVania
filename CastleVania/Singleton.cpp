@@ -63,12 +63,6 @@ Singleton::Singleton()
 
 	bgMenu = new GTexture("Resources/mainmenu.png", 1, 1, 1);
 
-
-	helicopter = new GTexture("Resources/helicopter.png", 1, 1, 1);
-	introBackground = new GTexture("Resources/intro.png", 1, 1, 1);
-	bat = new GTexture("Resources/bat.png", 2, 1, 2);
-
-
 	gameScore = new GTexture("Resources/blackboard.png", 1, 1, 1);
 	hp = new GTexture("Resources/heal.png", 3, 1, 3);
 

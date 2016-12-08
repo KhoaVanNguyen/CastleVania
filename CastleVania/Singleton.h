@@ -56,10 +56,6 @@ private:
 	GTexture* fireBall;
 
 	GTexture* bgMenu;
-	//IntroScene
-	GTexture* helicopter;
-	GTexture* bat;
-	GTexture* introBackground;
 
 	GTexture* gameScore;
 	GTexture* hp;
