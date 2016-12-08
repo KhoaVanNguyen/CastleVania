@@ -3,8 +3,8 @@
 #define BACKGROUND_FILE "Resources/black.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 1;
-	_stageNow = 1;
+	_levelNow = 3;
+	_stageNow = 5;
 	camera = new GCamera();
 	bg = NULL;
 	_cameraState = ECameraState::Update;
@@ -66,10 +66,12 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		camera->viewport.y = 482;
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player = new Player(3776,96);
+		player = new Player(3700,96);
 		//player->posX = 3776;
 		//player->posY = 96;
-		
+		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
+		gameUI->initTimer(100);
+
 	}
 	break;
 	default:
@@ -184,10 +186,18 @@ void SceneGame::ProcessInput(int KeyCode) {
 		break;
 	case DIK_DOWN:
 	case DIK_S:
-		player->Sit();
+		if (player->OnStair())
+		{
+			player->DownStair();
+		}
+		else
+			player->Sit();
 		break;
 	case DIK_Q:
 		player->UseWeapon();
+		break;
+	case DIK_UP:
+		player->UpStair();
 		break;
 	default:
 		player->Stop();
