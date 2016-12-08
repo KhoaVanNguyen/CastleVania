@@ -26,9 +26,11 @@ enum EnumID
 	Bats_ID,
 	Panthers_ID,
 	Fishmen_ID,
+	AxeKnights_ID,
+	BoneTowers_ID,
 
 	//groud
-
+	MovingPlatform_ID,
 	StairUpLeft_ID,
 	StairUpRight_ID,
 	StairDownLeft_ID,
@@ -36,6 +38,7 @@ enum EnumID
 
 	//boss
 	PhantomBat_ID,
+	Medusa_ID,
 
 	//other
 	Water_ID,
