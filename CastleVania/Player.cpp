@@ -119,7 +119,7 @@ void Player::Update(int deltaTime)
 	}
 #pragma endregion
 
-	//posY += vY *deltaTime;
+	posY += vY *deltaTime;
 }
 void Player::Draw(GCamera* camera)
 {
