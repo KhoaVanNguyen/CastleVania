@@ -186,7 +186,12 @@ void SceneGame::ProcessInput(int KeyCode) {
 		break;
 	case DIK_DOWN:
 	case DIK_S:
-		player->Sit();
+		if (player->OnStair())
+		{
+			player->DownStair();
+		}
+		else
+			player->Sit();
 		break;
 	case DIK_Q:
 		player->UseWeapon();

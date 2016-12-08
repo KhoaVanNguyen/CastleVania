@@ -177,6 +177,12 @@ void Player::Draw(GCamera* camera)
 			morningStar->Draw(camera);
 			return;
 		}
+		if (_onStair)
+		{
+			if (_kindStair == EKindStair::DownLeft || _kindStair == EKindStair::UpLeft)
+				playerStair->Draw(center.x, center.y);
+			return;
+		}
 		sprite->Draw(center.x, center.y);
 	}
 
@@ -857,68 +863,68 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 					}
 					break;
-					//case EnumID::StairUpLeft_ID:
-					//{
-					//	if (_colStair == false)
-					//		_colStair = true;
-					//	if (!_hasStair)
-					//		rangeStair = posX - (other->posX + 11);
+					case EnumID::StairUpLeft_ID:
+					{
+						if (_colStair == false)
+							_colStair = true;
+						if (!_hasStair)
+							rangeStair = posX - (other->posX + 11);
 
-					//	_stair = other;
-					//	if (_upStair && _onStair)
-					//	{
-					//		_kindStair = EKindStair::UpLeft;
-					//	}
-					//	float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-					//	if (_compareHeigh < 2 && _kindStair == EKindStair::DownRight)
-					//	{
-					//		_outStair = true;
-					//		OutStair();
-					//	}
-					//}
-					//break;
-					//case EnumID::StairDownLeft_ID:
-					//{
-					//	if (_colStair == false)
-					//		_colStair = true;
-					//	if (!_hasStair)
-					//		rangeStair = posX - (other->posX - 32);
+						_stair = other;
+						if (_upStair && _onStair)
+						{
+							_kindStair = EKindStair::UpLeft;
+						}
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						if (_compareHeigh < 2 && _kindStair == EKindStair::DownRight)
+						{
+							_outStair = true;
+							OutStair();
+						}
+					}
+					break;
+					case EnumID::StairDownLeft_ID:
+					{
+						if (_colStair == false)
+							_colStair = true;
+						if (!_hasStair)
+							rangeStair = posX - (other->posX - 32);
 
-					//	_stair = other;
+						_stair = other;
 
-					//	if (_downStair && _onStair)
-					//	{
-					//		_kindStair = EKindStair::DownLeft;
-					//	}
-					//	float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-					//	if (_compareHeigh < 2 && _kindStair == EKindStair::UpRight)
-					//	{
-					//		_outStair = true;
-					//		OutStair();
-					//	}
-					//}
-					//break;
-					//case EnumID::StairDownRight_ID:
-					//{
-					//	if (_colStair == false)
-					//		_colStair = true;
-					//	if (!_hasStair)
-					//		rangeStair = posX - (other->posX + 32);
+						if (_downStair && _onStair)
+						{
+							_kindStair = EKindStair::DownLeft;
+						}
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						if (_compareHeigh < 2 && _kindStair == EKindStair::UpRight)
+						{
+							_outStair = true;
+							OutStair();
+						}
+					}
+					break;
+					case EnumID::StairDownRight_ID:
+					{
+						if (_colStair == false)
+							_colStair = true;
+						if (!_hasStair)
+							rangeStair = posX - (other->posX + 32);
 
-					//	_stair = other;
+						_stair = other;
 
-					//	if (_downStair && _onStair)
-					//	{
-					//		_kindStair = EKindStair::DownRight;
-					//	}
-					//	float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-					//	if (_compareHeigh < 2 && _kindStair == EKindStair::UpLeft)
-					//	{
-					//		_outStair = true;
-					//		OutStair();
-					//	}
-					//}
-					//break;
+						if (_downStair && _onStair)
+						{
+							_kindStair = EKindStair::DownRight;
+						}
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						if (_compareHeigh < 2 && _kindStair == EKindStair::UpLeft)
+						{
+							_outStair = true;
+							OutStair();
+						}
+					}
+					break;
 #pragma endregion Va chạm cầu thang
 #pragma region
 
