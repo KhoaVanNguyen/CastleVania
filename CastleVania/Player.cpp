@@ -38,6 +38,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
+	//playerUpStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
 	Initialize();
 }
 
@@ -71,55 +72,57 @@ void Player::Update(int deltaTime)
 		sprite->SelectIndex(0);
 		break;*/
 	}
-#pragma region
-	if (_hasKnockBack)
-	{
-		posY += vY * deltaTime + 0.5 * deltaTime * deltaTime * _a;
-		if (_vLast > 0)
-		{
-			posX += vX * deltaTime + 0.5 * deltaTime * deltaTime * (_a);
-			if (vX < 0)
-				vX += (-_a) * deltaTime;
-			else vX = 0;
-		}
-		else if (_vLast < 0)
-		{
-			posX += vX * deltaTime + 0.5 * deltaTime * deltaTime * (_a);
-			if (vX > 0)
-				vX += (_a)* deltaTime;
-			else vX = 0;
-		}
-		if (vY > -0.6f)
-			vY += _a * deltaTime;
-		return;
-	}
-#pragma endregion Xu ly Knockback
+
 
 	if (_hasStair)
 	{
 		UpdatePlayerStair(deltaTime);
 	}
-	posX += vX * deltaTime;
+	else {
+		posX += vX * deltaTime;
 
 #pragma region Xu ly nhay
-	if (_hasJump)
-	{
-		sprite->SelectIndex(4);
-		posY += vY * deltaTime + 0.4 * deltaTime * deltaTime * _a;
-		if (vY > -0.6f)
-			vY += _a * deltaTime;
-		//if (posY < 64)//xét va chạm thì thay tại đây
-		//{
-		//	posY = 64;// xét va chạm thì thay tại đây
-		//	sprite->SelectIndex(0); // khi rơi xuống, posY sẽ <0, nên pải đưa về selectIndex = 0 
-		//	_a = 0; // khi chạm đất rồi, a =0;
-		//	_hasJump = false;// chạm đất r thì không còn nhảy
-		//}
-		return;
-	}
+		if (_hasJump)
+		{
+			sprite->SelectIndex(4);
+			posY += vY * deltaTime + 0.4 * deltaTime * deltaTime * _a;
+			if (vY > -0.6f)
+				vY += _a * deltaTime;
+			//if (posY < 64)//xét va chạm thì thay tại đây
+			//{
+			//	posY = 64;// xét va chạm thì thay tại đây
+			//	sprite->SelectIndex(0); // khi rơi xuống, posY sẽ <0, nên pải đưa về selectIndex = 0 
+			//	_a = 0; // khi chạm đất rồi, a =0;
+			//	_hasJump = false;// chạm đất r thì không còn nhảy
+			//}
+			return;
+		}
 #pragma endregion
-
-	posY += vY *deltaTime;
+#pragma region
+		if (_hasKnockBack)
+		{
+			posY += vY * deltaTime + 0.5 * deltaTime * deltaTime * _a;
+			if (_vLast > 0)
+			{
+				posX += vX * deltaTime + 0.5 * deltaTime * deltaTime * (_a);
+				if (vX < 0)
+					vX += (-_a) * deltaTime;
+				else vX = 0;
+			}
+			else if (_vLast < 0)
+			{
+				posX += vX * deltaTime + 0.5 * deltaTime * deltaTime * (_a);
+				if (vX > 0)
+					vX += (_a)* deltaTime;
+				else vX = 0;
+			}
+			if (vY > -0.6f)
+				vY += _a * deltaTime;
+			return;
+		}
+#pragma endregion Xu ly Knockback
+		posY += vY *deltaTime;
+	}
 }
 void Player::Draw(GCamera* camera)
 {
@@ -135,6 +138,15 @@ void Player::Draw(GCamera* camera)
 	// đi sang phải
 	if (vX > 0 || _vLast > 0)
 	{
+		
+		if (_onStair) {
+			if (_kindStair == EKindStair::UpRight) {
+				playerStair->DrawFlipX(center.x, center.y);
+			}
+				return;
+			
+		}
+
 		if (_action == Action::Fight) {
 			if (!_hasSit) {
 				fightingSprite->DrawFlipX(center.x, center.y);
@@ -193,7 +205,7 @@ void Player::UpdatePlayerStair(int t)
 			if (_kindStair == EKindStair::UpRight)
 			{
 				_vLast = vX = 1;
-				_timeSpawn += 5;
+				_timeSpawn += 1 ;
 				if (_timeSpawn <= 10)
 				{
 
@@ -301,6 +313,7 @@ void Player::UpdatePlayerStair(int t)
 				posX -= 1;
 				rangeStair -= 1;
 			}
+	
 			if (rangeStair == 0)
 			{
 				switch (_stair->id)
@@ -831,8 +844,12 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						{
 							_kindStair = EKindStair::UpRight;
 						}
-						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-						if (_compareHeigh < 2 && _kindStair == EKindStair::DownLeft)
+
+						// 80 - 16 - ( 97 - 33)
+						//float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						
+						float _compareHeigh = abs((other->posY - posY));
+						if (_compareHeigh < 15 && _kindStair == EKindStair::DownLeft)
 						{
 							_outStair = true;
 							OutStair();
@@ -840,68 +857,68 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 					}
 					break;
-					case EnumID::StairUpLeft_ID:
-					{
-						if (_colStair == false)
-							_colStair = true;
-						if (!_hasStair)
-							rangeStair = posX - (other->posX + 11);
+					//case EnumID::StairUpLeft_ID:
+					//{
+					//	if (_colStair == false)
+					//		_colStair = true;
+					//	if (!_hasStair)
+					//		rangeStair = posX - (other->posX + 11);
 
-						_stair = other;
-						if (_upStair && _onStair)
-						{
-							_kindStair = EKindStair::UpLeft;
-						}
-						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-						if (_compareHeigh < 2 && _kindStair == EKindStair::DownRight)
-						{
-							_outStair = true;
-							OutStair();
-						}
-					}
-					break;
-					case EnumID::StairDownLeft_ID:
-					{
-						if (_colStair == false)
-							_colStair = true;
-						if (!_hasStair)
-							rangeStair = posX - (other->posX - 32);
+					//	_stair = other;
+					//	if (_upStair && _onStair)
+					//	{
+					//		_kindStair = EKindStair::UpLeft;
+					//	}
+					//	float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+					//	if (_compareHeigh < 2 && _kindStair == EKindStair::DownRight)
+					//	{
+					//		_outStair = true;
+					//		OutStair();
+					//	}
+					//}
+					//break;
+					//case EnumID::StairDownLeft_ID:
+					//{
+					//	if (_colStair == false)
+					//		_colStair = true;
+					//	if (!_hasStair)
+					//		rangeStair = posX - (other->posX - 32);
 
-						_stair = other;
+					//	_stair = other;
 
-						if (_downStair && _onStair)
-						{
-							_kindStair = EKindStair::DownLeft;
-						}
-						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-						if (_compareHeigh < 2 && _kindStair == EKindStair::UpRight)
-						{
-							_outStair = true;
-							OutStair();
-						}
-					}
-					break;
-					case EnumID::StairDownRight_ID:
-					{
-						if (_colStair == false)
-							_colStair = true;
-						if (!_hasStair)
-							rangeStair = posX - (other->posX + 32);
+					//	if (_downStair && _onStair)
+					//	{
+					//		_kindStair = EKindStair::DownLeft;
+					//	}
+					//	float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+					//	if (_compareHeigh < 2 && _kindStair == EKindStair::UpRight)
+					//	{
+					//		_outStair = true;
+					//		OutStair();
+					//	}
+					//}
+					//break;
+					//case EnumID::StairDownRight_ID:
+					//{
+					//	if (_colStair == false)
+					//		_colStair = true;
+					//	if (!_hasStair)
+					//		rangeStair = posX - (other->posX + 32);
 
-						_stair = other;
+					//	_stair = other;
 
-						if (_downStair && _onStair)
-						{
-							_kindStair = EKindStair::DownRight;
-						}
-						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-						if (_compareHeigh < 2 && _kindStair == EKindStair::UpLeft)
-						{
-							_outStair = true;
-							OutStair();
-						}
-					}
-					break;
+					//	if (_downStair && _onStair)
+					//	{
+					//		_kindStair = EKindStair::DownRight;
+					//	}
+					//	float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+					//	if (_compareHeigh < 2 && _kindStair == EKindStair::UpLeft)
+					//	{
+					//		_outStair = true;
+					//		OutStair();
+					//	}
+					//}
+					//break;
 #pragma endregion Va chạm cầu thang
 #pragma region
 

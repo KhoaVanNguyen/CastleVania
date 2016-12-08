@@ -22,6 +22,7 @@ public:
 	GSprite *fightingSittingSprite;
 	GSprite *playerStair;
 	GSprite *playerKnockBack;
+	GSprite *playerUpStair;
 
 	GameObject* _stair;	//Thong tin stair;
 
