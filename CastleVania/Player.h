@@ -36,7 +36,7 @@ public:
 	bool _hasKnockBack;
 	//----stair//
 	bool _hasJump;
-	bool _hasStair; // co len cau thang 
+	bool _colBottomStair; // co len cau thang 
 	float _a; // gia toc
 
 
@@ -51,10 +51,10 @@ public:
 	bool _upStair;
 	bool _downStair;
 	bool OnStair();
-	bool _stopOnStair;	// len, xuong, dung im tren cau thang
+	bool _stopOnStair;	// đứng im trên cầu thang.
 	int rangeStair; // Khoang cach tu simon den chan cau thang
-	bool _colStair;	//kiem tra xem simon co cham 2 dau cau thang ko
-	bool _outStair; //kiem tra cho phep simon ra khoi cau thang
+	bool _colStair;	//Có va chạm với 1 trong 2 đầu của cầu thang.
+	bool _outStair; //Coi thử player có đã ra ngoài cầu thang chưa
 	int _timeSpawn;	//
 
 	//----------------Khoi Tao

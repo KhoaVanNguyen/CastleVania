@@ -21,7 +21,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_allowPress = true;
 	_hasSit = false;
 	_hasJump = false;
-	_hasStair = false;
+	_colBottomStair = false;
 	_hasKnockBack = false;
 
 	_colStair = false;
@@ -40,15 +40,12 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
-	//playerUpStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
 	Initialize();
 }
 
 
 void Player::Update(int deltaTime)
 {
-
-	
 	list<Weapon*>::iterator it = _weapons->begin();
 	while (it != _weapons->end())
 	{
@@ -78,7 +75,7 @@ void Player::Update(int deltaTime)
 	}
 
 
-	if (_hasStair)
+	if (_colBottomStair)
 	{
 		UpdatePlayerStair(deltaTime);
 	}
@@ -312,7 +309,7 @@ void Player::UpdatePlayerStair(int t)
 	}
 	else
 	{
-		if (_hasStair)
+		if (_colBottomStair)
 		{
 			if (rangeStair < 0)
 			{
@@ -396,6 +393,7 @@ void Player::TurnLeft()
 			return;
 		if (_hasSit)
 			return;
+		ResetStair();
 		vX = -SPEED_X;
 		_vLast = vX;
 		_hasSit = false;
@@ -412,6 +410,7 @@ void Player::TurnRight()
 			return;
 		if (_hasSit)
 			return;
+		ResetStair();
 		vX = SPEED_X;
 		_vLast = vX;
 		_hasSit = false;
@@ -546,7 +545,7 @@ void Player::Stop() {
 	}
 	if (_hasSit)
 	{
-		posY = 64;// va chạm thay tại đây.
+		posY += 16;
 		_hasSit = false;
 	}
 	if ((_hasJump == true && posY == 64))
@@ -581,14 +580,14 @@ void Player::UpStair()
 		return;
 	if (_action == Action::Fight)
 		return;
-	if (_hasStair)
+	if (_colBottomStair)
 		return;
 	if (abs(rangeStair) <= 40)
 	{
 		if (_colStair && (_stair->id == EnumID::StairUpLeft_ID || _stair->id == EnumID::StairUpRight_ID))
 		{
-			if (!_hasStair)
-				_hasStair = true;
+			if (!_colBottomStair)
+				_colBottomStair = true;
 			else
 			{
 				_onStair = true;
@@ -616,6 +615,10 @@ void Player::UpStair()
 			}
 		}
 	}
+	else
+	{
+		_colStair = false;
+	}
 }
 void Player::DownStair()
 {
@@ -640,13 +643,13 @@ void Player::DownStair()
 		return;
 	if (_action == Action::Fight)
 		return;
-	if (_hasStair)
+	if (_colBottomStair)
 		return;
 	if (abs(rangeStair) < 40)
 	{
 		if (_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID))
 		{
-			if (!_hasStair) _hasStair = true;
+			if (!_colBottomStair) _colBottomStair = true;
 			else
 			{
 				_onStair = true;
@@ -674,6 +677,10 @@ void Player::DownStair()
 			}
 		}
 	}
+	else
+	{
+		_colStair = false;
+	}
 }
 void Player::OutStair()
 {
@@ -681,7 +688,7 @@ void Player::OutStair()
 	{
 		_upStair = false;
 		_downStair = false;
-		_hasStair = false;
+		_colBottomStair = false;
 		_onStair = false;
 		vY = -SPEED_Y;
 		vX = 0;
@@ -711,6 +718,13 @@ bool Player::OnStair()
 		return true;
 	return false;
 }
+void Player::ResetStair()
+{
+	if (_upStair || _downStair)
+		_upStair = _downStair = false;
+	//_kindStair = EKindStair::None;
+	_colStair = false;
+}
 Player::~Player(void)
 {
 }
@@ -739,11 +753,11 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		float normalx;
 		float normaly;
 
-		Box boxSimon = this->GetBox();
+		Box boxPlayer = this->GetBox();
 		Box boxOther = other->GetBox();
 		if (other->active)
 		{
-			if (AABB(boxSimon, boxOther, moveX, moveY) == true) {
+			if (AABB(boxPlayer, boxOther, moveX, moveY) == true) {
 #pragma region
 				if (other->type == ObjectType::Item && other->id != EnumID::Reward_ID) {
 					other->Remove(); // deactive here!
@@ -808,7 +822,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 									_a = 0;
 									_allowPress = true;
 									sprite->SelectIndex(0);
-									if (boxSimon.h < 60)
+									if (boxPlayer.h < 60)
 										posY += 16;
 								}
 								else
@@ -841,7 +855,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 						if (_colStair == false)
 							_colStair = true;
-						if (!_hasStair)
+						if (!_colBottomStair)
 							rangeStair = posX - (other->posX - 11);
 						_stair = other;
 						if (_upStair && _onStair)
@@ -865,7 +879,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 						if (_colStair == false)
 							_colStair = true;
-						if (!_hasStair)
+						if (!_colBottomStair)
 							rangeStair = posX - (other->posX + 11);
 
 						_stair = other;
@@ -885,7 +899,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 						if (_colStair == false)
 							_colStair = true;
-						if (!_hasStair)
+						if (!_colBottomStair)
 							rangeStair = posX - (other->posX - 32);
 
 						_stair = other;
@@ -907,7 +921,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 						if (_colStair == false)
 							_colStair = true;
-						if (!_hasStair)
+						if (!_colBottomStair)
 							rangeStair = posX - (other->posX + 32);
 
 						_stair = other;
@@ -937,7 +951,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						{
 #pragma region
 						case ObjectType::Enemy_Type:
-							if (!_onStair && !_hasStair)
+							if (!_onStair && !_colBottomStair)
 							{
 								if (!_isHurted)
 									KnockBack();
