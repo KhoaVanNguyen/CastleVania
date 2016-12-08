@@ -41,6 +41,10 @@
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
     <ClCompile Include="Weapon.cpp" />
+    <ClCompile Include="AxeKnights.cpp" />
+    <ClCompile Include="BoneTowers.cpp" />
+    <ClCompile Include="Medusa.cpp" />
+    <ClCompile Include="MovingPlatform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bats.h" />
@@ -86,6 +90,10 @@
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
+    <ClInclude Include="AxeKnights.h" />
+    <ClInclude Include="BoneTowers.h" />
+    <ClInclude Include="Medusa.h" />
+    <ClInclude Include="MovingPlatform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

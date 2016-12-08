@@ -92,13 +92,22 @@ QGameObject::QGameObject(string fileName)
 			case 10:
 				_dynamicObject->push_back(new Ghouls(posX, posY));
 				break;
-			case 11:
-//				_phantomBat = new PhantomBat(posX, posY, EnumID::PhantomBat_ID);
-//				_dynamicObject->push_back(_phantomBat);
-				break;
 			case 12:
 				_dynamicObject->push_back(new MedusaHeads(posX, posY));
 				break;
+			case 13:
+				_dynamicObject->push_back(new AxeKnights(posX, posY));
+				break;
+			case 14:
+				_dynamicObject->push_back(new BoneTowers(posX, posY));
+				break;
+			case 15:
+				medusa = new Medusa(posX, posY, EnumID::Medusa_ID);
+				_dynamicObject->push_back(medusa);
+				break;
+			//case 16:
+			//	_dynamicObject->push_back(new MovingPlatform(posX, posY));
+			//	break;
 			case 25:
 				posDoor.x = posX;
 				posDoor.y = posY;
@@ -162,7 +171,7 @@ void QGameObject::Collision(int dt)
 
 	//for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
 	//{
-	//	if((*i)->active && (*i)->id != EnumID::PhantomBat_ID && (*i)->id != EnumID::QueenMedusa_ID)
+	//	if((*i)->active && (*i)->id != EnumID::PhantomBat_ID && (*i)->id != EnumID::Medusa_ID)
 	//	{
 	//		if(!IsHurt() || (IsHurt() && (*i)->type != ObjectType::Enemy_Type))
 	//			(*i)->Collision((*_staticObject), dt);

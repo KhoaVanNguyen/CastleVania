@@ -24,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -86,7 +86,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AxeKnights.cpp" />
     <ClCompile Include="Bats.cpp" />
+    <ClCompile Include="BoneTowers.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Candle.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
@@ -100,9 +102,11 @@
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="CustomRect.cpp" />
     <ClCompile Include="LargeCandle.cpp" />
+    <ClCompile Include="Medusa.cpp" />
     <ClCompile Include="MedusaHeads.cpp" />
     <ClCompile Include="MorningStar.cpp" />
     <ClCompile Include="MorningStarSprite.cpp" />
+    <ClCompile Include="MovingPlatform.cpp" />
     <ClCompile Include="Panthers.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
@@ -128,7 +132,9 @@
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AxeKnights.h" />
     <ClInclude Include="Bats.h" />
+    <ClInclude Include="BoneTowers.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Candle.h" />
     <ClInclude Include="CEnum.h" />
@@ -145,9 +151,11 @@
     <ClInclude Include="HeaderObj.h" />
     <ClInclude Include="CustomRect.h" />
     <ClInclude Include="LargeCandle.h" />
+    <ClInclude Include="Medusa.h" />
     <ClInclude Include="MedusaHeads.h" />
     <ClInclude Include="MorningStar.h" />
     <ClInclude Include="MorningStarSprite.h" />
+    <ClInclude Include="MovingPlatform.h" />
     <ClInclude Include="Panthers.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />
