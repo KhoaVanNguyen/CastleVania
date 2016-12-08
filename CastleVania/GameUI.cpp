@@ -4,7 +4,13 @@
 void GameUI::_initialize()
 {
 	// init weaponSprite
-	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe), 1));
+	weapons = vector<GSprite*>();
+	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Dagger_ID), 1));
+	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang_ID), 1));
+	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1));
+
+
+
 	// init hp sprite
 	_hpSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::HP_ID), 1);
 
@@ -42,7 +48,10 @@ void GameUI::drawTable()
 
 
 	// draw weapon
-	weapons.at(0)->Draw(345, 48);
+	if (_currentWeapon != -1)
+	{
+		weapons.at(_currentWeapon)->Draw(345, 48);
+	}
 
 }
 
@@ -100,7 +109,7 @@ GameUI::GameUI(void)
 
 
 
-void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, int enemyHP_)
+void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_)
 {
 //(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
 	_gameStage = gameStage_;
@@ -109,13 +118,30 @@ void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int si
 	{
 	}
 	else
-		_gameTimer = _gameTimer - deltaTime_;
-	//_weaponCount = weaponCount_;
+	_gameTimer = _gameTimer - deltaTime_;
+	_weaponCount = weaponCount_;
 	_playerHP = simonHP_;
 	_enemyHP = enemyHP_;
 	_liveCount = liveCount_;
 
-	
+	switch (weaponID_)
+	{
+	/*case Watch_ID:
+		_currentWeapon = 0;
+		break;*/
+	case Dagger_ID:
+		_currentWeapon = 0;
+		break;
+	case Boomerang_ID:
+		_currentWeapon = 1;
+		break;
+	case Throw_Axe_ID:
+		_currentWeapon = 2;
+		break;
+	default:
+		_currentWeapon = -1;
+		break;
+	}
 
 }
 

@@ -5,8 +5,11 @@
 #include <math.h>
 #include "MorningStar.h"
 #include "CEnum.h"
-#include "Weapon.h"
+//#include "Weapon.h"
+#include "Dagger.h"
 #include "ThrowAxe.h"
+#include "Boomerang.h"
+
 using namespace std;
 
 #define MAX_HEIGHT_KNOCKBACK 32.0f
