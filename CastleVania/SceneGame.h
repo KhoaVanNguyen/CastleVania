@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include "QGameObject.h"
 #include "GameUI.h"
+#include "Sound.h"
 using namespace std;
 
 class SceneGame : public Scene

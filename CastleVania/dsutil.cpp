@@ -21,7 +21,7 @@ int (WINAPIV * __vsnprintf)(char *, size_t, const char*, va_list) = _vsnprintf;
 
 
 //-----------------------------------------------------------------------------
-// Name: CSoundManager::CSoundManager()
+// Name: GSound::GSound()
 // Desc: Constructs the class
 //-----------------------------------------------------------------------------
 GSoundManager::GSoundManager()
@@ -33,7 +33,7 @@ GSoundManager::GSoundManager()
 
 
 //-----------------------------------------------------------------------------
-// Name: CSoundManager::~CSoundManager()
+// Name: GSound::~GSound()
 // Desc: Destroys the class
 //-----------------------------------------------------------------------------
 GSoundManager::~GSoundManager()
@@ -45,11 +45,11 @@ GSoundManager::~GSoundManager()
 
 
 //-----------------------------------------------------------------------------
-// Name: CSoundManager::Initialize()
+// Name: GSound::Initialize()
 // Desc: Initializes the IDirectSound object and also sets the primary buffer
 //       format.  This function must be called before any others.
 //-----------------------------------------------------------------------------
-HRESULT GSoundManager::Initialize( HWND  hWnd, 
+HRESULT GSoundManager::Initialize(HWND  hWnd,
                                    DWORD dwCoopLevel )
 {
     HRESULT             hr;
@@ -71,7 +71,7 @@ HRESULT GSoundManager::Initialize( HWND  hWnd,
 
 
 //-----------------------------------------------------------------------------
-// Name: CSoundManager::SetPrimaryBufferFormat()
+// Name: GSound::SetPrimaryBufferFormat()
 // Desc: Set primary buffer to a specified format 
 //       !WARNING! - Setting the primary buffer format and then using this
 //                   same dsound object for DirectMusic messes up DirectMusic! 
@@ -80,7 +80,7 @@ HRESULT GSoundManager::Initialize( HWND  hWnd,
 //               dwPrimaryFreq     = 22050, 
 //               dwPrimaryBitRate  = 16
 //-----------------------------------------------------------------------------
-HRESULT GSoundManager::SetPrimaryBufferFormat( DWORD dwPrimaryChannels, 
+HRESULT GSoundManager::SetPrimaryBufferFormat(DWORD dwPrimaryChannels,
                                                DWORD dwPrimaryFreq, 
                                                DWORD dwPrimaryBitRate )
 {
@@ -122,10 +122,10 @@ HRESULT GSoundManager::SetPrimaryBufferFormat( DWORD dwPrimaryChannels,
 
 
 //-----------------------------------------------------------------------------
-// Name: CSoundManager::Get3DListenerInterface()
+// Name: GSound::Get3DListenerInterface()
 // Desc: Returns the 3D listener interface associated with primary buffer.
 //-----------------------------------------------------------------------------
-HRESULT GSoundManager::Get3DListenerInterface( LPDIRECTSOUND3DLISTENER* ppDSListener )
+HRESULT GSoundManager::Get3DListenerInterface(LPDIRECTSOUND3DLISTENER* ppDSListener)
 {
     HRESULT             hr;
     DSBUFFERDESC        dsbdesc;
@@ -162,10 +162,10 @@ HRESULT GSoundManager::Get3DListenerInterface( LPDIRECTSOUND3DLISTENER* ppDSList
 
 
 //-----------------------------------------------------------------------------
-// Name: CSoundManager::Create()
+// Name: GSound::Create()
 // Desc: 
 //-----------------------------------------------------------------------------
-HRESULT GSoundManager::Create( GSound** ppSound, 
+HRESULT GSoundManager::Create(GSound** ppSound,
                                LPTSTR strWaveFileName, 
                                DWORD dwCreationFlags, 
                                GUID guid3DAlgorithm,
@@ -291,10 +291,10 @@ LFail:
 
 
 //-----------------------------------------------------------------------------
-// Name: CSoundManager::CreateFromMemory()
+// Name: GSound::CreateFromMemory()
 // Desc: 
 //-----------------------------------------------------------------------------
-HRESULT GSoundManager::CreateFromMemory( GSound** ppSound, 
+HRESULT GSoundManager::CreateFromMemory(GSound** ppSound,
                                         BYTE* pbData,
                                         ULONG  ulDataSize,
                                         LPWAVEFORMATEX pwfx,
@@ -395,7 +395,7 @@ LFail:
 
 
 //-----------------------------------------------------------------------------
-// Name: CSoundManager::CreateStreaming()
+// Name: GSound::CreateStreaming()
 // Desc: 
 //-----------------------------------------------------------------------------
 HRESULT GSoundManager::CreateStreaming( GStreamingSound** ppStreamingSound, 

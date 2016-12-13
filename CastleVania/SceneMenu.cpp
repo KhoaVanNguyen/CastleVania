@@ -82,10 +82,12 @@ void SceneMenu::OnKeyDown(int KeyCode)
 
 		_currentSelection = _currentSelection - 1;
 		if (_currentSelection < 0) _currentSelection = 2;
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_Select);
 		break;
 	case DIK_DOWN:
 		_currentSelection += 1;
 		if (_currentSelection > 2) _currentSelection = 0;
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_Select);
 		break;
 
 	case DIK_RETURN:
@@ -107,8 +109,8 @@ void SceneMenu::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 	_smallFont = new Font(d3ddv, 22, G_ScreenWidth, G_ScreenHeight);
 	_bigFont = new Font(d3ddv, 40, G_ScreenWidth, G_ScreenHeight);
 
-	//SoundManager::GetInst()->RemoveAllBGM();
-	//SoundManager::GetInst()->PlayBGSound(EBGSound::EMenuSound);
+	//Sound::GetInst()->RemoveAllBGM();
+	//Sound::GetInst()->PlayBGSound(EBGSound::EMenuSound);
 }
 
 SceneMenu::~SceneMenu(void)

@@ -22,6 +22,7 @@ protected:
 	
 //	PhantomBat* _phantomBat;
 	D3DXVECTOR2 posDoor;
+	Medusa *medusa;
 public:
 	DWORD _localHurtTime;
 	DWORD _deltaHurtTime;

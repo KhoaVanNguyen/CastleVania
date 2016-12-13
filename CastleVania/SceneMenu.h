@@ -1,7 +1,7 @@
 
 #include "Scene.h"
 #include "Font.h"
-
+#include "Sound.h"
 
 #define MENU_ANIMATE_STATE 5
 #define MENU_MAX_OPTION 3
