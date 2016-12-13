@@ -41,6 +41,7 @@
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
     <ClCompile Include="Weapon.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="AxeKnights.cpp" />
     <ClCompile Include="BoneTowers.cpp" />
     <ClCompile Include="Medusa.cpp" />
@@ -49,6 +50,10 @@
     <ClCompile Include="StupidDoor.cpp" />
     <ClCompile Include="CastleGate.cpp" />
     <ClCompile Include="Sound.cpp" />
+=======
+    <ClCompile Include="Dagger.cpp" />
+    <ClCompile Include="Boomerang.cpp" />
+>>>>>>> origin/ChangeWeapon
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bats.h" />
@@ -94,6 +99,7 @@
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
+<<<<<<< HEAD
     <ClInclude Include="AxeKnights.h" />
     <ClInclude Include="BoneTowers.h" />
     <ClInclude Include="Medusa.h" />
@@ -102,5 +108,12 @@
     <ClInclude Include="StupidDoor.h" />
     <ClInclude Include="CastleGate.h" />
     <ClInclude Include="Sound.h" />
+=======
+    <ClInclude Include="Dagger.h" />
+    <ClInclude Include="Boomerang.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+>>>>>>> origin/ChangeWeapon
   </ItemGroup>
 </Project>

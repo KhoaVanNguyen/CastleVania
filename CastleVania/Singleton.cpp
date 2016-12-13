@@ -163,17 +163,32 @@ GTexture* Singleton::getTexture(EnumID id)
 	
 	case EnumID::Whip_Upgrade:
 		return whipUpgrade;
-	case EnumID::Dagger:
+	case EnumID::Dagger_ID:
 		return  dagger;
-	case EnumID::Throw_Axe:
+	case EnumID::Throw_Axe_ID:
 		return throwAxe;
-	case EnumID::Holy_Watter:
+	case EnumID::Holy_Watter_ID:
 		return holyWater;
-	case EnumID::Boomerang:
-		return boomerang;
-	case EnumID::Stop_Watch:
+	case EnumID::Boomerang_ID:
+		return boomerangItem;
+	case EnumID::Stop_Watch_ID:
 		return stopWatch;
 	case EnumID::WatchItem_ID:
 		return watchItem;
+
+
+		/*moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
+		crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
+		morningStarItem = new GTexture("Resources/item/3.png", 1, 1, 1);*/
+		
+		/*fireBombItem = new GTexture("Resources/item/9.png", 1, 1, 1);
+		daggerItem = new GTexture("Resources/item/4.png", 1, 1, 1);
+		boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
+		axeItem = new GTexture("Resources/item/7.png", 1, 1, 1);*/
+		
+		
+	/*	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
+
+		magicalCrystal = new GTexture("Resources/item/13.png", 2, 1, 2);*/
 	}
 }

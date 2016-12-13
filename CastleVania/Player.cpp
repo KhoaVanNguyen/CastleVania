@@ -31,7 +31,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_stopOnStair = false;
 	_outStair = false;
 	hearts = 10;
-
+	_weaponID = EnumID::Dagger_ID;
 	_weapons = new list<Weapon*>();
 	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
 
@@ -48,7 +48,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 void Player::Update(int deltaTime)
 {
 
-	
+
 	list<Weapon*>::iterator it = _weapons->begin();
 	while (it != _weapons->end())
 	{
@@ -157,13 +157,13 @@ void Player::Draw(GCamera* camera)
 	// đi sang phải
 	if (vX > 0 || _vLast > 0)
 	{
-		
+
 		if (_onStair) {
 			if (_kindStair == EKindStair::UpRight) {
 				playerStair->DrawFlipX(center.x, center.y);
 			}
-				return;
-			
+			return;
+
 		}
 
 		if (_action == Action::Fight) {
@@ -177,7 +177,7 @@ void Player::Draw(GCamera* camera)
 				fightingSittingSprite->DrawFlipX(center.x, center.y);
 
 			}
-			
+
 			// vẽ Fight rồi return luôn
 			return;
 		}
@@ -206,7 +206,7 @@ void Player::Draw(GCamera* camera)
 		}
 		sprite->Draw(center.x, center.y);
 	}
-	
+
 
 }
 void Player::UpdatePlayerStair(int t)
@@ -218,7 +218,7 @@ void Player::UpdatePlayerStair(int t)
 			if (_kindStair == EKindStair::UpRight)
 			{
 				_vLast = vX = 1;
-				_timeSpawn += 1 ;
+				_timeSpawn += 1;
 				if (_timeSpawn <= 10)
 				{
 
@@ -326,7 +326,7 @@ void Player::UpdatePlayerStair(int t)
 				posX -= 1;
 				rangeStair -= 1;
 			}
-	
+
 			if (rangeStair == 0)
 			{
 				switch (_stair->id)
@@ -852,7 +852,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 						// 80 - 16 - ( 97 - 33)
 						//float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-						
+
 						float _compareHeigh = abs((other->posY - posY));
 						if (_compareHeigh < 15 && _kindStair == EKindStair::DownLeft)
 						{
@@ -891,7 +891,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 						_stair = other;
 
- 
+
 						if (_downStair && _onStair)
 						{
 							_kindStair = EKindStair::DownLeft;
@@ -947,7 +947,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							}
 							else
 							{
-								 // chưa có cầu thang
+								// chưa có cầu thang
 								if (!_isHurted)
 								{
 
@@ -1005,19 +1005,21 @@ void Player::UseWeapon() {
 void Player::SetWeapon() {
 	switch (_weaponID)
 	{
-		//case EnumID::Dagger:
-		//	_weapon->push_back(new Dagger(posX, posY, _vLast));
-		//	break;
-		//case EnumID::Boomerang:
-		//	_weapon->push_back(new Boomerang(posX, posY, _vLast));
-		//	break;
-		//case EnumID::Stop_Watch:
-		//	_usingWatch = true;
-		//	break;
-	case EnumID::Throw_Axe:
+		/*case EnumID::Stop_Watch:
+			_usingWatch = true;
+			break; */
+
+	case EnumID::Throw_Axe_ID:
 		_weapons->push_back(new ThrowAxe(posX, posY, _vLast));
 		break;
 
+	case EnumID::Boomerang_ID:
+		_weapons->push_back(new Boomerang(posX, posY, _vLast));
+		break;
+	case EnumID::Dagger_ID:
+		_weapons->push_back(new Dagger(posX, posY, _vLast));
+		break;
+	
 	}
 	_hasWeapon = false;
 }

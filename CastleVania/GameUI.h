@@ -38,7 +38,7 @@ public:
 	void SetWeaponCount(int x);
 	void SetSimonScore(int x);
 	// deltaTime_ is in milisecond
-	void updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, int enemyHP_ = 20);
+	void updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_ = 20);
 	~GameUI(void);
 };
 

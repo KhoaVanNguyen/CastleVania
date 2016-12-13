@@ -66,7 +66,7 @@ void Weapon::Collision(list<GameObject*> &obj, int dt)
 						(*_itBegin) = new RewardItem(other->posX, other->posY);
 
 					}
-					if (id != EnumID::Throw_Axe && id != EnumID::Boomerang)
+					if (id != EnumID::Throw_Axe_ID && id != EnumID::Boomerang_ID)
 						active = false;
 					return;
 				}
