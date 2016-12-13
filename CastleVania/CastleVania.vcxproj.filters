@@ -48,9 +48,7 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="StupidDoor.cpp" />
     <ClCompile Include="CastleGate.cpp" />
-    <ClCompile Include="Sound.cpp">
-      <Filter>Sound</Filter>
-    </ClCompile>
+    <ClCompile Include="Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bats.h" />
@@ -103,16 +101,9 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="StupidDoor.h" />
     <ClInclude Include="CastleGate.h" />
-    <ClInclude Include="Sound.h">
-      <Filter>Sound</Filter>
-    </ClInclude>
+    <ClInclude Include="Sound.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Sound">
-      <UniqueIdentifier>{e0e68d96-1be2-4db2-8038-c8855c10bc25}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
