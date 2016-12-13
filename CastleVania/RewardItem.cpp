@@ -89,10 +89,28 @@ void RewardItem::Update(int dt)
 				point = 200;
 				break;
 			default:
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Red_Money_Bag), 150);
-				id = EnumID::Red_Money_Bag;
-				point = 700;
-				sprite->SelectIndex(0);
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::MoneyBagItem_ID), 150);
+				switch (random)
+				{
+				case 3:
+					id = EnumID::MoneyBagRedItem_ID;
+					point = 100;
+					break;
+				case 4:
+					id = EnumID::MoneyBagBlueItem_ID;
+					point = 400;
+					sprite->SelectIndex(2);
+					break;
+				case 5:
+					id = EnumID::MoneyBagWhiteItem_ID;
+					point = 700;
+					sprite->SelectIndex(1);
+					break;
+				default:
+					id = EnumID::MoneyBagItem_ID;
+					point = 1000;
+					break;
+				}
 				break;
 			}
 

@@ -835,6 +835,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 #pragma endregion Va Chạm Gạch
 
+
 #pragma region
 
 					case EnumID::StairUpRight_ID:

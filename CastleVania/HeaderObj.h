@@ -18,5 +18,8 @@
 #include "BoneTowers.h"
 #include "MovingPlatform.h"
 #include "Medusa.h"
+#include "Door.h"
+#include "StupidDoor.h"
+#include "CastleGate.h"
 
 #endif

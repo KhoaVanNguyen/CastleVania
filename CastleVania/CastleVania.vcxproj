@@ -65,7 +65,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxerr.lib;dsound.lib;dxguid.lib;winmm.lib;dinput8.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dsound.lib;dxguid.lib;dxerr.lib;winmm.lib;dinput8.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,6 +91,8 @@
     <ClCompile Include="BoneTowers.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Candle.cpp" />
+    <ClCompile Include="CastleGate.cpp" />
+    <ClCompile Include="Door.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="Fishmen.cpp" />
@@ -123,7 +125,9 @@
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stair.cpp" />
+    <ClCompile Include="StupidDoor.cpp" />
     <ClCompile Include="ThrowAxe.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -137,7 +141,9 @@
     <ClInclude Include="BoneTowers.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Candle.h" />
+    <ClInclude Include="CastleGate.h" />
     <ClInclude Include="CEnum.h" />
+    <ClInclude Include="Door.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="Fishmen.h" />
@@ -171,7 +177,9 @@
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Stair.h" />
+    <ClInclude Include="StupidDoor.h" />
     <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="ThrowAxe.h" />
     <ClInclude Include="Tile.h" />

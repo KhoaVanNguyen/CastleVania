@@ -49,6 +49,9 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
 
+		Sound::GetInst()->RemoveAllBGM();
+		Sound::GetInst()->PlayBGSound(EBGSound::EStage1Sound);
+
 	}
 	break;
 	default:

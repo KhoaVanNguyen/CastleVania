@@ -41,7 +41,7 @@ class CWaveFile;
 
 
 //-----------------------------------------------------------------------------
-// Name: class CSoundManager
+// Name: class GSound
 // Desc: 
 //-----------------------------------------------------------------------------
 class GSoundManager
@@ -50,16 +50,16 @@ protected:
     LPDIRECTSOUND8 m_pDS;
 
 public:
-    GSoundManager();
-    ~GSoundManager();
+	GSoundManager();
+	~GSoundManager();
 
     HRESULT Initialize( HWND hWnd, DWORD dwCoopLevel );
     inline  LPDIRECTSOUND8 GetDirectSound() { return m_pDS; }
     HRESULT SetPrimaryBufferFormat( DWORD dwPrimaryChannels, DWORD dwPrimaryFreq, DWORD dwPrimaryBitRate );
     HRESULT Get3DListenerInterface( LPDIRECTSOUND3DLISTENER* ppDSListener );
 
-    HRESULT Create( GSound** ppSound, LPTSTR strWaveFileName, DWORD dwCreationFlags = 0, GUID guid3DAlgorithm = GUID_NULL, DWORD dwNumBuffers = 1 );
-    HRESULT CreateFromMemory( GSound** ppSound, BYTE* pbData, ULONG ulDataSize, LPWAVEFORMATEX pwfx, DWORD dwCreationFlags = 0, GUID guid3DAlgorithm = GUID_NULL, DWORD dwNumBuffers = 1 );
+	HRESULT Create(GSound** ppSound, LPTSTR strWaveFileName, DWORD dwCreationFlags = 0, GUID guid3DAlgorithm = GUID_NULL, DWORD dwNumBuffers = 1);
+	HRESULT CreateFromMemory(GSound** ppSound, BYTE* pbData, ULONG ulDataSize, LPWAVEFORMATEX pwfx, DWORD dwCreationFlags = 0, GUID guid3DAlgorithm = GUID_NULL, DWORD dwNumBuffers = 1);
     HRESULT CreateStreaming( GStreamingSound** ppStreamingSound, LPTSTR strWaveFileName, DWORD dwCreationFlags, GUID guid3DAlgorithm, DWORD dwNotifyCount, DWORD dwNotifySize, HANDLE hNotifyEvent );
 };
 
