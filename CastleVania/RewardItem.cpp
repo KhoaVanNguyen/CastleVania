@@ -57,24 +57,24 @@ void RewardItem::Update(int dt)
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Whip_Upgrade), 1000);
 				break;
 			case 1:
-				id = EnumID::Dagger;
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Dagger), 1000);
+				id = EnumID::Dagger_ID;
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Dagger_ID), 1000);
 				break;
 			case 2:
-				id = EnumID::Throw_Axe;
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe), 1000);
+				id = EnumID::Throw_Axe_ID;
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1000);
 				break;
 			case 7:
-				id = EnumID::Holy_Watter;
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Holy_Watter), 1000);
+				id = EnumID::Holy_Watter_ID;
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Holy_Watter_ID), 1000);
 				break;
 			case 8:
-				id = EnumID::Boomerang;
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang), 1000);
+				id = EnumID::Boomerang_ID;
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang_ID), 1000);
 				break;
 			case 9:
-				id = EnumID::Stop_Watch;
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Stop_Watch), 1000);
+				id = EnumID::Stop_Watch_ID;
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Stop_Watch_ID), 1000);
 				break;
 			case 10:
 				id = EnumID::White_Money_Bag;
@@ -89,10 +89,28 @@ void RewardItem::Update(int dt)
 				point = 200;
 				break;
 			default:
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Red_Money_Bag), 150);
-				id = EnumID::Red_Money_Bag;
-				point = 700;
-				sprite->SelectIndex(0);
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::MoneyBagItem_ID), 150);
+				switch (random)
+				{
+				case 3:
+					id = EnumID::MoneyBagRedItem_ID;
+					point = 100;
+					break;
+				case 4:
+					id = EnumID::MoneyBagBlueItem_ID;
+					point = 400;
+					sprite->SelectIndex(2);
+					break;
+				case 5:
+					id = EnumID::MoneyBagWhiteItem_ID;
+					point = 700;
+					sprite->SelectIndex(1);
+					break;
+				default:
+					id = EnumID::MoneyBagItem_ID;
+					point = 1000;
+					break;
+				}
 				break;
 			}
 

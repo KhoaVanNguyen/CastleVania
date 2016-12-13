@@ -14,7 +14,7 @@ void ThrowAxe::_initialize()
 	_posY0 = posY;
 }
 
-ThrowAxe::ThrowAxe(float x_, float y_, float huong_) : Weapon(x_, y_, huong_, EnumID::Throw_Axe)
+ThrowAxe::ThrowAxe(float x_, float y_, float huong_) : Weapon(x_, y_, huong_, EnumID::Throw_Axe_ID)
 {
 	_initialize();
 	prepare(x_, y_, huong_);

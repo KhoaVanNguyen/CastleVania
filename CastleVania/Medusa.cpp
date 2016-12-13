@@ -159,8 +159,8 @@ void Medusa::getUp()
 	this->_state = EMedusaState::Stop;
 	if (!_hasGetUp)
 	{
-		//SoundManager::GetInst()->RemoveAllBGM();
-		//SoundManager::GetInst()->PlayBGSound(EBGSound::EBoss);
+		//Sound::GetInst()->RemoveAllBGM();
+		//Sound::GetInst()->PlayBGSound(EBGSound::EBoss);
 		type = ObjectType::Enemy_Type;
 		_hasGetUp = true;
 		G_MaxSize = G_MinSize + G_ScreenWidth;

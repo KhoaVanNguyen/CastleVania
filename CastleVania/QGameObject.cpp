@@ -105,9 +105,30 @@ QGameObject::QGameObject(string fileName)
 				medusa = new Medusa(posX, posY, EnumID::Medusa_ID);
 				_dynamicObject->push_back(medusa);
 				break;
-			//case 16:
-			//	_dynamicObject->push_back(new MovingPlatform(posX, posY));
-			//	break;
+			case 16:
+			_dynamicObject->push_back(new MovingPlatform(posX, posY));
+				break;
+			case 17:
+			{
+				_staticObject->push_back(new StupidDoor(posX, posY, 1040, 900 + (x % 3) * 8));
+				x++;
+			}
+			break;
+			case 20:
+				_staticObject->push_back(new CastleGate(posX, posY, width, height));
+				break;
+			case 21:
+				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorLeft_ID));
+				break;
+			case 22:
+				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorRight_ID));
+				break;
+			case 23:
+				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorUp_ID));
+				break;
+			case 24:
+				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorDown_ID));
+				break;
 			case 25:
 				posDoor.x = posX;
 				posDoor.y = posY;

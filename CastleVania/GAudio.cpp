@@ -7,7 +7,7 @@ int GAudio::Init_DirectSound(HWND hwnd)
     HRESULT result;
 
     //create DirectSound manager object
-    dsound = new GSoundManager();
+	dsound = new GSoundManager();
 
     //initialize DirectSound
     result = dsound->Initialize(hwnd, DSSCL_PRIORITY);

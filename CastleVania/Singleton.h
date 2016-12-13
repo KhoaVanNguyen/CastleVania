@@ -46,6 +46,7 @@ private:
 	GTexture* throwAxe;
 	GTexture* stopWatch;
 	GTexture* magicalCrystal;
+	GTexture *watchItem;
 
 	//boss
 	GTexture* phantombat;
