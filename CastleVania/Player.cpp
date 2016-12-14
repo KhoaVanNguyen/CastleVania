@@ -453,6 +453,7 @@ void Player::Sit()
 			return;
 		}
 		if (!_hasJump) {
+			posY -= 16;
 			sprite->SelectIndex(4);
 			vX = 0;
 			vY = -(SPEED_Y + 0.3f);
@@ -781,69 +782,81 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 				}
 #pragma endregion Va chạm với item
 
-
 				else {
 					switch (other->id)
 					{
 #pragma region
 					case EnumID::Brick_ID:
-						_onMovingPlatform = false;
-						if (vY < 0 && moveY < 16)
+						if (_action == Action::Sit)
 						{
-							//đang rơi xuống
 
-							if (moveY > 0)
+						}
+						else
+						{
+							_onMovingPlatform = false;
+							if (vY < 0 && moveY < 16)
 							{
-								posY += moveY;
-								if (_hasJump || _hasKnockBack)
+								//đang rơi xuống
+
+								if (moveY > 0)
 								{
-									_hasJump = false;
-									if (_hasKnockBack)
+									posY += moveY;
+									if (_hasJump || _hasKnockBack)
 									{
-										if (!_isHurted)
+										_hasJump = false;
+										if (_hasKnockBack)
 										{
-											_isHurted = true;
-
-											if (hp > 0)
+											if (!_isHurted)
 											{
-												if (hp <= 3)
+												_isHurted = true;
+
+												if (hp > 0)
 												{
-													hp -= 1;
+													if (hp <= 3)
+													{
+														hp -= 1;
+													}
+													else
+														hp -= other->damage;
 												}
-												else
-													hp -= other->damage;
+
 											}
-
+											_hasKnockBack = false;
 										}
-										_hasKnockBack = false;
-									}
-									vY = 0;
-									vX = 0;
-									_a = 0;
-									_allowPress = true;
-									sprite->SelectIndex(0);
-									if (boxPlayer.h < 60)
-										posY += 16;
-								}
-								else
-									if (!_hasJump)
-									{
-										_a = 0;
 										vY = 0;
+										vX = 0;
+										_a = 0;
+										_allowPress = true;
+										sprite->SelectIndex(0);
+										if (boxPlayer.h < 60)
+											posY += 16;
 									}
-							}
+									else
+										if (!_hasJump)
+										{
+											_a = 0;
+											vY = 0;
+										}
+								}
 
-						}
-						//Xu ly rot khoi cuc gach 
-						if ((!_onLand || _action != Action::Idle) && !_hasJump)
-						{
-							vY = -(SPEED_Y + 0.4f);
-							_beFallOutScreen = true;
-						}
-						//--------------------
-						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
-						{
-							posX += moveX;
+							}
+							if (_action == Action::Sit)
+							{
+
+							}
+							else
+							{
+								if ((!_onLand || _action != Action::Idle) && !_hasJump)//Xu ly rot khoi cuc gach 
+								{
+									vY = -(SPEED_Y + 0.4f);
+									_beFallOutScreen = true;
+								}
+								//--------------------
+								if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
+								{
+									posX += moveX;
+								}
+							}
 						}
 						break;
 

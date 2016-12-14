@@ -42,8 +42,6 @@ static bool AABBCheck(Box b1, Box b2)
 	return !(b1.x + b1.w < b2.x || b1.x > b2.x + b2.w || b1.y - b1.h > b2.y || b1.y < b2.y - b2.h);
 }
 
-// returns true if the boxes are colliding (velocities are not used)
-// moveX and moveY will return the movement the b1 must move to avoid the collision
 static bool AABB(Box b1, Box b2, float& moveX, float& moveY)
 {
 	moveX = moveY = 0.0f;
