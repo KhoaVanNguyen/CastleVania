@@ -2,6 +2,7 @@
 #define _MORNINGSTAR_H_
 
 #include "GameObject.h"
+#include "Medusa.h"
 #include "MorningStarSprite.h"
 #include <vector>
 #include "RewardItem.h"

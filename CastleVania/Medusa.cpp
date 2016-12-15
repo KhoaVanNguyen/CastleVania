@@ -13,7 +13,7 @@ void Medusa::_initialize()
 	_previousStopPos = 0;
 	_currentStopPos = 0;
 	_state = EMedusaState::InActive;
-	_simonPos = new D3DXVECTOR2(0, 0);
+	_playerPos = new D3DXVECTOR2(0, 0);
 	_routerInfo = new D3DXVECTOR2(0, 0);
 	_gold = new D3DXVECTOR2(0, 0);
 	_localTime = 0;
@@ -25,6 +25,7 @@ void Medusa::_initialize()
 	_hasGetUp = false;
 	hp = 20;
 	damage = 4;
+	canBeKilled = true;
 }
 
 
@@ -32,7 +33,7 @@ void Medusa::_onStop(int deltaTime_)
 {
 	this->_fightSprite->Update(deltaTime_);
 	_localTime += deltaTime_;
-	if (_localTime > 1000 / QUEEN_MEDUSA_STOP_STATE)
+	if (_localTime > 1000 / QUEEN_medusa_STOP_STATE)
 	{
 		_localTime = 0;
 		switch (_currentStopPos)
@@ -53,17 +54,17 @@ void Medusa::_onStop(int deltaTime_)
 		{
 			_previousStopPos = _currentStopPos;
 			_currentStopPos = 0;
-			float deltaX = posX - _simonPos->x; // deltaX between boss and simon
+			float deltaX = posX - _playerPos->x; // deltaX between boss and simon
 			float littleSnakeVx = -deltaX / abs(deltaX)*LITTLE_SNAKE_SPEED_X;
 			
-			//_vLittleSnake->push_back(new LittleSnake(posX, posY, littleSnakeVx, -0.2f, EnumID::LittleSnake_ID));
+			_vLittleSnake->push_back(new LittleSnake(posX, posY, littleSnakeVx, -0.2f, EnumID::LittleSnake_ID));
 		}
 		break;
 
 		case 2:
 		{
 			_previousStopPos = _currentStopPos;
-			float deltaX = posX - _simonPos->x; // deltaX between boss and simon
+			float deltaX = posX - _playerPos->x; // deltaX between boss and simon
 			if (deltaX>0)
 			{
 				_currentStopPos = 1;
@@ -82,10 +83,10 @@ void Medusa::_onStop(int deltaTime_)
 		{
 			_previousStopPos = _currentStopPos;
 			_currentStopPos = 4;
-			float deltaX = posX - _simonPos->x; // deltaX between boss and simon
+			float deltaX = posX - _playerPos->x; // deltaX between boss and simon
 			float littleSnakeVx = -deltaX / abs(deltaX)*LITTLE_SNAKE_SPEED_X;
 			
-			//_vLittleSnake->push_back(new LittleSnake(posX, posY, littleSnakeVx, -0.2f, EnumID::LittleSnake_ID));
+			_vLittleSnake->push_back(new LittleSnake(posX, posY, littleSnakeVx, -0.2f, EnumID::LittleSnake_ID));
 		}
 		break;
 		case 4:
@@ -139,7 +140,7 @@ void Medusa::_onDead(int deltaTime_)
 void Medusa::_onInActive(int deltaTime_)
 {
 	_localTime += deltaTime_;
-	if (_localTime>1000 / QUEEN_MEDUSA_INACTIVE_RATE)
+	if (_localTime>1000 / QUEEN_medusa_INACTIVE_RATE)
 	{
 		this->setDead();
 	}
@@ -226,12 +227,12 @@ Medusa::Medusa(void)
 	this->_initialize();
 }
 
-Medusa::Medusa(float posX_, float posY_, EnumID id_) :DynamicObject(posX_, posY_, QUEEN_MEDUSA_SPEED_X, 0, id_)
+Medusa::Medusa(float posX_, float posY_, EnumID id_) :DynamicObject(posX_, posY_, QUEEN_medusa_SPEED_X, 0, id_)
 {
 	_initialize();
-	_sleepSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 4, 4, 1000 / QUEEN_MEDUSA_SLEEP_STATE);
-	_fightSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 0, 3, 1000 / QUEEN_MEDUSA_STATE);
-	//_deadSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Fire_ID), 0, 2, 1000 / QUEEN_MEDUSA_DIE_RATE);
+	_sleepSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 4, 4, 1000 / QUEEN_medusa_SLEEP_STATE);
+	_fightSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 0, 3, 1000 / QUEEN_medusa_STATE);
+	//_deadSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Fire_ID), 0, 2, 1000 / QUEEN_medusa_DIE_RATE);
 }
 
 
@@ -258,10 +259,10 @@ void Medusa::Update(int deltaTime_)
 	_updateSnakes(deltaTime_);
 }
 
-void Medusa::Update(int deltaTime_, D3DXVECTOR2* simonPos_)
+void Medusa::Update(int t, D3DXVECTOR2* playerpos)
 {
-	this->_simonPos = simonPos_;
-	this->Update(deltaTime_);
+	this->_playerPos = playerpos;
+	this->Update(t);
 }
 
 
@@ -302,6 +303,7 @@ void Medusa::Collision(list<GameObject*> obj, int dt)
 	{
 		DynamicObject* tempSnake = (*iter);
 		tempSnake->Collision(obj, dt);
+		
 	}
 }
 

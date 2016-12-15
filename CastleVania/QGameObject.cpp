@@ -107,8 +107,8 @@ QGameObject::QGameObject(string fileName)
 				_dynamicObject->push_back(new BoneTowers(posX, posY));
 				break;
 			case 15:
-				medusa = new Medusa(posX, posY, EnumID::Medusa_ID);
-				_dynamicObject->push_back(medusa);
+				_medusa = new Medusa(posX, posY, EnumID::Medusa_ID);
+				_dynamicObject->push_back(_medusa);
 				break;
 			case 16:
 			_dynamicObject->push_back(new MovingPlatform(posX, posY));
@@ -158,6 +158,11 @@ QGameObject::QGameObject(string fileName)
 //
 //
 //}
+Medusa* QGameObject::getMedusa()
+{
+	return _medusa;
+}
+
 D3DXVECTOR2 QGameObject::GetPosDoor()
 {
 	return posDoor;
@@ -228,6 +233,17 @@ void QGameObject::Update(int deltaTime)
 	it = _dynamicObject->begin();
 	while (it != _dynamicObject->end())
 	{
+
+		if ((*it)->id == EnumID::Medusa_ID)
+		{
+			if (((Medusa*)*it)->GetState())
+			{
+				//_dynamicObject->push_back(new MagicalCrystal((*it)->posX, (*it)->posY));
+				_dynamicObject->erase(it++);
+			}
+			else ++it;
+		}
+		
 		if ((*it)->active)
 		{
 			(*it)->Update(deltaTime);

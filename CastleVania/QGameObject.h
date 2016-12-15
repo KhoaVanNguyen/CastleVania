@@ -22,7 +22,7 @@ protected:
 	
 //	PhantomBat* _phantomBat;
 	D3DXVECTOR2 posDoor;
-	Medusa *medusa;
+	Medusa *_medusa;
 public:
 	DWORD _localHurtTime;
 	DWORD _deltaHurtTime;
@@ -43,6 +43,7 @@ public:
 	void Collision(int dt);
 	int RemoveAllObjectInCamera(D3DXVECTOR2);
 	void RemoveAllObject();
+	Medusa* getMedusa();
 	
 	
 };

@@ -60,3 +60,76 @@ DynamicObject::~DynamicObject(void)
 void DynamicObject::Initialize()
 {
 }
+
+void DynamicObject::Collision(list<GameObject*> obj, int dt)
+{
+	list<GameObject*>::iterator _itBegin;
+	for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
+	{
+		float moveX;
+		float moveY;
+		float normalx;
+		float normaly;
+		GameObject* other = (*_itBegin);
+		if (other->id == EnumID::Brick_ID)
+		{
+			Box box = this->GetBox();
+			Box boxOther = other->GetBox();
+
+			if (AABB(box, boxOther, moveX, moveY) == true)
+			{
+				if (vY < 0)
+				{
+					posY += moveY;
+					vY = 0;
+					return;
+				}
+				if ((posX - width / 2 + 10) - (other->posX - other->width / 2) <= 0
+					|| (posX + width / 2 - 10) - (other->posX + other->width / 2) >= 0)
+					vX = -vX;
+			}
+			else
+				if (AABB(box, boxOther, moveX, moveY) == false)
+				{
+					if (other->canMove == true)
+					{
+						box.vx -= boxOther.vx;
+						box.vy -= boxOther.vy;
+						boxOther.vx = 0;
+						boxOther.vy = 0;
+					}
+					Box broadphasebox = GetSweptBroadphaseBox(box, dt);
+					if (AABBCheck(GetSweptBroadphaseBox(box, dt), boxOther) == true)
+					{
+						float collisiontime = SweptAABB(box, boxOther, normalx, normaly, dt);
+						if (collisiontime > 0.0f && collisiontime < 1.0f)
+						{
+							ECollisionDirect colDirect = GetCollisionDirect(normalx, normaly);
+							// perform response here
+							switch (colDirect)
+							{
+							case Colls_Left:
+								if (vX > 0)
+									vX = -vX;
+								break;
+							case Colls_Right:
+								if (vX < 0)
+									vX = -vX;
+								break;
+							case Colls_Bot:
+								posY += vY * collisiontime;
+								vY = 0;
+								break;
+							}
+						}
+					}
+				}
+		}
+	}
+}
+
+Box DynamicObject::GetBox()
+{
+	Box result(posX - width / 2, posY + height / 2, width, height, vX, 0);
+	return result;
+}
