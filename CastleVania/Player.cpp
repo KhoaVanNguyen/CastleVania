@@ -21,6 +21,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_allowPress = true;
 	_hasSit = false;
 	_hasJump = false;
+	//_onLand = false;
 	_colBottomStair = false;
 	_hasKnockBack = false;
 
@@ -99,7 +100,7 @@ void Player::Update(int deltaTime)
 			return;
 		}
 #pragma endregion
-#pragma region
+#pragma region - xử lý bị knock_back
 		if (_hasKnockBack)
 		{
 			posY += vY * deltaTime + 0.5 * deltaTime * deltaTime * _a;
@@ -121,7 +122,7 @@ void Player::Update(int deltaTime)
 				vY += _a * deltaTime;
 			return;
 		}
-#pragma endregion Xu ly Knockback
+#pragma endregion
 		posY += vY *deltaTime;
 	}
 }
@@ -433,9 +434,10 @@ void Player::Jump()
 			sprite->SelectIndex(4);
 			_action = Action::Jump;
 			_hasJump = true;
-			ResetStair();
+			
 		}
 	}
+	ResetStair();
 }
 void Player::Fall()
 {
@@ -443,7 +445,6 @@ void Player::Fall()
 	vX = 0;
 	vY = -(SPEED_Y + 0.3f);
 }
-
 void Player::Sit()
 {
 	if (_allowPress)
@@ -459,6 +460,7 @@ void Player::Sit()
 			vX = 0;
 			vY = -(SPEED_Y + 0.3f);
 			_hasSit = true;
+			_colStair = false;
 			_action = Action::Sit;
 		}
 	}
@@ -550,12 +552,12 @@ void Player::Stop() {
 		posY += 16;
 		_hasSit = false;
 	}
-	if ((_hasJump == true && posY == 64))
-	{
-		_hasJump = false;
-		sprite->SelectIndex(0);
-		_a = 0;
-	}
+	//if ((_hasJump == true && posY == 64))// fix lỗi ở đây nếu qua bên game khác
+	//{
+	//	_hasJump = false;
+	//	sprite->SelectIndex(0);
+	//	_a = 0;
+	//}
 	_action = Action::Idle;
 	sprite->SelectIndex(0);
 }
@@ -739,7 +741,6 @@ D3DXVECTOR2* Player::getPos()
 {
 	return new D3DXVECTOR2(this->posX, this->posY);
 }
-
 void Player::UpgradeMorningStar() {
 
 }
@@ -798,9 +799,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 				else {
 					switch (other->id)
 					{
-#pragma region
+#pragma region - va chạm với gạch
 					case EnumID::Brick_ID:
 						_onMovingPlatform = false;
+						//_onStair = false;
 						 if (vY < 0 && moveY < 16)
 						{
 							//đang rơi xuống
@@ -808,6 +810,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							if (moveY > 0)
 							{
 								posY += moveY;
+								//if (abs(rangeStair) >= 40)
+								//{
+								//	_colStair = false;
+								//}
 								if (_hasJump || _hasKnockBack)
 								{
 									_hasJump = false;
@@ -845,10 +851,18 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										vY = 0;
 									}
 							}
+							else if (moveY > 0)
+							{
+
+							}
 						}
 							 if ((!_onLand || _action != Action::Idle) && !_hasJump)//Xu ly rot khoi cuc gach 
 							 {
-								 vY = -(SPEED_Y + 0.4f);
+								 vY = -(SPEED_Y + 0.4f);// chỗ này là chỗ rơi xuống tự do
+								 if (!_onLand)
+								 {
+									 //_colStair = false;
+								 }
 								 _beFallOutScreen = true;
 							 }
 							 //--------------------
@@ -858,13 +872,13 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							 }
 						break;
 
-#pragma endregion Va Chạm Gạch
+#pragma endregion
 
 #pragma region
 
 					case EnumID::StairUpRight_ID:
 					{
-						if (_colStair == false)
+						if (_colStair == false && _hasJump == false)
 							_colStair = true;
 						if (!_colBottomStair)
 							rangeStair = posX - (other->posX - 11);
@@ -888,7 +902,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					break;
 					case EnumID::StairUpLeft_ID:
 					{
-						if (_colStair == false)
+						if (_colStair == false && _hasJump == false)
 							_colStair = true;
 						if (!_colBottomStair)
 							rangeStair = posX - (other->posX + 11);
@@ -908,7 +922,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					break;
 					case EnumID::StairDownLeft_ID:
 					{
-						if (_colStair == false)
+						if (_colStair == false && _hasJump == false)
 							_colStair = true;
 						if (!_colBottomStair)
 							rangeStair = posX - (other->posX - 32);
@@ -930,7 +944,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					break;
 					case EnumID::StairDownRight_ID:
 					{
-						if (_colStair == false)
+						if (_colStair == false && _hasJump == false)
 							_colStair = true;
 						if (!_colBottomStair)
 							rangeStair = posX - (other->posX + 32);
