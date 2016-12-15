@@ -4,6 +4,7 @@
 
 Weapon::Weapon(void)
 {
+
 }
 
 Weapon::Weapon(float x, float y, float _huong, EnumID id) : DynamicObject(x, y, 0, 0, id)

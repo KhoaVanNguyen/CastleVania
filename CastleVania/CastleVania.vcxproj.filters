@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <ClCompile Include="AxeKnights.cpp" />
     <ClCompile Include="Bats.cpp" />
+    <ClCompile Include="BoneTowers.cpp" />
+    <ClCompile Include="CastleGate.cpp" />
+    <ClCompile Include="Door.cpp" />
+    <ClCompile Include="Boomerang.cpp" />
     <ClCompile Include="Brick.cpp" />
     <ClCompile Include="Candle.cpp" />
+    <ClCompile Include="Dagger.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="FireBall.cpp" />
     <ClCompile Include="Fishmen.cpp" />
@@ -15,9 +21,11 @@
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="CustomRect.cpp" />
     <ClCompile Include="LargeCandle.cpp" />
+    <ClCompile Include="Medusa.cpp" />
     <ClCompile Include="MedusaHeads.cpp" />
     <ClCompile Include="MorningStar.cpp" />
     <ClCompile Include="MorningStarSprite.cpp" />
+    <ClCompile Include="MovingPlatform.cpp" />
     <ClCompile Include="Panthers.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
@@ -34,32 +42,28 @@
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stair.cpp" />
+    <ClCompile Include="StupidDoor.cpp" />
     <ClCompile Include="ThrowAxe.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
     <ClCompile Include="Weapon.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="AxeKnights.cpp" />
-    <ClCompile Include="BoneTowers.cpp" />
-    <ClCompile Include="Medusa.cpp" />
-    <ClCompile Include="MovingPlatform.cpp" />
-    <ClCompile Include="Door.cpp" />
-    <ClCompile Include="StupidDoor.cpp" />
-    <ClCompile Include="CastleGate.cpp" />
-    <ClCompile Include="Sound.cpp" />
-=======
-    <ClCompile Include="Dagger.cpp" />
-    <ClCompile Include="Boomerang.cpp" />
->>>>>>> origin/ChangeWeapon
+    <ClCompile Include="OpenDoor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AxeKnights.h" />
     <ClInclude Include="Bats.h" />
+    <ClInclude Include="BoneTowers.h" />
+    <ClInclude Include="Boomerang.h" />
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Candle.h" />
+    <ClInclude Include="CastleGate.h" />
     <ClInclude Include="CEnum.h" />
+    <ClInclude Include="Door.h" />
+    <ClInclude Include="Dagger.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="FireBall.h" />
     <ClInclude Include="Fishmen.h" />
@@ -73,9 +77,11 @@
     <ClInclude Include="HeaderObj.h" />
     <ClInclude Include="CustomRect.h" />
     <ClInclude Include="LargeCandle.h" />
+    <ClInclude Include="Medusa.h" />
     <ClInclude Include="MedusaHeads.h" />
     <ClInclude Include="MorningStar.h" />
     <ClInclude Include="MorningStarSprite.h" />
+    <ClInclude Include="MovingPlatform.h" />
     <ClInclude Include="Panthers.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />
@@ -91,7 +97,9 @@
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Stair.h" />
+    <ClInclude Include="StupidDoor.h" />
     <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="ThrowAxe.h" />
     <ClInclude Include="Tile.h" />
@@ -99,21 +107,6 @@
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
-<<<<<<< HEAD
-    <ClInclude Include="AxeKnights.h" />
-    <ClInclude Include="BoneTowers.h" />
-    <ClInclude Include="Medusa.h" />
-    <ClInclude Include="MovingPlatform.h" />
-    <ClInclude Include="Door.h" />
-    <ClInclude Include="StupidDoor.h" />
-    <ClInclude Include="CastleGate.h" />
-    <ClInclude Include="Sound.h" />
-=======
-    <ClInclude Include="Dagger.h" />
-    <ClInclude Include="Boomerang.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
->>>>>>> origin/ChangeWeapon
+    <ClInclude Include="OpenDoor.h" />
   </ItemGroup>
 </Project>

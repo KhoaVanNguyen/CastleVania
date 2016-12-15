@@ -1,7 +1,5 @@
 ﻿#include "GCamera.h"
-
 GCamera::GCamera()
-
 {
 	viewport.x = 1;
 	viewport.y = G_ScreenHeight;
@@ -40,7 +38,6 @@ void GCamera::UpdateCamera(int x)
 	{
 		viewport.x = x - G_ScreenWidth / 2;
 	}
-
 	if (x  < _maxSize - G_ScreenWidth / 2)
 		viewport.x = x - G_ScreenWidth / 2;
 	if (viewport.x < _minSize)
@@ -51,5 +48,5 @@ void GCamera::UpdateCamera(int x)
 
 void GCamera::UpdateCamera(int &w, int &h)
 {
-	//Tự viết dự vào hướng dẫn của GV LT
+	//Tự viết dựa vào hướng dẫn của GV LT
 }

@@ -21,5 +21,6 @@
 #include "Door.h"
 #include "StupidDoor.h"
 #include "CastleGate.h"
+#include "OpenDoor.h"
 
 #endif

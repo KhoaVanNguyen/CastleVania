@@ -20,17 +20,34 @@ protected:
 //	PhantomBat* _phantomBat;
 	LPDIRECT3DSURFACE9 BackgroundWhite;
 	D3DXVECTOR2 posCamera;
+	D3DXVECTOR2 posDoor;
 	QBackground *bg;
 	QGameObject* qGameObject;
 	int _levelNow, _stageNow;
-	GameObject* intro;
 	GCamera *camera;
 	Player* player;
-	ECameraState _cameraState;
+	
 	bool _beginMoveCamera;
 
 
+	//camera
+	void MoveCamera(int &_moveRange);
+	void ChangeCamera(EDirectDoor _directDoor);
+	EStateCamera _stateCamera;
+	int _rangeMoveCamera;
+	int _rangeMoveplayer;
+	int _rangeMoveCamera2;
 
+	// door open and close
+	OpenDoor* openDoor;
+	int _stageReset;
+	
+
+
+
+	bool _moveCameraHaft;	//Di chuyen camera lan 1
+	bool _moveCameraDone;	//Di chuyen camera lan 2
+	int _doorDirect; //Huong mo cua
 
 	GameUI* gameUI;
 

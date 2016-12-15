@@ -24,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -111,6 +111,7 @@
     <ClCompile Include="MorningStar.cpp" />
     <ClCompile Include="MorningStarSprite.cpp" />
     <ClCompile Include="MovingPlatform.cpp" />
+    <ClCompile Include="OpenDoor.cpp" />
     <ClCompile Include="Panthers.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="MorningStar.h" />
     <ClInclude Include="MorningStarSprite.h" />
     <ClInclude Include="MovingPlatform.h" />
+    <ClInclude Include="OpenDoor.h" />
     <ClInclude Include="Panthers.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />

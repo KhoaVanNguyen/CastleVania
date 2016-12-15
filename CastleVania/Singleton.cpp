@@ -72,18 +72,13 @@ Singleton::Singleton()
 
 	bgMenu = new GTexture("Resources/mainmenu.png", 1, 1, 1);
 
-
-	helicopter = new GTexture("Resources/helicopter.png", 1, 1, 1);
-	introBackground = new GTexture("Resources/intro.png", 1, 1, 1);
-	bat = new GTexture("Resources/bat.png", 2, 1, 2);
-
-
 	gameScore = new GTexture("Resources/blackboard.png", 1, 1, 1);
 	hp = new GTexture("Resources/heal.png", 3, 1, 3);
 
 	fallingCastle = new GTexture("Resources/FallingCastle.png", 3, 1, 3);
 	
-
+	//door
+	openDoor = new GTexture("Resources/ground/Gate1.png", 4, 1, 4);
 
 }
 
@@ -131,8 +126,10 @@ GTexture* Singleton::getTexture(EnumID id)
 	case EnumID::Medusa_ID:
 		return Medusa;
 		
-		// Other
+		// Door
 
+	case EnumID::OpenDoor_ID:
+		return openDoor;
 	case EnumID::StupidDoor_ID:
 		return stupidDoor;
 

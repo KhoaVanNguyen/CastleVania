@@ -5,7 +5,6 @@
 static enum ESceneState
 {
 	Scene_Menu,
-	Scene_Intro,
 	Scene_Game,
 	Scene_End
 } EnumSceneState;
@@ -109,5 +108,28 @@ enum ECameraState
 {
 	Update,
 	NoUpdate
+};
+
+//enum EMoveDirection
+//{
+//	MoveUp,
+//	MoveDown,
+//	MoveRight,
+//	MoveLeft,
+//	None
+//};
+
+enum EDirectDoor
+{
+	DoorUp,
+	DoorDown,
+	DoorRight,
+	DoorLeft,
+	NoneDoor
+};
+enum EStateCamera
+{
+	Update_Camera,
+	NoUpdate_Camera
 };
 #endif
