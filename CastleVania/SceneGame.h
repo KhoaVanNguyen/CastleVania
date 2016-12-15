@@ -24,7 +24,6 @@ protected:
 	QBackground *bg;
 	QGameObject* qGameObject;
 	int _levelNow, _stageNow;
-	GameObject* intro;
 	GCamera *camera;
 	Player* player;
 	

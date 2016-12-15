@@ -21,7 +21,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_allowPress = true;
 	_hasSit = false;
 	_hasJump = false;
-	_hasStair = false;
+	//_onLand = false;
+	_colBottomStair = false;
 	_hasKnockBack = false;
 
 	//Door
@@ -44,14 +45,12 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
-	//playerUpStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
 	Initialize();
 }
 
 
 void Player::Update(int deltaTime)
 {
-
 
 	list<Weapon*>::iterator it = _weapons->begin();
 	while (it != _weapons->end())
@@ -82,7 +81,7 @@ void Player::Update(int deltaTime)
 	}
 
 
-	if (_hasStair)
+	if (_colBottomStair)
 	{
 		UpdatePlayerStair(deltaTime);
 	}
@@ -106,7 +105,7 @@ void Player::Update(int deltaTime)
 			return;
 		}
 #pragma endregion
-#pragma region
+#pragma region - xử lý bị knock_back
 		if (_hasKnockBack)
 		{
 			posY += vY * deltaTime + 0.5 * deltaTime * deltaTime * _a;
@@ -128,7 +127,7 @@ void Player::Update(int deltaTime)
 				vY += _a * deltaTime;
 			return;
 		}
-#pragma endregion Xu ly Knockback
+#pragma endregion
 		posY += vY *deltaTime;
 	}
 }
@@ -166,8 +165,8 @@ void Player::Draw(GCamera* camera)
 			if (_kindStair == EKindStair::UpRight) {
 				playerStair->DrawFlipX(center.x, center.y);
 			}
-			return;
-
+			//?
+				return;
 		}
 
 		if (_action == Action::Fight) {
@@ -318,7 +317,7 @@ void Player::UpdatePlayerStair(int t)
 	}
 	else
 	{
-		if (_hasStair)
+		if (_colBottomStair)
 		{
 			if (rangeStair < 0)
 			{
@@ -387,6 +386,7 @@ void Player::UpdatePlayerStair(int t)
 		else if (_outStair)
 		{
 			sprite->SelectIndex(0);
+			_colStair = false;//mới thêm
 			_kindStair = EKindStair::None_Kind;
 			_action = Action::Idle;
 		}
@@ -402,6 +402,7 @@ void Player::TurnLeft()
 			return;
 		if (_hasSit)
 			return;
+		ResetStair();
 		vX = -SPEED_X;
 		_vLast = vX;
 		_hasSit = false;
@@ -418,6 +419,7 @@ void Player::TurnRight()
 			return;
 		if (_hasSit)
 			return;
+		ResetStair();
 		vX = SPEED_X;
 		_vLast = vX;
 		_hasSit = false;
@@ -440,8 +442,10 @@ void Player::Jump()
 			sprite->SelectIndex(4);
 			_action = Action::Jump;
 			_hasJump = true;
+			
 		}
 	}
+	ResetStair();
 }
 void Player::Fall()
 {
@@ -449,7 +453,6 @@ void Player::Fall()
 	vX = 0;
 	vY = -(SPEED_Y + 0.3f);
 }
-
 void Player::Sit()
 {
 	if (_allowPress)
@@ -460,10 +463,12 @@ void Player::Sit()
 			return;
 		}
 		if (!_hasJump) {
+			posY -= 16;
 			sprite->SelectIndex(4);
 			vX = 0;
 			vY = -(SPEED_Y + 0.3f);
 			_hasSit = true;
+			_colStair = false;
 			_action = Action::Sit;
 		}
 	}
@@ -558,15 +563,15 @@ void Player::Stop() {
 	}
 	if (_hasSit)
 	{
-		posY = 64;// va chạm thay tại đây.
+		posY += 16;
 		_hasSit = false;
 	}
-	if ((_hasJump == true && posY == 64))
-	{
-		_hasJump = false;
-		sprite->SelectIndex(0);
-		_a = 0;
-	}
+	//if ((_hasJump == true && posY == 64))// fix lỗi ở đây nếu qua bên game khác
+	//{
+	//	_hasJump = false;
+	//	sprite->SelectIndex(0);
+	//	_a = 0;
+	//}
 	_action = Action::Idle;
 	sprite->SelectIndex(0);
 }
@@ -593,14 +598,14 @@ void Player::UpStair()
 		return;
 	if (_action == Action::Fight)
 		return;
-	if (_hasStair)
+	if (_colBottomStair)
 		return;
 	if (abs(rangeStair) <= 40)
 	{
 		if (_colStair && (_stair->id == EnumID::StairUpLeft_ID || _stair->id == EnumID::StairUpRight_ID))
 		{
-			if (!_hasStair)
-				_hasStair = true;
+			if (!_colBottomStair)
+				_colBottomStair = true;
 			else
 			{
 				_onStair = true;
@@ -609,6 +614,7 @@ void Player::UpStair()
 			if (rangeStair != 0)
 			{
 				_onStair = false;
+				//_colStair = false;
 			}
 			else
 			{
@@ -627,6 +633,10 @@ void Player::UpStair()
 				_timeSpawn = 0;
 			}
 		}
+	}
+	else
+	{
+		_colStair = false;
 	}
 }
 void Player::DownStair()
@@ -652,13 +662,13 @@ void Player::DownStair()
 		return;
 	if (_action == Action::Fight)
 		return;
-	if (_hasStair)
+	if (_colBottomStair)
 		return;
 	if (abs(rangeStair) < 40)
 	{
 		if (_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID))
 		{
-			if (!_hasStair) _hasStair = true;
+			if (!_colBottomStair) _colBottomStair = true;
 			else
 			{
 				_onStair = true;
@@ -667,6 +677,8 @@ void Player::DownStair()
 			if (rangeStair != 0)
 			{
 				_onStair = false;
+				//_colStair = false;
+
 			}
 			else
 			{
@@ -686,6 +698,10 @@ void Player::DownStair()
 			}
 		}
 	}
+	else
+	{
+		_colStair = false;
+	}
 }
 void Player::OutStair()
 {
@@ -693,8 +709,9 @@ void Player::OutStair()
 	{
 		_upStair = false;
 		_downStair = false;
-		_hasStair = false;
+		_colBottomStair = false;
 		_onStair = false;
+		_colStair = false;
 		vY = -SPEED_Y;
 		vX = 0;
 		sprite->SelectIndex(0);
@@ -723,6 +740,14 @@ bool Player::OnStair()
 		return true;
 	return false;
 }
+void Player::ResetStair()
+{
+	if (_upStair || _downStair)
+		_upStair = _downStair = false;
+	//_kindStair = EKindStair::None;
+	_colStair = false;
+//	_action = Action::Idle;
+ }
 Player::~Player(void)
 {
 }
@@ -730,11 +755,17 @@ D3DXVECTOR2* Player::getPos()
 {
 	return new D3DXVECTOR2(this->posX, this->posY);
 }
-
 void Player::UpgradeMorningStar() {
 
 }
-
+Box Player::GetBox()
+{
+	if ((_hasJump && _heightJump >= MAX_HEIGHT / 2) || _hasSit)
+	{
+		return Box(posX - width / 2 + 14.5f, posY + height / 2 - 3, width - 29, height - 22);
+	}
+	return Box(posX - width / 2 + 14.5f, posY + height / 2 - 3, width - 29, height - 6);
+}
 void Player::Collision(list<GameObject*> &obj, float dt) {
 	if (_action == Action::Fight)
 	{
@@ -751,14 +782,13 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		float normalx;
 		float normaly;
 
-		Box boxSimon = this->GetBox();
+		Box boxPlayer = this->GetBox();
 		Box boxOther = other->GetBox();
 
 		//
 		if (other->active)
 		{
-			if (AABB(boxSimon, boxOther, moveX, moveY) == true) {
-
+			if (AABB(boxPlayer, boxOther, moveX, moveY) == true) {
 				// moveY ,  moveX
 #pragma region
 				if (other->type == ObjectType::Item && other->id != EnumID::Reward_ID) {
@@ -783,13 +813,13 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 				}
 #pragma endregion Va chạm với item
 
-
 				else {
 					switch (other->id)
 					{
-#pragma region
+#pragma region - va chạm với gạch
 					case EnumID::Brick_ID:
 						_onMovingPlatform = false;
+						//_onStair = false;
 						if (vY < 0 && moveY < 16)
 						{
 							//đang rơi xuống
@@ -807,24 +837,33 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							}
 							else
 							{
-								if (moveY > 0)
-								{
-									posY += moveY;
-									if (_hasJump || _hasKnockBack)
+								posY += moveY;
+								//if (abs(rangeStair) >= 40)
+								//{
+								//	_colStair = false;
+								//}
+								if (_hasJump || _hasKnockBack)
+									if (moveY > 0)
 									{
-										_hasJump = false;
-										if (_hasKnockBack)
+										posY += moveY;
+										if (_hasJump || _hasKnockBack)
 										{
-											if (!_isHurted)
+											_hasJump = false;
+											if (_hasKnockBack)
 											{
-												_isHurted = true;
-
-												if (hp >= 0)
+												if (!_isHurted)
 												{
-													hp -= other->damage;
-												}
+													_isHurted = true;
 
+													if (hp >= 0)
+													{
+														hp -= other->damage;
+													}
+
+												}
+												_hasKnockBack = false;
 											}
+
 											_hasKnockBack = false;
 										}
 										vY = 0;
@@ -832,7 +871,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										_a = 0;
 										_allowPress = true;
 										sprite->SelectIndex(0);
-										if (boxSimon.h < 60)
+										if (boxPlayer.h < 60)
 											posY += 16;
 									}
 									else
@@ -840,10 +879,43 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										{
 											_a = 0;
 											vY = 0;
+											vX = 0;
+											_a = 0;
+											_allowPress = true;
+											sprite->SelectIndex(0);
+											if (boxPlayer.h < 60)
+												posY += 16;
 										}
-								}
+										else
+											if (!_hasJump)
+											{
+												_a = 0;
+												vY = 0;
+											}
 							}
 						}
+						else if (moveY > 0)
+						{
+
+						}
+
+						if ((!_onLand || _action != Action::Idle) && !_hasJump)//Xu ly rot khoi cuc gach 
+						{
+							vY = -(SPEED_Y + 0.4f);// chỗ này là chỗ rơi xuống tự do
+							if (!_onLand)
+							{
+								//_colStair = false;
+							}
+							_beFallOutScreen = true;
+						}
+						//--------------------
+						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
+						{
+							posX += moveX;
+						}
+
+
+
 						//Xu ly rot khoi cuc gach 
 						if ((!_onLand || _action != Action::Idle) && !_hasJump)
 						{
@@ -856,16 +928,17 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 						break;
 
-#pragma endregion Va Chạm Gạch
+
+#pragma endregion
 
 
 #pragma region
 
 					case EnumID::StairUpRight_ID:
 					{
-						if (_colStair == false)
+						if (_colStair == false && _hasJump == false)
 							_colStair = true;
-						if (!_hasStair)
+						if (!_colBottomStair)
 							rangeStair = posX - (other->posX - 11);
 						_stair = other;
 						if (_upStair && _onStair)
@@ -887,9 +960,9 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					break;
 					case EnumID::StairUpLeft_ID:
 					{
-						if (_colStair == false)
+						if (_colStair == false && _hasJump == false)
 							_colStair = true;
-						if (!_hasStair)
+						if (!_colBottomStair)
 							rangeStair = posX - (other->posX + 11);
 
 						_stair = other;
@@ -907,9 +980,9 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					break;
 					case EnumID::StairDownLeft_ID:
 					{
-						if (_colStair == false)
+						if (_colStair == false && _hasJump == false)
 							_colStair = true;
-						if (!_hasStair)
+						if (!_colBottomStair)
 							rangeStair = posX - (other->posX - 32);
 
 						_stair = other;
@@ -929,9 +1002,9 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					break;
 					case EnumID::StairDownRight_ID:
 					{
-						if (_colStair == false)
+						if (_colStair == false && _hasJump == false)
 							_colStair = true;
-						if (!_hasStair)
+						if (!_colBottomStair)
 							rangeStair = posX - (other->posX + 32);
 
 						_stair = other;
@@ -949,9 +1022,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					}
 					break;
 #pragma endregion Va chạm cầu thang
-#pragma region
 
-#pragma endregion Va chạm với nước
 
 #pragma region 
 
@@ -961,16 +1032,16 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						// other->y = 432 , posY = 465.0003 , height = 66
 
 						// vì 1 tile size : 32x32 mà player->height = 66. Chia đôi ra tính cho chuẩn
-						float dentaHeight = abs((other->posY) - (posY - height / 2)); 
+						float dentaHeight = abs((other->posY) - (posY - height / 2));
 						if (dentaHeight < 3 && _downStair) // Tại sao là 3 ? Muốn số nào cũng đc, số càng nhỏ , khi 
-															// lên xuống cầu thang sẽ càng khỏe
 						{
 							_colDoor = true;
-						}
-						_door = other;
+						}							// lên xuống cầu thang sẽ càng khỏe
 
+						_door = other;
 					}
 					break;
+					
 					case EnumID::DoorUp_ID:
 					{
 						float dentaHeight = abs((other->posY) - (posY - height / 2));
@@ -1002,33 +1073,32 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						break;*/
 
 
-#pragma endregion Xu Ly Va Cham Voi Cac Loai Cong
 					default:
 
 						switch (other->type)
 						{
-//#pragma region Va cham Enemy
-//						case ObjectType::Enemy_Type:
-//							if (!_onStair && !_hasStair)
-//							{
-//								if (!_isHurted)
-//									KnockBack();
-//
-//								_isHurted = false;
-//							}
-//							else
-//							{
-//								// chưa có cầu thang
-//								if (!_isHurted)
-//								{
-//
-//									// trừ Hp ở đây
-//									_isHurted = false;
-//
-//								}
-//							}
-//							break;
-//#pragma endregion 
+							//#pragma region Va cham Enemy
+							//						case ObjectType::Enemy_Type:
+							//							if (!_onStair && !_hasStair)
+							//							{
+							//								if (!_isHurted)
+							//									KnockBack();
+							//
+							//								_isHurted = false;
+							//							}
+							//							else
+							//							{
+							//								// chưa có cầu thang
+							//								if (!_isHurted)
+							//								{
+							//
+							//									// trừ Hp ở đây
+							//									_isHurted = false;
+							//
+							//								}
+							//							}
+							//							break;
+							//#pragma endregion 
 						default:
 
 							break;
@@ -1036,13 +1106,11 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						break;
 					}
 
-				}
+					}
 
 			}
-
 		}
 	}
-
 }
 void Player::SetDirectDoor(EDirectDoor _direct)
 {

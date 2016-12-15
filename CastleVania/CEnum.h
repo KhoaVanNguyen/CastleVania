@@ -5,7 +5,6 @@
 static enum ESceneState
 {
 	Scene_Menu,
-	Scene_Intro,
 	Scene_Game,
 	Scene_End
 } EnumSceneState;
