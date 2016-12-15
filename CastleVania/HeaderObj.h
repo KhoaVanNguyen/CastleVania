@@ -5,7 +5,6 @@
 #include "Player.h"
 #include "Brick.h"
 #include "Candle.h"
-//#include "LargeCandle.h"
 #include "Ghouls.h"
 #include "MedusaHeads.h"
 #include"Bats.h"
@@ -15,4 +14,13 @@
 #include "FireBall.h"
 #include "LargeCandle.h"
 #include "Stair.h"
+#include "AxeKnights.h"
+#include "BoneTowers.h"
+#include "MovingPlatform.h"
+#include "Medusa.h"
+#include "Door.h"
+#include "StupidDoor.h"
+#include "CastleGate.h"
+#include "OpenDoor.h"
+
 #endif

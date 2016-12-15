@@ -16,10 +16,11 @@ private:
 	GTexture* MedusaHeads;
 	GTexture* Panthers;
 	GTexture* Fishmen;
+	GTexture *AxeKnights;
 
-	GTexture* blackKnight;
+
 	
-	GTexture* dragonSkullCannon;
+	GTexture* BoneTowers;
 	
 	//ground
 	GTexture* candle;
@@ -44,12 +45,14 @@ private:
 	GTexture* boomerangItem;
 	GTexture* throwAxe;
 	GTexture* stopWatch;
-
 	GTexture* magicalCrystal;
+	GTexture *watchItem;
+
 	//boss
 	GTexture* phantombat;
-	GTexture* queenMedusaHeads;
+	GTexture* Medusa;
 	GTexture* littleSnake;
+
 	//other
 	GTexture* rewardItem;
 	GTexture* water;

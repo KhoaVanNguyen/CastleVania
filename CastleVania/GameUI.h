@@ -20,6 +20,11 @@ protected:
 	int _enemyHP;
 	int _liveCount;
 	int _currentWeapon;
+
+	int _playerX;
+	int _playerY;
+	int _viewPortY;
+	int _viewPortX;
 	vector<GSprite*> weapons;
 	GSprite* _hpSprite;
 	void _initialize();
@@ -38,7 +43,9 @@ public:
 	void SetWeaponCount(int x);
 	void SetSimonScore(int x);
 	// deltaTime_ is in milisecond
-	void updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, int enemyHP_ = 20);
+	void updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_ = 20);
+	
+	void updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y,int viewPortX, int viewPortY);
 	~GameUI(void);
 };
 

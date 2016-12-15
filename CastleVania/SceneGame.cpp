@@ -3,11 +3,11 @@
 #define BACKGROUND_FILE "Resources/black.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 3;
-	_stageNow = 5;
+	_levelNow = 1;
+	_stageNow = 1;
 	camera = new GCamera();
 	bg = NULL;
-	_cameraState = ECameraState::Update;
+	_stateCamera = EStateCamera::Update_Camera;
 	gameUI = NULL;
 }
 
@@ -30,7 +30,6 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 
 	LoadStage(_stageNow);
 
-	camera->SetSizeMap(5632,16);
 }void SceneGame::LoadLevel(int level)
 {
 	//ResetLevel();
@@ -38,87 +37,116 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		delete qGameObject;
 	switch (level)
 	{
+	
 	case 1:
-	{
-		camera->viewport.y = 450;
-		bg = new QBackground(level);
-		bg->LoadTree();
-		player = new Player(150, 60);
-		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
-		gameUI->initTimer(100);
-	}
-	break;
-	case 2:
-	{
-		camera->viewport.y = 834;
-		bg = new QBackground(level);
-		bg->LoadTree();
-		player = new Player(50, 450);
-		//player->posX = 460;
-		//player->posY = 64;
-		player->_action = Action::Idle;
-		//_stageReset = 2;
-		
-	}
-	break;
-	case 3:
 	{
 		camera->viewport.y = 482;
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player = new Player(3700,156);
-		//player->posX = 3776;
-		//player->posY = 96;
+		player = new Player(3700, 96);
+		player->posX = 3776;
+		player->posY = 96;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
+		/*Sound::GetInst()->RemoveAllBGM();
+		Sound::GetInst()->PlayBGSound(EBGSound::EStage1Sound);*/
 
 	}
 	break;
 	default:
 		break;
 	}
-	//posStageToReset.x = simon->posX;
-	//posStageToReset.y = simon->posY;
+	/*posStageToReset.x = player->posX;
+	posStageToReset.y = player->posY;*/
 	posCamera = camera->viewport;
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
-	qGameObject->Update(t);
-	bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
 	
-	player->Update(t);
-
-	if (_cameraState== ECameraState::Update)
+	if (_levelNow == 0)
 	{
-		camera->UpdateCamera(player->posX);
+		// Load intro game ở dây
 	}
+	else if (_levelNow > 0)
+	{
 
-	player->Collision(*(qGameObject->_staticObject), t);
-	player->Collision(*(qGameObject->_dynamicObject), t);
+		if (_stateCamera == EStateCamera::Update_Camera)
+		{
+			camera->UpdateCamera(player->posX);
+			ChangeCamera(player->GetDirectDoor());
+		}
+		else {
+#pragma region Chuyen canh, dich chuyen camera
+
+			if (_beginMoveCamera)
+			{
+				qGameObject->RemoveAllObject();
+				MoveCamera(_rangeMoveCamera);
+			}
+			if (_moveCameraHaft)
+			{
+				if (openDoor->GetOpenDoor())
+					openDoor->RenderOpen();
+				if (openDoor->GetOpenDoor() == false)
+				{
+					player->AutoMove(_rangeMoveplayer, t);
+					if (_rangeMoveplayer == 0)
+					{
+						player->SetDirectDoor(EDirectDoor::NoneDoor);
+						openDoor->RenderClose();
+						if (openDoor->GetCloseDoor() == false)
+						{
+							MoveCamera(_rangeMoveCamera2);
+						}
+						else
+						{
+							player->_allowPress = true;
+
+						}
+					}
+				}
+			}
+		}
+#pragma endregion 
+		
 
 
-	qGameObject->Collision(t);
-	d3ddv->StretchRect(
-		Background,	
-		NULL,	
-		G_BackBuffer,
-		NULL,	
-		D3DTEXF_NONE);
-	G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+			qGameObject->Update(t);
+			bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
 
-	bg->Draw(camera);
-	qGameObject->Draw(camera);
+			player->Update(t);
+
+			player->Collision(*(qGameObject->_staticObject), t);
+			player->Collision(*(qGameObject->_dynamicObject), t);
+
+
+			qGameObject->Collision(t);
+
+
+			d3ddv->StretchRect(
+				Background,
+				NULL,
+				G_BackBuffer,
+				NULL,
+				D3DTEXF_NONE);
+
+
+
+
+		G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
+
+		bg->Draw(camera);
+		qGameObject->Draw(camera);
+		openDoor->Draw(camera, _doorDirect);
+		gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5,player->posX,player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
+		gameUI->drawTable();
+		player->Draw(camera);
+		G_SpriteHandler->End();
+		gameUI->drawScore();
+	}
+	
+	
 
 	
-	//gameUI->updateScore(1, player->point, t, 10, 1, 5, 5);
-	//gameUI->drawTable();
-	
-	gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, 5);
-	gameUI->drawTable();
-	player->Draw(camera);
-
-	G_SpriteHandler->End();
-
-	gameUI->drawScore();
 }
 
 void SceneGame::LoadStage(int stage)
@@ -157,7 +185,42 @@ void SceneGame::LoadStage(int stage)
 	case 5:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage5.txt");
+		posDoor = qGameObject->GetPosDoor();
+
+	}
+	break;
+	case 6:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage6.txt");
+		posDoor = qGameObject->GetPosDoor();
+
+	}
+	break;
+	case 7:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage7.txt");
+		posDoor = qGameObject->GetPosDoor();
+
+	}
+	break;
+	case 8:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage8.txt");
+		posDoor = qGameObject->GetPosDoor();
+
+	}
+	break;
+	case 9:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage9.txt");
 		//posDoor = qGameObject->GetPosDoor();
+	}
+	break;
+	case 10:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage10.txt");
+		//posDoor = qGameObject->GetPosDoor();
+		//_Medusa = qGameObject->getMedusa();
 
 	}
 	break;
@@ -165,7 +228,125 @@ void SceneGame::LoadStage(int stage)
 		break;
 	}
 	camera->SetSizeMap(G_MaxSize, G_MinSize);
-	//openDoor = new OpenDoor(posDoor.x, posDoor.y);
+	openDoor = new OpenDoor(posDoor.x, posDoor.y);
+}
+
+
+void SceneGame::ChangeCamera(EDirectDoor _directDoor)
+{
+
+	if (_directDoor != EDirectDoor::NoneDoor)
+	{
+		switch (_directDoor)
+		{
+		case DoorDown:
+		{
+			camera->viewport.y -= (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
+			player->posY -= 64;
+			player->SetDirectDoor(EDirectDoor::NoneDoor);
+
+			if (_stageNow >= 1) {
+				_stageNow--;
+				LoadStage(_stageNow);
+			}
+		}
+		break;
+		case DoorUp:
+		{
+			camera->viewport.y += (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
+			player->posY += 64;
+			player->SetDirectDoor(EDirectDoor::NoneDoor);
+
+			_stageNow++;
+			LoadStage(_stageNow);
+		}
+		break;
+		case DoorLeft:
+		{
+			_stateCamera = EStateCamera::NoUpdate_Camera;
+			_beginMoveCamera = true;
+			_moveCameraHaft = false;
+			_moveCameraDone = false;
+			_rangeMoveCamera = -264;//-264;
+			_rangeMoveCamera2 = -220;
+			_rangeMoveplayer = -120; // -120;
+			_doorDirect = -1;
+		}
+		break;
+		case DoorRight:
+		{
+			_stateCamera = EStateCamera::NoUpdate_Camera;
+			_beginMoveCamera = true;
+			_moveCameraHaft = false;
+			_moveCameraDone = false;
+			_rangeMoveCamera = 270;
+			_rangeMoveCamera2 = 224;
+			_rangeMoveplayer = 120;
+			_doorDirect = 1;
+		}
+		break;
+		default:
+			break;
+		}
+	}
+
+}
+
+void SceneGame::MoveCamera(int &_moveRange)
+{
+	if(_rangeMoveCamera == 0)
+		_rangeMoveCamera = _moveRange;
+	if (_beginMoveCamera)
+	{
+		if (_rangeMoveCamera == 0 && !_moveCameraHaft)
+		{
+			_moveCameraHaft = true;
+			_beginMoveCamera = false;
+			return;
+		}
+		if (_rangeMoveCamera > 0)
+		{
+			_rangeMoveCamera -= 4;
+			camera->viewport.x += 4;
+		}
+		else
+		{
+			_rangeMoveCamera += 4;
+			camera->viewport.x -= 4;
+		}
+	}
+	else if (_moveCameraHaft)
+	{
+		if (_rangeMoveCamera2 == 0 && !_moveCameraDone)
+		{
+			_moveCameraHaft = false;
+			_beginMoveCamera = false;
+			_moveCameraDone = true;
+			_stageNow++;
+			LoadStage(_stageNow);
+			_stateCamera = EStateCamera::Update_Camera;
+			player->SetDirectDoor(EDirectDoor::NoneDoor);
+			openDoor->ResetDoor();
+			//---------Luu vi tri stage moi de hoi sinh -----------------
+			_stageReset = _stageNow;
+			/*posStageToReset.x = player->posX;
+			posStageToReset.y = player->posY;*/
+			posCamera = camera->viewport;
+			//-----------------------------
+			return;
+		}
+		if (_rangeMoveCamera2 > 0)
+		{
+			_rangeMoveCamera2 -= 4;
+			camera->viewport.x += 4;
+		}
+		else
+		{
+			_rangeMoveCamera2 += 4;
+			camera->viewport.x -= 4;
+		}
+	}
+
 }
 
 void SceneGame::ProcessInput(int KeyCode) {
@@ -215,7 +396,13 @@ void SceneGame::OnKeyDown(int KeyCode) {
 	case DIK_SPACE:
 		player->Jump();
 	case DIK_M:
-		player->ChangeWeapon(EnumID::Throw_Axe);
+		player->ChangeWeapon(EnumID::Throw_Axe_ID);
+		break;
+	case DIK_N:
+		player->ChangeWeapon(EnumID::Boomerang_ID);
+		break;
+	case DIK_B:
+		player->ChangeWeapon(EnumID::Dagger_ID);
 		break;
 	}
 	

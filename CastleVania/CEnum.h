@@ -11,10 +11,9 @@ static enum ESceneState
 enum EnumID
 {
 	None_ID,
-
 	Player_ID,
 	PlayerDeath_ID,
-	Ghouls_ID,
+	
 	Brick_ID,
 	Candle_ID,
 	LargeCandle_ID,
@@ -25,21 +24,30 @@ enum EnumID
 	Bats_ID,
 	Panthers_ID,
 	Fishmen_ID,
-
+	AxeKnights_ID,
+	BoneTowers_ID,
+	Ghouls_ID,
 	//groud
-
+	MovingPlatform_ID,
 	StairUpLeft_ID,
 	StairUpRight_ID,
 	StairDownLeft_ID,
 	StairDownRight_ID,
-
+	
+	DoorLeft_ID,
+	DoorRight_ID,
+	DoorUp_ID,
+	DoorDown_ID,
+	OpenDoor_ID,
+	StupidDoor_ID,
+	CastleGate_ID,
 	//boss
 	PhantomBat_ID,
+	Medusa_ID,
 
 	//other
 	Water_ID,
 	FireBall_ID,
-
 	Reward_ID,
 	HP_ID,
 	GameUI_ID,
@@ -59,13 +67,17 @@ enum EnumID
 	Red_Money_Bag,
 	Purple_Money_Bag,
 	White_Money_Bag,
-
+	MoneyBagRedItem_ID,
+	MoneyBagBlueItem_ID,
+	MoneyBagWhiteItem_ID,
+	MoneyBagItem_ID,
+	WatchItem_ID,
 	//weapon
-	Dagger,
-	Throw_Axe,
-	Holy_Watter,
-	Boomerang,
-	Stop_Watch
+	Dagger_ID,
+	Throw_Axe_ID,
+	Holy_Watter_ID,
+	Boomerang_ID,
+	Stop_Watch_ID
 };
 enum EKindStair
 {
@@ -96,5 +108,28 @@ enum ECameraState
 {
 	Update,
 	NoUpdate
+};
+
+//enum EMoveDirection
+//{
+//	MoveUp,
+//	MoveDown,
+//	MoveRight,
+//	MoveLeft,
+//	None
+//};
+
+enum EDirectDoor
+{
+	DoorUp,
+	DoorDown,
+	DoorRight,
+	DoorLeft,
+	NoneDoor
+};
+enum EStateCamera
+{
+	Update_Camera,
+	NoUpdate_Camera
 };
 #endif
