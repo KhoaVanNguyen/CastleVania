@@ -220,11 +220,12 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			camera->viewport.y -= (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
 			player->posY -= 64;
 			player->SetDirectDoor(EDirectDoor::NoneDoor);
-			if (_stageNow >= 6)
+			_stageNow--;
+			LoadStage(_stageNow);
+			/*if (_stageNow >= 6)
 			{
-				_stageNow--;
-				LoadStage(_stageNow);
-			}
+				
+			}*/
 		}
 		break;
 		case DoorUp:
@@ -232,12 +233,13 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			camera->viewport.y += (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
 			player->posY += 64;
 			player->SetDirectDoor(EDirectDoor::NoneDoor);
-			if (_stageNow >= 5)
-			{
-				_stageNow++;
-				LoadStage(_stageNow);
-			}
 
+			_stageNow++;
+			LoadStage(_stageNow);
+			/*if (_stageNow >= 5)
+			{
+				
+			}*/
 		}
 		break;
 		case DoorLeft:

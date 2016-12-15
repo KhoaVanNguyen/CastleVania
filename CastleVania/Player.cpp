@@ -1003,28 +1003,28 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 						switch (other->type)
 						{
-#pragma region Va cham Enemy
-						case ObjectType::Enemy_Type:
-							if (!_onStair && !_hasStair)
-							{
-								if (!_isHurted)
-									KnockBack();
-
-								_isHurted = false;
-							}
-							else
-							{
-								// chưa có cầu thang
-								if (!_isHurted)
-								{
-
-									// trừ Hp ở đây
-									_isHurted = false;
-
-								}
-							}
-							break;
-#pragma endregion 
+//#pragma region Va cham Enemy
+//						case ObjectType::Enemy_Type:
+//							if (!_onStair && !_hasStair)
+//							{
+//								if (!_isHurted)
+//									KnockBack();
+//
+//								_isHurted = false;
+//							}
+//							else
+//							{
+//								// chưa có cầu thang
+//								if (!_isHurted)
+//								{
+//
+//									// trừ Hp ở đây
+//									_isHurted = false;
+//
+//								}
+//							}
+//							break;
+//#pragma endregion 
 						default:
 
 							break;
