@@ -115,6 +115,17 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
 			player->Update(t);
 
+			if (_stageNow == 1){
+
+				_medusa->Update(t, player->getPos());
+				//_gameScore->updateScore(_stageNow, _score, deltaTime, (int)((simon->hp + 1) / 2), _lifes, simon->_weaponID, simon->hearts, _queenMedusa->hp);
+				if (_medusa->type == ObjectType::Enemy_Type)
+				{
+					camera->SetSizeMap(G_MaxSize, G_MinSize);
+				}
+			}
+			
+
 			player->Collision(*(qGameObject->_staticObject), t);
 			player->Collision(*(qGameObject->_dynamicObject), t);
 
@@ -128,7 +139,6 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 				G_BackBuffer,
 				NULL,
 				D3DTEXF_NONE);
-
 
 
 
@@ -156,7 +166,7 @@ void SceneGame::LoadStage(int stage)
 	case 1:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage1.txt");
-		
+		_medusa = qGameObject->getMedusa();
 	}
 	break;
 
@@ -220,7 +230,7 @@ void SceneGame::LoadStage(int stage)
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage10.txt");
 		//posDoor = qGameObject->GetPosDoor();
-		//_Medusa = qGameObject->getMedusa();
+		//_medusa = qGameObject->getMedusa();
 
 	}
 	break;

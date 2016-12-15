@@ -1,23 +1,23 @@
-#ifndef _Medusa_H_
-#define _Medusa_H_
+#ifndef _medusa_H_
+#define _medusa_H_
 
 #include "DynamicObject.h"
 //#include "MagicalCrystal.h"
 #include <vector>
-//#include "LittleSnake.h"
+#include "LittleSnake.h"
 using namespace std;
 
-#define QUEEN_MEDUSA_STATE 20
-#define QUEEN_MEDUSA_SLEEP_STATE 10
-#define QUEEN_MEDUSA_STOP_STATE 2
-#define QUEEN_MEDUSA_SPEED_X 0.3f
+#define QUEEN_medusa_STATE 20
+#define QUEEN_medusa_SLEEP_STATE 10
+#define QUEEN_medusa_STOP_STATE 2
+#define QUEEN_medusa_SPEED_X 0.3f
 #define LITTLE_SNAKE_SPEED_X 0.3f
-#define QUEEN_MEDUSA_DIE_RATE 10
+#define QUEEN_medusa_DIE_RATE 10
 #define DEAD_TIME 1500
 #define PI 3.14f
 #define T 1000
 #define A 20
-#define QUEEN_MEDUSA_INACTIVE_RATE 1
+#define QUEEN_medusa_INACTIVE_RATE 1
 
 //
 //enum ERouterType
@@ -54,7 +54,7 @@ protected:
 	list<DynamicObject*> *_vLittleSnake;
 
 	EMedusaState _state;
-	D3DXVECTOR2* _simonPos;
+	D3DXVECTOR2* _playerPos;
 	float _deltaPhi;
 	float _posY0;
 

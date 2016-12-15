@@ -1,5 +1,5 @@
-#ifndef _MedusaHeads_H_
-#define _MedusaHeads_H_
+#ifndef _medusaHeads_H_
+#define _medusaHeads_H_
 
 #include "DynamicObject.h"
 #include "CEnum.h"

@@ -51,7 +51,11 @@
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
     <ClCompile Include="Weapon.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="LittleSnake.cpp" />
+=======
     <ClCompile Include="OpenDoor.cpp" />
+>>>>>>> MoveCamera
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -107,6 +111,10 @@
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
+<<<<<<< HEAD
+    <ClInclude Include="LittleSnake.h" />
+=======
     <ClInclude Include="OpenDoor.h" />
+>>>>>>> MoveCamera
   </ItemGroup>
 </Project>
