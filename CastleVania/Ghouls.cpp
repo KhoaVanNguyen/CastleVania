@@ -15,3 +15,5 @@ Ghouls::Ghouls(float _x, float _y) : DynamicObject(_x, _y, 0.3f, 0, EnumID::Ghou
 Ghouls::~Ghouls(void)
 {
 }
+
+

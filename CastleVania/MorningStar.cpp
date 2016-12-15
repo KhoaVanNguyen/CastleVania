@@ -138,11 +138,27 @@ void MorningStar::Collision(list<GameObject*> &obj, int dt){
 							point += other->point;
 							(*_itBegin) = new RewardItem(other->posX, other->posY);
 						}
+						if (other->id == EnumID::Medusa_ID)
+						{
+							Medusa* qm = (Medusa*)other;
+							if (qm->_hasGetUp)
+							{
+								other->ReceiveDamage(damage);
+								if (other->hp <= 0)
+								{
+									point += other->point;
+								}
+							}
+							else
+								qm->getUp();
+						}
 					}
 				return;
 			}
 		}
 	
+
+
 }
 
 MorningStar::~MorningStar(void)

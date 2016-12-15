@@ -45,7 +45,7 @@ enum EnumID
 	//boss
 	PhantomBat_ID,
 	Medusa_ID,
-
+	LittleSnake_ID,
 	//other
 	Water_ID,
 	FireBall_ID,
@@ -110,6 +110,16 @@ enum ECameraState
 	Update,
 	NoUpdate
 };
+
+enum ECollisionDirect
+{
+	Colls_None,
+	Colls_Left,
+	Colls_Right,
+	Colls_Bot,
+	Colls_Top
+};
+
 
 //enum EMoveDirection
 //{

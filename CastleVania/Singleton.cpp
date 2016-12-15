@@ -40,6 +40,7 @@ Singleton::Singleton()
 	//bosses
 	Medusa = new GTexture("Resources/boss/1.png", 5, 1, 5);
 	phantombat = new GTexture("Resources/boss/0.png", 3, 1, 3);
+	littleSnake = new GTexture("Resources/boss/2.png", 2, 1, 2);
 
 	largeHeart = new GTexture("Resources/item/1.png", 1, 1, 1);
 	smallHeart = new GTexture("Resources/item/0.png", 1, 1, 1);
@@ -130,7 +131,8 @@ GTexture* Singleton::getTexture(EnumID id)
 		return phantombat;
 	case EnumID::Medusa_ID:
 		return Medusa;
-		
+	case EnumID::LittleSnake_ID:
+		return littleSnake;
 		// Other
 
 	case EnumID::StupidDoor_ID:

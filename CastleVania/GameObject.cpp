@@ -118,3 +118,24 @@ void GameObject::SetActive()
 	if (!active)
 		active = true;
 }
+
+ECollisionDirect GameObject::GetCollisionDirect(float normalx, float normaly)
+{
+	if (normalx == 0 && normaly == 1)
+	{
+		return ECollisionDirect::Colls_Bot;
+	}
+	if (normalx == 0 && normaly == -1)
+	{
+		return ECollisionDirect::Colls_Top;
+	}
+	if (normalx == 1 && normaly == 0)
+	{
+		return ECollisionDirect::Colls_Left;
+	}
+	if (normalx == -1 && normaly == 0)
+	{
+		return ECollisionDirect::Colls_Right;
+	}
+	return ECollisionDirect::Colls_None;
+}

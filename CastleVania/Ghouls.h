@@ -11,6 +11,7 @@ public:
 	Ghouls(float x, float y);
 	//void Update(int deltaTime);
 	~Ghouls(void);
+	
 };
 
 #endif

@@ -9,6 +9,7 @@ public:
 	AxeKnights(void);
 	AxeKnights(float x, float y);
 	~AxeKnights(void);
+	//void Update(int t);
 };
 
 #endif

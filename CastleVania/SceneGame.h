@@ -18,6 +18,8 @@ public:
 	~SceneGame();
 protected:
 //	PhantomBat* _phantomBat;
+
+	Medusa* _medusa;
 	LPDIRECT3DSURFACE9 BackgroundWhite;
 	D3DXVECTOR2 posCamera;
 	QBackground *bg;
