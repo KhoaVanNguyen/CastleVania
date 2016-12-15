@@ -66,7 +66,19 @@ void GameUI::drawScore()
 	_arial->render(_gameStage, 490, 0);
 	_arial->render("PLAYER", 5, 20);
 	_arial->render("ENEMY", 5, 40);
-	_arial->render("PASS GAME :))", 5, 60);
+	//_arial->render("PASS GAME :))", 5, 60);
+	_arial->render("viewport.x: ", 5, 60);
+	_arial->render(_viewPortX, 100, 60);
+
+	_arial->render("viewport.y: ", 5, 80);
+	_arial->render(_viewPortY, 100, 80);
+
+	_arial->render("X: ", 150, 60);
+	_arial->render(_playerX, 170, 60);
+	_arial->render("Y: ", 220, 60);
+	_arial->render(_playerY, 240, 60);
+
+	
 	_arial->render(_liveCount, 420, 30);
 	_arial->render(_weaponCount, 430, 50);
 }
@@ -145,6 +157,45 @@ void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int si
 
 }
 
+
+void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY)
+{
+	//(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
+	_gameStage = gameStage_;
+	_playerScore = simonScore_;
+	if (_gameTimer <= 0)
+	{
+	}
+	else
+		_gameTimer = _gameTimer - deltaTime_;
+	_weaponCount = weaponCount_;
+	_playerHP = simonHP_;
+	_enemyHP = enemyHP_;
+	_liveCount = liveCount_;
+	_playerX = _x;
+	_playerY = _y;
+	_viewPortY = viewPortY;
+	_viewPortX = viewPortX;
+	switch (weaponID_)
+	{
+		/*case Watch_ID:
+		_currentWeapon = 0;
+		break;*/
+	case Dagger_ID:
+		_currentWeapon = 0;
+		break;
+	case Boomerang_ID:
+		_currentWeapon = 1;
+		break;
+	case Throw_Axe_ID:
+		_currentWeapon = 2;
+		break;
+	default:
+		_currentWeapon = -1;
+		break;
+	}
+
+}
 
 GameUI::~GameUI(void)
 {

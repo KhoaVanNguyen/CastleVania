@@ -109,17 +109,6 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 #pragma endregion 
 		
 
-		
-#pragma region Chuyen canh, dich chuyen camera
-		{
-			if (_beginMoveCamera)
-			{
-				qGameObject->RemoveAllObject();
-				MoveCamera(_rangeMoveCamera);
-			}
-		}
-#pragma endregion 
-
 
 			qGameObject->Update(t);
 			bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
@@ -148,7 +137,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect);
-		gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5);
+		gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5,player->posX,player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
@@ -278,9 +267,9 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			_beginMoveCamera = true;
 			_moveCameraHaft = false;
 			_moveCameraDone = false;
-			_rangeMoveCamera = -264;
+			_rangeMoveCamera = -264;//-264;
 			_rangeMoveCamera2 = -220;
-			_rangeMoveplayer = -120;
+			_rangeMoveplayer = -120; // -120;
 			_doorDirect = -1;
 		}
 		break;
@@ -290,7 +279,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			_beginMoveCamera = true;
 			_moveCameraHaft = false;
 			_moveCameraDone = false;
-			_rangeMoveCamera = 264;
+			_rangeMoveCamera = 270;
 			_rangeMoveCamera2 = 224;
 			_rangeMoveplayer = 120;
 			_doorDirect = 1;

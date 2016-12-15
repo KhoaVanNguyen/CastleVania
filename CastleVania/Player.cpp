@@ -958,8 +958,12 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 					case EnumID::DoorDown_ID:
 					{
-						float _compareHeigh = abs((other->posY) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-						if (_compareHeigh <= 3 && _downStair)
+						// other->y = 432 , posY = 465.0003 , height = 66
+
+						// vì 1 tile size : 32x32 mà player->height = 66. Chia đôi ra tính cho chuẩn
+						float dentaHeight = abs((other->posY) - (posY - height / 2)); 
+						if (dentaHeight < 3 && _downStair) // Tại sao là 3 ? Muốn số nào cũng đc, số càng nhỏ , khi 
+															// lên xuống cầu thang sẽ càng khỏe
 						{
 							_colDoor = true;
 						}
@@ -969,8 +973,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					break;
 					case EnumID::DoorUp_ID:
 					{
-						float _compareHeigh = abs((other->posY) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
-						if (_compareHeigh < 2 && _upStair)
+						float dentaHeight = abs((other->posY) - (posY - height / 2));
+						if (dentaHeight < 3 && _upStair)
 						{
 							_colDoor = true;
 						}
