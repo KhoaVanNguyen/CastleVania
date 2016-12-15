@@ -977,20 +977,20 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						_door = other;
 					}
 					break;
-				/*	case EnumID::DoorLeft_ID:
+					case EnumID::DoorLeft_ID:
 					{
 						_door = other;
 						_allowPress = false;
 						_colDoor = true;
 					}
-					break;*/
-					/*case EnumID::DoorRight_ID:
+					break;
+					case EnumID::DoorRight_ID:
 					{
 						_door = other;
 						_allowPress = false;
 						_colDoor = true;
 					}
-					break;*/
+					break;
 
 					//------------------------------------------------
 					/*case EnumID::StupidDoor_ID:
@@ -1069,6 +1069,24 @@ EDirectDoor Player::GetDirectDoor()
 	}
 	_colDoor = false;
 	return _directDoor;
+}
+
+bool Player::AutoMove(int &range, int dt)
+{
+	if (range == 0)
+		return true;
+	if (range > 0)
+	{
+		range -= 4;
+		posX += 4;
+	}
+	else
+	{
+		range += 4;
+		posX -= 4;
+	}
+	sprite->Update(dt);
+	return false;
 }
 	void Player::KnockBack()
 	{

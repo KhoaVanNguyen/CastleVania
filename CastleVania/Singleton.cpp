@@ -83,7 +83,8 @@ Singleton::Singleton()
 
 	fallingCastle = new GTexture("Resources/FallingCastle.png", 3, 1, 3);
 	
-
+	//door
+	openDoor = new GTexture("Resources/ground/Gate1.png", 4, 1, 4);
 
 }
 
@@ -131,8 +132,10 @@ GTexture* Singleton::getTexture(EnumID id)
 	case EnumID::Medusa_ID:
 		return Medusa;
 		
-		// Other
+		// Door
 
+	case EnumID::OpenDoor_ID:
+		return openDoor;
 	case EnumID::StupidDoor_ID:
 		return stupidDoor;
 

@@ -103,13 +103,16 @@ public:
 	void KnockBack();
 
 	// Change Camera:
-
+	
 	GameObject *_door;
 	bool _colDoor;
 	EDirectDoor GetDirectDoor();
 	EDirectDoor _directDoor;
 	void SetDirectDoor(EDirectDoor _direct);
 	
+	bool AutoMove(int &range, int dt);
+
+
 };
 
 #endif
