@@ -74,17 +74,40 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			camera->UpdateCamera(player->posX);
 			ChangeCamera(player->GetDirectDoor());
 		}
-		else
-		
+		else {
 #pragma region Chuyen canh, dich chuyen camera
-		{
+
 			if (_beginMoveCamera)
 			{
 				qGameObject->RemoveAllObject();
 				MoveCamera(_rangeMoveCamera);
 			}
+			if (_moveCameraHaft)
+			{
+				if (openDoor->GetOpenDoor())
+					openDoor->RenderOpen();
+				if (openDoor->GetOpenDoor() == false)
+				{
+					player->AutoMove(_rangeMoveplayer, t);
+					if (_rangeMoveplayer == 0)
+					{
+						player->SetDirectDoor(EDirectDoor::NoneDoor);
+						openDoor->RenderClose();
+						if (openDoor->GetCloseDoor() == false)
+						{
+							MoveCamera(_rangeMoveCamera2);
+						}
+						else
+						{
+							player->_allowPress = true;
+
+						}
+					}
+				}
+			}
 		}
 #pragma endregion 
+		
 
 
 			qGameObject->Update(t);
@@ -123,7 +146,8 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
-		gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5);
+		openDoor->Draw(camera, _doorDirect);
+		gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5,player->posX,player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
@@ -171,28 +195,28 @@ void SceneGame::LoadStage(int stage)
 	case 5:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage5.txt");
-		//posDoor = qGameObject->GetPosDoor();
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
 	case 6:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage6.txt");
-		//posDoor = qGameObject->GetPosDoor();
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
 	case 7:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage7.txt");
-		//posDoor = qGameObject->GetPosDoor();
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
 	case 8:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage8.txt");
-		//posDoor = qGameObject->GetPosDoor();
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
@@ -214,7 +238,7 @@ void SceneGame::LoadStage(int stage)
 		break;
 	}
 	camera->SetSizeMap(G_MaxSize, G_MinSize);
-	//openDoor = new OpenDoor(posDoor.x, posDoor.y);
+	openDoor = new OpenDoor(posDoor.x, posDoor.y);
 }
 
 
@@ -230,12 +254,11 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			camera->viewport.y -= (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
 			player->posY -= 64;
 			player->SetDirectDoor(EDirectDoor::NoneDoor);
-			_stageNow--;
-			LoadStage(_stageNow);
-			/*if (_stageNow >= 6)
-			{
-				
-			}*/
+
+			if (_stageNow >= 1) {
+				_stageNow--;
+				LoadStage(_stageNow);
+			}
 		}
 		break;
 		case DoorUp:
@@ -246,10 +269,6 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 
 			_stageNow++;
 			LoadStage(_stageNow);
-			/*if (_stageNow >= 5)
-			{
-				
-			}*/
 		}
 		break;
 		case DoorLeft:
@@ -258,9 +277,9 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			_beginMoveCamera = true;
 			_moveCameraHaft = false;
 			_moveCameraDone = false;
-			_rangeMoveCamera = -264;
+			_rangeMoveCamera = -264;//-264;
 			_rangeMoveCamera2 = -220;
-			_rangeMoveplayer = -120;
+			_rangeMoveplayer = -120; // -120;
 			_doorDirect = -1;
 		}
 		break;
@@ -270,7 +289,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			_beginMoveCamera = true;
 			_moveCameraHaft = false;
 			_moveCameraDone = false;
-			_rangeMoveCamera = 264;
+			_rangeMoveCamera = 270;
 			_rangeMoveCamera2 = 224;
 			_rangeMoveplayer = 120;
 			_doorDirect = 1;
@@ -285,8 +304,8 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 
 void SceneGame::MoveCamera(int &_moveRange)
 {
-	//if(_rangeMoveCamera == 0)
-	//	_rangeMoveCamera = _moveRange;
+	if(_rangeMoveCamera == 0)
+		_rangeMoveCamera = _moveRange;
 	if (_beginMoveCamera)
 	{
 		if (_rangeMoveCamera == 0 && !_moveCameraHaft)
@@ -310,19 +329,19 @@ void SceneGame::MoveCamera(int &_moveRange)
 	{
 		if (_rangeMoveCamera2 == 0 && !_moveCameraDone)
 		{
-			//_moveCameraHaft = false;
-			//_beginMoveCamera = false;
-			//_moveCameraDone = true;
-			//_stageNow++;
-			//LoadStage(_stageNow);
-			//_stateCamera = EStateCamera::Update_Camera;
-			//player->SetDirectDoor(EDirectDoor::NoneDoor);
-			//openDoor->ResetDoor();
-			////---------Luu vi tri stage moi de hoi sinh -----------------
-			//_stageReset = _stageNow;
-			//posStageToReset.x = player->posX;
-			//posStageToReset.y = player->posY;
-			//posCamera = camera->viewport;
+			_moveCameraHaft = false;
+			_beginMoveCamera = false;
+			_moveCameraDone = true;
+			_stageNow++;
+			LoadStage(_stageNow);
+			_stateCamera = EStateCamera::Update_Camera;
+			player->SetDirectDoor(EDirectDoor::NoneDoor);
+			openDoor->ResetDoor();
+			//---------Luu vi tri stage moi de hoi sinh -----------------
+			_stageReset = _stageNow;
+			/*posStageToReset.x = player->posX;
+			posStageToReset.y = player->posY;*/
+			posCamera = camera->viewport;
 			//-----------------------------
 			return;
 		}
