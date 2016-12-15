@@ -110,4 +110,27 @@ enum ECameraState
 	Update,
 	NoUpdate
 };
+
+//enum EMoveDirection
+//{
+//	MoveUp,
+//	MoveDown,
+//	MoveRight,
+//	MoveLeft,
+//	None
+//};
+
+enum EDirectDoor
+{
+	DoorUp,
+	DoorDown,
+	DoorRight,
+	DoorLeft,
+	NoneDoor
+};
+enum EStateCamera
+{
+	Update_Camera,
+	NoUpdate_Camera
+};
 #endif

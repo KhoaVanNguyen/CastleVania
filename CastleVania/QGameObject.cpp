@@ -5,6 +5,11 @@ QGameObject::QGameObject(void)
 {
 }
 
+void QGameObject::RemoveAllObject()
+{
+	_dynamicObject->clear();
+}
+
 int QGameObject::RemoveAllObjectInCamera(D3DXVECTOR2 viewport)
 {
 	int score = 0;

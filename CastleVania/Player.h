@@ -101,6 +101,15 @@ public:
 	void Collision(list<GameObject*> &obj, float dt);
 	D3DXVECTOR2* getPos();
 	void KnockBack();
+
+	// Change Camera:
+
+	GameObject *_door;
+	bool _colDoor;
+	EDirectDoor GetDirectDoor();
+	EDirectDoor _directDoor;
+	void SetDirectDoor(EDirectDoor _direct);
+	
 };
 
 #endif

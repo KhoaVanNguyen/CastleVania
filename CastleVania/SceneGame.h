@@ -26,11 +26,22 @@ protected:
 	GameObject* intro;
 	GCamera *camera;
 	Player* player;
-	ECameraState _cameraState;
+	
 	bool _beginMoveCamera;
 
 
+	//camera
+	void MoveCamera(int &_moveRange);
+	void ChangeCamera(EDirectDoor _directDoor);
+	EStateCamera _stateCamera;
+	int _rangeMoveCamera;
+	int _rangeMoveplayer;
+	int _rangeMoveCamera2;
 
+
+	bool _moveCameraHaft;	//Di chuyen camera lan 1
+	bool _moveCameraDone;	//Di chuyen camera lan 2
+	int _doorDirect; //Huong mo cua
 
 	GameUI* gameUI;
 
