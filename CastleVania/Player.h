@@ -98,6 +98,8 @@ public:
 	void Collision(list<GameObject*> &obj, float dt);
 	D3DXVECTOR2* getPos();
 	void KnockBack();
+
+	Box GetBox();
 };
 
 #endif

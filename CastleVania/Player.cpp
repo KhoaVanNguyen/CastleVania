@@ -160,7 +160,6 @@ void Player::Draw(GCamera* camera)
 				playerStair->DrawFlipX(center.x, center.y);
 			}
 				return;
-			
 		}
 
 		if (_action == Action::Fight) {
@@ -378,6 +377,7 @@ void Player::UpdatePlayerStair(int t)
 		else if (_outStair)
 		{
 			sprite->SelectIndex(0);
+			_colStair = false;//mới thêm
 			_kindStair = EKindStair::None_Kind;
 			_action = Action::Idle;
 		}
@@ -433,6 +433,7 @@ void Player::Jump()
 			sprite->SelectIndex(4);
 			_action = Action::Jump;
 			_hasJump = true;
+			ResetStair();
 		}
 	}
 }
@@ -597,6 +598,7 @@ void Player::UpStair()
 			if (rangeStair != 0)
 			{
 				_onStair = false;
+				//_colStair = false;
 			}
 			else
 			{
@@ -659,6 +661,8 @@ void Player::DownStair()
 			if (rangeStair != 0)
 			{
 				_onStair = false;
+				//_colStair = false;
+
 			}
 			else
 			{
@@ -691,6 +695,7 @@ void Player::OutStair()
 		_downStair = false;
 		_colBottomStair = false;
 		_onStair = false;
+		_colStair = false;
 		vY = -SPEED_Y;
 		vX = 0;
 		sprite->SelectIndex(0);
@@ -725,7 +730,8 @@ void Player::ResetStair()
 		_upStair = _downStair = false;
 	//_kindStair = EKindStair::None;
 	_colStair = false;
-}
+//	_action = Action::Idle;
+ }
 Player::~Player(void)
 {
 }
@@ -737,7 +743,14 @@ D3DXVECTOR2* Player::getPos()
 void Player::UpgradeMorningStar() {
 
 }
-
+Box Player::GetBox()
+{
+	if ((_hasJump && _heightJump >= MAX_HEIGHT / 2) || _hasSit)
+	{
+		return Box(posX - width / 2 + 14.5f, posY + height / 2 - 3, width - 29, height - 22);
+	}
+	return Box(posX - width / 2 + 14.5f, posY + height / 2 - 3, width - 29, height - 6);
+}
 void Player::Collision(list<GameObject*> &obj, float dt) {
 	if (_action == Action::Fight)
 	{
@@ -787,77 +800,62 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 #pragma region
 					case EnumID::Brick_ID:
-						if (_action == Action::Sit)
+						_onMovingPlatform = false;
+						 if (vY < 0 && moveY < 16)
 						{
+							//đang rơi xuống
 
-						}
-						else
-						{
-							_onMovingPlatform = false;
-							if (vY < 0 && moveY < 16)
+							if (moveY > 0)
 							{
-								//đang rơi xuống
-
-								if (moveY > 0)
+								posY += moveY;
+								if (_hasJump || _hasKnockBack)
 								{
-									posY += moveY;
-									if (_hasJump || _hasKnockBack)
+									_hasJump = false;
+									if (_hasKnockBack)
 									{
-										_hasJump = false;
-										if (_hasKnockBack)
+										if (!_isHurted)
 										{
-											if (!_isHurted)
+											_isHurted = true;
+
+											if (hp > 0)
 											{
-												_isHurted = true;
-
-												if (hp > 0)
+												if (hp <= 3)
 												{
-													if (hp <= 3)
-													{
-														hp -= 1;
-													}
-													else
-														hp -= other->damage;
+													hp -= 1;
 												}
-
+												else
+													hp -= other->damage;
 											}
-											_hasKnockBack = false;
+
 										}
-										vY = 0;
-										vX = 0;
-										_a = 0;
-										_allowPress = true;
-										sprite->SelectIndex(0);
-										if (boxPlayer.h < 60)
-											posY += 16;
+										_hasKnockBack = false;
 									}
-									else
-										if (!_hasJump)
-										{
-											_a = 0;
-											vY = 0;
-										}
+									vY = 0;
+									vX = 0;
+									_a = 0;
+									_allowPress = true;
+									sprite->SelectIndex(0);
+									if (boxPlayer.h < 60)
+										posY += 16;
 								}
-
-							}
-							if (_action == Action::Sit)
-							{
-
-							}
-							else
-							{
-								if ((!_onLand || _action != Action::Idle) && !_hasJump)//Xu ly rot khoi cuc gach 
-								{
-									vY = -(SPEED_Y + 0.4f);
-									_beFallOutScreen = true;
-								}
-								//--------------------
-								if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
-								{
-									posX += moveX;
-								}
+								else
+									if (!_hasJump)
+									{
+										_a = 0;
+										vY = 0;
+									}
 							}
 						}
+							 if ((!_onLand || _action != Action::Idle) && !_hasJump)//Xu ly rot khoi cuc gach 
+							 {
+								 vY = -(SPEED_Y + 0.4f);
+								 _beFallOutScreen = true;
+							 }
+							 //--------------------
+							 if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
+							 {
+								 posX += moveX;
+							 }
 						break;
 
 #pragma endregion Va Chạm Gạch
