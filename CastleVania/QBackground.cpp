@@ -14,7 +14,7 @@ QBackground::QBackground(int level)
 	switch (level)
 	{
 	case 1:
-		fileName = "Resources\\Maps\\Level1.txt";
+		fileName = "Resources\\Maps\\Level4.txt";
 
 	default:
 		break;
@@ -33,7 +33,7 @@ QBackground::QBackground(int level)
 		switch (level )
 		{ 
 		case 1:
-			bgSprite = new GSprite(new GTexture("Resources\\Maps\\Level1.png", count, 1, count), 1000);
+			bgSprite = new GSprite(new GTexture("Resources\\Maps\\Level4.png", count, 1, count), 1000);
 		default:
 			break;
 		}

@@ -4,7 +4,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 1;
-	_stageNow = 1;
+	_stageNow = 6;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -40,12 +40,12 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	
 	case 1:
 	{
-		camera->viewport.y = 482;
+		camera->viewport.y = 485;
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player = new Player(3700, 96);
-		player->posX = 3776;
-		player->posY = 96;
+		player = new Player(1250, 600);
+		player->posX = 1250;
+		player->posY = 600;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
 		/*Sound::GetInst()->RemoveAllBGM();
@@ -202,7 +202,7 @@ void SceneGame::LoadStage(int stage)
 	case 6:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage6.txt");
-		posDoor = qGameObject->GetPosDoor();
+		//posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
@@ -237,6 +237,8 @@ void SceneGame::LoadStage(int stage)
 	default:
 		break;
 	}
+	G_MaxSize = 1540;
+	G_MinSize = 1400;
 	camera->SetSizeMap(G_MaxSize, G_MinSize);
 	openDoor = new OpenDoor(posDoor.x, posDoor.y);
 }
@@ -245,117 +247,117 @@ void SceneGame::LoadStage(int stage)
 void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 {
 
-	if (_directDoor != EDirectDoor::NoneDoor)
-	{
-		switch (_directDoor)
-		{
-		case DoorDown:
-		{
-			camera->viewport.y -= (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
-			player->posY -= 64;
-			player->SetDirectDoor(EDirectDoor::NoneDoor);
+	//if (_directDoor != EDirectDoor::NoneDoor)
+	//{
+	//	switch (_directDoor)
+	//	{
+	//	case DoorDown:
+	//	{
+	//		camera->viewport.y -= (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
+	//		player->posY -= 64;
+	//		player->SetDirectDoor(EDirectDoor::NoneDoor);
 
-			if (_stageNow >= 1) {
-				_stageNow--;
-				LoadStage(_stageNow);
-			}
-		}
-		break;
-		case DoorUp:
-		{
-			camera->viewport.y += (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
-			player->posY += 64;
-			player->SetDirectDoor(EDirectDoor::NoneDoor);
+	//		if (_stageNow >= 1) {
+	//			_stageNow--;
+	//			LoadStage(_stageNow);
+	//		}
+	//	}
+	//	break;
+	//	case DoorUp:
+	//	{
+	//		camera->viewport.y += (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
+	//		player->posY += 64;
+	//		player->SetDirectDoor(EDirectDoor::NoneDoor);
 
-			_stageNow++;
-			LoadStage(_stageNow);
-		}
-		break;
-		case DoorLeft:
-		{
-			_stateCamera = EStateCamera::NoUpdate_Camera;
-			_beginMoveCamera = true;
-			_moveCameraHaft = false;
-			_moveCameraDone = false;
-			_rangeMoveCamera = -264;//-264;
-			_rangeMoveCamera2 = -220;
-			_rangeMoveplayer = -120; // -120;
-			_doorDirect = -1;
-		}
-		break;
-		case DoorRight:
-		{
-			_stateCamera = EStateCamera::NoUpdate_Camera;
-			_beginMoveCamera = true;
-			_moveCameraHaft = false;
-			_moveCameraDone = false;
-			_rangeMoveCamera = 270;
-			_rangeMoveCamera2 = 224;
-			_rangeMoveplayer = 120;
-			_doorDirect = 1;
-		}
-		break;
-		default:
-			break;
-		}
-	}
+	//		_stageNow++;
+	//		LoadStage(_stageNow);
+	//	}
+	//	break;
+	//	case DoorLeft:
+	//	{
+	//		_stateCamera = EStateCamera::NoUpdate_Camera;
+	//		_beginMoveCamera = true;
+	//		_moveCameraHaft = false;
+	//		_moveCameraDone = false;
+	//		_rangeMoveCamera = -264;//-264;
+	//		_rangeMoveCamera2 = -220;
+	//		_rangeMoveplayer = -120; // -120;
+	//		_doorDirect = -1;
+	//	}
+	//	break;
+	//	case DoorRight:
+	//	{
+	//		_stateCamera = EStateCamera::NoUpdate_Camera;
+	//		_beginMoveCamera = true;
+	//		_moveCameraHaft = false;
+	//		_moveCameraDone = false;
+	//		_rangeMoveCamera = 270;
+	//		_rangeMoveCamera2 = 224;
+	//		_rangeMoveplayer = 120;
+	//		_doorDirect = 1;
+	//	}
+	//	break;
+	//	default:
+	//		break;
+	//	}
+	//}
 
 }
 
 void SceneGame::MoveCamera(int &_moveRange)
 {
-	if(_rangeMoveCamera == 0)
-		_rangeMoveCamera = _moveRange;
-	if (_beginMoveCamera)
-	{
-		if (_rangeMoveCamera == 0 && !_moveCameraHaft)
-		{
-			_moveCameraHaft = true;
-			_beginMoveCamera = false;
-			return;
-		}
-		if (_rangeMoveCamera > 0)
-		{
-			_rangeMoveCamera -= 4;
-			camera->viewport.x += 4;
-		}
-		else
-		{
-			_rangeMoveCamera += 4;
-			camera->viewport.x -= 4;
-		}
-	}
-	else if (_moveCameraHaft)
-	{
-		if (_rangeMoveCamera2 == 0 && !_moveCameraDone)
-		{
-			_moveCameraHaft = false;
-			_beginMoveCamera = false;
-			_moveCameraDone = true;
-			_stageNow++;
-			LoadStage(_stageNow);
-			_stateCamera = EStateCamera::Update_Camera;
-			player->SetDirectDoor(EDirectDoor::NoneDoor);
-			openDoor->ResetDoor();
-			//---------Luu vi tri stage moi de hoi sinh -----------------
-			_stageReset = _stageNow;
-			/*posStageToReset.x = player->posX;
-			posStageToReset.y = player->posY;*/
-			posCamera = camera->viewport;
-			//-----------------------------
-			return;
-		}
-		if (_rangeMoveCamera2 > 0)
-		{
-			_rangeMoveCamera2 -= 4;
-			camera->viewport.x += 4;
-		}
-		else
-		{
-			_rangeMoveCamera2 += 4;
-			camera->viewport.x -= 4;
-		}
-	}
+	//if(_rangeMoveCamera == 0)
+	//	_rangeMoveCamera = _moveRange;
+	//if (_beginMoveCamera)
+	//{
+	//	if (_rangeMoveCamera == 0 && !_moveCameraHaft)
+	//	{
+	//		_moveCameraHaft = true;
+	//		_beginMoveCamera = false;
+	//		return;
+	//	}
+	//	if (_rangeMoveCamera > 0)
+	//	{
+	//		_rangeMoveCamera -= 4;
+	//		camera->viewport.x += 4;
+	//	}
+	//	else
+	//	{
+	//		_rangeMoveCamera += 4;
+	//		camera->viewport.x -= 4;
+	//	}
+	//}
+	//else if (_moveCameraHaft)
+	//{
+	//	if (_rangeMoveCamera2 == 0 && !_moveCameraDone)
+	//	{
+	//		_moveCameraHaft = false;
+	//		_beginMoveCamera = false;
+	//		_moveCameraDone = true;
+	//		_stageNow++;
+	//		LoadStage(_stageNow);
+	//		_stateCamera = EStateCamera::Update_Camera;
+	//		player->SetDirectDoor(EDirectDoor::NoneDoor);
+	//		openDoor->ResetDoor();
+	//		//---------Luu vi tri stage moi de hoi sinh -----------------
+	//		_stageReset = _stageNow;
+	//		/*posStageToReset.x = player->posX;
+	//		posStageToReset.y = player->posY;*/
+	//		posCamera = camera->viewport;
+	//		//-----------------------------
+	//		return;
+	//	}
+	//	if (_rangeMoveCamera2 > 0)
+	//	{
+	//		_rangeMoveCamera2 -= 4;
+	//		camera->viewport.x += 4;
+	//	}
+	//	else
+	//	{
+	//		_rangeMoveCamera2 += 4;
+	//		camera->viewport.x -= 4;
+	//	}
+	//}
 
 }
 
@@ -367,10 +369,12 @@ void SceneGame::ProcessInput(int KeyCode) {
 	
 	case DIK_RIGHT:
 		player->TurnRight();
+	
 	case DIK_D:
 		player->TurnRight();
 		break;
 	case DIK_LEFT:
+		
 		player->TurnLeft();
 	case DIK_A:
 		player->TurnLeft();
@@ -390,6 +394,7 @@ void SceneGame::ProcessInput(int KeyCode) {
 	case DIK_UP:
 		player->UpStair();
 		break;
+		
 	default:
 		player->Stop();
 		break;
@@ -405,15 +410,23 @@ void SceneGame::OnKeyDown(int KeyCode) {
 		break;
 	case DIK_SPACE:
 		player->Jump();
-	case DIK_M:
-		player->ChangeWeapon(EnumID::Throw_Axe_ID);
-		break;
-	case DIK_N:
-		player->ChangeWeapon(EnumID::Boomerang_ID);
+	case DIK_V:
+		camera->viewport.y -= 5;
 		break;
 	case DIK_B:
+		camera->viewport.y += 5;
 		player->ChangeWeapon(EnumID::Dagger_ID);
 		break;
+	case DIK_N:
+		G_MaxSize += 5;
+		player->ChangeWeapon(EnumID::Boomerang_ID);
+		break;
+	case DIK_M:
+		G_MaxSize -= 5;
+		player->ChangeWeapon(EnumID::Throw_Axe_ID);
+		break;
+	
+	
 	}
 	
 }
