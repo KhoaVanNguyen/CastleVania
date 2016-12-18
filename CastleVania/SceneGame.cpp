@@ -44,8 +44,6 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		bg = new QBackground(level);
 		bg->LoadTree();
 		player = new Player(1250, 96);
-		player->posX = 1250;
-		player->posY = 96;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
 		/*Sound::GetInst()->RemoveAllBGM();
@@ -238,7 +236,7 @@ void SceneGame::LoadStage(int stage)
 		break;
 	}
 	G_MaxSize = 1540;
-	G_MinSize = 1400;
+	G_MinSize = 0;
 	camera->SetSizeMap(G_MaxSize, G_MinSize);
 	openDoor = new OpenDoor(posDoor.x, posDoor.y);
 }

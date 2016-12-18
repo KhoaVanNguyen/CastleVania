@@ -40,10 +40,14 @@ void GCamera::UpdateCamera(int x)
 	}
 	if (x  < _maxSize - G_ScreenWidth / 2)
 		viewport.x = x - G_ScreenWidth / 2;
+	
 	if (viewport.x < _minSize)
 		viewport.x = _minSize;
+
 	if (viewport.x + G_ScreenWidth > _maxSize)
 		viewport.x = _maxSize - G_ScreenWidth;
+	
+	
 }
 
 void GCamera::UpdateCamera(int &w, int &h)
