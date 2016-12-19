@@ -59,6 +59,8 @@ DynamicObject::~DynamicObject(void)
 
 void DynamicObject::Initialize()
 {
+   bActiveHurt = false;
+ _localHurtTime = 0;
 }
 
 void DynamicObject::Collision(list<GameObject*> obj, int dt)
@@ -132,4 +134,30 @@ Box DynamicObject::GetBox()
 {
 	Box result(posX - width / 2, posY + height / 2, width, height, vX, 0);
 	return result;
+}
+void DynamicObject::ReceiveDamage(int damagePoint)
+{
+	if (!IsHurt())
+	{
+		if (hp <= 0)
+			return;
+		hp -= damagePoint;
+		if (hp == 0)
+			death = true;
+		bActiveHurt = true;
+		_localHurtTime = GetTickCount();
+	}
+}
+
+bool DynamicObject::IsHurt()
+{
+	if (!bActiveHurt)
+		return false;
+	DWORD now = GetTickCount();
+	DWORD deltaTime = now - _localHurtTime;
+	if (deltaTime >= 300)
+	{
+		bActiveHurt = false;
+	}
+	return true;
 }

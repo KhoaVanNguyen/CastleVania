@@ -21,6 +21,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_allowPress = true;
 	_hasSit = false;
 	_hasJump = false;
+	_hasMagicalBall = false;
 	//_onLand = false;
 	_colBottomStair = false;
 	_hasKnockBack = false;
@@ -575,6 +576,7 @@ void Player::Stop() {
 	_action = Action::Idle;
 	sprite->SelectIndex(0);
 }
+
 void Player::UpStair()
 {
 	if (!_downStair)
@@ -790,8 +792,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		{
 			if (AABB(boxPlayer, boxOther, moveX, moveY) == true) {
 				// moveY ,  moveX
-#pragma region
-				if (other->type == ObjectType::Item && other->id != EnumID::Reward_ID) {
+#pragma region Va chạm với item
+				if (other->type == ObjectType::Item && other->id != EnumID::FireBossDie_ID) {
 					other->Remove(); // deactive here!
 					switch (other->id)
 					{
@@ -809,16 +811,22 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						//cong tien
 						point += other->point;
 						break;
+					case EnumID::MagicalBall_ID:
+						//Qua man
+						_hasMagicalBall = true;
+						//SoundManager::GetInst()->RemoveAllBGM();
+						//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_StageClear);
+						break;
 					}
 				}
-#pragma endregion Va chạm với item
+#pragma endregion 
 
 				else {
 					switch (other->id)
 					{
 #pragma region - va chạm với gạch
 					case EnumID::Brick_ID:
-						_onMovingPlatform = false;
+						_MovingPlatform = false;
 						//_onStair = false;
 						if (vY < 0 && moveY < 16)
 						{
@@ -909,7 +917,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							_beFallOutScreen = true;
 						}
 						//--------------------
-						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
+						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_MovingPlatform)// && !_hasKnockBack)
 						{
 							posX += moveX;
 						}
@@ -932,7 +940,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma endregion
 
 
-#pragma region
+#pragma region Va chạm cầu thang
 
 					case EnumID::StairUpRight_ID:
 					{
@@ -947,7 +955,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						}
 
 						// 80 - 16 - ( 97 - 33)
-						//float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						//float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao player co bang do cao box ko
 
 						float _compareHeigh = abs((other->posY - posY));
 						if (_compareHeigh < 15 && _kindStair == EKindStair::DownLeft)
@@ -970,7 +978,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						{
 							_kindStair = EKindStair::UpLeft;
 						}
-						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao player co bang do cao box ko
 						if (_compareHeigh < 2 && _kindStair == EKindStair::DownRight)
 						{
 							_outStair = true;
@@ -992,7 +1000,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						{
 							_kindStair = EKindStair::DownLeft;
 						}
-						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao player co bang do cao box ko
 						if (_compareHeigh < 2 && _kindStair == EKindStair::UpRight)
 						{
 							_outStair = true;
@@ -1013,7 +1021,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						{
 							_kindStair = EKindStair::DownRight;
 						}
-						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao Simon co bang do cao box ko
+						float _compareHeigh = abs((other->posY - other->height / 2) - (posY - height / 2)); //so sanh do cao player co bang do cao box ko
 						if (_compareHeigh < 2 && _kindStair == EKindStair::UpLeft)
 						{
 							_outStair = true;
@@ -1021,10 +1029,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						}
 					}
 					break;
-#pragma endregion Va chạm cầu thang
+#pragma endregion 
 
 
-#pragma region 
+#pragma region    Va cham voi cac loai cua
 
 
 					case EnumID::DoorDown_ID:
@@ -1072,7 +1080,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						hp = 0;
 						break;*/
 
-
+#pragma endregion
 					default:
 
 						switch (other->type)

@@ -97,6 +97,7 @@
     <ClCompile Include="Dagger.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
     <ClCompile Include="FireBall.cpp" />
+    <ClCompile Include="FireBossDie.cpp" />
     <ClCompile Include="Fishmen.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="CustomRect.cpp" />
     <ClCompile Include="LargeCandle.cpp" />
     <ClCompile Include="LittleSnake.cpp" />
+    <ClCompile Include="MagicalBall.cpp" />
     <ClCompile Include="Medusa.cpp" />
     <ClCompile Include="MedusaHeads.cpp" />
     <ClCompile Include="MorningStar.cpp" />
@@ -152,6 +154,7 @@
     <ClInclude Include="Dagger.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="FireBall.h" />
+    <ClInclude Include="FireBossDie.h" />
     <ClInclude Include="Fishmen.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
@@ -164,6 +167,7 @@
     <ClInclude Include="CustomRect.h" />
     <ClInclude Include="LargeCandle.h" />
     <ClInclude Include="LittleSnake.h" />
+    <ClInclude Include="MagicalBall.h" />
     <ClInclude Include="Medusa.h" />
     <ClInclude Include="MedusaHeads.h" />
     <ClInclude Include="MorningStar.h" />

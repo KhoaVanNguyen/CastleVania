@@ -61,7 +61,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	posCamera = camera->viewport;
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
-	
+
 	if (_levelNow == 0)
 	{
 		// Load intro game ở dây
@@ -105,40 +105,71 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 					}
 				}
 			}
-		}
 #pragma endregion 
-		
+		}
 
-
-			qGameObject->Update(t);
-			bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
-
-			player->Update(t);
-
-			if (_stageNow == 1){
-
-				_medusa->Update(t, player->getPos());
-				//_gameScore->updateScore(_stageNow, _score, deltaTime, (int)((simon->hp + 1) / 2), _lifes, simon->_weaponID, simon->hearts, _queenMedusa->hp);
-				if (_medusa->type == ObjectType::Enemy_Type)
-				{
-					camera->SetSizeMap(G_MaxSize, G_MinSize);
-				}
+#pragma region nhan duoc MagicalBall qua man
+		if (player->_hasMagicalBall)
+			//{
+			//	if (player->GetHPplayer() < 40)
+			//	{
+			//		player->hp++;
+			//	}
+			//	else if (_gameScore->getTimer() > 0)
+			//	{
+			//		_gameScore->SetTimer(-1000);
+			//		//_score += 50;
+			//		//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_GetScoreTimer);
+			//	}
+			//	else if (player->hearts > 0)
+			//	{
+			//		player->hearts--;
+			//		//_score += 100;
+			//		//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_GetScoreWeaponCount);
+			//	}
+			//	else 
+			if (_levelNow == 1)
+			{
+				_levelNow++;
+				_stageNow++;
+				LoadResources(G_Device);
+				player->_hasMagicalBall = false;
 			}
-			
+			else if (_levelNow == 2)
+			{
+				sceneState = ESceneState::Scene_End;
+			}
+#pragma endregion 
 
-			player->Collision(*(qGameObject->_staticObject), t);
-			player->Collision(*(qGameObject->_dynamicObject), t);
+		qGameObject->Update(t);
+		bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
+
+		player->Update(t);
+
+		if (_stageNow == 1){
+
+			_medusa->Update(t, player->getPos());
+			//_gameScore->updateScore(_stageNow, _score, deltaTime, (int)((player->hp + 1) / 2), _lifes, player->_weaponID, player->hearts, _queenMedusa->hp);
+			if (_medusa->type == ObjectType::Enemy_Type)
+			{
+				camera->SetSizeMap(G_MaxSize, G_MinSize);
+			}
+		}
 
 
-			qGameObject->Collision(t);
+		player->Collision(*(qGameObject->_staticObject), t);
+		player->Collision(*(qGameObject->_dynamicObject), t);
 
 
-			d3ddv->StretchRect(
-				Background,
-				NULL,
-				G_BackBuffer,
-				NULL,
-				D3DTEXF_NONE);
+		qGameObject->Collision(t);
+
+
+		d3ddv->StretchRect(
+			Background,
+			NULL,
+			G_BackBuffer,
+			NULL,
+			D3DTEXF_NONE);
 
 
 
@@ -147,17 +178,15 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect);
-		gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5,player->posX,player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
+		gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
 		gameUI->drawScore();
 	}
-	
-	
-
-	
 }
+
+
 
 void SceneGame::LoadStage(int stage)
 {

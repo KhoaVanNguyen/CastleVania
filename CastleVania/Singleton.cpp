@@ -62,12 +62,13 @@ Singleton::Singleton()
 	throwAxe = new GTexture("Resources/item/7.png", 1, 1, 1);
 	stopWatch = new GTexture("Resources/item/5.png", 1, 1, 1);
 
-	magicalCrystal = new GTexture("Resources/item/13.png", 2, 1, 2);
+	MagicalBall = new GTexture("Resources/item/13.png", 2, 1, 2);
 
 	
 	//MedusaHeads = new GTexture("Resources/boss/1.png", 5, 1, 5);
 	littleSnake = new GTexture("Resources/boss/2.png", 2, 1, 2);
-	rewardItem = new GTexture("Resources/other/1.png", 3, 1, 3);
+
+	fireBossDie = new GTexture("Resources/other/1.png", 3, 1, 3);
 	water = new GTexture("Resources/other/2.png", 1, 1, 1);
 	fireBall = new GTexture("Resources/fireball.png", 1, 1, 1);
 
@@ -130,6 +131,9 @@ GTexture* Singleton::getTexture(EnumID id)
 		return littleSnake;
 		// Other
 		
+	case EnumID::FireBossDie_ID:
+		return fireBossDie;
+			
 		// Door
 
 	case EnumID::OpenDoor_ID:
@@ -146,8 +150,7 @@ GTexture* Singleton::getTexture(EnumID id)
 
 		// Items:
 
-	case EnumID::Reward_ID:
-		return rewardItem;
+	
 	case EnumID::Large_Heart:
 		return largeHeart;
 	case EnumID::Small_Heart:
@@ -176,7 +179,9 @@ GTexture* Singleton::getTexture(EnumID id)
 		return stopWatch;
 	case EnumID::WatchItem_ID:
 		return watchItem;
-
+		
+	case EnumID::MagicalBall_ID:
+		return MagicalBall;
 
 		/*moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
 		crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
@@ -190,6 +195,6 @@ GTexture* Singleton::getTexture(EnumID id)
 		
 	/*	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
 
-		magicalCrystal = new GTexture("Resources/item/13.png", 2, 1, 2);*/
+		MagicalBall = new GTexture("Resources/item/13.png", 2, 1, 2);*/
 	}
 }

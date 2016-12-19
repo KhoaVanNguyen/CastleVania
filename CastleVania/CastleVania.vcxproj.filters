@@ -53,6 +53,8 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="LittleSnake.cpp" />
     <ClCompile Include="OpenDoor.cpp" />
+    <ClCompile Include="FireBossDie.cpp" />
+    <ClCompile Include="MagicalBall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -110,5 +112,7 @@
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="LittleSnake.h" />
     <ClInclude Include="OpenDoor.h" />
+    <ClInclude Include="FireBossDie.h" />
+    <ClInclude Include="MagicalBall.h" />
   </ItemGroup>
 </Project>

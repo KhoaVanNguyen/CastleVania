@@ -45,7 +45,7 @@ private:
 	GTexture* boomerangItem;
 	GTexture* throwAxe;
 	GTexture* stopWatch;
-	GTexture* magicalCrystal;
+	GTexture* MagicalBall;
 	GTexture *watchItem;
 
 	//boss
@@ -54,7 +54,7 @@ private:
 	GTexture* littleSnake;
 
 	//other
-	GTexture* rewardItem;
+	GTexture* fireBossDie;
 	GTexture* water;
 	GTexture* fireBall;
 

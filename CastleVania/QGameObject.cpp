@@ -236,9 +236,9 @@ void QGameObject::Update(int deltaTime)
 
 		if ((*it)->id == EnumID::Medusa_ID)
 		{
-			if (((Medusa*)*it)->GetState())
+			if (((Medusa*)*it)->StateCancel())
 			{
-				//_dynamicObject->push_back(new MagicalCrystal((*it)->posX, (*it)->posY));
+				_dynamicObject->push_back(new MagicalBall((*it)->posX, (*it)->posY));
 				_dynamicObject->erase(it++);
 			}
 			else ++it;

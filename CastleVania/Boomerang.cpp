@@ -32,7 +32,7 @@ void Boomerang::Update(int dt)
 	sprite->Update(dt);
 }
 
-void Boomerang::Collision(Box simon)
+void Boomerang::Collision(Box player)
 {
 	if (_timeSpawn != 0)
 	{
@@ -40,7 +40,7 @@ void Boomerang::Collision(Box simon)
 		float moveY;
 
 		Box box = this->GetBox();
-		Box boxOther = simon;
+		Box boxOther = player;
 
 		if (AABB(box, boxOther, moveX, moveY) == true)
 		{

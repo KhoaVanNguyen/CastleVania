@@ -5,7 +5,7 @@ RewardItem::RewardItem(void) : DynamicObject()
 {
 }
 
-RewardItem::RewardItem(float x, float y) : DynamicObject(x, y, 0, -0.4f, EnumID::Reward_ID)
+RewardItem::RewardItem(float x, float y) : DynamicObject(x, y, 0, -0.4f, EnumID::FireBossDie_ID)
 {
 	deltatime = 0;
 	active = true;
@@ -16,16 +16,16 @@ void RewardItem::Update(int dt)
 {
 	if (sprite == NULL)
 		return;
-	if (id != EnumID::Reward_ID)
+	if (id != EnumID::FireBossDie_ID)
 	{
 		posY += vY * dt;
 		deltatime += dt;
 		if (deltatime >= 1500)
 			this->Remove();
 	}
-	if (id == EnumID::Reward_ID)
+	if (id == EnumID::FireBossDie_ID)
 		sprite->Update(dt);
-	if (id == EnumID::Reward_ID && sprite->GetIndex() == 2)
+	if (id == EnumID::FireBossDie_ID && sprite->GetIndex() == 2)
 	{
 		srand(time(0));
 		int random = rand() % (2);

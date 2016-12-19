@@ -11,7 +11,7 @@ public:
 	Boomerang(void);
 	Boomerang(float x, float y, float _huong);
 	void Update(int dt);
-	void Collision(Box simonBox);
+	void Collision(Box playerBox);
 	~Boomerang(void);
 };
 
