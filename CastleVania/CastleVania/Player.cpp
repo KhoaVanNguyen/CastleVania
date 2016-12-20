@@ -9,7 +9,7 @@
 //#define SPEED_X 0.01f
 //#define SPEED_Y 0.01f
 
-#define MAX_HEIGHT 70.0f
+#define MAX_HEIGHT 140.0f
 #define A 0.005f
 
 #define MAX_HEIGHT_KNOCKBACK 32.0f

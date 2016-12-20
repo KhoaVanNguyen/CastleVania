@@ -1,23 +1,24 @@
 
-#include "StupidDoor.h"
+#include "TrapDoor.h"
 
-void StupidDoor::_initialize()
+void TrapDoor::_initialize()
 {
 	_localAnimationTime = 0;
 	_localTime = 0;
 }
 
-void StupidDoor::_goUp()
+void TrapDoor::_goUp()
 {
 	vY = _vUp;
 }
 
-void StupidDoor::_goDown()
+void TrapDoor::_goDown()
 {
 	vY = -_vDown;
 }
 
-int StupidDoor::_round(float number_)
+//Lam tron 
+int TrapDoor::_round(float number_)
 {
 	int result = (int)number_;
 	int temp = number_ * 10;
@@ -25,8 +26,8 @@ int StupidDoor::_round(float number_)
 		result = result + abs(number_) / number_;
 	return result;
 }
-
-int StupidDoor::_compareBound()
+//kiem tra TrapDoor co di ra ngoai vung min max quy dinh hay khong
+int TrapDoor::_compareBound()
 {
 	if (posY <= _yMin)
 		return -1;
@@ -35,7 +36,7 @@ int StupidDoor::_compareBound()
 	return 0;
 }
 
-StupidDoor::StupidDoor(void) :GameObject()
+TrapDoor::TrapDoor(void) :GameObject()
 {
 	_initialize();
 	_vUp = 0;
@@ -46,7 +47,7 @@ StupidDoor::StupidDoor(void) :GameObject()
 	this->active = true;
 }
 
-StupidDoor::StupidDoor(float posX_, float posY_, float yMax_, float yMin_, float vUp_, float vDown_, int animationRate_) :GameObject(posX_, posY_, EnumID::StupidDoor_ID)
+TrapDoor::TrapDoor(float posX_, float posY_, float yMax_, float yMin_, float vUp_, float vDown_, int animationRate_) :GameObject(posX_, posY_, EnumID::TrapDoor_ID)
 {
 	vX = 0;
 	vY = STUPID_DOOR_SPEED_UP;
@@ -59,7 +60,7 @@ StupidDoor::StupidDoor(float posX_, float posY_, float yMax_, float yMin_, float
 	_animationRate = animationRate_;
 }
 
-void StupidDoor::Update(int deltaTime_)
+void TrapDoor::Update(int deltaTime_)
 {
 	_localAnimationTime += deltaTime_;
 	if (_localAnimationTime >= 1000 / _animationRate)
@@ -83,7 +84,8 @@ void StupidDoor::Update(int deltaTime_)
 	}
 }
 
-void StupidDoor::Draw(GCamera*camera_)
+void TrapDoor::Draw(GCamera*camera_)
+
 {
 
 	D3DXVECTOR2 center = camera_->Transform(posX, posY);
@@ -107,13 +109,13 @@ void StupidDoor::Draw(GCamera*camera_)
 	}
 }
 
-void StupidDoor::Collision(list<GameObject*> obj, int dt)
+void TrapDoor::Collision(list<GameObject*> obj, int dt)
 {
 
 }
 
 
-StupidDoor::~StupidDoor(void)
+TrapDoor::~TrapDoor(void)
 {
 
 }

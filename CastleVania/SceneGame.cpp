@@ -4,7 +4,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 1;
-	_stageNow = 1;
+	_stageNow = 6;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -40,18 +40,35 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	
 	case 1:
 	{
-		camera->viewport.y = 482;
+		camera->viewport.y = 1634; // 485
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player = new Player(3700, 96);
-		player->posX = 3776;
-		player->posY = 96;
+		player = new Player(287, 1310);
+		//player->posX = 3776;
+		//player->posY = 96;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
 		/*Sound::GetInst()->RemoveAllBGM();
 		Sound::GetInst()->PlayBGSound(EBGSound::EStage1Sound);*/
 
 	}
+	break;
+	case 2:
+	{
+
+		camera->viewport.y = 485; // 485
+		bg = new QBackground(level);
+		bg->LoadTree();
+		//player = new Player(600, 90);
+		player->posX = 600;
+		player->posY = 140;
+		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
+		gameUI->initTimer(100);
+		/*Sound::GetInst()->RemoveAllBGM();
+		Sound::GetInst()->PlayBGSound(EBGSound::EStage1Sound);*/
+
+	}
+	
 	break;
 	default:
 		break;
@@ -128,7 +145,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			//		//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_GetScoreWeaponCount);
 			//	}
 			//	else 
-			if (_levelNow == 1)
+			if (_levelNow == 1  )
 			{
 				_levelNow++;
 				_stageNow++;
@@ -146,7 +163,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
 		player->Update(t);
 
-		if (_stageNow == 1){
+		if (_stageNow == 6){
 
 			_medusa->Update(t, player->getPos());
 			//_gameScore->updateScore(_stageNow, _score, deltaTime, (int)((player->hp + 1) / 2), _lifes, player->_weaponID, player->hearts, _queenMedusa->hp);
@@ -178,7 +195,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect);
-		gameUI->updateScore(1, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
+		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
@@ -216,7 +233,6 @@ void SceneGame::LoadStage(int stage)
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage4.txt");
 		//posDoor = qGameObject->GetPosDoor();
-//		_phantomBat = qGameObject->getPhantomBat();
 		
 	}
 
@@ -232,20 +248,20 @@ void SceneGame::LoadStage(int stage)
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage6.txt");
 		posDoor = qGameObject->GetPosDoor();
-
+		_medusa = qGameObject->getMedusa();
 	}
 	break;
 	case 7:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage7.txt");
-		posDoor = qGameObject->GetPosDoor();
+		//posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
 	case 8:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage8.txt");
-		posDoor = qGameObject->GetPosDoor();
+		//posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
@@ -259,7 +275,7 @@ void SceneGame::LoadStage(int stage)
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage10.txt");
 		//posDoor = qGameObject->GetPosDoor();
-		//_medusa = qGameObject->getMedusa();
+		//
 
 	}
 	break;

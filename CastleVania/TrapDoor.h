@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-
+#include "DynamicObject.h"
 
 #define STUPID_DOOR_RATE 4
 
@@ -9,8 +9,8 @@
 #define STUPID_DOOR_Y_MAX 1040
 #define STUPID_DOOR_Y_MIN 900
 
-class StupidDoor :
-	public GameObject
+class TrapDoor :
+	public 	GameObject
 {
 protected:
 	// Return result
@@ -32,12 +32,12 @@ protected:
 	// round to int number
 	int _round(float number_);
 public:
-	StupidDoor(void);
+	TrapDoor(void);
 	//Note: yMax_, yMin_ is not type center's position but _yMax, _yMin is in type center's position
-	StupidDoor(float posX_, float posY_, float yMax_ = STUPID_DOOR_Y_MAX, float yMin_ = STUPID_DOOR_Y_MIN, float vUp_ = STUPID_DOOR_SPEED_UP, float vDown_ = STUPID_DOOR_SPEED_DOWN, int animationRate_ = STUPID_DOOR_RATE);
+	TrapDoor(float posX_, float posY_, float yMax_ = STUPID_DOOR_Y_MAX, float yMin_ = STUPID_DOOR_Y_MIN, float vUp_ = STUPID_DOOR_SPEED_UP, float vDown_ = STUPID_DOOR_SPEED_DOWN, int animationRate_ = STUPID_DOOR_RATE);
 	virtual void  Update(int deltaTime_);
 	virtual void Draw(GCamera* camera_);
 	virtual void Collision(list<GameObject*> obj, int dt);
-	~StupidDoor(void);
+	~TrapDoor(void);
 };
 

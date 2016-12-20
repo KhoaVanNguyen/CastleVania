@@ -115,10 +115,16 @@ QGameObject::QGameObject(string fileName)
 				break;
 			case 17:
 			{
-				_staticObject->push_back(new StupidDoor(posX, posY, 1040, 900 + (x % 3) * 8));
+	          _staticObject->push_back(new TrapDoor(posX, posY, 1040, 900 + (x % 3) * 8));
 				x++;
 			}
 			break;
+			case 18:
+				G_MinSize = posX;
+				break;
+			case 19:
+				G_MaxSize = posX;
+				break;
 			case 20:
 				_staticObject->push_back(new CastleGate(posX, posY, width, height));
 				break;
@@ -138,12 +144,7 @@ QGameObject::QGameObject(string fileName)
 				posDoor.x = posX;
 				posDoor.y = posY;
 				break;
-			case 26:
-				G_MinSize = posX;
-				break;
-			case 27:
-				G_MaxSize = posX;
-				break;
+		
 			default:
 				break;
 			}
@@ -152,12 +153,6 @@ QGameObject::QGameObject(string fileName)
 
 }
 
-//PhantomBat* QGameObject::getPhantomBat()
-//{
-//	return _phantomBat;
-//
-//
-//}
 Medusa* QGameObject::getMedusa()
 {
 	return _medusa;

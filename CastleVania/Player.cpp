@@ -6,7 +6,7 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define MAX_HEIGHT 70.0f
+#define MAX_HEIGHT 140.0f
 #define A 0.005f
 Player::Player(void) : DynamicObject()
 {
@@ -1075,10 +1075,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					}
 					break;
 
-					//------------------------------------------------
-					/*case EnumID::StupidDoor_ID:
+					
+					case EnumID::TrapDoor_ID:
 						hp = 0;
-						break;*/
+						break;
 
 #pragma endregion
 					default:

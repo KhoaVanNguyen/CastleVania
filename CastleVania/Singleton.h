@@ -27,7 +27,7 @@ private:
 	GTexture* largeCandle;
 	GTexture* movingPlatform;
 	GTexture* openDoor;
-	GTexture* stupidDoor;
+	GTexture* TrapDoor;
 	
 	//weapon
 	GTexture* morningStar;

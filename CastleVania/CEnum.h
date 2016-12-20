@@ -39,7 +39,7 @@ enum EnumID
 	DoorUp_ID,
 	DoorDown_ID,
 	OpenDoor_ID,
-	StupidDoor_ID,
+	TrapDoor_ID,
 	CastleGate_ID,
 	//boss
 	PhantomBat_ID,

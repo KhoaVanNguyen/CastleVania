@@ -33,10 +33,10 @@ Singleton::Singleton()
 	BoneTowers = new GTexture("Resources/enemy/8.png", 1, 1, 1);
 
 	//ground
-	candle = new GTexture("Resources/ground/1.png", 2, 1, 2);
+	candle = new GTexture("Resources/ground/1.png", 4, 1, 4);
 	largeCandle = new GTexture("Resources/ground/0.png", 2, 1, 2);
 	movingPlatform = new GTexture("Resources/ground/9.png", 1, 1, 1);
-	stupidDoor = new GTexture("Resources/ground/7_3.png", 2, 1, 2);
+	TrapDoor = new GTexture("Resources/ground/7_3.png", 2, 1, 2);
 	//bosses
 	Medusa = new GTexture("Resources/boss/1.png", 5, 1, 5);
 	phantombat = new GTexture("Resources/boss/0.png", 3, 1, 3);
@@ -138,8 +138,8 @@ GTexture* Singleton::getTexture(EnumID id)
 
 	case EnumID::OpenDoor_ID:
 		return openDoor;
-	case EnumID::StupidDoor_ID:
-		return stupidDoor;
+	case EnumID::TrapDoor_ID:
+		return TrapDoor;
 
 	// GameUI
 	case EnumID::HP_ID:

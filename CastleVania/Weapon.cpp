@@ -29,9 +29,9 @@ void Weapon::Draw(GCamera* camera)
 	}
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
 	if (vX > 0)
-		sprite->DrawFlipX(center.x, center.y);
-	else
 		sprite->Draw(center.x, center.y);
+	else
+		sprite->DrawFlipX(center.x, center.y);
 }
 
 void Weapon::Update(int dt)
