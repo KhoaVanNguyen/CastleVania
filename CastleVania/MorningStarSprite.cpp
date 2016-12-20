@@ -62,7 +62,7 @@ void MorningStarSprite::Draw(int x_, int y_)
 		srect,
 		&center,
 		&position,
-		D3DCOLOR_XRGB(255, 255, 255)
+		D3DCOLOR_XRGB(225, 255, 255)
 		);
 	delete srect;
 }

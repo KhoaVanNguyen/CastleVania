@@ -46,7 +46,6 @@ Singleton::Singleton()
 	smallHeart = new GTexture("Resources/item/0.png", 1, 1, 1);
 	moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
 	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
-	morningStar = new GTexture("Resources/item/3.png", 1, 1, 1);
 	fireBomb = new GTexture("Resources/item/9.png", 1, 1, 1);
 	dagger = new GTexture("Resources/item/4.png", 1, 1, 1);
 	boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
