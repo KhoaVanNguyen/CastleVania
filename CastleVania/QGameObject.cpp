@@ -135,10 +135,10 @@ QGameObject::QGameObject(string fileName)
 				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorRight_ID));
 				break;
 			case 23:
-				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorUp_ID));
+				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::TeleUp_ID));
 				break;
 			case 24:
-				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorDown_ID));
+				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::TeleDown_ID));
 				break;
 			case 25:
 				posDoor.x = posX;

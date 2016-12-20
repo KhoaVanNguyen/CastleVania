@@ -294,7 +294,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 	{
 		switch (_directDoor)
 		{
-		case DoorDown:
+		case TeleDown:
 		{
 			camera->viewport.y -= (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
 			player->posY -= 64;
@@ -306,7 +306,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			}
 		}
 		break;
-		case DoorUp:
+		case TeleUp:
 		{
 			camera->viewport.y += (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
 			player->posY += 64;

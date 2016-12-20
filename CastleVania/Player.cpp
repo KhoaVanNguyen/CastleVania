@@ -1036,7 +1036,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region    Va cham voi cac loai cua
 
 
-					case EnumID::DoorDown_ID:
+					case EnumID::TeleDown_ID:
 					{
 						// other->y = 432 , posY = 465.0003 , height = 66
 
@@ -1051,7 +1051,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					}
 					break;
 					
-					case EnumID::DoorUp_ID:
+					case EnumID::TeleUp_ID:
 					{
 						float dentaHeight = abs((other->posY) - (posY - height / 2));
 						if (dentaHeight < 3 && _upStair)
@@ -1132,11 +1132,11 @@ EDirectDoor Player::GetDirectDoor()
 	{
 		switch (_door->id)
 		{
-		case DoorDown_ID:
-			_directDoor = EDirectDoor::DoorDown;
+		case TeleDown_ID:
+			_directDoor = EDirectDoor::TeleDown;
 			break;
-		case DoorUp_ID:
-			_directDoor = EDirectDoor::DoorUp;
+		case TeleUp_ID:
+			_directDoor = EDirectDoor::TeleUp;
 			break;
 		case DoorLeft_ID:
 			_directDoor = EDirectDoor::DoorLeft;

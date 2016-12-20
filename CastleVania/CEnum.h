@@ -36,8 +36,8 @@ enum EnumID
 	
 	DoorLeft_ID,
 	DoorRight_ID,
-	DoorUp_ID,
-	DoorDown_ID,
+	TeleUp_ID,
+	TeleDown_ID,
 	OpenDoor_ID,
 	TrapDoor_ID,
 	CastleGate_ID,
@@ -133,8 +133,8 @@ enum ECollisionDirect
 
 enum EDirectDoor
 {
-	DoorUp,
-	DoorDown,
+	TeleUp,
+	TeleDown,
 	DoorRight,
 	DoorLeft,
 	NoneDoor
