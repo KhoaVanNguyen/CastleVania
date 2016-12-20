@@ -100,31 +100,7 @@ void DynamicObject::Collision(list<GameObject*> obj, int dt)
 						boxOther.vx = 0;
 						boxOther.vy = 0;
 					}
-					Box broadphasebox = GetSweptBroadphaseBox(box, dt);
-					if (AABBCheck(GetSweptBroadphaseBox(box, dt), boxOther) == true)
-					{
-						float collisiontime = SweptAABB(box, boxOther, normalx, normaly, dt);
-						if (collisiontime > 0.0f && collisiontime < 1.0f)
-						{
-							ECollisionDirect colDirect = GetCollisionDirect(normalx, normaly);
-							// perform response here
-							switch (colDirect)
-							{
-							case Colls_Left:
-								if (vX > 0)
-									vX = -vX;
-								break;
-							case Colls_Right:
-								if (vX < 0)
-									vX = -vX;
-								break;
-							case Colls_Bot:
-								posY += vY * collisiontime;
-								vY = 0;
-								break;
-							}
-						}
-					}
+
 				}
 		}
 	}

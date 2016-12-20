@@ -353,6 +353,7 @@ void SceneGame::MoveCamera(int &_moveRange)
 		_rangeMoveCamera = _moveRange;
 	if (_beginMoveCamera)
 	{
+		player->Stop();
 		if (_rangeMoveCamera == 0 && !_moveCameraHaft)
 		{
 			_moveCameraHaft = true;
@@ -372,6 +373,7 @@ void SceneGame::MoveCamera(int &_moveRange)
 	}
 	else if (_moveCameraHaft)
 	{
+		player->Stop();
 		if (_rangeMoveCamera2 == 0 && !_moveCameraDone)
 		{
 			_moveCameraHaft = false;

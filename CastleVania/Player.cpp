@@ -6,7 +6,7 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define MAX_HEIGHT 140.0f
+#define MAX_HEIGHT 70.0f
 #define A 0.005f
 Player::Player(void) : DynamicObject()
 {
@@ -834,7 +834,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							//đang rơi xuống
 							if (_action == Action::Fall)
 							{
-								if (moveY != 0)
+								/*if (moveY != 0)
 								{
 									posY += moveY;
 									vY = 0;
@@ -842,7 +842,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 									_action = Action::Idle;
 									_onLand = true;
 									Stop();
-								}
+								}*/
 							}
 							else
 							{
@@ -880,8 +880,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										_a = 0;
 										_allowPress = true;
 										sprite->SelectIndex(0);
-										if (boxPlayer.h < 60)
-											posY += 16;
+										/*if (boxPlayer.h < 60)
+											posY += 16;*/
 									}
 									else
 										if (!_hasJump)
@@ -929,8 +929,11 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						if ((!_onLand || _action != Action::Idle) && !_hasJump)
 						{
 
-
+							// Rơi tự do được
 							vY = -(SPEED_Y + 0.4f);
+							
+							// Ko roi tu do dc
+							//vY = 0;
 							//_beFallOutScreen = true;
 						}
 						//--------------------
@@ -1154,6 +1157,7 @@ EDirectDoor Player::GetDirectDoor()
 
 bool Player::AutoMove(int &range, int dt)
 {
+	Stop();
 	if (range == 0)
 		return true;
 	if (range > 0)
