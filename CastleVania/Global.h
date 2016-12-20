@@ -53,8 +53,8 @@ extern int			G_MapHeight;			//count the tiles in map height, 1 tile 50px
 extern int			G_ScreenWidth;			//width of game screen
 extern int			G_ScreenHeight;			//height of game screen
 
-extern int			G_MaxSize;
-extern int			G_MinSize;
+extern int			G_LeftCamera;
+extern int			G_RightCamera;
 
 extern RECT			G_WindowSize;			//size of game screen
 
