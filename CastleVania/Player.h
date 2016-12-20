@@ -37,6 +37,7 @@ public:
 	bool _allowPress;
 	bool _hasSit;
 	bool _hasKnockBack;
+	bool _hasMagicalBall;
 	//----stair//
 	bool _hasJump;
 	bool _colBottomStair; // co len cau thang 
@@ -45,7 +46,7 @@ public:
 
 
 	bool _isHurted; // Có đang bị mất máu không?
-	bool _onMovingPlatform;
+	bool _MovingPlatform;
 	bool _onLand;
 	bool _beFallOutScreen; // rớt ra khỏi màn hình
 
@@ -55,7 +56,7 @@ public:
 	bool _downStair;
 	bool OnStair();
 	bool _stopOnStair;	// đứng im trên cầu thang.
-	int rangeStair; // Khoang cach tu simon den chan cau thang
+	int rangeStair; // Khoang cach tu player den chan cau thang
 	bool _colStair;	//Có va chạm với 1 trong 2 đầu của cầu thang.
 	bool _outStair; //Coi thử player có đã ra ngoài cầu thang chưa
 	int _timeSpawn;	//

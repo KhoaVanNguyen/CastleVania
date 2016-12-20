@@ -39,16 +39,17 @@ enum EnumID
 	DoorUp_ID,
 	DoorDown_ID,
 	OpenDoor_ID,
-	StupidDoor_ID,
+	TrapDoor_ID,
 	CastleGate_ID,
 	//boss
 	PhantomBat_ID,
 	Medusa_ID,
 	LittleSnake_ID,
+
 	//other
 	Water_ID,
 	FireBall_ID,
-	Reward_ID,
+	FireBossDie_ID,
 	HP_ID,
 	GameUI_ID,
 
@@ -72,6 +73,7 @@ enum EnumID
 	MoneyBagWhiteItem_ID,
 	MoneyBagItem_ID,
 	WatchItem_ID,
+	MagicalBall_ID,
 	//weapon
 	Dagger_ID,
 	Throw_Axe_ID,

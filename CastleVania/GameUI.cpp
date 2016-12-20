@@ -108,7 +108,7 @@ void GameUI::SetWeaponCount(int x)
 	_weaponCount += x;
 }
 
-void GameUI::SetSimonScore(int x)
+void GameUI::SetplayerScore(int x)
 {
 	_playerScore += x;
 }
@@ -121,18 +121,18 @@ GameUI::GameUI(void)
 
 
 
-void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_)
+void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_)
 {
-//(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
+//(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
 	_gameStage = gameStage_;
-	_playerScore = simonScore_;
+	_playerScore = playerScore_;
 	if (_gameTimer <= 0)
 	{
 	}
 	else
 	_gameTimer = _gameTimer - deltaTime_;
 	_weaponCount = weaponCount_;
-	_playerHP = simonHP_;
+	_playerHP = playerHP_;
 	_enemyHP = enemyHP_;
 	_liveCount = liveCount_;
 
@@ -158,18 +158,18 @@ void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int si
 }
 
 
-void GameUI::updateScore(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY)
+void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY)
 {
-	//(int gameStage_, int simonScore_, int deltaTime_, int simonHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
+	//(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
 	_gameStage = gameStage_;
-	_playerScore = simonScore_;
+	_playerScore = playerScore_;
 	if (_gameTimer <= 0)
 	{
 	}
 	else
 		_gameTimer = _gameTimer - deltaTime_;
 	_weaponCount = weaponCount_;
-	_playerHP = simonHP_;
+	_playerHP = playerHP_;
 	_enemyHP = enemyHP_;
 	_liveCount = liveCount_;
 	_playerX = _x;

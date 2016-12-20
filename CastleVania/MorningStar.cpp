@@ -10,7 +10,7 @@ MorningStar::MorningStar(int posX_, int posY_, float vx_, float vy_, EnumID id_,
 	vX = vx_;
 	vY = vy_;
 
-	damage = 50;
+	damage = 20;//50
 	point = 0;
 
 	_morningStarSprite = new MorningStarSprite(Singleton::getInstance()->getTexture(EnumID::MorningStar_ID), 0, 2, timeAnimation_);
@@ -132,16 +132,10 @@ void MorningStar::Collision(list<GameObject*> &obj, int dt){
 				
 					if ( other->canBeKilled )
 					{
-						other->ReceiveDamage(damage);
-						if (other->hp <= 0)
-						{
-							point += other->point;
-							(*_itBegin) = new RewardItem(other->posX, other->posY);
-						}
 						if (other->id == EnumID::Medusa_ID)
 						{
 							Medusa* qm = (Medusa*)other;
-							if (qm->_hasGetUp)
+							if (qm->HasGetUp)
 							{
 								other->ReceiveDamage(damage);
 								if (other->hp <= 0)
@@ -152,6 +146,30 @@ void MorningStar::Collision(list<GameObject*> &obj, int dt){
 							else
 								qm->getUp();
 						}
+						else
+						{
+							other->ReceiveDamage(damage);
+							if (other->hp <= 0)
+							{
+								point += other->point;
+								(*_itBegin) = new RewardItem(other->posX, other->posY);
+							}
+							if (other->id == EnumID::Medusa_ID)
+							{
+								Medusa* qm = (Medusa*)other;
+								if (qm->HasGetUp)
+								{
+									other->ReceiveDamage(damage);
+									if (other->hp <= 0)
+									{
+										point += other->point;
+									}
+								}
+								else
+									qm->getUp();
+							}
+						}
+						
 					}
 				return;
 			}

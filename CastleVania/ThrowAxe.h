@@ -10,7 +10,7 @@
 class ThrowAxe : public Weapon
 {
 protected:
-	D3DXVECTOR2* _gold;
+	D3DXVECTOR2* _nextStopPos;
 	float _anpha;
 	float _posX0;
 	float _posY0;
@@ -19,7 +19,7 @@ public:
 	ThrowAxe(void);
 	ThrowAxe(float x_, float y_, float huong_);
 	virtual void Update(int deltaTime_);
-	void prepare(float simonX_, float simonY_, float direct_);
+	void prepare(float playerX_, float playerY_, float direct_);
 	~ThrowAxe(void);
 };
 

@@ -19,8 +19,10 @@
 #include "MovingPlatform.h"
 #include "Medusa.h"
 #include "Door.h"
-#include "StupidDoor.h"
+#include "TrapDoor.h"
 #include "CastleGate.h"
 #include "OpenDoor.h"
+#include "MagicalBall.h"
+
 
 #endif

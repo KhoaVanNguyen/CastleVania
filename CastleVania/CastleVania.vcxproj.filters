@@ -44,7 +44,6 @@
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stair.cpp" />
-    <ClCompile Include="StupidDoor.cpp" />
     <ClCompile Include="ThrowAxe.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Utils.cpp" />
@@ -53,6 +52,9 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="LittleSnake.cpp" />
     <ClCompile Include="OpenDoor.cpp" />
+    <ClCompile Include="FireBossDie.cpp" />
+    <ClCompile Include="MagicalBall.cpp" />
+    <ClCompile Include="TrapDoor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -100,7 +102,6 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Stair.h" />
-    <ClInclude Include="StupidDoor.h" />
     <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="ThrowAxe.h" />
     <ClInclude Include="Tile.h" />
@@ -110,5 +111,8 @@
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="LittleSnake.h" />
     <ClInclude Include="OpenDoor.h" />
+    <ClInclude Include="FireBossDie.h" />
+    <ClInclude Include="MagicalBall.h" />
+    <ClInclude Include="TrapDoor.h" />
   </ItemGroup>
 </Project>

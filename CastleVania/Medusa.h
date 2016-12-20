@@ -2,7 +2,7 @@
 #define _medusa_H_
 
 #include "DynamicObject.h"
-//#include "MagicalCrystal.h"
+#include "MagicalBall.h"
 #include <vector>
 #include "LittleSnake.h"
 using namespace std;
@@ -17,7 +17,7 @@ using namespace std;
 #define PI 3.14f
 #define T 1000
 #define A 20
-#define QUEEN_medusa_INACTIVE_RATE 1
+#define QUEEN_medusa_Sleeping_RATE 1
 
 //
 //enum ERouterType
@@ -30,7 +30,7 @@ using namespace std;
 
 enum EMedusaState
 {
-	InActive,
+	Sleeping,
 	Stop,
 	Moving,
 	Dead,
@@ -44,14 +44,14 @@ protected:
 	GSprite* _fightSprite;
 	GSprite* _deadSprite;
 	D3DXVECTOR2* _routerInfo;
-	vector<D3DXVECTOR2*> _vStopPos;
-	D3DXVECTOR2* _gold;
+	vector<D3DXVECTOR2*> _listStopPos;
+	D3DXVECTOR2* _nextStopPos;
 	int _previousStopPos;
 	int _currentStopPos;
 	//ERouterType _eRouterType;
 	DWORD _localTime;
 
-	list<DynamicObject*> *_vLittleSnake;
+	list<DynamicObject*> *_LittleSnake;
 
 	EMedusaState _state;
 	D3DXVECTOR2* _playerPos;
@@ -60,28 +60,27 @@ protected:
 
 
 	void _initialize();
-	void _onStop(int deltaTime_);
-	void _onMoving(int deltaTime_);
-	void _onDead(int deltaTime_);
-	void _onInActive(int deltaTime_);
-
-	bool _isKiss(D3DXVECTOR2 boss_, D3DXVECTOR2 gold_);
+	void _Stoping(int deltaTime_);
+	void _Moving(int deltaTime_);
+	void _Deading(int deltaTime_);
+	
+	bool _leaveStopPos(D3DXVECTOR2 boss_, D3DXVECTOR2 _nextStopPos);
 	void _drawSnakes(GCamera* camera_);
 	void _updateSnakes(int deltaTime_);
 
 public:
-	bool _hasGetUp;
-	//MagicalCrystal* magicalCrystal;
+	bool HasGetUp;
+	//MagicalBall* MagicalBall;
 	Medusa(void);
 	Medusa(float posX, float posY, EnumID id);
 	virtual void Update(int deltaTime_);
-	void Update(int deltaTime_, D3DXVECTOR2* simonPos_);
+	void Update(int deltaTime_, D3DXVECTOR2* playerPos_);
 	virtual void Draw(GCamera* camera_);
 	virtual void Collision(list<GameObject*> obj, int dt);
 	void getUp();
 	void setDead();
 	void ReceiveDamage(int damagePoint);
-	bool GetState();
+	bool StateCancel();
 	~Medusa(void);
 public:
 
