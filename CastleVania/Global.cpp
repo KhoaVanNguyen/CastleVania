@@ -30,8 +30,8 @@ bool		G_HasEffectSound = true;
 int			G_MapWidth;
 int			G_MapHeight;
 
-int			G_LeftCamera;
 int			G_RightCamera;
+int			G_LeftCamera;
 
 RECT		G_WindowSize;
 int			G_ScreenWidth = 515; //640;	//640	//1024	//1366

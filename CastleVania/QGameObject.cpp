@@ -120,10 +120,10 @@ QGameObject::QGameObject(string fileName)
 			}
 			break;
 			case 18:
-				G_RightCamera = posX;
+				G_LeftCamera = posX;
 				break;
 			case 19:
-				G_LeftCamera = posX;
+				G_RightCamera = posX;
 				break;
 			case 20:
 				_staticObject->push_back(new CastleGate(posX, posY, width, height));

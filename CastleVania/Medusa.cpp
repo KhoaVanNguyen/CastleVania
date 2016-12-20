@@ -154,7 +154,7 @@ void Medusa::getUp()
 		//Sound::GetInst()->PlayBGSound(EBGSound::EBoss);
 		type = ObjectType::Enemy_Type;
 		HasGetUp = true;
-		G_LeftCamera = G_RightCamera + G_ScreenWidth;
+		G_RightCamera = G_LeftCamera + G_ScreenWidth;
 	}
 }
 

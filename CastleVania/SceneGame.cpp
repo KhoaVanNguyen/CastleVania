@@ -169,7 +169,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			//_gameScore->updateScore(_stageNow, _score, deltaTime, (int)((player->hp + 1) / 2), _lifes, player->_weaponID, player->hearts, _queenMedusa->hp);
 			if (_medusa->type == ObjectType::Enemy_Type)
 			{
-				camera->SetSizeMap(G_LeftCamera, G_RightCamera);
+				camera->SetSizeMap(G_RightCamera, G_LeftCamera);
 			}
 		}
 
@@ -282,7 +282,7 @@ void SceneGame::LoadStage(int stage)
 	default:
 		break;
 	}
-	camera->SetSizeMap(G_LeftCamera, G_RightCamera);
+	camera->SetSizeMap(G_RightCamera, G_LeftCamera);
 	openDoor = new OpenDoor(posDoor.x, posDoor.y);
 }
 
