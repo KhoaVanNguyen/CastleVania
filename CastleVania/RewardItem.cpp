@@ -5,7 +5,7 @@ RewardItem::RewardItem(void) : DynamicObject()
 {
 }
 
-RewardItem::RewardItem(float x, float y) : DynamicObject(x, y, 0, -0.4f, EnumID::FireBossDie_ID)
+RewardItem::RewardItem(float x, float y) : DynamicObject(x, y, 0, -0.4f, EnumID::RewardedItem_ID)
 {
 	deltatime = 0;
 	active = true;
@@ -16,16 +16,16 @@ void RewardItem::Update(int dt)
 {
 	if (sprite == NULL)
 		return;
-	if (id != EnumID::FireBossDie_ID)
+	if (id != EnumID::RewardedItem_ID)
 	{
 		posY += vY * dt;
 		deltatime += dt;
 		if (deltatime >= 1500)
 			this->Remove();
 	}
-	if (id == EnumID::FireBossDie_ID)
+	if (id == EnumID::RewardedItem_ID)
 		sprite->Update(dt);
-	if (id == EnumID::FireBossDie_ID && sprite->GetIndex() == 2)
+	if (id == EnumID::RewardedItem_ID && sprite->GetIndex() == 2)
 	{
 		srand(time(0));
 		int random = rand() % (2);
@@ -38,7 +38,7 @@ void RewardItem::Update(int dt)
 				id = EnumID::Small_Heart;
 				hearts = 1;
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Small_Heart), 1000);
-				//vY = vY / 2;
+				vY = vY / 2;
 			}
 			else {
 				id = EnumID::Large_Heart;
@@ -118,7 +118,7 @@ void RewardItem::Update(int dt)
 
 	}
 	//chưa va chạm
-	vY = 0;
+//	vY = 0;
 	//sprite->Update(dt);
 
 	width = sprite->_texture->FrameWidth;
@@ -127,7 +127,48 @@ void RewardItem::Update(int dt)
 }
 void RewardItem::Collision(list<GameObject*> obj, int dt)
 {
+	if (id != EnumID::RewardedItem_ID)
+	{
+		list<GameObject*>::iterator _itBegin;
+		for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
+		{
+			GameObject* other = (*_itBegin);
 
+			if (other->id == EnumID::Brick_ID)
+			{
+				float moveX;
+				float moveY;
+				float normalx;
+				float normaly;
+				Box box = this->GetBox();
+				Box boxOther = other->GetBox();
+
+				if (AABB(box, boxOther, moveX, moveY) == true)
+				{
+					if (posY > other->posY)
+					{
+						posY += moveY;
+						vY = 0;
+						return;
+					}
+				}
+				else
+				{
+					// review
+					Box broadphasebox = GetSweptBroadphaseBox(box, dt);
+					if (AABBCheck(GetSweptBroadphaseBox(box, dt), boxOther) == true)
+					{
+						float collisiontime = SweptAABB(box, boxOther, normalx, normaly, dt);
+						if (collisiontime > 0.0f && collisiontime < 1.0f)
+						{
+							posY += vY * collisiontime;
+							vY = 0;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 RewardItem::~RewardItem(void)

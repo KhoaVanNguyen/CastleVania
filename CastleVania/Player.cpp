@@ -792,6 +792,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		if (other->active)
 		{
 			if (AABB(boxPlayer, boxOther, moveX, moveY) == true) {
+				currentCollideWithID = other->id;
 				// moveY ,  moveX
 #pragma region Va chạm với item
 				if (other->type == ObjectType::Item && other->id != EnumID::FireBossDie_ID) {

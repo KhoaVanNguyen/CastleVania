@@ -27,6 +27,8 @@ enum EnumID
 	AxeKnights_ID,
 	BoneTowers_ID,
 	Ghouls_ID,
+	
+	
 	//groud
 	MovingPlatform_ID,
 	StairUpLeft_ID,
@@ -74,6 +76,8 @@ enum EnumID
 	MoneyBagItem_ID,
 	WatchItem_ID,
 	MagicalBall_ID,
+
+	RewardedItem_ID,
 	//weapon
 	Dagger_ID,
 	Throw_Axe_ID,

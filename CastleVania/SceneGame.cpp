@@ -4,7 +4,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 1;
-	_stageNow = 6;
+	_stageNow = 1;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -40,10 +40,12 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	
 	case 1:
 	{
-		camera->viewport.y = 1634; // 485
+		//camera->viewport.y = 1634; // 485
+		camera->viewport.y = 482;
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player = new Player(287, 1310);
+		//player = new Player(287, 1310);
+		player = new Player(3700, 96);
 		//player->posX = 3776;
 		//player->posY = 96;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
@@ -195,7 +197,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect);
-		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
+		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y,player->currentCollideWithID);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();

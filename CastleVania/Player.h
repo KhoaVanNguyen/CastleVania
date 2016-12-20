@@ -20,6 +20,12 @@ using namespace std;
 class Player : public DynamicObject
 {
 public:
+
+	// for testing
+	int currentCollideWithID;
+
+
+
 	GSprite *playerJump;
 	GSprite *fightingSprite;
 	GSprite *fightingSittingSprite;
@@ -113,6 +119,9 @@ public:
 	void SetDirectDoor(EDirectDoor _direct);
 	
 	bool AutoMove(int &range, int dt);
+
+
+	
 
 };
 
