@@ -52,7 +52,7 @@ void RewardItem::Update(int dt)
 		else {
 			random = rand() % (11);
 
-			random = 12;
+			random = 13;
 			switch (random)
 			{
 				
@@ -77,8 +77,8 @@ void RewardItem::Update(int dt)
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang_ID), 1000);
 				break;
 			case 9:
-				id = EnumID::Stop_Watch_ID;
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Stop_Watch_ID), 1000);
+				id = EnumID::StopWatch_ID;
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::StopWatch_ID), 1000);
 				break;
 			case 10:
 				id = EnumID::White_Money_Bag;
@@ -95,6 +95,10 @@ void RewardItem::Update(int dt)
 			case 12:
 				id = EnumID::CrossItem_ID;
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::CrossItem_ID), 1000);
+				break;
+			case 13: 
+				id = EnumID::StopWatch_ID;
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::StopWatch_ID), 1000);
 				break;
 			default:
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::MoneyBagItem_ID), 150);

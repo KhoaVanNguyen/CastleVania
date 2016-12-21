@@ -248,7 +248,11 @@ void QGameObject::Update(int deltaTime)
 	}
 }
 
-
+void QGameObject::PauseUpdate()
+{
+	bActiveHurt = true;
+	_localHurtTime = GetTickCount();
+}
 
 QGameObject::~QGameObject(void)
 {

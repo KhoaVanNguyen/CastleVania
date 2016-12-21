@@ -161,6 +161,12 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			}
 #pragma endregion 
 
+
+		if (player->_usingWatch) {
+			qGameObject->PauseUpdate();
+			player->_usingWatch = false;
+		}
+
 		qGameObject->Update(t);
 		bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
 
@@ -187,7 +193,9 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
 			score += qGameObject->RemoveAllObjectInCamera(camera->viewport);
 			//player->SetUsingCross(false);
-			player->CollideWithCrossItem(false);
+			//player->CollideWithCrossItem(false);
+
+			player->_usingCross = false;
 			// Background
 			d3ddv->StretchRect(
 				BackgroundWhite,			// from 

@@ -23,14 +23,11 @@ protected:
 	
 public:
 	bool _usingCross;
+	bool _usingWatch;
 	// for testing
 	int currentCollideWithID;
 
 	// cross Item
-	bool _collideWithCrossItem;
-	
-	void CollideWithCrossItem(bool value);
-	bool GetCrossStatus();
 
 	GSprite *playerJump;
 	GSprite *fightingSprite;

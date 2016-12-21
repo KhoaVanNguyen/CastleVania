@@ -83,7 +83,7 @@ enum EnumID
 	Throw_Axe_ID,
 	Holy_Watter_ID,
 	Boomerang_ID,
-	Stop_Watch_ID,
+	StopWatch_ID,
 
 
 	CrossItem_ID

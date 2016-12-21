@@ -44,6 +44,9 @@ public:
 	int RemoveAllObjectInCamera(D3DXVECTOR2);
 	void RemoveAllObject();
 	Medusa* getMedusa();
+
+	// 
+	void PauseUpdate();
 	
 	
 };

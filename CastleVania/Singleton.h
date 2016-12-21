@@ -66,8 +66,10 @@ private:
 	GTexture* fallingCastle;
 	GTexture* playerInCastle;
 
+	// Items
 
 	GTexture* rewardedItem;
+	
 	//weapon
 	
 	static Singleton *single;

@@ -814,7 +814,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						point += other->point;
 						break;
 					case EnumID::CrossItem_ID:
-						CollideWithCrossItem(true);
+						_usingCross = true;
 					
 						break;
 					case EnumID::MagicalBall_ID:
@@ -1159,20 +1159,6 @@ EDirectDoor Player::GetDirectDoor()
 	_colDoor = false;
 	return _directDoor;
 }
-bool Player::GetCrossStatus() {
-	return _usingCross;
-}
-void Player::CollideWithCrossItem(bool value) {
-	if (!value)
-	{
-		_usingCross = false;
-	}
-	else if (!_usingCross)
-	{
-		_usingCross = true;
-		// am thanh
-	}
-}
 bool Player::AutoMove(int &range, int dt)
 {
 	Stop();
@@ -1223,7 +1209,7 @@ bool Player::AutoMove(int &range, int dt)
 	void Player::SetWeapon() {
 		switch (_weaponID)
 		{
-			/*case EnumID::Stop_Watch:
+			/*case EnumID::StopWatch:
 				_usingWatch = true;
 				break; */
 

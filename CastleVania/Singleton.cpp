@@ -50,7 +50,7 @@ Singleton::Singleton()
 	dagger = new GTexture("Resources/item/4.png", 1, 1, 1);
 	boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
 	axe = new GTexture("Resources/item/7.png", 1, 1, 1);
-	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
+
 	// remove later 
 	whipUpgrade = new GTexture("Resources/item/3.png", 1, 1, 1);
 	
@@ -84,6 +84,7 @@ Singleton::Singleton()
 	// Item
 	rewardedItem = new GTexture("Resources/other/1.png", 3, 1, 3);
 	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
+	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
 }
 
 GTexture* Singleton::getTexture(EnumID id)
@@ -177,10 +178,8 @@ GTexture* Singleton::getTexture(EnumID id)
 		return holyWater;
 	case EnumID::Boomerang_ID:
 		return boomerangItem;
-	case EnumID::Stop_Watch_ID:
+	case EnumID::StopWatch_ID:
 		return stopWatch;
-	case EnumID::WatchItem_ID:
-		return watchItem;
 		
 	case EnumID::MagicalBall_ID:
 		return MagicalBall;
