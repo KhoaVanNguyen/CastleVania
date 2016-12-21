@@ -9,6 +9,7 @@ SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
 	gameUI = NULL;
+	score = 0;
 }
 
 SceneGame::~SceneGame()
@@ -180,18 +181,33 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		player->Collision(*(qGameObject->_dynamicObject), t);
 
 
+		
+		if ( player->_usingCross) // player->GetCrossStatus()  )//player->GetUsingCross())
+		{
+
+			score += qGameObject->RemoveAllObjectInCamera(camera->viewport);
+			//player->SetUsingCross(false);
+			player->CollideWithCrossItem(false);
+			// Background
+			d3ddv->StretchRect(
+				BackgroundWhite,			// from 
+				NULL,				// which portion?
+				G_BackBuffer,		// to 
+				NULL,				// which portion?
+				D3DTEXF_NONE);
+		}
+		else {
+
+			d3ddv->StretchRect(
+				Background,
+				NULL,
+				G_BackBuffer,
+				NULL,
+				D3DTEXF_NONE);
+		}
+
+
 		qGameObject->Collision(t);
-
-
-		d3ddv->StretchRect(
-			Background,
-			NULL,
-			G_BackBuffer,
-			NULL,
-			D3DTEXF_NONE);
-
-
-
 		G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
 		bg->Draw(camera);

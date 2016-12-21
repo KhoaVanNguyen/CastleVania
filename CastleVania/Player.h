@@ -19,12 +19,18 @@ using namespace std;
 
 class Player : public DynamicObject
 {
+protected:
+	
 public:
-
+	bool _usingCross;
 	// for testing
 	int currentCollideWithID;
 
-
+	// cross Item
+	bool _collideWithCrossItem;
+	
+	void CollideWithCrossItem(bool value);
+	bool GetCrossStatus();
 
 	GSprite *playerJump;
 	GSprite *fightingSprite;

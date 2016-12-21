@@ -27,7 +27,8 @@ int QGameObject::RemoveAllObjectInCamera(D3DXVECTOR2 viewport)
 				switch (other->id)
 				{
 				
-					
+				default:
+					score += other->point;
 					_dynamicObject->erase(it++);
 					break;
 				}

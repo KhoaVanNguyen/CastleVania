@@ -13,7 +13,7 @@ enum EnumID
 	None_ID,
 	Player_ID,
 	PlayerDeath_ID,
-	
+
 	Brick_ID,
 	Candle_ID,
 	LargeCandle_ID,
@@ -27,15 +27,15 @@ enum EnumID
 	AxeKnights_ID,
 	BoneTowers_ID,
 	Ghouls_ID,
-	
-	
+
+
 	//groud
 	MovingPlatform_ID,
 	StairUpLeft_ID,
 	StairUpRight_ID,
 	StairDownLeft_ID,
 	StairDownRight_ID,
-	
+
 	DoorLeft_ID,
 	DoorRight_ID,
 	TeleUp_ID,
@@ -83,7 +83,10 @@ enum EnumID
 	Throw_Axe_ID,
 	Holy_Watter_ID,
 	Boomerang_ID,
-	Stop_Watch_ID
+	Stop_Watch_ID,
+
+
+	CrossItem_ID
 };
 enum EKindStair
 {
