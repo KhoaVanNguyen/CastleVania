@@ -24,8 +24,7 @@ protected:
 	D3DXVECTOR2 posDoor;
 	Medusa *_medusa;
 public:
-	DWORD _localHurtTime;
-	DWORD _deltaHurtTime;
+	
 	bool bActiveHurt;
 
 
@@ -44,6 +43,14 @@ public:
 	int RemoveAllObjectInCamera(D3DXVECTOR2);
 	void RemoveAllObject();
 	Medusa* getMedusa();
+
+	// For StopWatch
+
+	DWORD _deltaHurtTime;
+	bool _pausing;
+	DWORD _startToPauseTime;
+	void PauseUpdate();
+	bool IsPausing();
 	
 	
 };

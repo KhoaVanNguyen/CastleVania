@@ -57,9 +57,8 @@ enum EnumID
 
 
 	//Item
-	Cross,
 	Invisibility_Potion,
-	Pork_Chop,
+	PorkChop_ID,
 	Double_Shot,
 	Triple_Shot,
 	Bonuses,
@@ -70,9 +69,9 @@ enum EnumID
 	Red_Money_Bag,
 	Purple_Money_Bag,
 	White_Money_Bag,
-	MoneyBagRedItem_ID,
-	MoneyBagBlueItem_ID,
-	MoneyBagWhiteItem_ID,
+	RedMoneyBag_ID,
+	PurpleMoneyBag_ID,
+	WhiteMoneyBag_ID,
 	MoneyBagItem_ID,
 	WatchItem_ID,
 	MagicalBall_ID,
@@ -81,12 +80,14 @@ enum EnumID
 	//weapon
 	Dagger_ID,
 	Throw_Axe_ID,
-	Holy_Watter_ID,
+	HolyWater_ID,
 	Boomerang_ID,
-	Stop_Watch_ID,
+	StopWatch_ID,
 
 
-	CrossItem_ID
+	CrossItem_ID,
+
+	HolyWaterItem_ID
 };
 enum EKindStair
 {

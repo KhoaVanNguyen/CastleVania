@@ -161,6 +161,13 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			}
 #pragma endregion 
 
+
+		if (player->_usingStopWatch) {
+			qGameObject->PauseUpdate();
+			player->_usingStopWatch = false;
+			player->hearts -= 6;
+		}
+
 		qGameObject->Update(t);
 		bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
 
@@ -187,7 +194,9 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
 			score += qGameObject->RemoveAllObjectInCamera(camera->viewport);
 			//player->SetUsingCross(false);
-			player->CollideWithCrossItem(false);
+			//player->CollideWithCrossItem(false);
+
+			player->_usingCross = false;
 			// Background
 			d3ddv->StretchRect(
 				BackgroundWhite,			// from 
@@ -478,6 +487,12 @@ void SceneGame::OnKeyDown(int KeyCode) {
 		break;
 	case DIK_B:
 		player->ChangeWeapon(EnumID::Dagger_ID);
+		break;
+	case DIK_V:
+		player->ChangeWeapon(EnumID::StopWatch_ID);
+		break;
+	case DIK_C:
+		player->ChangeWeapon(EnumID::HolyWater_ID);
 		break;
 	}
 	

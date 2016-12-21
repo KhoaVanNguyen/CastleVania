@@ -25,7 +25,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	//_onLand = false;
 	_colBottomStair = false;
 	_hasKnockBack = false;
-
+	_usingStopWatch = false;
 	//Door
 	_colDoor = false;
 	_directDoor = EDirectDoor::NoneDoor;
@@ -167,7 +167,7 @@ void Player::Draw(GCamera* camera)
 				playerStair->DrawFlipX(center.x, center.y);
 			}
 			//?
-				return;
+			return;
 		}
 
 		if (_action == Action::Fight) {
@@ -191,7 +191,7 @@ void Player::Draw(GCamera* camera)
 	else
 	{
 		if (_action == Action::Fight) {
-			
+
 			if (!_hasSit) {
 				fightingSprite->Draw(center.x, center.y);
 
@@ -444,7 +444,7 @@ void Player::Jump()
 			sprite->SelectIndex(4);
 			_action = Action::Jump;
 			_hasJump = true;
-			
+
 		}
 	}
 	ResetStair();
@@ -749,8 +749,8 @@ void Player::ResetStair()
 		_upStair = _downStair = false;
 	//_kindStair = EKindStair::None;
 	_colStair = false;
-//	_action = Action::Idle;
- }
+	//	_action = Action::Idle;
+}
 Player::~Player(void)
 {
 }
@@ -800,6 +800,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					switch (other->id)
 					{
 
+
 					case EnumID::Whip_Upgrade: // not yet
 						this->UpgradeMorningStar();
 						break;
@@ -814,8 +815,11 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						point += other->point;
 						break;
 					case EnumID::CrossItem_ID:
-						CollideWithCrossItem(true);
-					
+						_usingCross = true;
+						break;
+					case EnumID::PorkChop_ID:
+						// ăn Pork Chop, máu +6
+						hp += 6;
 						break;
 					case EnumID::MagicalBall_ID:
 						//Qua man
@@ -936,7 +940,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 							// Rơi tự do được
 							vY = -(SPEED_Y + 0.4f);
-							
+
 							// Ko roi tu do dc
 							//vY = 0;
 							//_beFallOutScreen = true;
@@ -1058,7 +1062,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						_door = other;
 					}
 					break;
-					
+
 					case EnumID::TeleUp_ID:
 					{
 						float dentaHeight = abs((other->posY) - (posY - height / 2));
@@ -1084,7 +1088,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					}
 					break;
 
-					
+
 					case EnumID::TrapDoor_ID:
 						hp = 0;
 						break;
@@ -1123,7 +1127,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						break;
 					}
 
-					}
+				}
 
 			}
 		}
@@ -1159,20 +1163,6 @@ EDirectDoor Player::GetDirectDoor()
 	_colDoor = false;
 	return _directDoor;
 }
-bool Player::GetCrossStatus() {
-	return _usingCross;
-}
-void Player::CollideWithCrossItem(bool value) {
-	if (!value)
-	{
-		_usingCross = false;
-	}
-	else if (!_usingCross)
-	{
-		_usingCross = true;
-		// am thanh
-	}
-}
 bool Player::AutoMove(int &range, int dt)
 {
 	Stop();
@@ -1191,57 +1181,59 @@ bool Player::AutoMove(int &range, int dt)
 	sprite->Update(dt);
 	return false;
 }
-	void Player::KnockBack()
+void Player::KnockBack()
+{
+	if (!_hasKnockBack)
 	{
-		if (!_hasKnockBack)
+
+		if (hp > 0)
 		{
-
-			if (hp > 0)
-			{
-				hp -= 1;
-				//hp -= other->damage;
-			}
-			_allowPress = false;
-			_a = -A;
-			if (vX > 0 || _vLast > 0)
-				vX = -(sqrt(-2 * _a * MAX_WIDTH_KNOCKBACK));
-			else if (vX < 0 || _vLast < 0)
-				vX = (sqrt(-2 * _a * MAX_WIDTH_KNOCKBACK));
-			vY = sqrt(-2 * _a * MAX_HEIGHT_KNOCKBACK);
-			_heightJump = 0;
-			_hasJump = false;
-			_hasKnockBack = true;
-			_isHurted = true;
+			hp -= 1;
+			//hp -= other->damage;
 		}
+		_allowPress = false;
+		_a = -A;
+		if (vX > 0 || _vLast > 0)
+			vX = -(sqrt(-2 * _a * MAX_WIDTH_KNOCKBACK));
+		else if (vX < 0 || _vLast < 0)
+			vX = (sqrt(-2 * _a * MAX_WIDTH_KNOCKBACK));
+		vY = sqrt(-2 * _a * MAX_HEIGHT_KNOCKBACK);
+		_heightJump = 0;
+		_hasJump = false;
+		_hasKnockBack = true;
+		_isHurted = true;
 	}
-	void Player::UseWeapon() {
-		if (!_usingWeapon)
-		{
-			_usingWeapon = true;
-		}
+}
+void Player::UseWeapon() {
+	if (!_usingWeapon)
+	{
+		_usingWeapon = true;
 	}
-	void Player::SetWeapon() {
-		switch (_weaponID)
-		{
-			/*case EnumID::Stop_Watch:
-				_usingWatch = true;
-				break; */
+}
+void Player::SetWeapon() {
+	switch (_weaponID)
+	{
+	case EnumID::StopWatch_ID:
+		_usingStopWatch = true;
+		break;
 
-		case EnumID::Throw_Axe_ID:
-			_weapons->push_back(new ThrowAxe(posX, posY, _vLast));
-			break;
+	case EnumID::Throw_Axe_ID:
+		_weapons->push_back(new ThrowAxe(posX, posY, _vLast));
+		break;
 
-		case EnumID::Boomerang_ID:
-			_weapons->push_back(new Boomerang(posX, posY, _vLast));
-			break;
-		case EnumID::Dagger_ID:
-			_weapons->push_back(new Dagger(posX, posY, _vLast));
-			break;
-
-		}
-		_hasWeapon = false;
+	case EnumID::Boomerang_ID:
+		_weapons->push_back(new Boomerang(posX, posY, _vLast));
+		break;
+	case EnumID::Dagger_ID:
+		_weapons->push_back(new Dagger(posX, posY, _vLast));
+		break;
+	case EnumID::HolyWater_ID:
+		_weapons->push_back(new HolyWater(posX, posY, _vLast));
+		break;
 	}
-	void Player::ChangeWeapon(EnumID weaponId) {
-		_weaponID = weaponId;
+	_hasWeapon = false;
+}
+void Player::ChangeWeapon(EnumID weaponId) {
+	_weaponID = weaponId;
 
-	}
+}

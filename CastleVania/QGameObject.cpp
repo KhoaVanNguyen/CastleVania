@@ -1,8 +1,9 @@
 ﻿#include "QGameObject.h"
 
-
+#define STOP_WATCH_TIME = 1200.0
 QGameObject::QGameObject(void)
 {
+	
 }
 
 void QGameObject::RemoveAllObject()
@@ -39,7 +40,6 @@ int QGameObject::RemoveAllObjectInCamera(D3DXVECTOR2 viewport)
 	}
 	return score;
 }
-
 //Được gọi khi load Stage
 //Filename là tên file Stage
 QGameObject::QGameObject(string fileName)
@@ -151,7 +151,8 @@ QGameObject::QGameObject(string fileName)
 			}
 		}
 	}
-
+	_pausing = false;
+	_startToPauseTime = 0;
 }
 
 Medusa* QGameObject::getMedusa()
@@ -229,26 +230,50 @@ void QGameObject::Update(int deltaTime)
 	it = _dynamicObject->begin();
 	while (it != _dynamicObject->end())
 	{
-
-		if ((*it)->id == EnumID::Medusa_ID)
-		{
-			if (((Medusa*)*it)->StateCancel())
+		if  (!IsPausing() || (IsPausing() && (*it)->type != ObjectType::Enemy_Type)) {
+			if ((*it)->id == EnumID::Medusa_ID)
 			{
-				_dynamicObject->push_back(new MagicalBall((*it)->posX, (*it)->posY));
-				_dynamicObject->erase(it++);
+				if (((Medusa*)*it)->StateCancel())
+				{
+					_dynamicObject->push_back(new MagicalBall((*it)->posX, (*it)->posY));
+					_dynamicObject->erase(it++);
+				}
+				else ++it;
 			}
-			else ++it;
+			else {
+
+				if ((*it)->active)
+				{
+					(*it)->Update(deltaTime);
+
+				}
+				it++;
+
+			}
 		}
-		
-		if ((*it)->active)
-		{
-			(*it)->Update(deltaTime);
-		}
+		else 
 		++it;
 	}
 }
 
-
+// Neu IsPausing == false -> Game chay binh thuong
+bool QGameObject::IsPausing()
+{
+	if (!_pausing)
+		return false;
+	DWORD now = GetTickCount();
+	DWORD deltaTime = now - _startToPauseTime;
+	if (deltaTime >= 1200)
+	{
+		_pausing = false;
+		return false;
+	}
+	return true;
+}
+void QGameObject::PauseUpdate() {
+	_pausing = true;
+	_startToPauseTime = GetTickCount();
+}
 
 QGameObject::~QGameObject(void)
 {

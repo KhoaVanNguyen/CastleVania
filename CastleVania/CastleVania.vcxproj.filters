@@ -55,6 +55,7 @@
     <ClCompile Include="FireBossDie.cpp" />
     <ClCompile Include="MagicalBall.cpp" />
     <ClCompile Include="TrapDoor.cpp" />
+    <ClCompile Include="HolyWater.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -114,5 +115,6 @@
     <ClInclude Include="FireBossDie.h" />
     <ClInclude Include="MagicalBall.h" />
     <ClInclude Include="TrapDoor.h" />
+    <ClInclude Include="HolyWater.h" />
   </ItemGroup>
 </Project>
