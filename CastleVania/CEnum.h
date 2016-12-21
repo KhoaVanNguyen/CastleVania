@@ -13,7 +13,7 @@ enum EnumID
 	None_ID,
 	Player_ID,
 	PlayerDeath_ID,
-	
+
 	Brick_ID,
 	Candle_ID,
 	LargeCandle_ID,
@@ -34,11 +34,11 @@ enum EnumID
 	StairUpRight_ID,
 	StairDownLeft_ID,
 	StairDownRight_ID,
-	
+
 	DoorLeft_ID,
 	DoorRight_ID,
-	DoorUp_ID,
-	DoorDown_ID,
+	TeleUp_ID,
+	TeleDown_ID,
 	OpenDoor_ID,
 	TrapDoor_ID,
 	CastleGate_ID,
@@ -75,12 +75,17 @@ enum EnumID
 	MoneyBagItem_ID,
 	WatchItem_ID,
 	MagicalBall_ID,
+
+	RewardedItem_ID,
 	//weapon
 	Dagger_ID,
 	Throw_Axe_ID,
 	Holy_Watter_ID,
 	Boomerang_ID,
-	Stop_Watch_ID
+	Stop_Watch_ID,
+
+
+	CrossItem_ID
 };
 enum EKindStair
 {
@@ -134,8 +139,8 @@ enum ECollisionDirect
 
 enum EDirectDoor
 {
-	DoorUp,
-	DoorDown,
+	TeleUp,
+	TeleDown,
 	DoorRight,
 	DoorLeft,
 	NoneDoor

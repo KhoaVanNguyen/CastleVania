@@ -31,6 +31,8 @@ protected:
 	
 	bool _beginMoveCamera;
 
+	// Score
+	int score;
 
 	//camera
 	void MoveCamera(int &_moveRange);

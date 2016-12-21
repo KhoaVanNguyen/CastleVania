@@ -19,7 +19,19 @@ using namespace std;
 
 class Player : public DynamicObject
 {
+protected:
+	
 public:
+	bool _usingCross;
+	// for testing
+	int currentCollideWithID;
+
+	// cross Item
+	bool _collideWithCrossItem;
+	
+	void CollideWithCrossItem(bool value);
+	bool GetCrossStatus();
+
 	GSprite *playerJump;
 	GSprite *fightingSprite;
 	GSprite *fightingSittingSprite;
@@ -113,6 +125,9 @@ public:
 	void SetDirectDoor(EDirectDoor _direct);
 	
 	bool AutoMove(int &range, int dt);
+
+
+	
 
 };
 

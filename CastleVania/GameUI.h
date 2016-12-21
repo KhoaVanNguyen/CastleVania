@@ -25,6 +25,8 @@ protected:
 	int _playerY;
 	int _viewPortY;
 	int _viewPortX;
+
+	int _collideID;
 	vector<GSprite*> weapons;
 	GSprite* _hpSprite;
 	void _initialize();
@@ -46,6 +48,8 @@ public:
 	void updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_ = 20);
 	
 	void updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y,int viewPortX, int viewPortY);
+	
+	void updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY, int collideId);
 	~GameUI(void);
 };
 

@@ -6,7 +6,7 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define MAX_HEIGHT 140.0f
+#define MAX_HEIGHT 70.0f
 #define A 0.005f
 Player::Player(void) : DynamicObject()
 {
@@ -794,6 +794,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		if (other->active)
 		{
 			if (AABB(boxPlayer, boxOther, moveX, moveY) == true) {
+				currentCollideWithID = other->id;
 				// moveY ,  moveX
 #pragma region Va chạm với item
 				if (other->type == ObjectType::Item && other->id != EnumID::FireBossDie_ID) {
@@ -813,6 +814,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					case EnumID::White_Money_Bag:
 						//cong tien
 						point += other->point;
+						break;
+					case EnumID::CrossItem_ID:
+						CollideWithCrossItem(true);
+					
 						break;
 					case EnumID::MagicalBall_ID:
 						//Qua man
@@ -837,7 +842,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							//đang rơi xuống
 							if (_action == Action::Fall)
 							{
-								if (moveY != 0)
+								/*if (moveY != 0)
 								{
 									posY += moveY;
 									vY = 0;
@@ -845,7 +850,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 									_action = Action::Idle;
 									_onLand = true;
 									Stop();
-								}
+								}*/
 							}
 							else
 							{
@@ -883,8 +888,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										_a = 0;
 										_allowPress = true;
 										sprite->SelectIndex(0);
-										if (boxPlayer.h < 60)
-											posY += 16;
+										/*if (boxPlayer.h < 60)
+											posY += 16;*/
 									}
 									else
 										if (!_hasJump)
@@ -932,8 +937,11 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						if ((!_onLand || _action != Action::Idle) && !_hasJump)
 						{
 
-
+							// Rơi tự do được
 							vY = -(SPEED_Y + 0.4f);
+							
+							// Ko roi tu do dc
+							//vY = 0;
 							//_beFallOutScreen = true;
 						}
 						//--------------------
@@ -1039,7 +1047,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region    Va cham voi cac loai cua
 
 
-					case EnumID::DoorDown_ID:
+					case EnumID::TeleDown_ID:
 					{
 						// other->y = 432 , posY = 465.0003 , height = 66
 
@@ -1054,7 +1062,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					}
 					break;
 					
-					case EnumID::DoorUp_ID:
+					case EnumID::TeleUp_ID:
 					{
 						float dentaHeight = abs((other->posY) - (posY - height / 2));
 						if (dentaHeight < 3 && _upStair)
@@ -1135,11 +1143,11 @@ EDirectDoor Player::GetDirectDoor()
 	{
 		switch (_door->id)
 		{
-		case DoorDown_ID:
-			_directDoor = EDirectDoor::DoorDown;
+		case TeleDown_ID:
+			_directDoor = EDirectDoor::TeleDown;
 			break;
-		case DoorUp_ID:
-			_directDoor = EDirectDoor::DoorUp;
+		case TeleUp_ID:
+			_directDoor = EDirectDoor::TeleUp;
 			break;
 		case DoorLeft_ID:
 			_directDoor = EDirectDoor::DoorLeft;
@@ -1154,9 +1162,23 @@ EDirectDoor Player::GetDirectDoor()
 	_colDoor = false;
 	return _directDoor;
 }
-
+bool Player::GetCrossStatus() {
+	return _usingCross;
+}
+void Player::CollideWithCrossItem(bool value) {
+	if (!value)
+	{
+		_usingCross = false;
+	}
+	else if (!_usingCross)
+	{
+		_usingCross = true;
+		// am thanh
+	}
+}
 bool Player::AutoMove(int &range, int dt)
 {
+	Stop();
 	if (range == 0)
 		return true;
 	if (range > 0)

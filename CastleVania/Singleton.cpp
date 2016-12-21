@@ -82,6 +82,9 @@ Singleton::Singleton()
 	//door
 	openDoor = new GTexture("Resources/ground/Gate1.png", 4, 1, 4);
 
+	// Item
+	rewardedItem = new GTexture("Resources/other/1.png", 3, 1, 3);
+	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
 }
 
 GTexture* Singleton::getTexture(EnumID id)
@@ -184,6 +187,10 @@ GTexture* Singleton::getTexture(EnumID id)
 	case EnumID::MagicalBall_ID:
 		return MagicalBall;
 
+	case EnumID::RewardedItem_ID:
+		return rewardedItem;
+	case EnumID::CrossItem_ID:
+		return crossItem;
 		/*moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
 		crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
 		morningStarItem = new GTexture("Resources/item/3.png", 1, 1, 1);*/

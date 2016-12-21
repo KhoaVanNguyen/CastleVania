@@ -9,6 +9,7 @@ SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
 	gameUI = NULL;
+	score = 0;
 }
 
 SceneGame::~SceneGame()
@@ -169,7 +170,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			//_gameScore->updateScore(_stageNow, _score, deltaTime, (int)((player->hp + 1) / 2), _lifes, player->_weaponID, player->hearts, _queenMedusa->hp);
 			if (_medusa->type == ObjectType::Enemy_Type)
 			{
-				camera->SetSizeMap(G_LeftCamera, G_RightCamera);
+				camera->SetSizeMap(G_RightCamera, G_LeftCamera);
 			}
 		}
 
@@ -178,24 +179,39 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		player->Collision(*(qGameObject->_dynamicObject), t);
 
 
+		
+		if ( player->_usingCross) // player->GetCrossStatus()  )//player->GetUsingCross())
+		{
+
+			score += qGameObject->RemoveAllObjectInCamera(camera->viewport);
+			//player->SetUsingCross(false);
+			player->CollideWithCrossItem(false);
+			// Background
+			d3ddv->StretchRect(
+				BackgroundWhite,			// from 
+				NULL,				// which portion?
+				G_BackBuffer,		// to 
+				NULL,				// which portion?
+				D3DTEXF_NONE);
+		}
+		else {
+
+			d3ddv->StretchRect(
+				Background,
+				NULL,
+				G_BackBuffer,
+				NULL,
+				D3DTEXF_NONE);
+		}
+
+
 		qGameObject->Collision(t);
-
-
-		d3ddv->StretchRect(
-			Background,
-			NULL,
-			G_BackBuffer,
-			NULL,
-			D3DTEXF_NONE);
-
-
-
 		G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect);
-		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y);
+		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y,player->currentCollideWithID);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
@@ -280,7 +296,7 @@ void SceneGame::LoadStage(int stage)
 	default:
 		break;
 	}
-	camera->SetSizeMap(G_LeftCamera, G_RightCamera);
+	camera->SetSizeMap(G_RightCamera, G_LeftCamera);
 	openDoor = new OpenDoor(posDoor.x, posDoor.y);
 }
 
@@ -292,7 +308,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 	{
 		switch (_directDoor)
 		{
-		case DoorDown:
+		case TeleDown:
 		{
 			camera->viewport.y -= (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
 			player->posY -= 64;
@@ -304,7 +320,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			}
 		}
 		break;
-		case DoorUp:
+		case TeleUp:
 		{
 			camera->viewport.y += (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
 			player->posY += 64;
@@ -351,6 +367,7 @@ void SceneGame::MoveCamera(int &_moveRange)
 		_rangeMoveCamera = _moveRange;
 	if (_beginMoveCamera)
 	{
+		player->Stop();
 		if (_rangeMoveCamera == 0 && !_moveCameraHaft)
 		{
 			_moveCameraHaft = true;
@@ -370,6 +387,7 @@ void SceneGame::MoveCamera(int &_moveRange)
 	}
 	else if (_moveCameraHaft)
 	{
+		player->Stop();
 		if (_rangeMoveCamera2 == 0 && !_moveCameraDone)
 		{
 			_moveCameraHaft = false;

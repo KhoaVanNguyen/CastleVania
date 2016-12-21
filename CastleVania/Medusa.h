@@ -17,7 +17,7 @@ using namespace std;
 #define PI 3.14f
 #define T 1000
 #define A 20
-#define QUEEN_medusa_Sleeping_RATE 1
+#define QUEEN_medusa_SleepinG_RightCameraATE 1
 
 enum EMedusaState
 {
