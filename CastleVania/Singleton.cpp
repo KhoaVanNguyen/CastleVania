@@ -84,7 +84,12 @@ Singleton::Singleton()
 	// Item
 	rewardedItem = new GTexture("Resources/other/1.png", 3, 1, 3);
 	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
+	porkChop = new GTexture("Resources/item/10.png", 1, 1, 1);
+	
+	
+	
 	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
+
 }
 
 GTexture* Singleton::getTexture(EnumID id)
@@ -184,10 +189,14 @@ GTexture* Singleton::getTexture(EnumID id)
 	case EnumID::MagicalBall_ID:
 		return MagicalBall;
 
+	case EnumID::PorkChop_ID:
+		return porkChop;
 	case EnumID::RewardedItem_ID:
 		return rewardedItem;
 	case EnumID::CrossItem_ID:
 		return crossItem;
+
+	
 		/*moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
 		crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
 		morningStarItem = new GTexture("Resources/item/3.png", 1, 1, 1);*/

@@ -800,6 +800,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					switch (other->id)
 					{
 
+
 					case EnumID::Whip_Upgrade: // not yet
 						this->UpgradeMorningStar();
 						break;
@@ -815,7 +816,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						break;
 					case EnumID::CrossItem_ID:
 						_usingCross = true;
-					
+						break;
+					case EnumID::PorkChop_ID:
+						// ăn Pork Chop, máu +6
+						hp += 6;
 						break;
 					case EnumID::MagicalBall_ID:
 						//Qua man

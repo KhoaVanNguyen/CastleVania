@@ -69,6 +69,7 @@ private:
 	// Items
 
 	GTexture* rewardedItem;
+	GTexture* porkChop;
 	
 	//weapon
 	
