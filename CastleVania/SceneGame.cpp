@@ -4,7 +4,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 1;
-	_stageNow = 6;
+	_stageNow = 1;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -40,10 +40,11 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	
 	case 1:
 	{
-		camera->viewport.y = 1634; // 485
+		camera->viewport.y = 485; // 485
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player = new Player(287, 1310);
+		player = new Player(3776, 96);
+		//player = new Player(287, 1310);
 		//player->posX = 3776;
 		//player->posY = 96;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
@@ -73,8 +74,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	default:
 		break;
 	}
-	/*posStageToReset.x = player->posX;
-	posStageToReset.y = player->posY;*/
+	
 	posCamera = camera->viewport;
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
@@ -163,8 +163,8 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
 		player->Update(t);
 
-		if (_stageNow == 6){
-
+		if (_stageNow == 6)
+		{
 			_medusa->Update(t, player->getPos());
 			//_gameScore->updateScore(_stageNow, _score, deltaTime, (int)((player->hp + 1) / 2), _lifes, player->_weaponID, player->hearts, _queenMedusa->hp);
 			if (_medusa->type == ObjectType::Enemy_Type)
@@ -232,7 +232,7 @@ void SceneGame::LoadStage(int stage)
 	case 4:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage4.txt");
-		//posDoor = qGameObject->GetPosDoor();
+		
 		
 	}
 
@@ -254,28 +254,26 @@ void SceneGame::LoadStage(int stage)
 	case 7:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage7.txt");
-		//posDoor = qGameObject->GetPosDoor();
+		
 
 	}
 	break;
 	case 8:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage8.txt");
-		//posDoor = qGameObject->GetPosDoor();
-
+		
 	}
 	break;
 	case 9:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage9.txt");
-		//posDoor = qGameObject->GetPosDoor();
+	
 	}
 	break;
 	case 10:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage10.txt");
-		//posDoor = qGameObject->GetPosDoor();
-		//
+		
 
 	}
 	break;

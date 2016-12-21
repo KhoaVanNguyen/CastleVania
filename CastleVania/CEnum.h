@@ -27,6 +27,7 @@ enum EnumID
 	AxeKnights_ID,
 	BoneTowers_ID,
 	Ghouls_ID,
+	Ghosts_ID,
 	//groud
 	MovingPlatform_ID,
 	StairUpLeft_ID,
@@ -48,7 +49,7 @@ enum EnumID
 
 	//other
 	Water_ID,
-	FireBall_ID,
+	Fire_ID,
 	FireBossDie_ID,
 	HP_ID,
 	GameUI_ID,

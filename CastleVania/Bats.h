@@ -9,6 +9,7 @@ class Bats :public DynamicObject
 public:
 	bool getUp;
 
+	float limit;
 	Bats(void);
 	Bats(float x, float y);
 	void MoveSinPath(int deltaTime);

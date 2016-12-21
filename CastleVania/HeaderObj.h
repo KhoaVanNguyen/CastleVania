@@ -11,7 +11,7 @@
 #include "Panthers.h"
 #include "Fishmen.h"
 #include "Water.h"
-#include "FireBall.h"
+#include "Fire.h"
 #include "LargeCandle.h"
 #include "Stair.h"
 #include "AxeKnights.h"
@@ -23,6 +23,6 @@
 #include "CastleGate.h"
 #include "OpenDoor.h"
 #include "MagicalBall.h"
-
+#include "Ghosts.h"
 
 #endif

@@ -780,6 +780,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 	for (list<GameObject*>::iterator _itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
 		GameObject* other = (*_itBegin);
+		if ((other->id == EnumID::Bats_ID && other->sprite->GetIndex() == 0))
+			other->SetActive(posX, posY);
 		float moveX = 0;
 		float moveY = 0;
 		float normalx;
@@ -818,6 +820,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						//SoundManager::GetInst()->RemoveAllBGM();
 						//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_StageClear);
 						break;
+					
 					}
 				}
 #pragma endregion 
@@ -1086,7 +1089,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 						switch (other->type)
 						{
-							//#pragma region Va cham Enemy
+//#pragma region Va cham Enemy
 							//						case ObjectType::Enemy_Type:
 							//							if (!_onStair && !_hasStair)
 							//							{
@@ -1107,7 +1110,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							//								}
 							//							}
 							//							break;
-							//#pragma endregion 
+//#pragma endregion 
 						default:
 
 							break;

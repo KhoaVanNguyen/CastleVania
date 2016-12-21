@@ -97,6 +97,9 @@ QGameObject::QGameObject(string fileName)
 			case 10:
 				_dynamicObject->push_back(new Ghouls(posX, posY));
 				break;
+			case 11:
+				_dynamicObject->push_back(new Ghosts(posX, posY));
+				break;
 			case 12:
 				_dynamicObject->push_back(new MedusaHeads(posX, posY));
 				break;

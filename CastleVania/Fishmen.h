@@ -4,7 +4,7 @@
 #include "DynamicObject.h"
 #include "CEnum.h"
 #include "Water.h"
-#include "FireBall.h"
+#include "Fire.h"
 
 class Fishmen : public DynamicObject
 {
@@ -14,7 +14,7 @@ public:
 	bool _hasJump;
 	float _heightJump;
 	list<Water*> *w;
-	list<FireBall*> *fireBall;
+	list<Fire*> *_listFire;
 
 	Fishmen(void);
 	Fishmen(float x, float y);

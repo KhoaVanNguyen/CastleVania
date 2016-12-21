@@ -31,6 +31,7 @@ Singleton::Singleton()
 	Fishmen = new GTexture("Resources/enemy/3.png", 3, 1, 3);
 	AxeKnights = new GTexture("Resources/enemy/5.png", 4, 1, 4);
 	BoneTowers = new GTexture("Resources/enemy/8.png", 1, 1, 1);
+	Ghosts = new GTexture("Resources/enemy/9.png", 2, 1, 2);
 
 	//ground
 	candle = new GTexture("Resources/ground/1.png", 4, 1, 4);
@@ -69,7 +70,7 @@ Singleton::Singleton()
 
 	fireBossDie = new GTexture("Resources/other/1.png", 3, 1, 3);
 	water = new GTexture("Resources/other/2.png", 1, 1, 1);
-	fireBall = new GTexture("Resources/fireball.png", 1, 1, 1);
+	Fire = new GTexture("Resources/other/fire.png", 1, 1, 1);
 
 	bgMenu = new GTexture("Resources/mainmenu.png", 1, 1, 1);
 
@@ -107,9 +108,10 @@ GTexture* Singleton::getTexture(EnumID id)
 			return AxeKnights;
 	case EnumID ::BoneTowers_ID:
 		return BoneTowers;
-		
-	case EnumID::FireBall_ID:
-		return fireBall;
+	case EnumID::Fire_ID:
+		return Fire;
+	case EnumID::Ghosts_ID:
+		return Ghosts;
 		//ground
 	case EnumID::Candle_ID:
 		return candle;

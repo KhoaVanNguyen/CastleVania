@@ -8,58 +8,76 @@ BoneTowers::BoneTowers(void) : DynamicObject()
 
 BoneTowers::BoneTowers(float x, float y) : DynamicObject(x, y, 0, 0, EnumID::BoneTowers_ID)
 {
-	fireBall = new list<FireBall*>();
+	_listFire = new list<DynamicObject*>();
 	type = ObjectType::Enemy_Type;
 	point = 400;
 	hp = 4;
+	active = true;
+
+	_timeSpan = 0;
+
 }
 
 void BoneTowers::Update(int dt)
 {
-	list<FireBall*>::iterator i = fireBall->begin();
-	while (i != fireBall->end())
+
+	_timeSpan += dt;
+	if (_timeSpan % 13 == 0)
 	{
-		if (!(*i)->active)
-		{
-			if ((*i)->vX > 0)
-			{
-				fireBall->push_back(new FireBall(posX, posY - 16, 1, EnumID::FireBall_ID));
-			}
-			else fireBall->push_back(new FireBall(posX, posY + 16, -1, EnumID::FireBall_ID));
-			fireBall->erase(i++);
-		}
-		else
-		{
-			(*i)->Update(dt);
-			++i;
-		}
+		_listFire->push_back(new Fire(posX, posY+10, EnumID::Fire_ID));
 	}
+
+	_upDateFire(dt);
+	
+
 }
 
 void BoneTowers::Draw(GCamera* camera)
 {
-	for (list<FireBall*>::iterator i = fireBall->begin(); i != fireBall->end(); i++)
-	{
-		if ((*i)->active)
-			(*i)->Draw(camera);
-	}
+	
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
-	if (vX > 0)
-		sprite->DrawFlipX(center.x, center.y);
-	else
-		sprite->Draw(center.x, center.y);
-}
-
-void BoneTowers::SetActive(float x, float y)
-{
-	if (abs(posX - x) <= 260)
-	{
-		fireBall->push_back(new FireBall(posX, posY + 16, -1, EnumID::FireBall_ID));
-		fireBall->push_back(new FireBall(posX, posY - 16, 1, EnumID::FireBall_ID));
-		active = true;
-	}
+	sprite->Draw(center.x, center.y);
+	this->_drawFire(camera);
+	
 }
 
 BoneTowers::~BoneTowers(void)
 {
+	delete _listFire;
+}
+
+
+void BoneTowers::_upDateFire(float deltaTime_)
+{
+	list<DynamicObject*>::iterator it = _listFire->begin();
+	while (it != _listFire->end())
+	{
+		if (!(*it)->active)
+			_listFire->erase(it++);
+		else
+		{
+			(*it)->Update(deltaTime_);
+			++it;
+		}
+	}
+}
+
+void BoneTowers::_drawFire(GCamera* camera_)
+{
+	for (list<DynamicObject*>::iterator iter = _listFire->begin(); iter != _listFire->end(); iter++)
+	{
+		DynamicObject* fire = (*iter);
+		fire->Draw(camera_);
+	}
+}
+
+void BoneTowers::Collision(list<GameObject*> obj, int dt)
+{
+	// xet va cham cua Snake voi gameObject
+	for (list<DynamicObject*>::iterator iter = _listFire->begin(); iter != _listFire->end(); iter++)
+	{
+		DynamicObject* Fire = (*iter);
+		Fire->Collision(obj, dt);
+
+	}
 }

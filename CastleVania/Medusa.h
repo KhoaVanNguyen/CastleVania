@@ -19,15 +19,6 @@ using namespace std;
 #define A 20
 #define QUEEN_medusa_Sleeping_RATE 1
 
-//
-//enum ERouterType
-//{
-//	Parabol,
-//	Line,
-//	Horizontal,
-//	Vertical
-//};
-
 enum EMedusaState
 {
 	Sleeping,
@@ -48,7 +39,6 @@ protected:
 	D3DXVECTOR2* _nextStopPos;
 	int _previousStopPos;
 	int _currentStopPos;
-	//ERouterType _eRouterType;
 	DWORD _localTime;
 
 	list<DynamicObject*> *_LittleSnake;
@@ -70,7 +60,6 @@ protected:
 
 public:
 	bool HasGetUp;
-	//MagicalBall* MagicalBall;
 	Medusa(void);
 	Medusa(float posX, float posY, EnumID id);
 	virtual void Update(int deltaTime_);
