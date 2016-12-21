@@ -54,8 +54,12 @@
     <ClCompile Include="FireBossDie.cpp" />
     <ClCompile Include="MagicalBall.cpp" />
     <ClCompile Include="TrapDoor.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Ghosts.cpp" />
     <ClCompile Include="Fire.cpp" />
+=======
+    <ClCompile Include="HolyWater.cpp" />
+>>>>>>> d0bcdb18957daed81ae774d025049aeb9e24851b
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -114,7 +118,11 @@
     <ClInclude Include="FireBossDie.h" />
     <ClInclude Include="MagicalBall.h" />
     <ClInclude Include="TrapDoor.h" />
+<<<<<<< HEAD
     <ClInclude Include="Ghosts.h" />
     <ClInclude Include="Fire.h" />
+=======
+    <ClInclude Include="HolyWater.h" />
+>>>>>>> d0bcdb18957daed81ae774d025049aeb9e24851b
   </ItemGroup>
 </Project>

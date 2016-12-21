@@ -9,7 +9,7 @@
 #include "Dagger.h"
 #include "ThrowAxe.h"
 #include "Boomerang.h"
-
+#include "HolyWater.h"
 using namespace std;
 
 #define MAX_HEIGHT_KNOCKBACK 32.0f
@@ -23,14 +23,11 @@ protected:
 	
 public:
 	bool _usingCross;
+	bool _usingStopWatch;
 	// for testing
 	int currentCollideWithID;
 
 	// cross Item
-	bool _collideWithCrossItem;
-	
-	void CollideWithCrossItem(bool value);
-	bool GetCrossStatus();
 
 	GSprite *playerJump;
 	GSprite *fightingSprite;

@@ -89,16 +89,16 @@ GameObject(_posX, _posY, EnumID::FireBossDie_ID)
 //					switch (stt)
 //					{
 //					case 3:
-//						id = EnumID::MoneyBagRedItem_ID;
+//						id = EnumID::RedMoneyBag_ID;
 //						point = 100;
 //						break;
 //					case 4:
-//						id = EnumID::MoneyBagBlueItem_ID;
+//						id = EnumID::PurpleMoneyBag_ID;
 //						point = 400;
 //						sprite->SelectIndex(2);
 //						break;
 //					case 5:
-//						id = EnumID::MoneyBagWhiteItem_ID;
+//						id = EnumID::WhiteMoneyBag_ID;
 //						point = 700;
 //						sprite->SelectIndex(1);
 //						break;

@@ -107,6 +107,7 @@
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="CustomRect.cpp" />
     <ClCompile Include="Ghosts.cpp" />
+    <ClCompile Include="HolyWater.cpp" />
     <ClCompile Include="LargeCandle.cpp" />
     <ClCompile Include="LittleSnake.cpp" />
     <ClCompile Include="MagicalBall.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Ghosts.h" />
     <ClInclude Include="HeaderObj.h" />
     <ClInclude Include="CustomRect.h" />
+    <ClInclude Include="HolyWater.h" />
     <ClInclude Include="LargeCandle.h" />
     <ClInclude Include="LittleSnake.h" />
     <ClInclude Include="MagicalBall.h" />

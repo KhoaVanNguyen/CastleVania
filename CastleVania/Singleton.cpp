@@ -47,16 +47,16 @@ Singleton::Singleton()
 	smallHeart = new GTexture("Resources/item/0.png", 1, 1, 1);
 	moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
 	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
-	fireBomb = new GTexture("Resources/item/9.png", 1, 1, 1);
+	holyWater = new GTexture("Resources/weapon/2.png", 3, 1, 3);
 	dagger = new GTexture("Resources/item/4.png", 1, 1, 1);
 	boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
 	axe = new GTexture("Resources/item/7.png", 1, 1, 1);
-	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
+
 	// remove later 
 	whipUpgrade = new GTexture("Resources/item/3.png", 1, 1, 1);
 	
 
-	holyWater = new GTexture("Resources/item/9.png", 1, 1, 1);
+	//holyWater = new GTexture("Resources/item/9.png", 1, 1, 1);
 	dagger = new GTexture("Resources/item/4.png", 1, 1, 1);
 	boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
 	throwAxe = new GTexture("Resources/item/7.png", 1, 1, 1);
@@ -85,6 +85,12 @@ Singleton::Singleton()
 	// Item
 	rewardedItem = new GTexture("Resources/other/1.png", 3, 1, 3);
 	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
+	porkChop = new GTexture("Resources/item/10.png", 1, 1, 1);
+	holyWaterItem = new GTexture("Resources/item/9.png", 1, 1, 1);
+	
+	
+	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
+
 }
 
 GTexture* Singleton::getTexture(EnumID id)
@@ -175,30 +181,33 @@ GTexture* Singleton::getTexture(EnumID id)
 		return  dagger;
 	case EnumID::Throw_Axe_ID:
 		return throwAxe;
-	case EnumID::Holy_Watter_ID:
+	case EnumID::HolyWater_ID:
 		return holyWater;
 	case EnumID::Boomerang_ID:
 		return boomerangItem;
-	case EnumID::Stop_Watch_ID:
+	case EnumID::StopWatch_ID:
 		return stopWatch;
-	case EnumID::WatchItem_ID:
-		return watchItem;
 		
 	case EnumID::MagicalBall_ID:
 		return MagicalBall;
 
+	case EnumID::PorkChop_ID:
+		return porkChop;
 	case EnumID::RewardedItem_ID:
 		return rewardedItem;
 	case EnumID::CrossItem_ID:
 		return crossItem;
+	case EnumID::HolyWaterItem_ID:
+		return holyWaterItem;
+	
 		/*moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
 		crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
 		morningStarItem = new GTexture("Resources/item/3.png", 1, 1, 1);*/
 		
-		/*fireBombItem = new GTexture("Resources/item/9.png", 1, 1, 1);
-		daggerItem = new GTexture("Resources/item/4.png", 1, 1, 1);
-		boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
-		axeItem = new GTexture("Resources/item/7.png", 1, 1, 1);*/
+		
+		//daggerItem = new GTexture("Resources/item/4.png", 1, 1, 1);
+		//boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
+		//axeItem = new GTexture("Resources/item/7.png", 1, 1, 1);*/
 		
 		
 	/*	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
