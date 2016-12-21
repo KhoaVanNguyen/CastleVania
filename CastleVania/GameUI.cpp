@@ -4,12 +4,13 @@
 void GameUI::_initialize()
 {
 	// init weaponSprite
+	// _currentWeapon dùng để vẽ hình weapon trên UI thôi
 	weapons = vector<GSprite*>();
 	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Dagger_ID), 1));
 	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang_ID), 1));
 	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1));
 	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::StopWatch_ID), 1));
-
+	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::HolyWaterItem_ID), 1));
 
 	// init hp sprite
 	_hpSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::HP_ID), 1);
@@ -157,6 +158,9 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 	case StopWatch_ID:
 		_currentWeapon = 3;
 		break;
+	case HolyWaterItem_ID:
+		_currentWeapon = 4;
+		break;
 	default:
 		_currentWeapon = -1;
 		break;
@@ -239,6 +243,10 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 		break;
 	case StopWatch_ID:
 		_currentWeapon = 3;
+		break;
+
+	case HolyWater_ID:
+		_currentWeapon = 4;
 		break;
 	default:
 		_currentWeapon = -1;

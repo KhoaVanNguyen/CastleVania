@@ -491,6 +491,9 @@ void SceneGame::OnKeyDown(int KeyCode) {
 	case DIK_V:
 		player->ChangeWeapon(EnumID::StopWatch_ID);
 		break;
+	case DIK_C:
+		player->ChangeWeapon(EnumID::HolyWater_ID);
+		break;
 	}
 	
 }

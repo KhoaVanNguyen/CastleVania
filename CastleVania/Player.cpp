@@ -1227,7 +1227,9 @@ void Player::SetWeapon() {
 	case EnumID::Dagger_ID:
 		_weapons->push_back(new Dagger(posX, posY, _vLast));
 		break;
-
+	case EnumID::HolyWater_ID:
+		_weapons->push_back(new HolyWater(posX, posY, _vLast));
+		break;
 	}
 	_hasWeapon = false;
 }

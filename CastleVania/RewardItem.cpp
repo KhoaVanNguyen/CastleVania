@@ -69,8 +69,8 @@ void RewardItem::Update(int dt)
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1000);
 				break;
 			case 7:
-				id = EnumID::Holy_Watter_ID;
-				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Holy_Watter_ID), 1000);
+				id = EnumID::HolyWater_ID;
+				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::HolyWater_ID), 1000);
 				break;
 			case 8:
 				id = EnumID::Boomerang_ID;

@@ -9,7 +9,7 @@
 #include "Dagger.h"
 #include "ThrowAxe.h"
 #include "Boomerang.h"
-
+#include "HolyWater.h"
 using namespace std;
 
 #define MAX_HEIGHT_KNOCKBACK 32.0f

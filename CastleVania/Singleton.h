@@ -31,7 +31,7 @@ private:
 	
 	//weapon
 	GTexture* morningStar;
-	GTexture* fireBomb;
+	GTexture* holyWater;
 	GTexture* dagger;
 	GTexture* boomerang;
 	GTexture* axe;
@@ -41,7 +41,6 @@ private:
 	GTexture* moneyBagItem;
 	GTexture* crossItem;
 	GTexture* whipUpgrade;
-	GTexture* holyWater;
 	GTexture* boomerangItem;
 	GTexture* throwAxe;
 	GTexture* stopWatch;
@@ -71,11 +70,12 @@ private:
 	GTexture* rewardedItem;
 	GTexture* porkChop;
 	
+	GTexture* holyWaterItem;
 	//weapon
 	
 	static Singleton *single;
 
-
+	
 
 
 	Singleton();

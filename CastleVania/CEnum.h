@@ -80,12 +80,14 @@ enum EnumID
 	//weapon
 	Dagger_ID,
 	Throw_Axe_ID,
-	Holy_Watter_ID,
+	HolyWater_ID,
 	Boomerang_ID,
 	StopWatch_ID,
 
 
-	CrossItem_ID
+	CrossItem_ID,
+
+	HolyWaterItem_ID
 };
 enum EKindStair
 {
