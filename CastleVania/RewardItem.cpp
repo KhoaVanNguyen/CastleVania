@@ -52,7 +52,7 @@ void RewardItem::Update(int dt)
 		else {
 			random = rand() % (14);
 
-			random = 13;
+			//random = 13;
 			switch (random)
 			{
 				
