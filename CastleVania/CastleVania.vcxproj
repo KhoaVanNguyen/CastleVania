@@ -96,7 +96,7 @@
     <ClCompile Include="Candle.cpp" />
     <ClCompile Include="Dagger.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
-    <ClCompile Include="FireBall.cpp" />
+    <ClCompile Include="Fire.cpp" />
     <ClCompile Include="FireBossDie.cpp" />
     <ClCompile Include="Fishmen.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -106,6 +106,7 @@
     <ClCompile Include="GCamera.cpp" />
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="CustomRect.cpp" />
+    <ClCompile Include="Ghosts.cpp" />
     <ClCompile Include="LargeCandle.cpp" />
     <ClCompile Include="LittleSnake.cpp" />
     <ClCompile Include="MagicalBall.cpp" />
@@ -153,7 +154,7 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="Dagger.h" />
     <ClInclude Include="DynamicObject.h" />
-    <ClInclude Include="FireBall.h" />
+    <ClInclude Include="Fire.h" />
     <ClInclude Include="FireBossDie.h" />
     <ClInclude Include="Fishmen.h" />
     <ClInclude Include="Font.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="GCamera.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="dxutil.h" />
+    <ClInclude Include="Ghosts.h" />
     <ClInclude Include="HeaderObj.h" />
     <ClInclude Include="CustomRect.h" />
     <ClInclude Include="LargeCandle.h" />

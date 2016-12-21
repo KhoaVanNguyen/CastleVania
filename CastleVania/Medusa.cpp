@@ -271,6 +271,7 @@ void Medusa::Draw(GCamera* camera_)
 		this->_drawSnakes(camera_);
 		break;
 	case Dead:
+		//ve 6 dom lua nho tai 6 vi tri de tao thanh dam lua lon
 		_deadSprite->Draw(center.x - 40, center.y);
 		_deadSprite->Draw(center.x, center.y);
 		_deadSprite->Draw(center.x + 40, center.y);
@@ -291,8 +292,8 @@ void Medusa::Collision(list<GameObject*> obj, int dt)
 	// xet va cham cua Snake voi gameObject
 	for (list<DynamicObject*>::iterator iter = _LittleSnake->begin(); iter != _LittleSnake->end(); iter++)
 	{
-		DynamicObject* tempSnake = (*iter);
-		tempSnake->Collision(obj, dt);
+		DynamicObject* Snake = (*iter);
+		Snake->Collision(obj, dt);
 		
 	}
 }

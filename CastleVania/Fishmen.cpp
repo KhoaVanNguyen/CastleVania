@@ -12,7 +12,7 @@ Fishmen::Fishmen(float x, float y) : DynamicObject(x, y, 0, 0, EnumID::Fishmen_I
 {
 	_hasJump = false;
 	_heightJump = 0;
-	fireBall = new list<FireBall*>();
+	_listFire = new list<Fire*>();
 	type = ObjectType::Enemy_Type;
 	//point = 300;
 }
@@ -30,13 +30,14 @@ void Fishmen::Update(int dt)
 			++it;
 		}
 	}
-	list<FireBall*>::iterator i = fireBall->begin();
-	while (i != fireBall->end())
+	list<Fire*>::iterator i = _listFire->begin();
+	while (i != _listFire->end())
 	{
 		if (!(*i)->active)
 		{
-			fireBall->erase(i++);
-			fireBall->push_back(new FireBall(posX, posY + 20, vX, EnumID::FireBall_ID));
+			_listFire->erase(i++);
+			//_listFire->push_back(new Fire(posX, posY + 20, vX, EnumID::Fire_ID));
+			_listFire->push_back(new Fire(posX, posY + 20, EnumID::Fire_ID));
 		}
 		else
 		{
@@ -71,7 +72,7 @@ void Fishmen::Draw(GCamera* camera)
 		if ((*i)->active)
 			(*i)->Draw(camera);
 	}
-	for (list<FireBall*>::iterator i = fireBall->begin(); i != fireBall->end(); i++)
+	for (list<Fire*>::iterator i = _listFire->begin(); i != _listFire->end(); i++)
 	{
 		if ((*i)->active)
 			(*i)->Draw(camera);

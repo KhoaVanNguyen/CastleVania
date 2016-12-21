@@ -7,6 +7,8 @@ Bats::Bats(void) : DynamicObject()
 
 Bats::Bats(float x, float y) : DynamicObject(x, y, 0.2f, 0, EnumID::Bats_ID)
 {
+	limit = 0;
+	canBeKilled = true;
 	type = ObjectType::Enemy_Type;
 	//point = 200;
 	active = true;
@@ -19,11 +21,9 @@ Bats::~Bats(void)
 
 void Bats::MoveSinPath(int deltaTime)
 {
-	float nextX = vX * deltaTime + posX;
-	float nextY = 4 * sin(nextX / 10);
-	vY = nextY;
-	posX += vX * deltaTime;
-	posY += vY;
+	posX += 2*vX * deltaTime;
+	posY += (-posX -100) / (0.9*posX - 10);
+	
 }
 
 void Bats::Draw(GCamera* camera)

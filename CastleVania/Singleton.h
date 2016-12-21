@@ -17,7 +17,7 @@ private:
 	GTexture* Panthers;
 	GTexture* Fishmen;
 	GTexture *AxeKnights;
-
+	GTexture *Ghosts;
 
 	
 	GTexture* BoneTowers;
@@ -56,7 +56,7 @@ private:
 	//other
 	GTexture* fireBossDie;
 	GTexture* water;
-	GTexture* fireBall;
+	GTexture* Fire;
 
 	GTexture* bgMenu;
 

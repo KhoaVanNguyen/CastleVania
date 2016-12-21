@@ -1,19 +1,32 @@
-#include "LittleSnake.h"
+#include "Fire.h"
 
+#define SPEED_X 0.2f
 
-LittleSnake::LittleSnake(void)
+Fire::Fire(void) : DynamicObject()
 {
 }
 
-LittleSnake::LittleSnake(float _posX, float _posY, float _vX, float _vY, EnumID _id)
-	: DynamicObject(_posX, _posY, _vX, _vY, _id)
+Fire::Fire(float x, float y, EnumID id) : DynamicObject(x, y, 0.5, 0, id)
 {
+	_timeSpawn = 0;
 	active = true;
-	canBeKilled = true;
+	_timeSpawn = 0;
 	type = ObjectType::Enemy_Type;
 }
 
-void LittleSnake::Draw(GCamera* camera)
+void Fire::Update(int dt)
+{
+	_timeSpawn += dt;
+	posX -= vX * dt;
+	if (_timeSpawn >= 3000)
+	active = false;
+}
+
+Fire::~Fire(void)
+{
+}
+
+void Fire::Draw(GCamera *camera)
 {
 	if (sprite == NULL || !active)
 		return;
@@ -29,7 +42,7 @@ void LittleSnake::Draw(GCamera* camera)
 		sprite->Draw(center.x, center.y);
 }
 
-void LittleSnake::Collision(list<GameObject*> obj, int dt)
+void Fire::Collision(list<GameObject*> obj, int dt)
 {
 	list<GameObject*>::iterator _itBegin;
 	for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
@@ -55,8 +68,4 @@ void LittleSnake::Collision(list<GameObject*> obj, int dt)
 			}
 		}
 	}
-}
-
-LittleSnake::~LittleSnake(void)
-{
 }
