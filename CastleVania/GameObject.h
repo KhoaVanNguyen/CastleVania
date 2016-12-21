@@ -44,6 +44,9 @@ public:
 	virtual void ReceiveDamage(int damage);
 	ECollisionDirect GetCollisionDirect(float normalx, float normaly);
 	virtual void Remove();
+
+
+	virtual void Pause();
 	GameObject(void);
 	GameObject(float posX, float posY, EnumID id);
 	~GameObject(void);

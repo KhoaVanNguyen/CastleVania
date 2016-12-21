@@ -76,10 +76,10 @@ void RewardItem::Update(int dt)
 				id = EnumID::Boomerang_ID;
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang_ID), 1000);
 				break;
-			case 9:
+			/*case 9:
 				id = EnumID::StopWatch_ID;
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::StopWatch_ID), 1000);
-				break;
+				break;*/
 			case 10:
 				id = EnumID::White_Money_Bag;
 				sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::White_Money_Bag), 150);

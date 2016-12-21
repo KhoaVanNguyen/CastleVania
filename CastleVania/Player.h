@@ -23,7 +23,7 @@ protected:
 	
 public:
 	bool _usingCross;
-	bool _usingWatch;
+	bool _usingStopWatch;
 	// for testing
 	int currentCollideWithID;
 

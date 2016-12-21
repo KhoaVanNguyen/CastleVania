@@ -8,7 +8,7 @@ void GameUI::_initialize()
 	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Dagger_ID), 1));
 	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang_ID), 1));
 	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1));
-
+	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::StopWatch_ID), 1));
 
 
 	// init hp sprite
@@ -144,9 +144,7 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 
 	switch (weaponID_)
 	{
-	/*case Watch_ID:
-		_currentWeapon = 0;
-		break;*/
+	
 	case Dagger_ID:
 		_currentWeapon = 0;
 		break;
@@ -155,6 +153,9 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 		break;
 	case Throw_Axe_ID:
 		_currentWeapon = 2;
+		break;
+	case StopWatch_ID:
+		_currentWeapon = 3;
 		break;
 	default:
 		_currentWeapon = -1;
@@ -226,9 +227,7 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 	_collideID = collideId;
 	switch (weaponID_)
 	{
-		/*case Watch_ID:
-		_currentWeapon = 0;
-		break;*/
+		
 	case Dagger_ID:
 		_currentWeapon = 0;
 		break;
@@ -237,6 +236,9 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 		break;
 	case Throw_Axe_ID:
 		_currentWeapon = 2;
+		break;
+	case StopWatch_ID:
+		_currentWeapon = 3;
 		break;
 	default:
 		_currentWeapon = -1;

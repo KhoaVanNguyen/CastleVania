@@ -162,9 +162,10 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 #pragma endregion 
 
 
-		if (player->_usingWatch) {
+		if (player->_usingStopWatch) {
 			qGameObject->PauseUpdate();
-			player->_usingWatch = false;
+			player->_usingStopWatch = false;
+			player->hearts -= 6;
 		}
 
 		qGameObject->Update(t);
@@ -486,6 +487,9 @@ void SceneGame::OnKeyDown(int KeyCode) {
 		break;
 	case DIK_B:
 		player->ChangeWeapon(EnumID::Dagger_ID);
+		break;
+	case DIK_V:
+		player->ChangeWeapon(EnumID::StopWatch_ID);
 		break;
 	}
 	
