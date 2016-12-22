@@ -48,31 +48,47 @@ void Weapon::Collision(list<GameObject*> &obj, int dt)
 	for (_itBegin = obj.rbegin(); _itBegin != obj.rend(); _itBegin++)
 	{
 		GameObject* other = (*_itBegin);
-		if (other->type != ObjectType::Item)
-		{
-			float moveX = 0;
-			float moveY = 0;
+	
+			float moveX;
+			float moveY;
 
 			Box box = this->GetBox();
 			Box boxOther = other->GetBox();
 
 			if (AABB(box, boxOther, moveX, moveY) == true)
 			{
-				if (other->id != EnumID::Brick_ID)
+
+				if (other->canBeKilled)
 				{
-					other->ReceiveDamage(damage);
-					if (other->hp <= 0)
+					if (other->id == EnumID::Medusa_ID)
 					{
-						point += other->point;
-						(*_itBegin) = new RewardItem(other->posX, other->posY);
+						Medusa* qm = (Medusa*)other;
+						if (qm->HasGetUp)
+						{
+							other->ReceiveDamage(damage);
+							if (other->hp <= 0)
+							{
+								point += other->point;
+							}
+						}
+						else
+							qm->getUp();
+					}
+					else
+					{
+						other->ReceiveDamage(damage);
+						if (other->hp <= 0)
+						{
+							point += other->point;
+							(*_itBegin) = new RewardItem(other->posX, other->posY);
+						}
 
 					}
-					if (id != EnumID::Throw_Axe_ID && id != EnumID::Boomerang_ID)
-						active = false;
-					return;
+
 				}
+				return;
 			}
-		}
+		
 	}
 }
 

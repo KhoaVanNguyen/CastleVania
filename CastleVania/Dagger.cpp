@@ -5,6 +5,7 @@
 
 Dagger::Dagger(void) : Weapon()
 {
+	active = true;
 }
 
 Dagger::Dagger(float x, float y, float _huong) : Weapon(x, y, _huong, EnumID::Dagger_ID)

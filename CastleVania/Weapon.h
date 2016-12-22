@@ -3,7 +3,7 @@
 
 #include "DynamicObject.h"
 #include "RewardItem.h"
-
+#include "Medusa.h"
 class Weapon : public DynamicObject
 {
 public:

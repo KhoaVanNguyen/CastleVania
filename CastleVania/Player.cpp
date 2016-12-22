@@ -41,7 +41,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_outStair = false;
 	hearts = 1000;
 	_weaponID = EnumID::Dagger_ID;
-	_weapons = new list<Weapon*>();
+	weapons = new list<Weapon*>();
 	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
 
 	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
@@ -56,11 +56,11 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 void Player::Update(int deltaTime)
 {
 
-	list<Weapon*>::iterator it = _weapons->begin();
-	while (it != _weapons->end())
+	list<Weapon*>::iterator it = weapons->begin();
+	while (it != weapons->end())
 	{
 		if (!(*it)->active)
-			_weapons->erase(it++);
+			weapons->erase(it++);
 		else
 		{
 			(*it)->Update(deltaTime);
@@ -145,7 +145,7 @@ void Player::Draw(GCamera* camera)
 
 	if (!IsHurting())
 	{
-		for (list<Weapon*>::iterator i = _weapons->begin(); i != _weapons->end(); i++)
+		for (list<Weapon*>::iterator i = weapons->begin(); i != weapons->end(); i++)
 		{
 			if ((*i)->active)
 				(*i)->Draw(camera);
@@ -787,7 +787,15 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		point += morningStar->point;
 		morningStar->point = 0;
 	}
-
+	for (list<Weapon*>::iterator i = weapons->begin(); i != weapons->end(); i++)
+	{
+		if ((*i)->active)
+		{
+			(*i)->Collision(obj, dt);
+			point += (*i)->point;
+			(*i)->point = 0;
+		}
+	}
 	for (list<GameObject*>::iterator _itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
 		GameObject* other = (*_itBegin);
@@ -1191,17 +1199,17 @@ void Player::SetWeapon() {
 		break;
 
 	case EnumID::Throw_Axe_ID:
-		_weapons->push_back(new ThrowAxe(posX, posY, _vLast));
+		weapons->push_back(new ThrowAxe(posX, posY, _vLast));
 		break;
 
 	case EnumID::Boomerang_ID:
-		_weapons->push_back(new Boomerang(posX, posY, _vLast));
+		weapons->push_back(new Boomerang(posX, posY, _vLast));
 		break;
 	case EnumID::Dagger_ID:
-		_weapons->push_back(new Dagger(posX, posY, _vLast));
+		weapons->push_back(new Dagger(posX, posY, _vLast));
 		break;
 	case EnumID::HolyWater_ID:
-		_weapons->push_back(new HolyWater(posX, posY, _vLast));
+		weapons->push_back(new HolyWater(posX, posY, _vLast));
 		break;
 	}
 	_hasWeapon = false;

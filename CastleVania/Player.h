@@ -91,7 +91,8 @@ public:
 	//-------------// 
 	//------------Weapon
 
-	list<Weapon*> *_weapons;
+	// vũ khí
+	list<Weapon*> *weapons;
 	EnumID _weaponID;
 	bool _usingWeapon; //Co cho su dung dung vk ko? - co dang nhan DIK_Q?
 	bool _hasWeapon;
