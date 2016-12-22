@@ -1067,12 +1067,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region Va chạm với Enemy
 						case ObjectType::Enemy_Type:
 							// colStair ?? biến đang ở trên cầu thang là ???
-							if (!_onStair && !_colStair)
+							if (!_onStair && !_colBottomStair)
 							{
 								if (!_hidden)
 									KnockBack();
-
-								_hidden = false;
 							}
 							else
 							{
@@ -1099,28 +1097,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							}
 							break;
 #pragma endregion 
-							//#pragma region Va cham Enemy
-							//						case ObjectType::Enemy_Type:
-							//							if (!_onStair && !_hasStair)
-							//							{
-							//								if (!_isHurted)
-							//									KnockBack();
-							//
-							//								_isHurted = false;
-							//							}
-							//							else
-							//							{
-							//								// chưa có cầu thang
-							//								if (!_isHurted)
-							//								{
-							//
-							//									// trừ Hp ở đây
-							//									_isHurted = false;
-							//
-							//								}
-							//							}
-							//							break;
-							//#pragma endregion 
+				
 						default:
 
 							break;
