@@ -82,12 +82,18 @@ void GameUI::drawScore()
 	_arial->render("Y: ", 220, 60);
 	_arial->render(_playerY, 240, 60);
 
-	
+
 	_arial->render(_liveCount, 420, 30);
 	_arial->render(_weaponCount, 430, 50);
 
-	_arial->render("collide ID: ", 240, 80);
-	_arial->render(_collideID, 350, 80);
+	_arial->render("collide ID: ", 150, 80);
+	_arial->render(_collideID, 250, 80);
+	_arial->render("colstair: ", 390, 80);
+	_arial->render(_colabc, 480, 80);
+	_arial->render("ranger: ", 290, 80);
+	_arial->render(_rang, 360, 80);
+	//_arial->render("onstair: ", 290, 80);
+	_arial->render(_onstair, 390, 100);
 }
 
 void GameUI::initTimer(int deltaTime_)
@@ -130,14 +136,14 @@ GameUI::GameUI(void)
 
 void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_)
 {
-//(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
+	//(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
 	_gameStage = gameStage_;
 	_playerScore = playerScore_;
 	if (_gameTimer <= 0)
 	{
 	}
 	else
-	_gameTimer = _gameTimer - deltaTime_;
+		_gameTimer = _gameTimer - deltaTime_;
 	_weaponCount = weaponCount_;
 	_playerHP = playerHP_;
 	_enemyHP = enemyHP_;
@@ -145,7 +151,7 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 
 	switch (weaponID_)
 	{
-	
+
 	case Dagger_ID:
 		_currentWeapon = 0;
 		break;
@@ -210,7 +216,7 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 
 
 
-void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY, int collideId)
+void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY, int collideId, bool abc, int rang, bool onstair)
 {
 	//(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
 	_gameStage = gameStage_;
@@ -229,9 +235,17 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 	_viewPortY = viewPortY;
 	_viewPortX = viewPortX;
 	_collideID = collideId;
+	_rang = rang;
+
+	if (abc == true)
+		_colabc = 1;
+	else _colabc = 0;
+	if (onstair == true)
+		_onstair = 1;
+	else _onstair = 0;
 	switch (weaponID_)
 	{
-		
+
 	case Dagger_ID:
 		_currentWeapon = 0;
 		break;
