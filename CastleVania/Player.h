@@ -129,6 +129,7 @@ public:
 	DWORD _startToHiddenTime;
 
 	bool IsHurting();
+	bool _bHurt = false;
 	
 
 };
