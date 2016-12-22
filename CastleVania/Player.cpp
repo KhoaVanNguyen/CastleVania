@@ -841,28 +841,13 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					case EnumID::Brick_ID:
 						_MovingPlatform = false;
 						//_onStair = false;
-						if (vY < 0 && moveY < 16)
+
+						// số 32 ? số càng bé càng khó bắt đc va chạm vs gạch
+						if (vY < 0 && moveY < 32)
 						{
-							//đang rơi xuống
-							if (_action == Action::Fall)
-							{
-								/*if (moveY != 0)
-								{
-									posY += moveY;
-									vY = 0;
-									_a = 0;
-									_action = Action::Idle;
-									_onLand = true;
-									Stop();
-								}*/
-							}
-							else
-							{
+							
+								// do vẽ ở center của sprite nên + với 1 khoảng = 1/2 của sprite là oke :))
 								posY += moveY;
-								//if (abs(rangeStair) >= 40)
-								//{
-								//	_colStair = false;
-								//}
 								if (_hasJump || _hasKnockBack)
 									if (moveY > 0)
 									{
@@ -892,43 +877,11 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										_a = 0;
 										_allowPress = true;
 										sprite->SelectIndex(0);
-										/*if (boxPlayer.h < 60)
-											posY += 16;*/
 									}
-									else
-										if (!_hasJump)
-										{
-											_a = 0;
-											vY = 0;
-											vX = 0;
-											_a = 0;
-											_allowPress = true;
-											sprite->SelectIndex(0);
-											if (boxPlayer.h < 60)
-												posY += 16;
-										}
-										else
-											if (!_hasJump)
-											{
-												_a = 0;
-												vY = 0;
-											}
-							}
+									
+										
 						}
-						else if (moveY > 0)
-						{
-
-						}
-
-						if ((!_onLand || _action != Action::Idle) && !_hasJump)//Xu ly rot khoi cuc gach 
-						{
-							vY = -(SPEED_Y + 0.4f);// chỗ này là chỗ rơi xuống tự do
-							if (!_onLand)
-							{
-								//_colStair = false;
-							}
-							_beFallOutScreen = true;
-						}
+						
 						//--------------------
 						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_MovingPlatform)// && !_hasKnockBack)
 						{
