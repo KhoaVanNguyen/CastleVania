@@ -10,8 +10,8 @@ using namespace std;
 enum EBGSound
 {
 	EMenuSound,
-	EStage1Sound,
-	EStage2Sound,
+	ESoundLevel1,
+	ESoundLevel2,
 	EBoss,
 	EIntroSound,
 	EEndGameSound
@@ -22,14 +22,14 @@ enum ESoundEffect
 	ES_LifeLost,
 	ES_CollectItem,
 	ES_CollectWeapon,
-	ES_UsingMorningStar,
+	ESoundUsingMorningStar,
 	ES_SplashWater,
 	ES_HitByWeapon,
 	ES_HolyCross,
 	ES_Select,
 	ES_OpenDoor,
 	ES_HolyWater,
-	ES_StageClear,
+	ESoundMagicBall,
 	ES_FallingCastle,
 	ES_GetScoreTimer,
 	ES_GetScoreWeaponCount,

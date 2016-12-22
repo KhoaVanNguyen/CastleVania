@@ -6,7 +6,7 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define MAX_HEIGHT 70.0f
+#define MAX_HEIGHT 140.0f
 #define A 0.005f
 
 #define MAX_HEIGHT_KNOCKBACK 32.0f
@@ -170,9 +170,15 @@ void Player::Draw(GCamera* camera)
 			// đi sang phải
 			if (vX > 0 || _vLast > 0)
 			{
-
+				//	if (_onStair) {
+				//		if (_kindStair == EKindStair::UpRight) {
+				//			playerStair->DrawFlipX(center.x, center.y);
+				//		}
+				//		//?
+				//		return;
+				//	}
 				if (_onStair) {
-					if (_kindStair == EKindStair::UpRight) {
+					if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::DownRight) {
 						playerStair->DrawFlipX(center.x, center.y);
 					}
 					//?
@@ -499,6 +505,7 @@ void Player::Fight() {
 			_hasWeapon = true;
 			hearts -= 1;
 		}
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundUsingMorningStar);
 		_action = Action::Fight;
 	}
 }
@@ -615,7 +622,7 @@ void Player::UpStair()
 		return;
 	if (abs(rangeStair) <= 40)
 	{
-		if (_colStair && (_stair->id == EnumID::StairUpLeft_ID || _stair->id == EnumID::StairUpRight_ID))
+		if (_colStair && _stair->posY == posY - 14 && (_stair->id == EnumID::StairUpLeft_ID || _stair->id == EnumID::StairUpRight_ID))
 		{
 			if (!_colBottomStair)
 				_colBottomStair = true;
@@ -679,7 +686,7 @@ void Player::DownStair()
 		return;
 	if (abs(rangeStair) < 40)
 	{
-		if (_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID))
+		if (_colStair && _stair->posY == posY - 14 && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID))
 		{
 			if (!_colBottomStair) _colBottomStair = true;
 			else
@@ -749,7 +756,7 @@ void Player::OutStair()
 }
 bool Player::OnStair()
 {
-	if ((_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID)) || _onStair)
+	if ((_colStair && _stair->posY == posY - 14 && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID)) || _onStair)
 		return true;
 	return false;
 }
@@ -811,36 +818,57 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					other->Remove(); // deactive here!
 					switch (other->id)
 					{
-
-
 					case EnumID::Whip_Upgrade: // not yet
+					{
+
 						this->UpgradeMorningStar();
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectWeapon);
 						break;
+					}
 					case EnumID::Small_Heart:
 					case EnumID::Large_Heart:
+					{
 						hearts += other->hearts;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectWeapon);
 						break;
+					}
+						
 					case EnumID::Red_Money_Bag:
 					case EnumID::Purple_Money_Bag:
 					case EnumID::White_Money_Bag:
+					{
 						//cong tien
 						point += other->point;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 						break;
+					}
+						
 					case EnumID::CrossItem_ID:
+					{
 						_usingCross = true;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectWeapon);
 						break;
+					}
+						
 					case EnumID::PorkChop_ID:
 						// ăn Pork Chop, máu +6
+					{
 						hp += 6;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 						break;
+					}
+						
 					case EnumID::MagicalBall_ID:
 						//Qua man
+					{
 						_hasMagicalBall = true;
-						//SoundManager::GetInst()->RemoveAllBGM();
-						//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_StageClear);
+						Sound::GetInst()->RemoveAllBGM();
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundMagicBall);
 						break;
+					}
 
 					}
+				
 				}
 #pragma endregion 
 
@@ -858,11 +886,30 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 							// do vẽ ở center của sprite nên + với 1 khoảng = 1/2 của sprite là oke :))
 							posY += moveY;
-							if (_hasJump || _hasKnockBack)
+							if (_hasJump || _hasKnockBack){
 								if (moveY > 0)
 								{
+
 									posY += moveY;
 									if (_hasJump || _hasKnockBack)
+								posY += moveY;
+								vY = 0;
+								_a = 0;
+								_action = Action::Idle;
+								_onLand = true;
+								Stop();
+								}
+							}
+							else
+							{
+								posY += moveY;
+								//if (abs(rangeStair) >= 40)
+								//{
+								//	_colStair = false;
+								//}
+								if (_hasJump || _hasKnockBack)
+									if (moveY > 0)
+
 									{
 										_hasJump = false;
 										if (_hasKnockBack)
@@ -885,6 +932,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										_a = 0;
 										_allowPress = true;
 										sprite->SelectIndex(0);
+										/*if (boxPlayer.h < 60)
+										posY += 16;*/
 									}
 
 
@@ -1098,6 +1147,28 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							}
 							break;
 #pragma endregion 
+							//#pragma region Va cham Enemy
+							//						case ObjectType::Enemy_Type:
+							//							if (!_onStair && !_hasStair)
+							//							{
+							//								if (!_isHurted)
+							//									KnockBack();
+							//
+							//								_isHurted = false;
+							//							}
+							//							else
+							//							{
+							//								// chưa có cầu thang
+							//								if (!_isHurted)
+							//								{
+							//
+							//									// trừ Hp ở đây
+							//									_isHurted = false;
+							//
+							//								}
+							//							}
+							//							break;
+							//#pragma endregion 
 						default:
 
 							break;
@@ -1187,6 +1258,7 @@ void Player::SetWeapon() {
 	{
 	case EnumID::StopWatch_ID:
 		_usingStopWatch = true;
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundMagicBall);
 		break;
 
 	case EnumID::Throw_Axe_ID:

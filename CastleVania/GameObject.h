@@ -6,6 +6,7 @@
 #include "GCamera.h"
 #include "SweptAABB.h"
 #include <list>
+#include "Sound.h"
 using namespace std;
 class GameObject
 {
