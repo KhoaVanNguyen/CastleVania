@@ -25,7 +25,6 @@ protected:
 	Medusa *_medusa;
 public:
 	
-	bool bActiveHurt;
 
 
 	list<GameObject*> *_staticObject;
