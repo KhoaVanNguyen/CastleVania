@@ -61,7 +61,7 @@ void Sound::PlayBGSound(EBGSound id)
 			_audio->LoopSound(bgmMenu);
 		}
 		break;
-	case EBGSound::EStage1Sound:
+	case EBGSound::ESoundLevel1:
 		_listBgm.push_back(bgmStage1);
 		if (isBGM_On == true)
 		{
@@ -70,7 +70,7 @@ void Sound::PlayBGSound(EBGSound id)
 		}
 
 		break;
-	case EBGSound::EStage2Sound:
+	case EBGSound::ESoundLevel2:
 		_listBgm.push_back(bgmStage2);
 		if (isBGM_On == true)
 		{
@@ -119,7 +119,7 @@ void Sound::PlaySoundEffect(ESoundEffect id)
 	case ESoundEffect::ES_CollectWeapon:
 		collectWeapon->Play();
 		break;
-	case ESoundEffect::ES_UsingMorningStar:
+	case ESoundEffect::ESoundUsingMorningStar:
 		usingMorningStar->Play();
 		break;
 	case ESoundEffect::ES_SplashWater:
@@ -140,7 +140,7 @@ void Sound::PlaySoundEffect(ESoundEffect id)
 	case ESoundEffect::ES_LifeLost:
 		lifeLost->Play();
 		break;
-	case ESoundEffect::ES_StageClear:
+	case ESoundEffect::ESoundMagicBall:
 		stageClear->Play();
 		break;
 	case ESoundEffect::ES_FallingCastle:

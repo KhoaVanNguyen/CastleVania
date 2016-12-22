@@ -489,6 +489,7 @@ void Player::Fight() {
 			_hasWeapon = true;
 			hearts -= 1;
 		}
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundUsingMorningStar);
 		_action = Action::Fight;
 	}
 }
@@ -801,36 +802,57 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					other->Remove(); // deactive here!
 					switch (other->id)
 					{
-
-
 					case EnumID::Whip_Upgrade: // not yet
+					{
+
 						this->UpgradeMorningStar();
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectWeapon);
 						break;
+					}
 					case EnumID::Small_Heart:
 					case EnumID::Large_Heart:
+					{
 						hearts += other->hearts;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectWeapon);
 						break;
+					}
+						
 					case EnumID::Red_Money_Bag:
 					case EnumID::Purple_Money_Bag:
 					case EnumID::White_Money_Bag:
+					{
 						//cong tien
 						point += other->point;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 						break;
+					}
+						
 					case EnumID::CrossItem_ID:
+					{
 						_usingCross = true;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectWeapon);
 						break;
+					}
+						
 					case EnumID::PorkChop_ID:
 						// ăn Pork Chop, máu +6
+					{
 						hp += 6;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 						break;
+					}
+						
 					case EnumID::MagicalBall_ID:
 						//Qua man
+					{
 						_hasMagicalBall = true;
-						//SoundManager::GetInst()->RemoveAllBGM();
-						//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_StageClear);
+						Sound::GetInst()->RemoveAllBGM();
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundMagicBall);
 						break;
+					}
 					
 					}
+				
 				}
 #pragma endregion 
 
@@ -1218,6 +1240,7 @@ void Player::SetWeapon() {
 	{
 	case EnumID::StopWatch_ID:
 		_usingStopWatch = true;
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundMagicBall);
 		break;
 
 	case EnumID::Throw_Axe_ID:
