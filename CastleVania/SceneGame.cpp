@@ -20,10 +20,10 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	srand((unsigned)time(NULL));
 
 	D3DXCreateSprite(d3ddv, &G_SpriteHandler);
-	
+
 	Background = CreateSurfaceFromFile(d3ddv, BACKGROUND_FILE);
 	HRESULT res = D3DXCreateSprite(d3ddv, &G_SpriteHandler);
-	
+
 	if (bg != NULL)
 		delete bg;
 
@@ -38,7 +38,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		delete qGameObject;
 	switch (level)
 	{
-	
+
 	case 1:
 	{
 		camera->viewport.y = 485; // 485
@@ -70,12 +70,12 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		Sound::GetInst()->PlayBGSound(EBGSound::EStage1Sound);*/
 
 	}
-	
+
 	break;
 	default:
 		break;
 	}
-	
+
 	posCamera = camera->viewport;
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
@@ -94,7 +94,11 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		}
 		else {
 #pragma region Chuyen canh, dich chuyen camera
-
+			//if (!_moveCameraHaft && !_beginMoveCamera && _moveCameraDone)
+			//{
+			//	player->Stop();
+			//	player->_allowPress = true;
+			//}
 			if (_beginMoveCamera)
 			{
 				qGameObject->RemoveAllObject();
@@ -111,14 +115,20 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 					{
 						player->SetDirectDoor(EDirectDoor::NoneDoor);
 						openDoor->RenderClose();
+
+						//player->_allowPress = false;// lúc đang đóng cửa player không hoạt động
 						if (openDoor->GetCloseDoor() == false)
 						{
 							MoveCamera(_rangeMoveCamera2);
 						}
 						else
 						{
+							//if (!_moveCameraHaft)
+							//{
+							//	player->Stop();
+							//	player->_allowPress = true;
+							//}
 							player->_allowPress = true;
-
 						}
 					}
 				}
@@ -146,7 +156,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			//		//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_GetScoreWeaponCount);
 			//	}
 			//	else 
-			if (_levelNow == 1  )
+			if (_levelNow == 1)
 			{
 				_levelNow++;
 				_stageNow++;
@@ -186,8 +196,8 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		player->Collision(*(qGameObject->_dynamicObject), t);
 
 
-		
-		if ( player->_usingCross) // player->GetCrossStatus()  )//player->GetUsingCross())
+
+		if (player->_usingCross) // player->GetCrossStatus()  )//player->GetUsingCross())
 		{
 
 			score += qGameObject->RemoveAllObjectInCamera(camera->viewport);
@@ -220,7 +230,8 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect);
-		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y,player->currentCollideWithID);
+		//gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
+		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->rangeStair, _beginMoveCamera, _moveCameraHaft);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
@@ -257,8 +268,8 @@ void SceneGame::LoadStage(int stage)
 	case 4:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage4.txt");
-		
-		
+
+
 	}
 
 	break;
@@ -279,26 +290,26 @@ void SceneGame::LoadStage(int stage)
 	case 7:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage7.txt");
-		
+
 
 	}
 	break;
 	case 8:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage8.txt");
-		
+
 	}
 	break;
 	case 9:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage9.txt");
-	
+
 	}
 	break;
 	case 10:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage10.txt");
-		
+
 
 	}
 	break;
@@ -372,7 +383,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 
 void SceneGame::MoveCamera(int &_moveRange)
 {
-	if(_rangeMoveCamera == 0)
+	if (_rangeMoveCamera == 0)
 		_rangeMoveCamera = _moveRange;
 	if (_beginMoveCamera)
 	{
@@ -434,7 +445,7 @@ void SceneGame::ProcessInput(int KeyCode) {
 	switch (KeyCode)
 	{
 
-	
+
 	case DIK_RIGHT:
 		player->TurnRight();
 	case DIK_D:
@@ -465,7 +476,7 @@ void SceneGame::ProcessInput(int KeyCode) {
 		break;
 	}
 }
-	
+
 
 void SceneGame::OnKeyDown(int KeyCode) {
 	switch (KeyCode)
@@ -491,5 +502,5 @@ void SceneGame::OnKeyDown(int KeyCode) {
 		player->ChangeWeapon(EnumID::HolyWater_ID);
 		break;
 	}
-	
+
 }

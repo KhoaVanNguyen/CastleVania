@@ -6,7 +6,7 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define MAX_HEIGHT 70.0f
+#define MAX_HEIGHT 140.0f
 #define A 0.005f
 Player::Player(void) : DynamicObject()
 {
@@ -163,7 +163,7 @@ void Player::Draw(GCamera* camera)
 	{
 
 		if (_onStair) {
-			if (_kindStair == EKindStair::UpRight) {
+			if (_kindStair == EKindStair::UpRight||_kindStair == EKindStair::DownRight) {
 				playerStair->DrawFlipX(center.x, center.y);
 			}
 			//?
@@ -605,7 +605,7 @@ void Player::UpStair()
 		return;
 	if (abs(rangeStair) <= 40)
 	{
-		if (_colStair && (_stair->id == EnumID::StairUpLeft_ID || _stair->id == EnumID::StairUpRight_ID))
+		if (_colStair && _stair->posY == posY - 14 && (_stair->id == EnumID::StairUpLeft_ID || _stair->id == EnumID::StairUpRight_ID))
 		{
 			if (!_colBottomStair)
 				_colBottomStair = true;
@@ -669,7 +669,7 @@ void Player::DownStair()
 		return;
 	if (abs(rangeStair) < 40)
 	{
-		if (_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID))
+		if (_colStair && _stair->posY == posY - 14 && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID))
 		{
 			if (!_colBottomStair) _colBottomStair = true;
 			else
@@ -739,7 +739,7 @@ void Player::OutStair()
 }
 bool Player::OnStair()
 {
-	if ((_colStair && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID)) || _onStair)
+	if ((_colStair && _stair->posY == posY - 14 && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID)) || _onStair)
 		return true;
 	return false;
 }
@@ -829,7 +829,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						//SoundManager::GetInst()->RemoveAllBGM();
 						//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_StageClear);
 						break;
-					
+
 					}
 				}
 #pragma endregion 
@@ -848,12 +848,12 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							{
 								/*if (moveY != 0)
 								{
-									posY += moveY;
-									vY = 0;
-									_a = 0;
-									_action = Action::Idle;
-									_onLand = true;
-									Stop();
+								posY += moveY;
+								vY = 0;
+								_a = 0;
+								_action = Action::Idle;
+								_onLand = true;
+								Stop();
 								}*/
 							}
 							else
@@ -893,7 +893,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										_allowPress = true;
 										sprite->SelectIndex(0);
 										/*if (boxPlayer.h < 60)
-											posY += 16;*/
+										posY += 16;*/
 									}
 									else
 										if (!_hasJump)
@@ -1101,7 +1101,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 						switch (other->type)
 						{
-//#pragma region Va cham Enemy
+							//#pragma region Va cham Enemy
 							//						case ObjectType::Enemy_Type:
 							//							if (!_onStair && !_hasStair)
 							//							{
@@ -1122,7 +1122,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							//								}
 							//							}
 							//							break;
-//#pragma endregion 
+							//#pragma endregion 
 						default:
 
 							break;
