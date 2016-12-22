@@ -6,7 +6,7 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define MAX_HEIGHT 70.0f
+#define MAX_HEIGHT 140.0f
 #define A 0.005f
 Player::Player(void) : DynamicObject()
 {
@@ -163,7 +163,7 @@ void Player::Draw(GCamera* camera)
 	{
 
 		if (_onStair) {
-			if (_kindStair == EKindStair::UpRight) {
+			if (_kindStair == EKindStair::UpRight||_kindStair == EKindStair::DownRight) {
 				playerStair->DrawFlipX(center.x, center.y);
 			}
 			//?

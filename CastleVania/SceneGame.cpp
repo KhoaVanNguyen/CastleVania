@@ -3,8 +3,8 @@
 #define BACKGROUND_FILE "Resources/black.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 1;
-	_stageNow = 1;
+	_levelNow = 2;
+	_stageNow = 7;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -61,9 +61,9 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		camera->viewport.y = 485; // 485
 		bg = new QBackground(level);
 		bg->LoadTree();
-		//player = new Player(600, 90);
-		player->posX = 600;
-		player->posY = 140;
+		player = new Player(600, 90);
+		/*player->posX = 600;
+		player->posY = 140;*/
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
 		/*Sound::GetInst()->RemoveAllBGM();
@@ -94,7 +94,11 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		}
 		else {
 #pragma region Chuyen canh, dich chuyen camera
-
+			//if (!_moveCameraHaft && !_beginMoveCamera && _moveCameraDone)
+			//{
+			//	player->Stop();
+			//	player->_allowPress = true;
+			//}
 			if (_beginMoveCamera)
 			{
 				qGameObject->RemoveAllObject();
@@ -111,14 +115,20 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 					{
 						player->SetDirectDoor(EDirectDoor::NoneDoor);
 						openDoor->RenderClose();
+
+						//player->_allowPress = false;// lúc đang đóng cửa player không hoạt động
 						if (openDoor->GetCloseDoor() == false)
 						{
 							MoveCamera(_rangeMoveCamera2);
 						}
 						else
 						{
+							//if (!_moveCameraHaft)
+							//{
+							//	player->Stop();
+							//	player->_allowPress = true;
+							//}
 							player->_allowPress = true;
-
 						}
 					}
 				}
@@ -220,7 +230,8 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect);
-		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
+		//gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
+		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->rangeStair, _beginMoveCamera, _moveCameraHaft);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
