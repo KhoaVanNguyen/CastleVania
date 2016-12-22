@@ -12,8 +12,6 @@
 #include "HolyWater.h"
 using namespace std;
 
-#define MAX_HEIGHT_KNOCKBACK 32.0f
-#define MAX_WIDTH_KNOCKBACK 50.0f
 
 
 
@@ -124,6 +122,13 @@ public:
 	bool AutoMove(int &range, int dt);
 
 
+	// For hurting
+
+	DWORD _deltaHurtTime;
+	bool _hidden;
+	DWORD _startToHiddenTime;
+
+	bool IsHurting();
 	
 
 };
