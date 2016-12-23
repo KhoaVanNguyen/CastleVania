@@ -1130,18 +1130,13 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							// để enemy ở cuối để check được nhiều loại cùng lúc
 #pragma region Va chạm với Enemy
 						case ObjectType::Enemy_Type:
-							// 
-							if (!_onStair && !_colBottomStair)
+							// nếu ở trên cầu thang thì chỉ bị mất máu, không bị Knockback, và ngược lại
+							if (!_onStair ) //&& !_colBottomStair)
 							{
-								if (!_hidden)
-									KnockBack();
-							}
-							else
-							{
-								// chưa lên cầu thang
 								if (!_hidden)
 								{
 									_hidden = true;
+									KnockBack();
 									// trừ Hp ở đây
 									_startToHiddenTime = GetTickCount();
 									if (hp > 0)
@@ -1152,13 +1147,19 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										}
 										else
 											hp -= other->damage;
+										//hp -= other->damage;
 									}
 
-
 								}
+							}
+							else
+							{
+								// đã lên cầu thang
+								DecreaseHP(other);
 
 
 							}
+
 							break;
 #pragma endregion 
 
@@ -1308,5 +1309,25 @@ void Player::Die(int &_timeCount)
 			_allowPress = true;
 			_isReset = true;
 		}
+	}
+}
+
+void Player::DecreaseHP(GameObject* other) {
+	if (!_hidden)
+	{
+		_hidden = true;
+		// trừ Hp ở đây
+		_startToHiddenTime = GetTickCount();
+		if (hp > 0)
+		{
+			if (hp <= 3)
+			{
+				hp -= 1;
+			}
+			else
+				hp -= other->damage;
+			//hp -= other->damage;
+		}
+
 	}
 }

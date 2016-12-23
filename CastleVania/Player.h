@@ -137,6 +137,8 @@ public:
 	void Die(int &_timeCount);
 	bool _isDie;
 	bool _isReset;
+
+	void DecreaseHP(GameObject*);
 };
 
 #endif
