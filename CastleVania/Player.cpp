@@ -884,6 +884,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						// số 32 ? số càng bé càng khó bắt đc va chạm vs gạch
 						if (vY < 0 && moveY < 16)
 						{
+						
 
 							if (moveY > 0) {
 								// do vẽ ở center của sprite nên + với 1 khoảng = 1/2 của sprite là oke :))
@@ -1143,11 +1144,16 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 									_hidden = true;
 									// trừ Hp ở đây
 									_startToHiddenTime = GetTickCount();
-
 									if (hp > 0)
 									{
-										hp -= other->damage;
+										if (hp <= 3)
+										{
+											hp -= 1;
+										}
+										else
+											hp -= other->damage;
 									}
+
 
 								}
 
@@ -1157,7 +1163,6 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma endregion 
 
 						default:
-
 							break;
 						}
 						break;
