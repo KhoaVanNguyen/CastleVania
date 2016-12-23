@@ -28,6 +28,8 @@ enum EnumID
 	BoneTowers_ID,
 	Ghouls_ID,
 	Ghosts_ID,
+	CenterOfCircle_ID,
+	Skeletons_ID,
 	//groud
 	MovingPlatform_ID,
 	StairUpLeft_ID,

@@ -90,6 +90,7 @@
     <ClCompile Include="Bats.cpp" />
     <ClCompile Include="BoneTowers.cpp" />
     <ClCompile Include="CastleGate.cpp" />
+    <ClCompile Include="CenterOfCircle.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Boomerang.cpp" />
     <ClCompile Include="Brick.cpp" />
@@ -133,6 +134,7 @@
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Skeletons.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stair.cpp" />
     <ClCompile Include="ThrowAxe.cpp" />
@@ -151,6 +153,7 @@
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Candle.h" />
     <ClInclude Include="CastleGate.h" />
+    <ClInclude Include="CenterOfCircle.h" />
     <ClInclude Include="CEnum.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Dagger.h" />
@@ -193,6 +196,7 @@
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Skeletons.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Stair.h" />
     <ClInclude Include="SweptAABB.h" />

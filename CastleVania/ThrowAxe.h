@@ -7,7 +7,8 @@
 #define THROW_AXE_SPEED_X 1.5
 #define G 0.01f
 
-class ThrowAxe : public Weapon
+class ThrowAxe
+	: public Weapon
 {
 protected:
 	D3DXVECTOR2* _nextStopPos;

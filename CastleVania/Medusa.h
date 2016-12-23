@@ -71,7 +71,7 @@ public:
 	void ReceiveDamage(int damagePoint);
 	bool StateCancel();
 	~Medusa(void);
-public:
+
 
 };
 

@@ -22,6 +22,7 @@ ThrowAxe::ThrowAxe(float x_, float y_, float huong_) : Weapon(x_, y_, huong_, En
 
 void ThrowAxe::Update(int deltaTime_)
 {
+	//chuyen dong nem xien 
 	this->sprite->Update(deltaTime_);
 	vX = THROW_AXE_SPEED_X*cos(_anpha);
 	vY = THROW_AXE_SPEED_X*sin(_anpha) - G*deltaTime_;

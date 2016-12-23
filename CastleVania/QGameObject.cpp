@@ -148,7 +148,8 @@ QGameObject::QGameObject(string fileName)
 				posDoor.x = posX;
 				posDoor.y = posY;
 				break;
-		
+			case 26 :
+				_dynamicObject->push_back(new Skeletons(posX, posY, EnumID::Skeletons_ID));
 			default:
 				break;
 			}
