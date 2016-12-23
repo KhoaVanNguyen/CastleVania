@@ -187,15 +187,6 @@ void Player::Draw(GCamera* camera)
 				// đi sang phải
 				if (vX > 0 || _vLast > 0)
 				{
-
-					if (_onStair) {
-						if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::DownRight) {
-							playerStair->DrawFlipX(center.x, center.y);
-						}
-						//?
-						return;
-					}
-
 					if (_action == Action::Fight) {
 						if (!_hasSit) {
 							fightingSprite->DrawFlipX(center.x, center.y);
@@ -209,6 +200,13 @@ void Player::Draw(GCamera* camera)
 							morningStar->Draw(camera);
 
 						// vẽ Fight rồi return luôn
+						return;
+					}
+					if (_onStair) {
+						if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::DownRight) {
+							playerStair->DrawFlipX(center.x, center.y);
+						}
+						//?
 						return;
 					}
 					sprite->DrawFlipX(center.x, center.y);
@@ -434,6 +432,8 @@ void Player::TurnLeft()
 			return;
 		if (_hasSit)
 			return;
+		if (_onStair)
+			return;
 		ResetStair();
 		vX = -SPEED_X;
 		_vLast = vX;
@@ -450,6 +450,8 @@ void Player::TurnRight()
 		if (_hasJump)
 			return;
 		if (_hasSit)
+			return;
+		if (_onStair)
 			return;
 		ResetStair();
 		vX = SPEED_X;
@@ -508,6 +510,8 @@ void Player::Sit()
 void Player::Fight() {
 	if (_allowPress)
 	{
+		if (_action == Action::Run_Left || _action == Action::Run_Right)
+			return;
 		if (_action == Action::Fight)
 			return;
 		if (!_hasJump)
@@ -884,7 +888,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						// số 32 ? số càng bé càng khó bắt đc va chạm vs gạch
 						if (vY < 0 && moveY < 16)
 						{
-						
+
 
 							if (moveY > 0) {
 								// do vẽ ở center của sprite nên + với 1 khoảng = 1/2 của sprite là oke :))
@@ -919,7 +923,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 									_allowPress = true;
 									sprite->SelectIndex(0);
 								}
-						
+
 							}
 						}
 						//--------------------
@@ -1131,7 +1135,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region Va chạm với Enemy
 						case ObjectType::Enemy_Type:
 							// nếu ở trên cầu thang thì chỉ bị mất máu, không bị Knockback, và ngược lại
-							if (!_onStair ) //&& !_colBottomStair)
+							if (!_onStair) //&& !_colBottomStair)
 							{
 								if (!_hidden)
 								{
