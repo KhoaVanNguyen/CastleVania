@@ -19,6 +19,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 {
 	hp = 12;
 	_isHurted = false;
+	_startToHiddenTime = 0;
+	_bHurt = false;
 	_action = Action::Idle;
 	_a = 0.005f;
 	_allowPress = true;
@@ -146,6 +148,12 @@ void Player::Update(int deltaTime)
 }
 void Player::Draw(GCamera* camera)
 {
+
+	if (posY < (camera->viewport.y - G_ScreenHeight))
+	{
+		hp = 0;
+	}
+
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
 	if (_isDie)
 	{
@@ -232,6 +240,9 @@ void Player::Draw(GCamera* camera)
 					sprite->Draw(center.x, center.y);
 				}
 			}
+		}
+		else {
+			// ko ve gi het
 		}
 	}
 }
@@ -887,9 +898,14 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										{
 											_hidden = true;
 											_startToHiddenTime = GetTickCount();
-											if (hp >= 0)
+											if (hp > 0)
 											{
-												hp -= other->damage;
+												if (hp <= 3)
+												{
+													hp -= 1;
+												}
+												else
+													hp -= other->damage;
 											}
 
 										}
@@ -902,14 +918,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 									_allowPress = true;
 									sprite->SelectIndex(0);
 								}
-							/*	else {
-
-									vY = 0;
-									vX = 0;
-									_a = 0;
-									_allowPress = true;
-									sprite->SelectIndex(0);
-								}*/
+						
 							}
 						}
 						//--------------------
@@ -1235,7 +1244,7 @@ bool Player::IsHurting()
 		return false;
 	bool result = false;
 	DWORD now = GetTickCount();
-	DWORD deltaTime = now - _localHurtTime;
+	DWORD deltaTime = now - _startToHiddenTime;
 	if (deltaTime >= 1500)
 	{
 		_hidden = false;
