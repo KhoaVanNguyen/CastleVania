@@ -51,6 +51,10 @@ void Font::render(int number_, float x_, float y_)
 {
 	_render((char*)to_string(number_).c_str(), x_, y_, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
+void Font::render(float number_, float x_, float y_)
+{
+	_render((char*)to_string(number_).c_str(), x_, y_, D3DCOLOR_ARGB(255, 255, 255, 255));
+}
 
 void Font::renderAnimation(char* text_, float x_, float y_, int deltaTime_)
 {

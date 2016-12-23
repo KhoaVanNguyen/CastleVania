@@ -18,6 +18,7 @@ Player::Player(void) : DynamicObject()
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
 	hp = 12;
+	vColMoving = 0;
 	_isHurted = false;
 	_startToHiddenTime = 0;
 	_bHurt = false;
@@ -28,6 +29,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_hasJump = false;
 	_hasMagicalBall = false;
 	//_onLand = false;
+	_movingByMovingPlatform = false;
 	_colBottomStair = false;
 	_hasKnockBack = false;
 	_usingStopWatch = false;
@@ -513,6 +515,8 @@ void Player::Sit()
 {
 	if (_allowPress)
 	{
+		if (_onMovingPlatform) vY = 0;
+		//	return;
 		if (_action == Action::Fight)
 			return;
 		if (_hasSit) {
@@ -631,6 +635,7 @@ void Player::Stop() {
 	//	sprite->SelectIndex(0);
 	//	_a = 0;
 	//}
+	if (!_hasJump && !_movingByMovingPlatform) vX = 0;
 	_action = Action::Idle;
 	sprite->SelectIndex(0);
 }
@@ -827,6 +832,11 @@ Box Player::GetBox()
 	return Box(posX - width / 2 + 14.5f, posY + height / 2 - 3, width - 29, height - 6);
 }
 void Player::Collision(list<GameObject*> &obj, float dt) {
+	if (_onMovingPlatform && _action == Action::Sit)
+	{
+		vY = 0;
+		posX += vColMoving*7.6;// vận tốc di chuyển của movingPlatform
+	}
 	if (_action == Action::Fight)
 	{
 		morningStar->Collision(obj, dt);
@@ -977,18 +987,42 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region Va chạm với MovingPlatform
 					case EnumID::MovingPlatform_ID:
 					{
+						// còn lỗi với knockback....
+						//posY += moveY;
 						float _compareHeigh = abs((other->posY + other->height / 2) - (posY - height / 2) - moveY);
+						// khoảng cách của chân nhân vật cách vị trí của movingPlatform
+						// chọn số 4 vì nếu số quá lớn thì nhân vật sẽ tự nhận va chạm ngay
+						// -> lỗi. code thay nhiều số, thấy số phù hợp từ khoảng 4->10.
+						
 						if (vY < 0 && _compareHeigh < 5)
 						{
-							_hasJump = false;
-							vY = 0;
+							if (_hasKnockBack) // nếu knockback thì thoát knockback khi chạm Movingplatform
+							{
+								_hasKnockBack = false;
+								vY = 0;
+								vX = 0;
+								_a = 0;
+								_allowPress = true;
+								sprite->SelectIndex(0);
+								return;
+							}
+							if (_hasJump)
+							{
+								_action = Action::Idle;
+								sprite->SelectIndex(0);
+							}
+							_hasJump = false; // vì đang nhảy, mà gặp movingPlatform thì _hasJump vẫn bằng True
 							posY += moveY;
+
 							_onMovingPlatform = true;
 						}
-						else if (vY > 0 || _hasJump)
-							return;
+						
 						if (_onMovingPlatform && _action == Action::Idle)
-							vX = other->vX;
+
+						{
+							posX += (other->vX)*15.69;// vận tốc di chuyển của movingPlatform
+							vColMoving = other->vX;
+						}
 						else if (_onMovingPlatform && _hasJump && _action == Action::Run_Right)
 						{
 							vX = SPEED_X;
