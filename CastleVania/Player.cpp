@@ -878,7 +878,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 #pragma region - va chạm với gạch
 					case EnumID::Brick_ID:
-						_MovingPlatform = false;
+						_onMovingPlatform = false;
 						//_onStair = false;
 
 						// số 32 ? số càng bé càng khó bắt đc va chạm vs gạch
@@ -922,7 +922,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							}
 						}
 						//--------------------
-						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_MovingPlatform)// && !_hasKnockBack)
+						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
 						{
 							posX += moveX;
 						}
@@ -947,7 +947,40 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 #pragma endregion
 
+#pragma region Va chạm với MovingPlatform
+					case EnumID::MovingPlatform_ID:
+					{
+						float _compareHeigh = abs((other->posY + other->height / 2) - (posY - height / 2) - moveY);
+						if (vY < 0 && _compareHeigh < 5)
+						{
+							_hasJump = false;
+							vY = 0;
+							posY += moveY;
+							_onMovingPlatform = true;
+						}
+						else if (vY > 0 || _hasJump)
+							return;
+						if (_onMovingPlatform && _action == Action::Idle)
+							vX = other->vX;
+						else if (_onMovingPlatform && _hasJump && _action == Action::Run_Right)
+						{
+							vX = SPEED_X;
+							vY = -SPEED_Y;
+						}
+						else if (_onMovingPlatform && _hasJump && _action == Action::Run_Left)
+						{
+							vX = -SPEED_X;
+							vY = -SPEED_Y;
+						}
+						else if (_onMovingPlatform && !_hasJump)
+						{
+							vY = -SPEED_Y;
+						}
+					}
+					break;
 
+
+#pragma endregion 
 #pragma region Va chạm cầu thang
 
 					case EnumID::StairUpRight_ID:

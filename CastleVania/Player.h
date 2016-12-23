@@ -54,7 +54,7 @@ public:
 
 
 	bool _isHurted; // Có đang bị mất máu không?
-	bool _MovingPlatform;
+	bool _onMovingPlatform;
 	bool _onLand;
 	bool _beFallOutScreen; // rớt ra khỏi màn hình
 
