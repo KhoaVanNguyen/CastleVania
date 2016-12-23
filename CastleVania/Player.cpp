@@ -794,6 +794,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 		//
 		if (other->active)
 		{
+			
 			if (AABB(boxPlayer, boxOther, moveX, moveY) == true) {
 				currentCollideWithID = other->id;
 				// moveY ,  moveX
@@ -978,6 +979,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma endregion
 
 
+
 #pragma region Va chạm cầu thang
 
 					case EnumID::StairUpRight_ID:
@@ -1116,6 +1118,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 					case EnumID::TrapDoor_ID:
 						hp = 0;
+						break;
+					case EnumID ::BrickCollision_ID:
 						break;
 
 #pragma endregion

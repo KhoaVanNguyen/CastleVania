@@ -25,5 +25,6 @@
 #include "MagicalBall.h"
 #include "Ghosts.h"
 #include "Skeletons.h"
+#include "BrickColliSion.h"
 
 #endif

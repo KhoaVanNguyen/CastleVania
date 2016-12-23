@@ -148,8 +148,11 @@ QGameObject::QGameObject(string fileName)
 				posDoor.x = posX;
 				posDoor.y = posY;
 				break;
-			case 26 :
-				_dynamicObject->push_back(new Skeletons(posX, posY, EnumID::Skeletons_ID));
+			case 27 :
+				_dynamicObject->push_back(new Skeletons(posX, posY ));
+			case 28:
+				_staticObject->push_back(new BrickCollision(posX, posY, width, height));
+				break;
 			default:
 				break;
 			}
@@ -248,8 +251,14 @@ void QGameObject::Update(int deltaTime)
 
 				if ((*it)->active)
 				{
-					(*it)->Update(deltaTime);
-
+				
+					if ((*it)->IsSkeletons){
+						// 267, 94
+						(*it)->Update(deltaTime, D3DXVECTOR2(267, 94));
+					}
+					else{
+						(*it)->Update(deltaTime);
+					}
 				}
 				it++;
 

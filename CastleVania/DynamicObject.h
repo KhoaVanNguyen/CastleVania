@@ -11,6 +11,7 @@ using namespace std;
 class DynamicObject : public GameObject
 {
 public:
+	
 	DWORD _localHurtTime;
 	DWORD _deltaHurtTime;
 	bool bActiveHurt;

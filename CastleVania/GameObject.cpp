@@ -10,6 +10,7 @@ GameObject::GameObject(void)
 	height = 0;
 	canMove = false;
 	canBeKilled = true;
+	IsSkeletons = false;
 }
 
 
@@ -52,6 +53,7 @@ void GameObject::CreateSprite()
 	case EnumID::DoorLeft_ID:
 	case EnumID::DoorRight_ID:
 	case EnumID::TeleUp_ID:
+	case EnumID::BrickCollision_ID:
 		sprite = NULL;
 		break;
 	case EnumID:: Candle_ID:
@@ -81,7 +83,9 @@ void GameObject::Update(int deltaTime)
 	if (sprite != NULL)
 		sprite->Update(deltaTime);
 }
+void GameObject::Update(int deltaTime_, D3DXVECTOR2 playerPos_){
 
+}
 void GameObject::Draw(GCamera* camera)
 {
 	if (sprite != NULL)

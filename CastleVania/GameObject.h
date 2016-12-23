@@ -11,6 +11,9 @@ using namespace std;
 class GameObject
 {
 public:
+	bool IsSkeletons;
+
+
 	GSprite* sprite;
 	//posX, posY -> toa do center
 	float posX, posY;
@@ -31,6 +34,7 @@ public:
 	int point;
 
 	virtual void Update(int dt);
+	virtual void Update(int deltaTime_, D3DXVECTOR2 playerPos_);
 	virtual void Draw(GCamera*);
 	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int t);
 	virtual void OnKeyDown(int KeyCode);

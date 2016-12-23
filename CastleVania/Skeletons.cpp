@@ -1,142 +1,134 @@
-
 #include "Skeletons.h"
 
 
-void Skeletons::_initialize()
+Skeletons::Skeletons(void) : DynamicObject()
+{
+}
+
+Skeletons::Skeletons(float _x, float _y) : DynamicObject(_x, _y, 0.3f, 0, EnumID::Skeletons_ID)
 {
 	_playerPos = new D3DXVECTOR2(0, 0);
-	_localTime = 0;
-	_LittleSnake = new list<DynamicObject*>();
-	_deltaPhi = 0;
-	_posY0 = posY;
-	active = true;
-	type = ObjectType::None;
-	hp = 100;
-	damage = 4;
 	canBeKilled = true;
-	playerpos = new D3DXVECTOR2(0, 0);
+	type = ObjectType::Enemy_Type;
+	point = 100;
+	_posX0 = _x;
+	_posY0 = _y;
+	vangratruoc = false;
+	vangrasau = false;
+	huong = 1;
+	IsSkeletons = true;
 }
 
-void Skeletons::setDead()
+Skeletons::~Skeletons(void)
 {
-	active = false;
 }
 
-void Skeletons::ReceiveDamage(int damagePoint)
+void Skeletons::Update(int deltaTime_, D3DXVECTOR2 playerPos_)
 {
+	
+	if (sprite == NULL || !active)
+		return;
 
-	if (!IsHurt())
+	this->sprite->Update(deltaTime_);
+
+	//this->_playerPos = playerPos_;
+	
+	if (playerPos_.x > posX)
 	{
-		if (hp <= 0)
-			return;
-		hp -= damagePoint;
-		if (hp == 0)
-			death = true;
-		bActiveHurt = true;
-		_localHurtTime = GetTickCount();
-
-		if (hp == 0)
-			this->setDead();
-	}
-}
-
-void Skeletons::_updateSnakes(int deltaTime_)
-{
-	/*list<DynamicObject*>::iterator it = _LittleSnake->begin();
-	while (it != _LittleSnake->end())
-	{
-		if (!(*it)->active)
-			_LittleSnake->erase(it++);
-		else
-		{
-			(*it)->Update(deltaTime_);
-			++it;
-		}
-	}*/
-
-}
-
-void Skeletons::_drawSnakes(GCamera* camera_)
-{
-	/*for (list<DynamicObject*>::iterator iter = _LittleSnake->begin(); iter != _LittleSnake->end(); iter++)
-	{
-		DynamicObject* tempSnake = (*iter);
-		tempSnake->Draw(camera_);
-	}*/
-}
-
-Skeletons::Skeletons(void)
-{
-	this->_initialize();
-}
-
-Skeletons::Skeletons(float posX_, float posY_,  EnumID id_) :DynamicObject(posX_, posY_, QUEEN_Skeletons_SPEED_X, 0, id_)
-{
-	_initialize();
-	//prepare(posX_, posY_, huong);
-	_sprite = new GSprite(Singleton::getInstance()->getTexture(id_), 4, 4, 1000 / SKELETONS_SPEED_X);
-}
-
-void Skeletons::prepare(D3DXVECTOR2* playerpos)
-{
-	float dentax = posX - playerpos->x;
-	if (dentax > 0)
-	{
-		_anpha = SKELETONS_ANPHA;
-		_posX0 = posX = posX + 20;
+		_anpha = THROW_AXE_ANPHA;
+		huong = 1;
 	}
 	else
 	{
-		_anpha = 180 - SKELETONS_ANPHA;
-		_posX0 = posX = posX - 20;
+		_anpha = 180 - THROW_AXE_ANPHA;
+		huong =-1;
 	}
-	_anpha = _anpha*(3.14 / 180);
-	_posY0 = posY = posY + 20;
-}
 
-void Skeletons::Update(int deltaTime_)
-{
+	
 	
 
-	this->sprite->Update(deltaTime_);
-	vX = SKELETONS_SPEED_X*cos(_anpha);
-	vY = SKELETONS_SPEED_X*sin(_anpha) - G*deltaTime_;
-	posX += vX*deltaTime_;
-	float deltaPosX = posX - _posX0;
-	posY = _posY0 + vY*deltaPosX / vX - 0.5*G*pow((deltaPosX / vX), 2);
-	//_updateSnakes(deltaTime_);
-}
-void Skeletons::Draw(GCamera* camera_)
-{
-	D3DXVECTOR2 center = camera_->Transform(posX, posY);
-	_sprite->Draw(center.x, center.y);
-	//this->_drawSnakes(camera_);
-		
+	if (vangratruoc == true  )
+	{
+		vX = THROW_AXE_SPEED_X*cos(_anpha);
+		vY = THROW_AXE_SPEED_X*sin(_anpha) - G*deltaTime_;
+		posX += vX*deltaTime_;
+		float deltaPosX = posX - _posX0;
+		posY = _posY0 + vY*deltaPosX / vX - 0.5*G*pow((deltaPosX / vX), 2);
+		vangratruoc = false;
+	}
+	else
+	{
+		posX += vX*deltaTime_;
+		if (posX <= width / 2 + 2 || posX >= G_MapWidth - (width / 2 - 2))
+			vX = -vX;
+		posY += vY*deltaTime_;
+	}
+	
 }
 
 void Skeletons::Collision(list<GameObject*> obj, int dt)
 {
-	// xet va cham cua Snake voi gameObject
-	for (list<DynamicObject*>::iterator iter = _LittleSnake->begin(); iter != _LittleSnake->end(); iter++)
+	list<GameObject*>::iterator _itBegin;
+	for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
-		DynamicObject* Snake = (*iter);
-		Snake->Collision(obj, dt);
-		
+		float moveX;
+		float moveY;
+		float normalx;
+		float normaly;
+		GameObject* other = (*_itBegin);
+
+		Box box = this->GetBox();
+		Box boxOther = other->GetBox();
+		if (AABB(box, boxOther, moveX, moveY) == true)
+		{
+			if (other->id == EnumID::BrickCollision_ID)
+
+				vangratruoc = true;
+
+		}
+			
+		//if (other->id != EnumID::Brick_ID)
+		//{
+		//	Box box = this->GetBox();
+		//	Box boxOther = other->GetBox();
+
+		//	if (AABB(box, boxOther, moveX, moveY) == true)
+		//	{
+		//		/*if (vY < 0)
+		//		{
+		//		posY += moveY;
+		//		vY = 0;
+		//		return;
+		//		}
+		//		if ((posX - width / 2 + 10) - (other->posX - other->width / 2) <= 0
+		//		|| (posX + width / 2 - 10) - (other->posX + other->width / 2) >= 0)
+		//		vX = -vX;
+		//		}
+		//		else
+		//		if (AABB(box, boxOther, moveX, moveY) == false)
+		//		{
+		//		if (other->canMove == true)
+		//		{
+		//		box.vx -= boxOther.vx;
+		//		box.vy -= boxOther.vy;
+		//		boxOther.vx = 0;
+		//		boxOther.vy = 0;
+		//		}
+
+		//		}*/
+			//if(other->id == EnumID::BrickCollision_ID) vangratruoc= true;
+				 //if (other->id == EnumID::28_ID) vangrasau= true;
 	}
 }
 
-void Skeletons::prepare(float posX, float posY, float huong)
+		
+	
+
+void Skeletons::Draw(GCamera* camera_)
 {
-	if (huong>0)
-	{
-		_anpha = SKELETONS_ANPHA;
-		_posX0 = posX = posX + 20;
-	}
+	D3DXVECTOR2 center = camera_->Transform(posX, posY);
+	 if (huong =1)
+	sprite->DrawFlipX(center.x, center.y);
 	else
-	{
-		_anpha = 180 - SKELETONS_ANPHA;
-		_posX0 = posX = posX - 20;
-	}
-	_anpha = _anpha*(3.14 / 180);
-	_posY0 = posY = posY + 20;
+	sprite->Draw(center.x, center.y);
 }

@@ -3,8 +3,8 @@
 #define BACKGROUND_FILE "Resources/black.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 1;
-	_stageNow = 1;
+	_levelNow = 2;
+	_stageNow = 11;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -61,9 +61,9 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		camera->viewport.y = 485; // 485
 		bg = new QBackground(level);
 		bg->LoadTree();
-		//player = new Player(600, 90);
-		player->posX = 600;
-		player->posY = 140;
+		player = new Player(300, 90);
+		//player->posX = 600;
+		//player->posY = 140;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
 		/*Sound::GetInst()->RemoveAllBGM();
@@ -302,6 +302,14 @@ void SceneGame::LoadStage(int stage)
 
 	}
 	break;
+	case 11:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage7-2.txt");
+
+
+	}
+	break;
+
 	default:
 		break;
 	}

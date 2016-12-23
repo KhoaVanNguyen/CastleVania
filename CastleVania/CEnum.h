@@ -18,7 +18,7 @@ enum EnumID
 	Candle_ID,
 	LargeCandle_ID,
 	MorningStar_ID,
-
+	BrickCollision_ID,
 	//enemy
 	MedusaHeads_ID,
 	Bats_ID,

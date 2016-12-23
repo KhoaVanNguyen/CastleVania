@@ -89,6 +89,7 @@
     <ClCompile Include="AxeKnights.cpp" />
     <ClCompile Include="Bats.cpp" />
     <ClCompile Include="BoneTowers.cpp" />
+    <ClCompile Include="BrickCollision.cpp" />
     <ClCompile Include="CastleGate.cpp" />
     <ClCompile Include="CenterOfCircle.cpp" />
     <ClCompile Include="Door.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="BoneTowers.h" />
     <ClInclude Include="Boomerang.h" />
     <ClInclude Include="Brick.h" />
+    <ClInclude Include="BrickColliSion.h" />
     <ClInclude Include="Candle.h" />
     <ClInclude Include="CastleGate.h" />
     <ClInclude Include="CenterOfCircle.h" />

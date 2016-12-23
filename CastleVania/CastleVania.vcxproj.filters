@@ -59,6 +59,7 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Skeletons.cpp" />
     <ClCompile Include="CenterOfCircle.cpp" />
+    <ClCompile Include="BrickCollision.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -122,5 +123,6 @@
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="Skeletons.h" />
     <ClInclude Include="CenterOfCircle.h" />
+    <ClInclude Include="BrickColliSion.h" />
   </ItemGroup>
 </Project>
