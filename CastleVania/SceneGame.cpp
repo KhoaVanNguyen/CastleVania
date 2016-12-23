@@ -4,7 +4,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 1;
-	_stageNow = 1;
+	_stageNow = 6;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -43,10 +43,10 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 
 	case 1:
 	{
-		camera->viewport.y = 485; // 485
+		camera->viewport.y = 1637; // 485
 		bg = new QBackground(level);
 		bg->LoadTree();
-		player = new Player(3776, 96);
+		player = new Player(345, 1310);
 		//player = new Player(287, 1310);
 		//player->posX = 3776;
 		//player->posY = 96;
@@ -68,6 +68,9 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		player->posX = 600;
 		player->posY = 140;
 		_stageReset = 7;
+		player->Initialize();
+		//player->hp = 20;
+		//player->hearts = 50;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
 		/*Sound::GetInst()->RemoveAllBGM();
@@ -185,27 +188,27 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			
 		}
 #pragma endregion
-#pragma region nhan duoc MagicalBall qua man
+#pragma region nhan MagicalBall de qua man
+
 		if (player->_hasMagicalBall)
-			//{
-			//	if (player->GetHPplayer() < 40)
-			//	{
-			//		player->hp++;
-			//	}
-			//	else if (_gameScore->getTimer() > 0)
-			//	{
-			//		_gameScore->SetTimer(-1000);
-			//		//_score += 50;
-			//		//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_GetScoreTimer);
-			//	}
-			//	else if (player->hearts > 0)
-			//	{
-			//		player->hearts--;
-			//		//_score += 100;
-			//		//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_GetScoreWeaponCount);
-			//	}
-			//	else 
-			if (_levelNow == 1)
+		{
+			if (player->hp <= 40)
+			{
+				player->hp++;
+			}
+			else if (gameUI->getTimer() > 0)
+			{
+				gameUI->SetTimer(-1000);
+				score += 50;
+				//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_GetScoreTimer);
+			}
+			else if (player->hearts > 0)
+			{
+				player->hearts--;
+				//_score += 100;
+				//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_GetScoreWeaponCount);
+			}
+			else if (_levelNow == 1)
 			{
 				_levelNow++;
 				_stageNow++;
@@ -216,6 +219,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			{
 				sceneState = ESceneState::Scene_End;
 			}
+		}
 #pragma endregion 
 
 
@@ -280,7 +284,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect);
 		//gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
-		gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->rangeStair, _beginMoveCamera, _moveCameraHaft);
+		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->rangeStair, _beginMoveCamera, _moveCameraHaft);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();

@@ -17,7 +17,7 @@ Player::Player(void) : DynamicObject()
 
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
-	hp = 12;
+	hp = 40;
 	_isHurted = false;
 	_startToHiddenTime = 0;
 	_bHurt = false;
@@ -44,7 +44,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 
 	// Death
 	_isDie = false;
-	hearts = 1000;
+	hearts = 100;
 	_weaponID = EnumID::Dagger_ID;
 	weapons = new list<Weapon*>();
 	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
