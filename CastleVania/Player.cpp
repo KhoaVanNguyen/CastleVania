@@ -51,6 +51,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 
 	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
 	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
+	playerFightingDownStairSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 18, 21, 1000 / PLAYER_FIGHT_RATE);
+	playerFightingUpStairSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
 	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
@@ -188,11 +190,21 @@ void Player::Draw(GCamera* camera)
 				if (vX > 0 || _vLast > 0)
 				{
 					if (_action == Action::Fight) {
-						if (!_hasSit) {
+						if (!_hasSit && !_onStair) {
 							fightingSprite->DrawFlipX(center.x, center.y);
-
 						}
-						else {
+						else if (_onStair)
+						{
+							if (_kindStair == EKindStair::UpRight) {
+								playerFightingUpStairSprite->DrawFlipX(center.x, center.y);
+							}
+							if (_kindStair == EKindStair::DownRight)
+							{
+								playerFightingDownStairSprite->DrawFlipX(center.x, center.y);
+							}
+						}
+						else
+						{
 							fightingSittingSprite->DrawFlipX(center.x, center.y);
 
 						}
@@ -216,9 +228,19 @@ void Player::Draw(GCamera* camera)
 				{
 					if (_action == Action::Fight) {
 
-						if (!_hasSit) {
+						if (!_hasSit && !_onStair) {
 							fightingSprite->Draw(center.x, center.y);
 
+						}
+						else if (_onStair)
+						{
+							if (_kindStair == EKindStair::UpLeft) {
+								playerFightingUpStairSprite->Draw(center.x, center.y);
+							}
+							if (_kindStair == EKindStair::DownLeft)
+							{
+								playerFightingDownStairSprite->Draw(center.x, center.y);
+							}
 						}
 						else {
 							fightingSittingSprite->Draw(center.x, center.y);

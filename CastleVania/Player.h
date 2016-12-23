@@ -34,6 +34,8 @@ public:
 	GSprite *playerKnockBack;
 	GSprite *playerUpStair;
 	GSprite *playerDeathSprite;
+	GSprite *playerFightingDownStairSprite;
+	GSprite *playerFightingUpStairSprite;
 
 	GameObject* _stair;	//Thong tin stair;
 
