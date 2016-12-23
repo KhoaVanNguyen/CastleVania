@@ -33,6 +33,7 @@ public:
 	GSprite *playerStair;
 	GSprite *playerKnockBack;
 	GSprite *playerUpStair;
+	GSprite *playerDeathSprite;
 
 	GameObject* _stair;	//Thong tin stair;
 
@@ -53,7 +54,7 @@ public:
 
 
 	bool _isHurted; // Có đang bị mất máu không?
-	bool _MovingPlatform;
+	bool _onMovingPlatform;
 	bool _onLand;
 	bool _beFallOutScreen; // rớt ra khỏi màn hình
 
@@ -132,7 +133,12 @@ public:
 	bool IsHurting();
 	bool _bHurt = false;
 	
+	// Death
+	void Die(int &_timeCount);
+	bool _isDie;
+	bool _isReset;
 
+	void DecreaseHP(GameObject*);
 };
 
 #endif

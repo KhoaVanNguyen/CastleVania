@@ -19,7 +19,7 @@ Singleton* Singleton::getInstance()
 Singleton::Singleton()
 {
 	player = new GTexture("Resources/player.png", 8, 3, 24);
-
+	playerDeath = new GTexture("Resources/Playerdeath.png", 1, 1, 1);
 	morningStar = new GTexture("Resources/morningstar.png", 3, 3, 9);
 	//playerDeath = new GTexture("Resources/playerdeath.png", 1, 1, 1);
 

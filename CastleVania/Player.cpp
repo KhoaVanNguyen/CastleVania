@@ -17,8 +17,10 @@ Player::Player(void) : DynamicObject()
 
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
-	hp = 10;
+	hp = 12;
 	_isHurted = false;
+	_startToHiddenTime = 0;
+	_bHurt = false;
 	_action = Action::Idle;
 	_a = 0.005f;
 	_allowPress = true;
@@ -39,6 +41,9 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_downStair = false;
 	_stopOnStair = false;
 	_outStair = false;
+
+	// Death
+	_isDie = false;
 	hearts = 1000;
 	_weaponID = EnumID::Dagger_ID;
 	weapons = new list<Weapon*>();
@@ -49,6 +54,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
+
+	playerDeathSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::PlayerDeath_ID), 0, 0, 100);
 	Initialize();
 }
 
@@ -141,90 +148,103 @@ void Player::Update(int deltaTime)
 }
 void Player::Draw(GCamera* camera)
 {
-	D3DXVECTOR2 center = camera->Transform(posX, posY);
 
-	if (!IsHurting())
+	if (posY < (camera->viewport.y - G_ScreenHeight))
 	{
-		for (list<Weapon*>::iterator i = weapons->begin(); i != weapons->end(); i++)
+		hp = 0;
+	}
+
+	D3DXVECTOR2 center = camera->Transform(posX, posY);
+	if (_isDie)
+	{
+		playerDeathSprite->DrawFlipX(center.x, center.y);
+	}
+	else {
+		if (!IsHurting())
 		{
-			if ((*i)->active)
-				(*i)->Draw(camera);
-		}
-#pragma region Ve khi has KnockBack
-		if (_hasKnockBack)
-		{
-			if (_vLast > 0)
+			for (list<Weapon*>::iterator i = weapons->begin(); i != weapons->end(); i++)
 			{
-				playerKnockBack->Draw(center.x, center.y);
-				return;
+				if ((*i)->active)
+					(*i)->Draw(camera);
 			}
-			else if (_vLast < 0)
+#pragma region Ve khi has KnockBack
+			if (_hasKnockBack)
 			{
-				playerKnockBack->DrawFlipX(center.x, center.y);
-				return;
+				if (_vLast > 0)
+				{
+					playerKnockBack->Draw(center.x, center.y);
+					return;
+				}
+				else if (_vLast < 0)
+				{
+					playerKnockBack->DrawFlipX(center.x, center.y);
+					return;
+				}
+			}
+			else {
+
+#pragma endregion 
+				// đi sang phải
+				if (vX > 0 || _vLast > 0)
+				{
+
+					if (_onStair) {
+						if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::DownRight) {
+							playerStair->DrawFlipX(center.x, center.y);
+						}
+						//?
+						return;
+					}
+
+					if (_action == Action::Fight) {
+						if (!_hasSit) {
+							fightingSprite->DrawFlipX(center.x, center.y);
+
+						}
+						else {
+							fightingSittingSprite->DrawFlipX(center.x, center.y);
+
+						}
+						if (!_usingWeapon)
+							morningStar->Draw(camera);
+
+						// vẽ Fight rồi return luôn
+						return;
+					}
+					sprite->DrawFlipX(center.x, center.y);
+				}
+				// đi sang trái
+				else
+				{
+					if (_action == Action::Fight) {
+
+						if (!_hasSit) {
+							fightingSprite->Draw(center.x, center.y);
+
+						}
+						else {
+							fightingSittingSprite->Draw(center.x, center.y);
+
+						}
+						if (!_usingWeapon)
+							morningStar->Draw(camera);
+						//morningStar->Draw(camera);
+						return;
+					}
+					if (_onStair)
+					{
+						if (_kindStair == EKindStair::DownLeft || _kindStair == EKindStair::UpLeft)
+							playerStair->Draw(center.x, center.y);
+						return;
+					}
+					sprite->Draw(center.x, center.y);
+				}
 			}
 		}
 		else {
-
-#pragma endregion 
-			// đi sang phải
-			if (vX > 0 || _vLast > 0)
-			{
-			
-				if (_onStair) {
-					if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::DownRight) {
-						playerStair->DrawFlipX(center.x, center.y);
-					}
-					//?
-					return;
-				}
-
-				if (_action == Action::Fight) {
-					if (!_hasSit) {
-						fightingSprite->DrawFlipX(center.x, center.y);
-
-					}
-					else {
-						fightingSittingSprite->DrawFlipX(center.x, center.y);
-
-					}
-					if (!_usingWeapon)
-						morningStar->Draw(camera);
-
-					// vẽ Fight rồi return luôn
-					return;
-				}
-				sprite->DrawFlipX(center.x, center.y);
-			}
-			// đi sang trái
-			else
-			{
-				if (_action == Action::Fight) {
-
-					if (!_hasSit) {
-						fightingSprite->Draw(center.x, center.y);
-
-					}
-					else {
-						fightingSittingSprite->Draw(center.x, center.y);
-
-					}
-					if (!_usingWeapon)
-						morningStar->Draw(camera);
-					//morningStar->Draw(camera);
-					return;
-				}
-				if (_onStair)
-				{
-					if (_kindStair == EKindStair::DownLeft || _kindStair == EKindStair::UpLeft)
-						playerStair->Draw(center.x, center.y);
-					return;
-				}
-				sprite->Draw(center.x, center.y);
-			}
+			// ko ve gi het
 		}
 	}
-
 }
 void Player::UpdatePlayerStair(int t)
 {
@@ -858,49 +878,52 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 #pragma region - va chạm với gạch
 					case EnumID::Brick_ID:
-						_MovingPlatform = false;
+						_onMovingPlatform = false;
 						//_onStair = false;
 
 						// số 32 ? số càng bé càng khó bắt đc va chạm vs gạch
-						if (vY < 0 && moveY < 32)
+						if (vY < 0 && moveY < 16)
 						{
+						
 
-							// do vẽ ở center của sprite nên + với 1 khoảng = 1/2 của sprite là oke :))
-							posY += moveY;
-							if (_hasJump || _hasKnockBack)
-								if (moveY > 0)
+							if (moveY > 0) {
+								// do vẽ ở center của sprite nên + với 1 khoảng = 1/2 của sprite là oke :))
+								posY += moveY;
+
+								if (_hasJump || _hasKnockBack)
 								{
-								
-									if (_hasJump || _hasKnockBack)
+									_hasJump = false;
+									if (_hasKnockBack)
 									{
-										_hasJump = false;
-										if (_hasKnockBack)
+										if (!_hidden)
 										{
-											if (!_isHurted)
+											_hidden = true;
+											_startToHiddenTime = GetTickCount();
+											if (hp > 0)
 											{
-												_isHurted = true;
-												_startToHiddenTime = GetTickCount();
-												if (hp >= 0)
+												if (hp <= 3)
 												{
-													hp -= other->damage;
+													hp -= 1;
 												}
-
+												else
+													hp -= other->damage;
 											}
-											_hasKnockBack = false;
-										}
 
-										vY = 0;
-										vX = 0;
-										_a = 0;
-										_allowPress = true;
-										sprite->SelectIndex(0);
+										}
+										_hasKnockBack = false;
 									}
 
-
+									vY = 0;
+									vX = 0;
+									_a = 0;
+									_allowPress = true;
+									sprite->SelectIndex(0);
 								}
+						
+							}
 						}
 						//--------------------
-						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_MovingPlatform)// && !_hasKnockBack)
+						if (_onLand && moveX != 0 && vX != 0 && !_onStair && !_hasJump && !_onMovingPlatform)// && !_hasKnockBack)
 						{
 							posX += moveX;
 						}
@@ -925,7 +948,40 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 #pragma endregion
 
+#pragma region Va chạm với MovingPlatform
+					case EnumID::MovingPlatform_ID:
+					{
+						float _compareHeigh = abs((other->posY + other->height / 2) - (posY - height / 2) - moveY);
+						if (vY < 0 && _compareHeigh < 5)
+						{
+							_hasJump = false;
+							vY = 0;
+							posY += moveY;
+							_onMovingPlatform = true;
+						}
+						else if (vY > 0 || _hasJump)
+							return;
+						if (_onMovingPlatform && _action == Action::Idle)
+							vX = other->vX;
+						else if (_onMovingPlatform && _hasJump && _action == Action::Run_Right)
+						{
+							vX = SPEED_X;
+							vY = -SPEED_Y;
+						}
+						else if (_onMovingPlatform && _hasJump && _action == Action::Run_Left)
+						{
+							vX = -SPEED_X;
+							vY = -SPEED_Y;
+						}
+						else if (_onMovingPlatform && !_hasJump)
+						{
+							vY = -SPEED_Y;
+						}
+					}
+					break;
 
+
+#pragma endregion 
 #pragma region Va chạm cầu thang
 
 					case EnumID::StairUpRight_ID:
@@ -1074,21 +1130,15 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							// để enemy ở cuối để check được nhiều loại cùng lúc
 #pragma region Va chạm với Enemy
 						case ObjectType::Enemy_Type:
-							// colStair ?? biến đang ở trên cầu thang là ???
-							if (!_onStair && !_colBottomStair)
+							// nếu ở trên cầu thang thì chỉ bị mất máu, không bị Knockback, và ngược lại
+							if (!_onStair ) //&& !_colBottomStair)
 							{
-								if (!_hidden)
-									KnockBack();
-							}
-							else
-							{
-								// chưa có cầu thang
 								if (!_hidden)
 								{
 									_hidden = true;
+									KnockBack();
 									// trừ Hp ở đây
 									_startToHiddenTime = GetTickCount();
-
 									if (hp > 0)
 									{
 										if (hp <= 3)
@@ -1097,17 +1147,23 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 										}
 										else
 											hp -= other->damage;
+										//hp -= other->damage;
 									}
-								
+
 								}
-							
+							}
+							else
+							{
+								// đã lên cầu thang
+								DecreaseHP(other);
+
 
 							}
+
 							break;
 #pragma endregion 
-				
-						default:
 
+						default:
 							break;
 						}
 						break;
@@ -1222,12 +1278,12 @@ void Player::ChangeWeapon(EnumID weaponId) {
 // xem player có đang bị sát thương hay không?
 bool Player::IsHurting()
 {
-	
+
 	if (!_hidden)
 		return false;
 	bool result = false;
 	DWORD now = GetTickCount();
-	DWORD deltaTime = now - _localHurtTime;
+	DWORD deltaTime = now - _startToHiddenTime;
 	if (deltaTime >= 1500)
 	{
 		_hidden = false;
@@ -1237,4 +1293,41 @@ bool Player::IsHurting()
 		_bHurt = !_bHurt;
 	}
 	return result;
+}
+
+
+void Player::Die(int &_timeCount)
+{
+	if (_isDie)
+	{
+		_allowPress = false;
+		_timeCount -= 1;
+		playerDeathSprite->SelectIndex(0);
+		if (_timeCount == 0)
+		{
+			//_simonDeath = false;
+			_allowPress = true;
+			_isReset = true;
+		}
+	}
+}
+
+void Player::DecreaseHP(GameObject* other) {
+	if (!_hidden)
+	{
+		_hidden = true;
+		// trừ Hp ở đây
+		_startToHiddenTime = GetTickCount();
+		if (hp > 0)
+		{
+			if (hp <= 3)
+			{
+				hp -= 1;
+			}
+			else
+				hp -= other->damage;
+			//hp -= other->damage;
+		}
+
+	}
 }
