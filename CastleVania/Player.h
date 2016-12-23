@@ -33,6 +33,7 @@ public:
 	GSprite *playerStair;
 	GSprite *playerKnockBack;
 	GSprite *playerUpStair;
+	GSprite *playerDeathSprite;
 
 	GameObject* _stair;	//Thong tin stair;
 
@@ -132,7 +133,10 @@ public:
 	bool IsHurting();
 	bool _bHurt = false;
 	
-
+	// Death
+	void Die(int &_timeCount);
+	bool _isDie;
+	bool _isReset;
 };
 
 #endif

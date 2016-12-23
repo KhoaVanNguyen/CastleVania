@@ -10,6 +10,8 @@ SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 	_stateCamera = EStateCamera::Update_Camera;
 	gameUI = NULL;
 	score = 0;
+
+	totalResets = 10;
 }
 
 SceneGame::~SceneGame()
@@ -75,7 +77,8 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	default:
 		break;
 	}
-
+	posStageToReset.x = player->posX;
+	posStageToReset.y = player->posY;
 	posCamera = camera->viewport;
 }
 void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
@@ -135,7 +138,55 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			}
 #pragma endregion 
 		}
+#pragma region Xử lý khi Player die
+		// hết máu nhưng chưa thực hiện cái chết :))
+		if (player->hp <= 0 && !player->_isDie)
+		{
+			resetTime = 100;
+			player->_isDie = true;
+		}
+		// chuẩn bị chết nè
+		if (player->_isDie)
+		{
+			
+			
+			if (resetTime <= 0) {
 
+				player->_isDie = false;
+				player = new Player(posStageToReset.x, posStageToReset.y);
+				if (gameUI->getTimer() <= 0)
+				{
+					if (_levelNow == 1)
+						gameUI->initTimer(200);
+					else gameUI->initTimer(300);
+				}
+				LoadStage(_stageReset);
+				camera->viewport = posCamera;
+				_stageNow = _stageReset;
+				totalResets--;
+				if (totalResets <= 0)
+				{
+					sceneState = ESceneState::Scene_Menu;
+				}
+				else
+				{
+					if (_stageNow <= 6) // LEVEL1
+					{
+						// SOUND
+						//SoundManager::GetInst()->RemoveAllBGM();
+						//SoundManager::GetInst()->PlayBGSound(EBGSound::EStage1Sound);
+					}
+					else if (_stageNow >= 7) // LEVEL2
+					{
+						// SOUND
+						//SoundManager::GetInst()->RemoveAllBGM();
+						//SoundManager::GetInst()->PlayBGSound(EBGSound::EStage2Sound);
+					}
+				}
+			}
+			
+		}
+#pragma endregion
 #pragma region nhan duoc MagicalBall qua man
 		if (player->_hasMagicalBall)
 			//{
@@ -420,8 +471,8 @@ void SceneGame::MoveCamera(int &_moveRange)
 			openDoor->ResetDoor();
 			//---------Luu vi tri stage moi de hoi sinh -----------------
 			_stageReset = _stageNow;
-			/*posStageToReset.x = player->posX;
-			posStageToReset.y = player->posY;*/
+			posStageToReset.x = player->posX;
+			posStageToReset.y = player->posY;
 			posCamera = camera->viewport;
 			//-----------------------------
 			return;

@@ -4,6 +4,7 @@
 DynamicObject::DynamicObject(void) : GameObject()
 {
 	canBeKilled = true;
+	
 }
 
 DynamicObject::DynamicObject(float _posX, float _posY, float _vX, float _vY, EnumID id)
@@ -14,6 +15,7 @@ DynamicObject::DynamicObject(float _posX, float _posY, float _vX, float _vY, Enu
 	vY = _vY;
 	canMove = true;
 	active = true;
+	damage = 1;
 	Initialize();
 	//
 }

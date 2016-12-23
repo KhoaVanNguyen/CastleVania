@@ -22,6 +22,7 @@ protected:
 	Medusa* _medusa;
 	LPDIRECT3DSURFACE9 BackgroundWhite;
 	D3DXVECTOR2 posCamera;
+	D3DXVECTOR2 posStageToReset; //Vi tri hoi sinh
 	D3DXVECTOR2 posDoor;
 	QBackground *bg;
 	QGameObject* qGameObject;
@@ -33,7 +34,9 @@ protected:
 
 	// Score
 	int score;
-
+	// Player die
+	int totalResets;
+	int resetTime;
 	//camera
 	void MoveCamera(int &_moveRange);
 	void ChangeCamera(EDirectDoor _directDoor);
