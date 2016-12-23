@@ -1017,7 +1017,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							_onMovingPlatform = true;
 						}
 						
-						if (_onMovingPlatform && _action == Action::Idle)
+						if (_onMovingPlatform && (_action == Action::Idle|| _action == Action::Fight))
 
 						{
 							posX += (other->vX)*15.69;// vận tốc di chuyển của movingPlatform
