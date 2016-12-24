@@ -52,6 +52,7 @@ void GameObject::CreateSprite()
 	case EnumID::DoorLeft_ID:
 	case EnumID::DoorRight_ID:
 	case EnumID::TeleUp_ID:
+	case EnumID::Barrier_ID:
 		sprite = NULL;
 		break;
 	case EnumID:: Candle_ID:

@@ -24,5 +24,5 @@
 #include "OpenDoor.h"
 #include "MagicalBall.h"
 #include "Ghosts.h"
-
+#include "Barrier.h"
 #endif

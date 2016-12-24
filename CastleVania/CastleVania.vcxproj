@@ -87,6 +87,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AxeKnights.cpp" />
+    <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bats.cpp" />
     <ClCompile Include="BoneTowers.cpp" />
     <ClCompile Include="CastleGate.cpp" />
@@ -145,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
+    <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bats.h" />
     <ClInclude Include="BoneTowers.h" />
     <ClInclude Include="Boomerang.h" />

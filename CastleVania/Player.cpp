@@ -987,6 +987,17 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 #pragma endregion
 
+#pragma region va chạm với Barrier
+					case EnumID::Barrier_ID:
+					{
+						vX = 0;
+						_action = Action::Idle;
+						Stop();
+							
+					}
+						break;
+#pragma endregion
+
 #pragma region Va chạm với MovingPlatform
 					case EnumID::MovingPlatform_ID:
 					{
