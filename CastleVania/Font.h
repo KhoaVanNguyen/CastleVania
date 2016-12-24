@@ -26,6 +26,7 @@ public:
 	void updateAnimation();
 	void render(char* text_, float x_, float y_);
 	void render(int number_, float x_, float y_);
+	void render(float number_, float x_, float y_);
 	void renderAnimation(char* text_, float x_, float y_, int deltaTime_);
 	void renderAnimation(int number_, float x_, float y_, int deltaTime_);
 	void onLost();

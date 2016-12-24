@@ -18,6 +18,7 @@ Player::Player(void) : DynamicObject()
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
 	hp = 12;
+	vColMoving = 0;
 	_isHurted = false;
 	_startToHiddenTime = 0;
 	_bHurt = false;
@@ -28,6 +29,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_hasJump = false;
 	_hasMagicalBall = false;
 	//_onLand = false;
+	_movingByMovingPlatform = false;
 	_colBottomStair = false;
 	_hasKnockBack = false;
 	_usingStopWatch = false;
@@ -51,6 +53,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 
 	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
 	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
+	playerFightingDownStairSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 18, 21, 1000 / PLAYER_FIGHT_RATE);
+	playerFightingUpStairSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
 	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
 	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
@@ -187,21 +191,22 @@ void Player::Draw(GCamera* camera)
 				// đi sang phải
 				if (vX > 0 || _vLast > 0)
 				{
-
-					if (_onStair) {
-						if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::DownRight) {
-							playerStair->DrawFlipX(center.x, center.y);
-						}
-						//?
-						return;
-					}
-
 					if (_action == Action::Fight) {
-						if (!_hasSit) {
+						if (!_hasSit && !_onStair) {
 							fightingSprite->DrawFlipX(center.x, center.y);
-
 						}
-						else {
+						else if (_onStair)
+						{
+							if (_kindStair == EKindStair::UpRight) {
+								playerFightingUpStairSprite->DrawFlipX(center.x, center.y);
+							}
+							if (_kindStair == EKindStair::DownRight)
+							{
+								playerFightingDownStairSprite->DrawFlipX(center.x, center.y);
+							}
+						}
+						else
+						{
 							fightingSittingSprite->DrawFlipX(center.x, center.y);
 
 						}
@@ -211,6 +216,13 @@ void Player::Draw(GCamera* camera)
 						// vẽ Fight rồi return luôn
 						return;
 					}
+					if (_onStair) {
+						if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::DownRight) {
+							playerStair->DrawFlipX(center.x, center.y);
+						}
+						//?
+						return;
+					}
 					sprite->DrawFlipX(center.x, center.y);
 				}
 				// đi sang trái
@@ -218,9 +230,19 @@ void Player::Draw(GCamera* camera)
 				{
 					if (_action == Action::Fight) {
 
-						if (!_hasSit) {
+						if (!_hasSit && !_onStair) {
 							fightingSprite->Draw(center.x, center.y);
 
+						}
+						else if (_onStair)
+						{
+							if (_kindStair == EKindStair::UpLeft) {
+								playerFightingUpStairSprite->Draw(center.x, center.y);
+							}
+							if (_kindStair == EKindStair::DownLeft)
+							{
+								playerFightingDownStairSprite->Draw(center.x, center.y);
+							}
 						}
 						else {
 							fightingSittingSprite->Draw(center.x, center.y);
@@ -434,6 +456,8 @@ void Player::TurnLeft()
 			return;
 		if (_hasSit)
 			return;
+		if (_onStair)
+			return;
 		ResetStair();
 		vX = -SPEED_X;
 		_vLast = vX;
@@ -450,6 +474,8 @@ void Player::TurnRight()
 		if (_hasJump)
 			return;
 		if (_hasSit)
+			return;
+		if (_onStair)
 			return;
 		ResetStair();
 		vX = SPEED_X;
@@ -489,6 +515,8 @@ void Player::Sit()
 {
 	if (_allowPress)
 	{
+		if (_onMovingPlatform) vY = 0;
+		//	return;
 		if (_action == Action::Fight)
 			return;
 		if (_hasSit) {
@@ -508,6 +536,8 @@ void Player::Sit()
 void Player::Fight() {
 	if (_allowPress)
 	{
+		if (_action == Action::Run_Left || _action == Action::Run_Right)
+			return;
 		if (_action == Action::Fight)
 			return;
 		if (!_hasJump)
@@ -605,6 +635,7 @@ void Player::Stop() {
 	//	sprite->SelectIndex(0);
 	//	_a = 0;
 	//}
+	if (!_hasJump && !_movingByMovingPlatform) vX = 0;
 	_action = Action::Idle;
 	sprite->SelectIndex(0);
 }
@@ -801,6 +832,11 @@ Box Player::GetBox()
 	return Box(posX - width / 2 + 14.5f, posY + height / 2 - 3, width - 29, height - 6);
 }
 void Player::Collision(list<GameObject*> &obj, float dt) {
+	if (_onMovingPlatform && _action == Action::Sit)
+	{
+		vY = 0;
+		posX += vColMoving*7.6;// vận tốc di chuyển của movingPlatform
+	}
 	if (_action == Action::Fight)
 	{
 		morningStar->Collision(obj, dt);
@@ -884,7 +920,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						// số 32 ? số càng bé càng khó bắt đc va chạm vs gạch
 						if (vY < 0 && moveY < 16)
 						{
-						
+
 
 							if (moveY > 0) {
 								// do vẽ ở center của sprite nên + với 1 khoảng = 1/2 của sprite là oke :))
@@ -919,7 +955,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 									_allowPress = true;
 									sprite->SelectIndex(0);
 								}
-						
+
 							}
 						}
 						//--------------------
@@ -951,18 +987,42 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region Va chạm với MovingPlatform
 					case EnumID::MovingPlatform_ID:
 					{
+						// còn lỗi với knockback....
+						//posY += moveY;
 						float _compareHeigh = abs((other->posY + other->height / 2) - (posY - height / 2) - moveY);
+						// khoảng cách của chân nhân vật cách vị trí của movingPlatform
+						// chọn số 4 vì nếu số quá lớn thì nhân vật sẽ tự nhận va chạm ngay
+						// -> lỗi. code thay nhiều số, thấy số phù hợp từ khoảng 4->10.
+						
 						if (vY < 0 && _compareHeigh < 5)
 						{
-							_hasJump = false;
-							vY = 0;
+							if (_hasKnockBack) // nếu knockback thì thoát knockback khi chạm Movingplatform
+							{
+								_hasKnockBack = false;
+								vY = 0;
+								vX = 0;
+								_a = 0;
+								_allowPress = true;
+								sprite->SelectIndex(0);
+								return;
+							}
+							if (_hasJump)
+							{
+								_action = Action::Idle;
+								sprite->SelectIndex(0);
+							}
+							_hasJump = false; // vì đang nhảy, mà gặp movingPlatform thì _hasJump vẫn bằng True
 							posY += moveY;
+
 							_onMovingPlatform = true;
 						}
-						else if (vY > 0 || _hasJump)
-							return;
-						if (_onMovingPlatform && _action == Action::Idle)
-							vX = other->vX;
+						
+						if (_onMovingPlatform && (_action == Action::Idle|| _action == Action::Fight))
+
+						{
+							posX += (other->vX)*15.69;// vận tốc di chuyển của movingPlatform
+							vColMoving = other->vX;
+						}
 						else if (_onMovingPlatform && _hasJump && _action == Action::Run_Right)
 						{
 							vX = SPEED_X;
@@ -1131,7 +1191,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region Va chạm với Enemy
 						case ObjectType::Enemy_Type:
 							// nếu ở trên cầu thang thì chỉ bị mất máu, không bị Knockback, và ngược lại
-							if (!_onStair ) //&& !_colBottomStair)
+							if (!_onStair) //&& !_colBottomStair)
 							{
 								if (!_hidden)
 								{
