@@ -1250,6 +1250,7 @@ EDirectDoor Player::GetDirectDoor()
 		switch (_door->id)
 		{
 		case TeleDown_ID:
+
 			_directDoor = EDirectDoor::TeleDown;
 			break;
 		case TeleUp_ID:

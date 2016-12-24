@@ -37,6 +37,7 @@ Singleton::Singleton()
 	candle = new GTexture("Resources/ground/1.png", 4, 1, 4);
 	largeCandle = new GTexture("Resources/ground/0.png", 2, 1, 2);
 	movingPlatform = new GTexture("Resources/ground/9.png", 1, 1, 1);
+	openDoor = new GTexture("Resources/ground/Gate1.png", 4, 1, 4);
 	TrapDoor = new GTexture("Resources/ground/7_3.png", 2, 1, 2);
 	//bosses
 	Medusa = new GTexture("Resources/boss/1.png", 5, 1, 5);

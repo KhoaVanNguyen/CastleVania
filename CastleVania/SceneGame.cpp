@@ -308,7 +308,7 @@ void SceneGame::LoadStage(int stage)
 	case 2:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage2.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 	}
 	break;
 	case 3:
