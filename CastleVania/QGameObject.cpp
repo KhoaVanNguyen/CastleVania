@@ -190,6 +190,8 @@ void QGameObject::Draw(GCamera *camera)
 		}
 	}
 }
+
+// Gọi về hàm va chạm của lớp con
 void QGameObject::Collision(int dt)
 {
 	for (list<GameObject*>::reverse_iterator i = _staticObject->rbegin(); i != _staticObject->rend(); i++)
@@ -199,16 +201,6 @@ void QGameObject::Collision(int dt)
 			(*i)->Collision((*_staticObject), dt);
 		}
 	}
-
-	//for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
-	//{
-	//	if((*i)->active && (*i)->id != EnumID::PhantomBat_ID && (*i)->id != EnumID::Medusa_ID)
-	//	{
-	//		if(!IsHurt() || (IsHurt() && (*i)->type != ObjectType::Enemy_Type))
-	//			(*i)->Collision((*_staticObject), dt);
-	//	}
-	//}
-
 	for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
 	{
 		if ((*i)->active)
@@ -217,13 +209,12 @@ void QGameObject::Collision(int dt)
 		}
 	}
 }
-
+// Gọi về hàm update của từng game object để vẽ hình
 void QGameObject::Update(int deltaTime)
 {
 	list<GameObject*>::iterator it = _staticObject->begin();
 	while (it != _staticObject->end())
-	{
-		
+	{	
 		{
 			(*it)->Update(deltaTime);
 			++it;

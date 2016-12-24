@@ -45,7 +45,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	{
 		camera->viewport.y = 485; // 485 - stage 6: 1637
 		bg = new QBackground(level);
-		bg->LoadTree();
+		bg->LoadQuadTreeFromFile();
 		//player = new Player(345, 1310); -> Stage 6
 		//player = new Player(287, 1310);
 
@@ -63,7 +63,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 
 		camera->viewport.y = 485; // 485
 		bg = new QBackground(level);
-		bg->LoadTree();
+		bg->LoadQuadTreeFromFile();
 		//player = new Player(600, 90);
 		player->posX = 600;
 		player->posY = 140;
@@ -230,7 +230,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		}
 
 		qGameObject->Update(t);
-		bg->GetTreeObject(camera->viewport.x, camera->viewport.y);
+		bg->GetAvailableTiles(camera->viewport.x, camera->viewport.y);
 
 		player->Update(t);
 
