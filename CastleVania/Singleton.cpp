@@ -32,6 +32,8 @@ Singleton::Singleton()
 	AxeKnights = new GTexture("Resources/enemy/5.png", 4, 1, 4);
 	BoneTowers = new GTexture("Resources/enemy/8.png", 1, 1, 1);
 	Ghosts = new GTexture("Resources/enemy/9.png", 2, 1, 2);
+	Ravens = new GTexture("Resources/boss/3.png", 3, 1, 3);
+	
 
 	//ground
 	candle = new GTexture("Resources/ground/1.png", 4, 1, 4);
@@ -103,6 +105,8 @@ GTexture* Singleton::getTexture(EnumID id)
 		return playerDeath;
 
 		//Enemy
+	case EnumID::Ravens_ID:
+		return Ravens;
 	case EnumID::Ghouls_ID:
 		return Ghouls;
 	case EnumID::MedusaHeads_ID:
@@ -199,6 +203,7 @@ GTexture* Singleton::getTexture(EnumID id)
 		return crossItem;
 	case EnumID::HolyWaterItem_ID:
 		return holyWaterItem;
+	
 	
 		/*moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
 		crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);

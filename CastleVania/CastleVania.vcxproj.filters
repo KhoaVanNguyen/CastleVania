@@ -11,6 +11,8 @@
     <ClCompile Include="Candle.cpp" />
     <ClCompile Include="Dagger.cpp" />
     <ClCompile Include="DynamicObject.cpp" />
+    <ClCompile Include="Fire.cpp" />
+    <ClCompile Include="FireBossDie.cpp" />
     <ClCompile Include="Fishmen.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -19,12 +21,17 @@
     <ClCompile Include="GCamera.cpp" />
     <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="CustomRect.cpp" />
+    <ClCompile Include="Ghosts.cpp" />
+    <ClCompile Include="HolyWater.cpp" />
     <ClCompile Include="LargeCandle.cpp" />
+    <ClCompile Include="LittleSnake.cpp" />
+    <ClCompile Include="MagicalBall.cpp" />
     <ClCompile Include="Medusa.cpp" />
     <ClCompile Include="MedusaHeads.cpp" />
     <ClCompile Include="MorningStar.cpp" />
     <ClCompile Include="MorningStarSprite.cpp" />
     <ClCompile Include="MovingPlatform.cpp" />
+    <ClCompile Include="OpenDoor.cpp" />
     <ClCompile Include="Panthers.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="QBackground.cpp" />
@@ -45,21 +52,12 @@
     <ClCompile Include="Stair.cpp" />
     <ClCompile Include="ThrowAxe.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TrapDoor.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
     <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="LittleSnake.cpp" />
-    <ClCompile Include="OpenDoor.cpp" />
-    <ClCompile Include="FireBossDie.cpp" />
-    <ClCompile Include="MagicalBall.cpp" />
-    <ClCompile Include="TrapDoor.cpp" />
-<<<<<<< HEAD
-    <ClCompile Include="Ghosts.cpp" />
-    <ClCompile Include="Fire.cpp" />
-=======
-    <ClCompile Include="HolyWater.cpp" />
->>>>>>> d0bcdb18957daed81ae774d025049aeb9e24851b
+    <ClCompile Include="Ravens.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -73,6 +71,8 @@
     <ClInclude Include="Door.h" />
     <ClInclude Include="Dagger.h" />
     <ClInclude Include="DynamicObject.h" />
+    <ClInclude Include="Fire.h" />
+    <ClInclude Include="FireBossDie.h" />
     <ClInclude Include="Fishmen.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
@@ -81,14 +81,19 @@
     <ClInclude Include="GCamera.h" />
     <ClInclude Include="dsutil.h" />
     <ClInclude Include="dxutil.h" />
+    <ClInclude Include="Ghosts.h" />
     <ClInclude Include="HeaderObj.h" />
     <ClInclude Include="CustomRect.h" />
+    <ClInclude Include="HolyWater.h" />
     <ClInclude Include="LargeCandle.h" />
+    <ClInclude Include="LittleSnake.h" />
+    <ClInclude Include="MagicalBall.h" />
     <ClInclude Include="Medusa.h" />
     <ClInclude Include="MedusaHeads.h" />
     <ClInclude Include="MorningStar.h" />
     <ClInclude Include="MorningStarSprite.h" />
     <ClInclude Include="MovingPlatform.h" />
+    <ClInclude Include="OpenDoor.h" />
     <ClInclude Include="Panthers.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="QBackground.h" />
@@ -109,20 +114,11 @@
     <ClInclude Include="SweptAABB.h" />
     <ClInclude Include="ThrowAxe.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TrapDoor.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
-    <ClInclude Include="LittleSnake.h" />
-    <ClInclude Include="OpenDoor.h" />
-    <ClInclude Include="FireBossDie.h" />
-    <ClInclude Include="MagicalBall.h" />
-    <ClInclude Include="TrapDoor.h" />
-<<<<<<< HEAD
-    <ClInclude Include="Ghosts.h" />
-    <ClInclude Include="Fire.h" />
-=======
-    <ClInclude Include="HolyWater.h" />
->>>>>>> d0bcdb18957daed81ae774d025049aeb9e24851b
+    <ClInclude Include="Ravens.h" />
   </ItemGroup>
 </Project>
