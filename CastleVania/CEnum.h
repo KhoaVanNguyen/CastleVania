@@ -15,6 +15,7 @@ enum EnumID
 	PlayerDeath_ID,
 
 	Brick_ID,
+	Barrier_ID,
 	Candle_ID,
 	LargeCandle_ID,
 	MorningStar_ID,

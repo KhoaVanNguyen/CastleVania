@@ -149,6 +149,10 @@ QGameObject::QGameObject(string fileName)
 				posDoor.y = posY;
 				break;
 		
+
+			case 30:
+				_staticObject->push_back(new Barrier(posX, posY, width, height));
+				break;
 			default:
 				break;
 			}
