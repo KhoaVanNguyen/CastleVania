@@ -1002,7 +1002,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							if (_hasKnockBack) // nếu knockback thì thoát knockback khi chạm Movingplatform
 							{
 								_hasKnockBack = false;
-								vY = 0;
+								vY = -SPEED_Y;
 								vX = 0;
 								_a = 0;
 								_allowPress = true;
@@ -1250,6 +1250,7 @@ EDirectDoor Player::GetDirectDoor()
 		switch (_door->id)
 		{
 		case TeleDown_ID:
+
 			_directDoor = EDirectDoor::TeleDown;
 			break;
 		case TeleUp_ID:

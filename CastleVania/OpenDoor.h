@@ -20,7 +20,7 @@ public:
 	bool GetOpenDoor();
 	bool GetCloseDoor();
 	void ResetDoor();
-	void Draw(GCamera*, int vX);
+	void Draw(GCamera*, int vX, int stage);
 };
 
 #endif

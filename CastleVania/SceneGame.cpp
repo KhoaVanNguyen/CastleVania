@@ -282,7 +282,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
-		openDoor->Draw(camera, _doorDirect);
+		openDoor->Draw(camera, _doorDirect,_stageNow);
 		//gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
 		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->rangeStair, _beginMoveCamera, _moveCameraHaft);
 		gameUI->drawTable();
@@ -308,20 +308,20 @@ void SceneGame::LoadStage(int stage)
 	case 2:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage2.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 	}
 	break;
 	case 3:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage3.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 	}
 	break;
 
 	case 4:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage4.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 
@@ -343,26 +343,26 @@ void SceneGame::LoadStage(int stage)
 	case 7:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage7.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
 	case 8:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage8.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 	}
 	break;
 	case 9:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage9.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 	}
 	break;
 	case 10:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage10.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
@@ -371,6 +371,7 @@ void SceneGame::LoadStage(int stage)
 	}
 	camera->SetSizeMap(G_RightCamera, G_LeftCamera);
 	openDoor = new OpenDoor(posDoor.x, posDoor.y);
+	//openDoor = new OpenDoor(posDoor.x, posDoor.y);
 }
 
 
@@ -410,7 +411,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			_moveCameraHaft = false;
 			_moveCameraDone = false;
 			_rangeMoveCamera = -264;//-264;
-			_rangeMoveCamera2 = -220;
+			_rangeMoveCamera2 = -252;
 			_rangeMoveplayer = -120; // -120;
 			_doorDirect = -1;
 		}
