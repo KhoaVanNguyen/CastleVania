@@ -7,10 +7,10 @@ OpenDoor::OpenDoor(void) : GameObject()
 
 OpenDoor::OpenDoor(float _x, float _y) : GameObject(_x, _y, EnumID::OpenDoor_ID)
 {
+	sprite->SelectIndex(1);
 	_timeCount = 0;
 	_openDoor = true;
 	_closeDoor = false;
-	sprite->SelectIndex(0);
 	_playedClose = false;
 	_playedOpen = false;
 }
@@ -32,10 +32,11 @@ void OpenDoor::RenderOpen()
 		{
 
 			if (_timeCount > 10 && _timeCount < 20)
-				sprite->SelectIndex(1);
+				sprite->SelectIndex(0); // cho nay la thay doi su kien cai cong
+			//{ }
 			else if (_timeCount >= 20 && _timeCount < 40)
 			{
-				sprite->SelectIndex(2);
+				sprite->SelectIndex(2); // thay doi cai cong
 			}
 		}
 		if (_timeCount == 40)
@@ -65,7 +66,7 @@ void OpenDoor::RenderClose()
 			}
 			if (_timeCount >= 20 && _timeCount < 40)
 			{
-				sprite->SelectIndex(0);
+				sprite->SelectIndex(1);
 			}
 		}
 		if (_timeCount == 40)
@@ -93,10 +94,15 @@ void OpenDoor::ResetDoor()
 	_closeDoor = false;
 }
 
-void OpenDoor::Draw(GCamera* camera, int vX)
+void OpenDoor::Draw(GCamera* camera, int vX,int stage)
 {
 
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
+	if (stage == 2)
+	{
+		sprite->DrawFlipX(center.x, center.y);
+		return;
+	}	
 	if (vX < 0)
 	{
 		sprite->DrawFlipX(center.x, center.y);
@@ -106,3 +112,4 @@ void OpenDoor::Draw(GCamera* camera, int vX)
 		sprite->Draw(center.x, center.y);
 	}
 }
+
