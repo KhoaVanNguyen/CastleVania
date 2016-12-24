@@ -314,14 +314,14 @@ void SceneGame::LoadStage(int stage)
 	case 3:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage3.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 	}
 	break;
 
 	case 4:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage4.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 
@@ -343,26 +343,26 @@ void SceneGame::LoadStage(int stage)
 	case 7:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage7.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
 	case 8:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage8.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 	}
 	break;
 	case 9:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage9.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 	}
 	break;
 	case 10:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage10.txt");
-
+		posDoor = qGameObject->GetPosDoor();
 
 	}
 	break;
@@ -410,7 +410,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			_moveCameraHaft = false;
 			_moveCameraDone = false;
 			_rangeMoveCamera = -264;//-264;
-			_rangeMoveCamera2 = -220;
+			_rangeMoveCamera2 = -252;
 			_rangeMoveplayer = -120; // -120;
 			_doorDirect = -1;
 		}
