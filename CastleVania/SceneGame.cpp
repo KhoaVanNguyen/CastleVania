@@ -284,7 +284,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect,_stageNow);
 		//gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
-		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->rangeStair, _beginMoveCamera, _moveCameraHaft);
+		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->vY, _beginMoveCamera, player->vX);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();

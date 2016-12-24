@@ -44,7 +44,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_downStair = false;
 	_stopOnStair = false;
 	_outStair = false;
-
+	//stop
+	_stop = false;
 	// Death
 	_isDie = false;
 	hearts = 100;
@@ -460,8 +461,16 @@ void Player::TurnLeft()
 		if (_onStair)
 			return;
 		ResetStair();
-		vX = -SPEED_X;
-		_vLast = vX;
+		if (_stop && _vLast<0)
+		{
+			vX = 0;
+		}
+		else
+		{
+			_stop = false;
+			vX = -SPEED_X;
+			_vLast = vX;
+		}
 		_hasSit = false;
 		_action = Action::Run_Left;
 	}
@@ -470,6 +479,7 @@ void Player::TurnRight()
 {
 	if (_allowPress)
 	{
+		
 		if (_usingWeapon)
 			_usingWeapon = false;
 		if (_hasJump)
@@ -479,8 +489,17 @@ void Player::TurnRight()
 		if (_onStair)
 			return;
 		ResetStair();
-		vX = SPEED_X;
-		_vLast = vX;
+		if (_stop && _vLast > 0)
+
+		{
+			vX = 0;
+		}
+		else
+		{
+			_stop = false;
+			vX = SPEED_X;
+			_vLast = vX;
+		}
 		_hasSit = false;
 		_action = Action::Run_Right;
 	}
@@ -990,10 +1009,17 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region va chạm với Barrier
 					case EnumID::Barrier_ID:
 					{
+						//sprite->SelectIndex(4);
 						vX = 0;
-						_action = Action::Idle;
-						Stop();
-							
+						if ((_vLast > 0 && _action == Action::Run_Left) || (_vLast < 0 && _action == Action::Run_Right))
+						{
+							_stop = false;
+						}
+						else
+						{
+							_stop = true;
+						}
+
 					}
 						break;
 #pragma endregion
