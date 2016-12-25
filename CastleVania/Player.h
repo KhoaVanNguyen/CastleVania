@@ -71,6 +71,7 @@ public:
 	bool _colStair;	//Có va chạm với 1 trong 2 đầu của cầu thang.
 	bool _outStair; //Coi thử player có đã ra ngoài cầu thang chưa
 	int _timeSpawn;	//
+	bool _stop; // ngừng lại khi chạm Barrier.
 
 	//----------------Khoi Tao
 	Player(void);
