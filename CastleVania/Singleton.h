@@ -20,7 +20,9 @@ private:
 	GTexture *Ghosts;
 	GTexture *Ravens;
 	GTexture *Fleamen;
-	
+
+	GTexture *Skeletons;
+	GTexture *Fleaman;
 	GTexture* BoneTowers;
 	
 	//ground
@@ -29,6 +31,7 @@ private:
 	GTexture* movingPlatform;
 	GTexture* openDoor;
 	GTexture* TrapDoor;
+	GTexture* BrickHide;
 	
 	//weapon
 	GTexture* morningStar;

@@ -29,9 +29,13 @@ public:
 	int hp;
 	int damage;
 	int point;
+	bool neededPlayerPosition;
+
 
 	virtual void Update(int dt);
 	virtual void Draw(GCamera*);
+	virtual void Update(Box playerBox, int dt);
+
 	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int t);
 	virtual void OnKeyDown(int KeyCode);
 	virtual void CreateSprite();

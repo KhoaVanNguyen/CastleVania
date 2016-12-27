@@ -34,11 +34,13 @@ Singleton::Singleton()
 	Ghosts = new GTexture("Resources/enemy/9.png", 2, 1, 2);
 	Ravens = new GTexture("Resources/boss/3.png", 3, 1, 3);
 	
-
+	Skeletons = new GTexture("Resources/enemy/7.png",2,1,2);
+	Fleaman = new GTexture("Resources/enemy/10.png", 2, 1, 2);
 	//ground
 	candle = new GTexture("Resources/ground/1.png", 4, 1, 4);
 	largeCandle = new GTexture("Resources/ground/0.png", 2, 1, 2);
 	movingPlatform = new GTexture("Resources/ground/9.png", 1, 1, 1);
+	openDoor = new GTexture("Resources/ground/Gate1.png", 4, 1, 4);
 	TrapDoor = new GTexture("Resources/ground/7_3.png", 2, 1, 2);
 	//bosses
 	Medusa = new GTexture("Resources/boss/1.png", 5, 1, 5);
@@ -81,6 +83,8 @@ Singleton::Singleton()
 
 	fallingCastle = new GTexture("Resources/FallingCastle.png", 3, 1, 3);
 	
+	//hide brick
+	BrickHide = new GTexture("Resources/ground/2-3.png", 1, 1, 1);
 	//door
 	openDoor = new GTexture("Resources/ground/Gate1.png", 4, 1, 4);
 
@@ -125,6 +129,10 @@ GTexture* Singleton::getTexture(EnumID id)
 		return Fire;
 	case EnumID::Ghosts_ID:
 		return Ghosts;
+	case EnumID::Skeletons_ID:
+		return Skeletons;
+	case EnumID::Fleaman_ID:
+		return Fleaman;
 		//ground
 	case EnumID::Candle_ID:
 		return candle;
@@ -136,6 +144,8 @@ GTexture* Singleton::getTexture(EnumID id)
 		return morningStar;
 	case EnumID::Water_ID:
 		return water;
+	case EnumID::BrickHide_ID:
+		return BrickHide;
 		//Boss
 	case EnumID::PhantomBat_ID:
 		return phantombat;

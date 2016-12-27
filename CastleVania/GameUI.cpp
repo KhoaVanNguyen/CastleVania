@@ -94,7 +94,7 @@ void GameUI::drawScore()
 	_arial->render(_rang, 360, 80);
 	//_arial->render("onstair: ", 290, 80);
 	_arial->render(_onstair, 390, 100);
-	_arial->render(_checkCameraHaft, 440, 100);
+	_arial->render(_checkCameraHaft, 100, 100);
 }
 
 void GameUI::initTimer(int deltaTime_)
@@ -217,7 +217,7 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 
 
 
-void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY, int collideId, bool abc, int rang, bool onstair,bool checkCameraHaft)
+void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY, int collideId, bool abc, int rang, bool onstair,float checkCameraHaft)
 {
 	//(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
 	_gameStage = gameStage_;
@@ -237,9 +237,10 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 	_viewPortX = viewPortX;
 	_collideID = collideId;
 	_rang = rang;
-	if (checkCameraHaft == true)
-		_checkCameraHaft = 1;
-	else _checkCameraHaft = 0;
+	//if (checkCameraHaft == true)
+	//	_checkCameraHaft = 1;
+	//else _checkCameraHaft = 0;
+	_checkCameraHaft = checkCameraHaft;
 	if (abc == true)
 		_colabc = 1;
 	else _colabc = 0;

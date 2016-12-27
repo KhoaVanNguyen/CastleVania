@@ -15,6 +15,7 @@ enum EnumID
 	PlayerDeath_ID,
 
 	Brick_ID,
+	Barrier_ID,
 	Candle_ID,
 	LargeCandle_ID,
 	MorningStar_ID,
@@ -30,6 +31,9 @@ enum EnumID
 	Ghosts_ID,
 	Ravens_ID,
 	Fleamen_ID,
+	Skeletons_ID,
+	Fleaman_ID,
+
 	//groud
 	MovingPlatform_ID,
 	StairUpLeft_ID,
@@ -44,6 +48,7 @@ enum EnumID
 	OpenDoor_ID,
 	TrapDoor_ID,
 	CastleGate_ID,
+	BrickHide_ID,
 	//boss
 	PhantomBat_ID,
 	Medusa_ID,
@@ -152,5 +157,10 @@ enum EStateCamera
 {
 	Update_Camera,
 	NoUpdate_Camera
+};
+
+enum FLEAMAN_STATE {
+	WAIT = 0,
+	MOVE = 1
 };
 #endif

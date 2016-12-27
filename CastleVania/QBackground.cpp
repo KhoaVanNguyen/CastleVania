@@ -3,9 +3,9 @@
 QBackground::QBackground(void)
 {
 	tree = NULL;
-	_myObject = NULL;
-	_nodeOfTree = NULL;
-	_listTile = NULL;
+	listObjects = NULL; // => list object, tất cả tile 
+	nodes = NULL; //  số node 
+	currentTiles = NULL; 
 }
 
 QBackground::QBackground(int level)
@@ -25,7 +25,7 @@ QBackground::QBackground(int level)
 	
 	ifstream map(fileName);
 
-	_listTile = new list<int>();
+	currentTiles = new list<int>();
 
 	if (map.is_open())
 	{
@@ -47,19 +47,19 @@ QBackground::QBackground(int level)
 		
 		map >> count >> G_MapWidth >> G_MapHeight;
 		int id;
-		_myObject = new std::map<int, Tile*>();
+		listObjects = new std::map<int, Tile*>();
 		Tile* _obj;
 		for (int i = 0; i < count; i++)
 		{
 			//so thu tu dong - idObj -...
 			map >> id >> value >> posX >> posY;
 
-			_myObject->insert(pair<int, Tile*>(id, new Tile(value, posX, posY)));
+			listObjects->insert(pair<int, Tile*>(id, new Tile(value, posX, posY)));
 		}
 
 		//Doc quadtree
 		string line;
-		_nodeOfTree = new std::map<int, QNode*>();
+		nodes = new std::map<int, QNode*>();
 		int size;
 		while (!map.eof())
 		{
@@ -78,50 +78,52 @@ QBackground::QBackground(int level)
 			QNode* _nodeTree = new QNode(posX, posY, size, *_objOfNode);
 
 			//Dua node vao _myMap
-			_nodeOfTree->insert(pair<int, QNode*>(id, _nodeTree));
+			nodes->insert(pair<int, QNode*>(id, _nodeTree));
 		}
 		map.close();
 	}
 }
 
-void QBackground::GetTreeObject(int viewportX, int viewportY)
+void QBackground::GetAvailableTiles(int viewportX, int viewportY)
 {
-	_listTile->clear();
-
-	GetNodeObject(viewportX, viewportY, tree);
+	currentTiles->clear();
+	GetObjectsIn(viewportX, viewportY, tree);
 }
 
-void QBackground::GetNodeObject(int viewportX, int viewportY, QNode* _node)
+void QBackground::GetObjectsIn(int viewportX, int viewportY, QNode* _node)
 {
 	if (_node->leftTop != NULL)
 	{
 		if (viewportX < _node->rightTop->left && viewportY > _node->leftBottom->top)
-			GetNodeObject(viewportX, viewportY, _node->leftTop);
+			GetObjectsIn(viewportX, viewportY, _node->leftTop);
 		if (viewportX + G_ScreenWidth > _node->rightTop->left && viewportY > _node->rightBottom->top)
-			GetNodeObject(viewportX, viewportY, _node->rightTop);
+			GetObjectsIn(viewportX, viewportY, _node->rightTop);
 		if (viewportX < _node->rightBottom->left && viewportY - G_ScreenHeight < _node->leftBottom->top)
-			GetNodeObject(viewportX, viewportY, _node->leftBottom);
+			GetObjectsIn(viewportX, viewportY, _node->leftBottom);
 		if (viewportX + G_ScreenWidth > _node->rightBottom->left && viewportY - G_ScreenHeight < _node->rightBottom->top)
-			GetNodeObject(viewportX, viewportY, _node->rightBottom);
+			GetObjectsIn(viewportX, viewportY, _node->rightBottom);
 	}
 	else
 	{
 		for (list<int>::iterator _itBegin = _node->listObject.begin(); _itBegin != _node->listObject.end(); _itBegin++)
 		{
-			_listTile->push_back(*_itBegin);
+			currentTiles->push_back(*_itBegin);
 		}
 	}
 }
 
-void QBackground::LoadTree()
+void QBackground::LoadQuadTreeFromFile()
 {
+	
 	Load(0, tree);
+	// Sau hàm này, tree sẽ = với file levelX.txt
+
 }
 
 void QBackground::Load(int id, QNode *& _nodeTree)
 {
-	map<int, QNode*>::iterator _node = _nodeOfTree->find(id);
-	if (_node != _nodeOfTree->end())
+	map<int, QNode*>::iterator _node = nodes->find(id);
+	if (_node != nodes->end())
 	{
 		_nodeTree = new QNode(_node->second->left, _node->second->top, _node->second->size, _node->second->listObject);
 		Load(_node->first * 8 + 1, _nodeTree->leftTop);
@@ -133,9 +135,9 @@ void QBackground::Load(int id, QNode *& _nodeTree)
 
 void QBackground::Draw(GCamera *camera)
 {
-	for (list<int>::iterator _itBegin = _listTile->begin(); _itBegin != _listTile->end(); _itBegin++)
+	for (list<int>::iterator _itBegin = currentTiles->begin(); _itBegin != currentTiles->end(); _itBegin++)
 	{
-		Tile* obj = _myObject->find(*_itBegin)->second;
+		Tile* obj = listObjects->find(*_itBegin)->second;
 		D3DXVECTOR2 t = camera->Transform(obj->posX, obj->posY);
 		bgSprite->DrawIndex(obj->idTile, t.x, t.y);
 	}

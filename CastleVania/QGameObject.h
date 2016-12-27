@@ -20,7 +20,6 @@ class QGameObject
 {
 protected:
 	
-//	PhantomBat* _phantomBat;
 	D3DXVECTOR2 posDoor;
 	Medusa *_medusa;
 public:
@@ -37,14 +36,14 @@ public:
 	D3DXVECTOR2 GetPosDoor();	//Lay vi tri de ve canh cua qua stage
 	void Draw(GCamera *camera);
 	void Update(int deltaTime);
-	//PhantomBat* getPhantomBat();
+	void Update(Box playerBox, int deltaTime);
+
 	void Collision(int dt);
 	int RemoveAllObjectInCamera(D3DXVECTOR2);
 	void RemoveAllObject();
 	Medusa* getMedusa();
 
 	// For StopWatch
-
 	DWORD _deltaHurtTime;
 	bool _pausing;
 	DWORD _startToPauseTime;

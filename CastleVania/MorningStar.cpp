@@ -7,6 +7,7 @@ MorningStar::MorningStar(void) :GameObject()
 
 MorningStar::MorningStar(int posX_, int posY_, float vx_, float vy_, EnumID id_, int timeAnimation_) : GameObject(posX_, posY_, id_)
 {
+	abc = true;
 	vX = vx_;
 	vY = vy_;
 
@@ -129,7 +130,7 @@ void MorningStar::Collision(list<GameObject*> &obj, int dt){
 			// edit AABB later
 			if (AABB(box, boxOther, moveX, moveY) == true)
 			{
-				
+				abc = other->canBeKilled;
 					if ( other->canBeKilled )
 					{
 						if (other->id == EnumID::Medusa_ID)
@@ -161,9 +162,6 @@ void MorningStar::Collision(list<GameObject*> &obj, int dt){
 				return;
 			}
 		}
-	
-
-
 }
 
 MorningStar::~MorningStar(void)
@@ -173,4 +171,8 @@ MorningStar::~MorningStar(void)
 MorningStarSprite* MorningStar::getSprite()
 {
 	return this->_morningStarSprite;
+}
+bool MorningStar::getdata()
+{
+	return abc;
 }

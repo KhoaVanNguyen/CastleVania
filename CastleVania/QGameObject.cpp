@@ -148,10 +148,23 @@ QGameObject::QGameObject(string fileName)
 				posDoor.x = posX;
 				posDoor.y = posY;
 				break;
+		
+		
 			case 30:
+				_staticObject->push_back(new Barrier(posX, posY, width, height));
+				break;
+			case 31:
+				_dynamicObject->push_back(new Fleaman(posX, posY));
+				break;
+			case 32:
+				_staticObject->push_back(new BrickHide(posX, posY));
+				break;
+			case 33:
+				_dynamicObject->push_back(new Skeletons(posX, posY));
+				break;
+			case 34:
 				_dynamicObject->push_back(new Ravens(posX, posY));
 				break;
-		
 			default:
 				break;
 			}
@@ -193,6 +206,8 @@ void QGameObject::Draw(GCamera *camera)
 		}
 	}
 }
+
+// Gọi về hàm va chạm của lớp con
 void QGameObject::Collision(int dt)
 {
 	for (list<GameObject*>::reverse_iterator i = _staticObject->rbegin(); i != _staticObject->rend(); i++)
@@ -202,16 +217,6 @@ void QGameObject::Collision(int dt)
 			(*i)->Collision((*_staticObject), dt);
 		}
 	}
-
-	//for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
-	//{
-	//	if((*i)->active && (*i)->id != EnumID::PhantomBat_ID && (*i)->id != EnumID::Medusa_ID)
-	//	{
-	//		if(!IsHurt() || (IsHurt() && (*i)->type != ObjectType::Enemy_Type))
-	//			(*i)->Collision((*_staticObject), dt);
-	//	}
-	//}
-
 	for (list<GameObject*>::iterator i = _dynamicObject->begin(); i != _dynamicObject->end(); i++)
 	{
 		if ((*i)->active)
@@ -220,13 +225,12 @@ void QGameObject::Collision(int dt)
 		}
 	}
 }
-
+// Gọi về hàm update của từng game object để vẽ hình
 void QGameObject::Update(int deltaTime)
 {
 	list<GameObject*>::iterator it = _staticObject->begin();
 	while (it != _staticObject->end())
-	{
-		
+	{	
 		{
 			(*it)->Update(deltaTime);
 			++it;
@@ -250,8 +254,10 @@ void QGameObject::Update(int deltaTime)
 
 				if ((*it)->active)
 				{
-					(*it)->Update(deltaTime);
 
+					
+						(*it)->Update(deltaTime);
+					
 				}
 				it++;
 
@@ -261,7 +267,50 @@ void QGameObject::Update(int deltaTime)
 		++it;
 	}
 }
+void QGameObject::Update(Box playerBox, int deltaTime)
+{
+	list<GameObject*>::iterator it = _staticObject->begin();
+	while (it != _staticObject->end())
+	{
+		{
+			(*it)->Update(deltaTime);
+			++it;
+		}
+	}
 
+	it = _dynamicObject->begin();
+	while (it != _dynamicObject->end())
+	{
+		if (!IsPausing() || (IsPausing() && (*it)->type != ObjectType::Enemy_Type)) {
+			if ((*it)->id == EnumID::Medusa_ID)
+			{
+				if (((Medusa*)*it)->StateCancel())
+				{
+					_dynamicObject->push_back(new MagicalBall((*it)->posX, (*it)->posY));
+					_dynamicObject->erase(it++);
+				}
+				else ++it;
+			}
+			else {
+
+				if ((*it)->active)
+				{
+
+					if ((*it)->neededPlayerPosition) {
+						(*it)->Update(playerBox, deltaTime);
+					}
+					else {
+						(*it)->Update(deltaTime);
+					}
+				}
+				it++;
+
+			}
+		}
+		else
+			++it;
+	}
+}
 // Neu IsPausing == false -> Game chay binh thuong
 bool QGameObject::IsPausing()
 {

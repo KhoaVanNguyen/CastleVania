@@ -10,6 +10,8 @@ GameObject::GameObject(void)
 	height = 0;
 	canMove = false;
 	canBeKilled = true;
+
+	neededPlayerPosition = false;
 }
 
 
@@ -52,10 +54,14 @@ void GameObject::CreateSprite()
 	case EnumID::DoorLeft_ID:
 	case EnumID::DoorRight_ID:
 	case EnumID::TeleUp_ID:
+	case EnumID::Barrier_ID:
 		sprite = NULL;
 		break;
 	case EnumID:: Candle_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		break;
+	case EnumID::BrickHide_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 0, 100);
 		break;
 	case EnumID ::MedusaHeads_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 1, 100);
@@ -71,6 +77,8 @@ void GameObject::CreateSprite()
 		break;
 	case EnumID ::Ravens_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 2, 100);
+	case EnumID::Fleaman_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	default:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 100);
@@ -84,7 +92,9 @@ void GameObject::Update(int deltaTime)
 	if (sprite != NULL)
 		sprite->Update(deltaTime);
 }
+void GameObject::Update(Box playerBox, int dt) {
 
+}
 void GameObject::Draw(GCamera* camera)
 {
 	if (sprite != NULL)

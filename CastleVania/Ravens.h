@@ -3,7 +3,7 @@
 #include "Player.h"
 #define RAVENS_STOP_STATE 2
 #define RAVENS_STATE 1.0f
-#define _timeDelay 50;
+#define _timeDelay 50
 
 enum ERavenState
 {

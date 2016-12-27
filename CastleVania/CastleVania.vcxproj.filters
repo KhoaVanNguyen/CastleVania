@@ -57,8 +57,19 @@
     <ClCompile Include="Ghouls.cpp" />
     <ClCompile Include="Water.cpp" />
     <ClCompile Include="Weapon.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Ravens.cpp" />
     <ClCompile Include="Fleamen.cpp" />
+=======
+    <ClCompile Include="Barrier.cpp" />
+<<<<<<< HEAD
+    <ClCompile Include="BrickHide.cpp" />
+    <ClCompile Include="Skeletons.cpp" />
+=======
+    <ClCompile Include="Fleaman.cpp" />
+    <ClCompile Include="CustomBox.cpp" />
+>>>>>>> 12e2efaab33bd44fd978b62c6bbef0e5511c2c11
+>>>>>>> master
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -120,7 +131,18 @@
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
+<<<<<<< HEAD
     <ClInclude Include="Ravens.h" />
     <ClInclude Include="Fleamen.h" />
+=======
+    <ClInclude Include="Barrier.h" />
+<<<<<<< HEAD
+    <ClInclude Include="BrickHide.h" />
+    <ClInclude Include="Skeletons.h" />
+=======
+    <ClInclude Include="Fleaman.h" />
+    <ClInclude Include="CustomBox.h" />
+>>>>>>> 12e2efaab33bd44fd978b62c6bbef0e5511c2c11
+>>>>>>> master
   </ItemGroup>
 </Project>

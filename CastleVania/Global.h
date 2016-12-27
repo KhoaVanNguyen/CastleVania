@@ -17,6 +17,9 @@
 
 //GLOBAL CONSTANT
 
+
+
+
 //view mode(used in contructor of game class)
 #define GL_RESOLUTION_640_480_24	0
 #define GL_RESOLUTION_800_600_24	1

@@ -54,7 +54,8 @@ public:
 	bool _colBottomStair; // co len cau thang 
 	float _a; // gia toc
 
-
+	bool abc;
+	bool getdata();
 
 	bool _isHurted; // Có đang bị mất máu không?
 	bool _onMovingPlatform;
@@ -72,6 +73,7 @@ public:
 	bool _colStair;	//Có va chạm với 1 trong 2 đầu của cầu thang.
 	bool _outStair; //Coi thử player có đã ra ngoài cầu thang chưa
 	int _timeSpawn;	//
+	bool _stop; // ngừng lại khi chạm Barrier.
 
 	//----------------Khoi Tao
 	Player(void);

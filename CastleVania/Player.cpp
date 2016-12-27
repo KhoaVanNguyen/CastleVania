@@ -44,7 +44,8 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	_downStair = false;
 	_stopOnStair = false;
 	_outStair = false;
-
+	//stop
+	_stop = false;
 	// Death
 	_isDie = false;
 	hearts = 100;
@@ -67,7 +68,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 
 void Player::Update(int deltaTime)
 {
-
+	abc = morningStar->getdata();
 	list<Weapon*>::iterator it = weapons->begin();
 	while (it != weapons->end())
 	{
@@ -460,8 +461,16 @@ void Player::TurnLeft()
 		if (_onStair)
 			return;
 		ResetStair();
-		vX = -SPEED_X;
-		_vLast = vX;
+		if (_stop && _vLast<0)
+		{
+			vX = 0;
+		}
+		else
+		{
+			_stop = false;
+			vX = -SPEED_X;
+			_vLast = vX;
+		}
 		_hasSit = false;
 		_action = Action::Run_Left;
 	}
@@ -470,6 +479,7 @@ void Player::TurnRight()
 {
 	if (_allowPress)
 	{
+		
 		if (_usingWeapon)
 			_usingWeapon = false;
 		if (_hasJump)
@@ -479,8 +489,17 @@ void Player::TurnRight()
 		if (_onStair)
 			return;
 		ResetStair();
-		vX = SPEED_X;
-		_vLast = vX;
+		if (_stop && _vLast > 0)
+
+		{
+			vX = 0;
+		}
+		else
+		{
+			_stop = false;
+			vX = SPEED_X;
+			_vLast = vX;
+		}
 		_hasSit = false;
 		_action = Action::Run_Right;
 	}
@@ -858,7 +877,9 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 	for (list<GameObject*>::iterator _itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
 		GameObject* other = (*_itBegin);
-		if ((other->id == EnumID::Bats_ID && other->sprite->GetIndex() == 0))
+		if (((other->id == EnumID::Bats_ID ||other->id ==EnumID::Skeletons_ID || other->id == Fleaman_ID) && other->sprite->GetIndex() == 0))
+
+		
 			other->SetActive(posX, posY);
 		float moveX = 0;
 		float moveY = 0;
@@ -987,6 +1008,24 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 #pragma endregion
 
+#pragma region va chạm với Barrier
+					case EnumID::Barrier_ID:
+					case EnumID::BrickHide_ID:
+					{
+						vX = 0;
+						if ((_vLast > 0 && _action == Action::Run_Left) || (_vLast < 0 && _action == Action::Run_Right))
+						{
+							_stop = false;
+						}
+						else
+						{
+							_stop = true;
+						}
+
+					}
+						break;
+#pragma endregion
+
 #pragma region Va chạm với MovingPlatform
 					case EnumID::MovingPlatform_ID:
 					{
@@ -1002,7 +1041,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							if (_hasKnockBack) // nếu knockback thì thoát knockback khi chạm Movingplatform
 							{
 								_hasKnockBack = false;
-								vY = 0;
+								vY = -SPEED_Y;
 								vX = 0;
 								_a = 0;
 								_allowPress = true;
@@ -1250,6 +1289,7 @@ EDirectDoor Player::GetDirectDoor()
 		switch (_door->id)
 		{
 		case TeleDown_ID:
+
 			_directDoor = EDirectDoor::TeleDown;
 			break;
 		case TeleUp_ID:
@@ -1401,5 +1441,11 @@ int  Player::getCurrentPosXPlayer(){
 	//int x = posX;
 	//player = new Player(this->posX, this->posY);
 	return posX;
+}
+
+
+bool Player::getdata()
+{
+	return abc;
 }
 
