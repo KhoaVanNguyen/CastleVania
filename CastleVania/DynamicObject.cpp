@@ -30,6 +30,19 @@ void DynamicObject::Update(int deltaTime)
 	posY += vY*deltaTime;
 	sprite->Update(deltaTime);
 }
+//void DynamicObject::Update(Player player, int dt) {
+//
+//}
+
+void DynamicObject::Update(Box playerBox, int dt) {
+	if (sprite == NULL || !active)
+		return;
+	posX += vX*dt;
+	if (posX <= width / 2 + 2 || posX >= G_MapWidth - (width / 2 - 2))
+		vX = -vX;
+	posY += vY*dt;
+	sprite->Update(dt);
+}
 
 void DynamicObject::Draw(GCamera* camera)
 {
@@ -70,8 +83,8 @@ void DynamicObject::Collision(list<GameObject*> obj, int dt)
 	list<GameObject*>::iterator _itBegin;
 	for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
-		float moveX;
-		float moveY;
+		float moveX = 0 ;
+		float moveY = 0;
 		float normalx;
 		float normaly;
 		GameObject* other = (*_itBegin);
@@ -84,7 +97,7 @@ void DynamicObject::Collision(list<GameObject*> obj, int dt)
 			{
 				if (vY < 0)
 				{
-					posY += moveY;
+					posY += moveY + 20;
 					vY = 0;
 					return;
 				}
@@ -102,6 +115,7 @@ void DynamicObject::Collision(list<GameObject*> obj, int dt)
 						boxOther.vx = 0;
 						boxOther.vy = 0;
 					}
+					
 
 				}
 		}

@@ -29,6 +29,7 @@ enum EnumID
 	BoneTowers_ID,
 	Ghouls_ID,
 	Ghosts_ID,
+	Fleaman_ID,
 	//groud
 	MovingPlatform_ID,
 	StairUpLeft_ID,
@@ -151,5 +152,10 @@ enum EStateCamera
 {
 	Update_Camera,
 	NoUpdate_Camera
+};
+
+enum FLEAMAN_STATE {
+	WAIT = 0,
+	MOVE = 1
 };
 #endif

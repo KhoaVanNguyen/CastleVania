@@ -10,6 +10,8 @@ GameObject::GameObject(void)
 	height = 0;
 	canMove = false;
 	canBeKilled = true;
+
+	neededPlayerPosition = false;
 }
 
 
@@ -70,6 +72,9 @@ void GameObject::CreateSprite()
 	case EnumID::OpenDoor_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 0, 10);
 		break;
+	case EnumID::Fleaman_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		break;
 	default:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 100);
 		break;
@@ -82,7 +87,9 @@ void GameObject::Update(int deltaTime)
 	if (sprite != NULL)
 		sprite->Update(deltaTime);
 }
+void GameObject::Update(Box playerBox, int dt) {
 
+}
 void GameObject::Draw(GCamera* camera)
 {
 	if (sprite != NULL)
