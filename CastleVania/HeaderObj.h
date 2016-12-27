@@ -24,6 +24,7 @@
 #include "OpenDoor.h"
 #include "MagicalBall.h"
 #include "Ghosts.h"
+#include "Ravens.h"
 #include "Barrier.h"
 #include "BrickHide.h"
 #include "Skeletons.h"

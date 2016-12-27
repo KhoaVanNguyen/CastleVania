@@ -17,9 +17,10 @@ using namespace std;
 
 class Player : public DynamicObject
 {
-protected:
-	
+private:
+	//static Player* _player;
 public:
+	int  getCurrentPosXPlayer();
 	bool _usingCross;
 	bool _usingStopWatch;
 	// for testing
@@ -78,6 +79,7 @@ public:
 	Player(void);
 	Player(int, int);
 	Player(int, int, LPDIRECT3DDEVICE9);
+	
 
 	~Player(void);
 	//---- Action----------------

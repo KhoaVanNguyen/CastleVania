@@ -75,6 +75,8 @@ void GameObject::CreateSprite()
 	case EnumID::OpenDoor_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 0, 10);
 		break;
+	case EnumID ::Ravens_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 2, 100);
 	case EnumID::Fleaman_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;

@@ -149,7 +149,7 @@ QGameObject::QGameObject(string fileName)
 				posDoor.y = posY;
 				break;
 		
-
+		
 			case 30:
 				_staticObject->push_back(new Barrier(posX, posY, width, height));
 				break;
@@ -161,6 +161,9 @@ QGameObject::QGameObject(string fileName)
 				break;
 			case 33:
 				_dynamicObject->push_back(new Skeletons(posX, posY));
+				break;
+			case 34:
+				_dynamicObject->push_back(new Ravens(posX, posY));
 				break;
 			default:
 				break;

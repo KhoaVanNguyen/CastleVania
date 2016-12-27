@@ -126,6 +126,7 @@
     <ClCompile Include="QBackground.cpp" />
     <ClCompile Include="QGameObject.cpp" />
     <ClCompile Include="QNode.cpp" />
+    <ClCompile Include="Ravens.cpp" />
     <ClCompile Include="RewardItem.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneGame.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="QBackground.h" />
     <ClInclude Include="QGameObject.h" />
     <ClInclude Include="QNode.h" />
+    <ClInclude Include="Ravens.h" />
     <ClInclude Include="RewardItem.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneGame.h" />
