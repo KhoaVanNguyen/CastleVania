@@ -26,4 +26,5 @@
 #include "Ghosts.h"
 #include "Barrier.h"
 #include "BrickHide.h"
+#include "Skeletons.h"
 #endif

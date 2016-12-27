@@ -156,6 +156,9 @@ QGameObject::QGameObject(string fileName)
 			case 32:
 				_staticObject->push_back(new BrickHide(posX, posY));
 				break;
+			case 33:
+				_dynamicObject->push_back(new Skeletons(posX, posY));
+				break;
 			default:
 				break;
 			}

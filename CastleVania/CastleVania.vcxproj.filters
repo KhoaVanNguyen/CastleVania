@@ -59,6 +59,7 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="BrickHide.cpp" />
+    <ClCompile Include="Skeletons.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -122,5 +123,6 @@
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="BrickHide.h" />
+    <ClInclude Include="Skeletons.h" />
   </ItemGroup>
 </Project>

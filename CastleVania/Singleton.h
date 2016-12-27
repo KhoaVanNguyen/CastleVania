@@ -18,6 +18,7 @@ private:
 	GTexture* Fishmen;
 	GTexture *AxeKnights;
 	GTexture *Ghosts;
+	GTexture *Skeletons;
 
 	
 	GTexture* BoneTowers;
