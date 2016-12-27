@@ -29,7 +29,7 @@ enum EnumID
 	BoneTowers_ID,
 	Ghouls_ID,
 	Ghosts_ID,
-	//groud
+	//ground
 	MovingPlatform_ID,
 	StairUpLeft_ID,
 	StairUpRight_ID,
@@ -43,6 +43,7 @@ enum EnumID
 	OpenDoor_ID,
 	TrapDoor_ID,
 	CastleGate_ID,
+	BrickHide_ID,
 	//boss
 	PhantomBat_ID,
 	Medusa_ID,

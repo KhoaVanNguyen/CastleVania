@@ -143,7 +143,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			}
 #pragma endregion 
 		}
-#pragma region Xử lý khi Player die
+//#pragma region Xử lý khi Player die
 		// hết máu nhưng chưa thực hiện cái chết :))
 		if (player->hp <= 0 && !player->_isDie)
 		{
@@ -187,7 +187,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			
 			
 		}
-#pragma endregion
+#pragma endregion 
 #pragma region nhan MagicalBall de qua man
 
 		if (player->_hasMagicalBall)
@@ -284,7 +284,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect,_stageNow);
 		//gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
-		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->vY, _beginMoveCamera, player->vX);
+		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->vY, player->abc, player->vX);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();

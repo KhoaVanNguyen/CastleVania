@@ -68,7 +68,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 
 void Player::Update(int deltaTime)
 {
-
+	abc = morningStar->getdata();
 	list<Weapon*>::iterator it = weapons->begin();
 	while (it != weapons->end())
 	{
@@ -1008,8 +1008,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 #pragma region va chạm với Barrier
 					case EnumID::Barrier_ID:
+					case EnumID::BrickHide_ID:
 					{
-						//sprite->SelectIndex(4);
 						vX = 0;
 						if ((_vLast > 0 && _action == Action::Run_Left) || (_vLast < 0 && _action == Action::Run_Right))
 						{
@@ -1431,4 +1431,9 @@ void Player::DecreaseHP(GameObject* other) {
 		}
 
 	}
+
+}
+bool Player::getdata()
+{
+	return abc;
 }

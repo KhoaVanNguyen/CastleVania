@@ -153,6 +153,9 @@ QGameObject::QGameObject(string fileName)
 			case 30:
 				_staticObject->push_back(new Barrier(posX, posY, width, height));
 				break;
+			case 32:
+				_staticObject->push_back(new BrickHide(posX, posY));
+				break;
 			default:
 				break;
 			}

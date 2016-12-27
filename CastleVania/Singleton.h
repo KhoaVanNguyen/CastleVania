@@ -28,6 +28,7 @@ private:
 	GTexture* movingPlatform;
 	GTexture* openDoor;
 	GTexture* TrapDoor;
+	GTexture* BrickHide;
 	
 	//weapon
 	GTexture* morningStar;

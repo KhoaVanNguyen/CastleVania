@@ -25,4 +25,5 @@
 #include "MagicalBall.h"
 #include "Ghosts.h"
 #include "Barrier.h"
+#include "BrickHide.h"
 #endif

@@ -25,7 +25,8 @@ public:
 	void updateXY(int posX_, int posY_);
 	void updateVx(float vx_);
 	void updateLevel();
-
+	bool getdata();
+	bool abc;
 	void Collision(list<GameObject*> &obj, int dt);
 	~MorningStar(void);
 
