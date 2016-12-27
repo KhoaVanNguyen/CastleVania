@@ -3,6 +3,7 @@
 
 Fleaman::Fleaman(void) : DynamicObject()
 {
+
 }
 
 Fleaman::Fleaman(float x, float y) : DynamicObject(x, y, 0.2f, 0, EnumID::Fleaman_ID)
@@ -10,11 +11,14 @@ Fleaman::Fleaman(float x, float y) : DynamicObject(x, y, 0.2f, 0, EnumID::Fleama
 	limit = 0;
 	canBeKilled = true;
 	type = ObjectType::Enemy_Type;
+	
 	//point = 200;
 	active = true;
 	getUp = false;
 	_currentState = FLEAMAN_STATE::WAIT;
 	_isSleep = true;
+
+	neededPlayerPosition = true;
 }
 
 Fleaman::~Fleaman(void)
@@ -42,22 +46,30 @@ void Fleaman::MoveUpdate(float deltaTime)
 {
 #pragma region __XU_LY_CHUYEN_DONG__
 
+	posX += vX * deltaTime;
+	posY += vY * deltaTime;
 	if (this->_currentState == FLEAMAN_STATE::WAIT) {
+		vX = 0;
+		vY = 0;
 		return;
 	}
-	this->posX += this->vX*deltaTime;
-	this->posY += this->vY*deltaTime;
-	if (vY <= -0.2)
-		vY += 0.2;
-	else
-		vY = 1.5f; //GRAVITY;
+
+	else if (_currentState == FLEAMAN_STATE::MOVE) {
+		vX = 0.2f;
+		vY = -0.3*vX + 2;
+	}
+	
+
+	/*this->posX += this->vX*deltaTime;
+	this->posY += this->vY*deltaTime;*/
+	//if (vY <= -0.2)
+	//	//vY += 0.2;
+	//else
+	//	//vY = 1.5f; //GRAVITY;
 
 
-//#pragma endregion
-//	_box.x = _x;
-//	_box.y = _y;
-//	_box.vx = _vx;
-//	_box.vy = _vy;
+#pragma endregion
+
 }
 
 void Fleaman::SetFrame(float deltaTime)
@@ -84,14 +96,9 @@ void Fleaman::ChangeState(int state) {
 	case FLEAMAN_STATE::MOVE:
 		_isSleep = false;
 		_countdown = 0;
-		/*if (Simon::getCurrentSimon()->_x>this->_x)
-			_vx = 1.5f;
-		else
-		{
-			_vx = -1.5f;
-		}*/
-		vX = -0.005f;
-		vY = -0.003f;
+
+		/*vX = -0.005f;
+		vY = -0.003f;*/
 		break;
 	}
 }
@@ -114,8 +121,47 @@ void Fleaman::Update(int deltaTime)
 	this->MoveUpdate(deltaTime);
 	this->SetFrame(deltaTime);
 	this->sprite->Update(deltaTime);
-	
 }
+
+void Fleaman::Update(Box playerBox, int dt) {
+	float moveX = 0;
+	float moveY = 0;
+	float normalx;
+	float normaly;
+
+	// can player'box voi 
+
+	Box fleamanBox = Box(posX, posY, width + 100, height + 100);
+	Box _playerBox = playerBox;
+	//getPlayer here
+
+
+
+	if (hp == 0) {
+		this->death = true;
+		//	this->_timeDeath += deltatime;
+		//	this->_spriteDeath->Update(deltatime);
+	}
+
+	if (this->death) {
+		return;
+	}
+
+	if (AABB(fleamanBox, playerBox, moveX, moveY) == true)
+	{
+		_currentState = FLEAMAN_STATE::MOVE;
+	}
+
+	this->MoveUpdate(dt);
+	this->SetFrame(dt);
+	this->sprite->Update(dt);
+
+
+
+
+
+}
+
 
 void Fleaman::Collision(list<GameObject*> obj, int dt) {
 

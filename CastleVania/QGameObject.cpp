@@ -247,8 +247,10 @@ void QGameObject::Update(int deltaTime)
 
 				if ((*it)->active)
 				{
-					(*it)->Update(deltaTime);
 
+					
+						(*it)->Update(deltaTime);
+					
 				}
 				it++;
 
@@ -258,7 +260,50 @@ void QGameObject::Update(int deltaTime)
 		++it;
 	}
 }
+void QGameObject::Update(Box playerBox, int deltaTime)
+{
+	list<GameObject*>::iterator it = _staticObject->begin();
+	while (it != _staticObject->end())
+	{
+		{
+			(*it)->Update(deltaTime);
+			++it;
+		}
+	}
 
+	it = _dynamicObject->begin();
+	while (it != _dynamicObject->end())
+	{
+		if (!IsPausing() || (IsPausing() && (*it)->type != ObjectType::Enemy_Type)) {
+			if ((*it)->id == EnumID::Medusa_ID)
+			{
+				if (((Medusa*)*it)->StateCancel())
+				{
+					_dynamicObject->push_back(new MagicalBall((*it)->posX, (*it)->posY));
+					_dynamicObject->erase(it++);
+				}
+				else ++it;
+			}
+			else {
+
+				if ((*it)->active)
+				{
+
+					if ((*it)->neededPlayerPosition) {
+						(*it)->Update(playerBox, deltaTime);
+					}
+					else {
+						(*it)->Update(deltaTime);
+					}
+				}
+				it++;
+
+			}
+		}
+		else
+			++it;
+	}
+}
 // Neu IsPausing == false -> Game chay binh thuong
 bool QGameObject::IsPausing()
 {

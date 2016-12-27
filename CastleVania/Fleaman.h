@@ -3,6 +3,8 @@
 
 #include "DynamicObject.h"
 #include "CEnum.h"
+#include "CustomBox.h"
+#include "SweptAABB.h"
 #define TIME_WATING 100
 
 class Fleaman : public DynamicObject
@@ -30,6 +32,8 @@ public:
 	void ChangeState(int state);
 
 	void Update(int deltaTime);
+
+	virtual void Update(Box playerBox, int dt);
 	void Draw(GCamera* camera);
 	void SetActive(float x, float y);
 	void Collision(list<GameObject*> obj, int dt);

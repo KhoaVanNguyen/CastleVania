@@ -20,8 +20,6 @@ ThrowAxe::ThrowAxe(float _x, float _y, float _direct) : Weapon(_x, _y, _direct, 
 {
 	_initialize();
 
-
-
 	//prepare(x_, y_, huong_);
 
 	if (_direct>0)

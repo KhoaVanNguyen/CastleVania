@@ -10,6 +10,8 @@ GameObject::GameObject(void)
 	height = 0;
 	canMove = false;
 	canBeKilled = true;
+
+	neededPlayerPosition = false;
 }
 
 
@@ -85,7 +87,9 @@ void GameObject::Update(int deltaTime)
 	if (sprite != NULL)
 		sprite->Update(deltaTime);
 }
+void GameObject::Update(Box playerBox, int dt) {
 
+}
 void GameObject::Draw(GCamera* camera)
 {
 	if (sprite != NULL)
