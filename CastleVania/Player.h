@@ -53,7 +53,8 @@ public:
 	bool _colBottomStair; // co len cau thang 
 	float _a; // gia toc
 
-
+	bool abc;
+	bool getdata();
 
 	bool _isHurted; // Có đang bị mất máu không?
 	bool _onMovingPlatform;

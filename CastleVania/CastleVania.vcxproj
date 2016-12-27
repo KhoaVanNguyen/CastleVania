@@ -24,7 +24,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -90,6 +90,7 @@
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bats.cpp" />
     <ClCompile Include="BoneTowers.cpp" />
+    <ClCompile Include="BrickHide.cpp" />
     <ClCompile Include="CastleGate.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Boomerang.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="GTexture.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Skeletons.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Stair.cpp" />
     <ClCompile Include="ThrowAxe.cpp" />
@@ -151,6 +153,7 @@
     <ClInclude Include="BoneTowers.h" />
     <ClInclude Include="Boomerang.h" />
     <ClInclude Include="Brick.h" />
+    <ClInclude Include="BrickHide.h" />
     <ClInclude Include="Candle.h" />
     <ClInclude Include="CastleGate.h" />
     <ClInclude Include="CEnum.h" />
@@ -195,6 +198,7 @@
     <ClInclude Include="GTexture.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Skeletons.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Stair.h" />
     <ClInclude Include="SweptAABB.h" />

@@ -18,6 +18,7 @@ private:
 	GTexture* Fishmen;
 	GTexture *AxeKnights;
 	GTexture *Ghosts;
+	GTexture *Skeletons;
 
 	
 	GTexture* BoneTowers;
@@ -28,6 +29,7 @@ private:
 	GTexture* movingPlatform;
 	GTexture* openDoor;
 	GTexture* TrapDoor;
+	GTexture* BrickHide;
 	
 	//weapon
 	GTexture* morningStar;
