@@ -1,36 +1,28 @@
-
 #include "Fleaman.h"
 
-Fleaman::Fleaman(void) : DynamicObject()
-{
+#define SPEED_X 0.4f
+#define SPEED_Y 0.3f
+#define MAX_HEIGHT 20.0f
 
+Fleaman::Fleaman(void) :DynamicObject()
+{
 }
 
-Fleaman::Fleaman(float x, float y) : DynamicObject(x, y, 0.2f, 0, EnumID::Fleaman_ID)
+Fleaman::Fleaman(float x, float y) : DynamicObject(x, y, 0, -0.4, EnumID::Fleaman_ID)
 {
-	limit = 0;
-	canBeKilled = true;
-	type = ObjectType::Enemy_Type;
-	
-	//point = 200;
 	active = true;
-	getUp = false;
-	_currentState = FLEAMAN_STATE::WAIT;
-	_isSleep = true;
-
-	neededPlayerPosition = true;
+	_hasJump = false;
+	_heightJump = 0;
+	type = ObjectType::Enemy_Type;
+	point = 200;
 }
-
-Fleaman::~Fleaman(void)
-{
-}
-
 
 void Fleaman::Draw(GCamera* camera)
 {
 	if (sprite == NULL || !active)
 		return;
-	if (posX + width / 2 <= camera->viewport.x || posX - width / 2 >= camera->viewport.x + G_ScreenWidth)
+	if ((posX + width / 2 <= camera->viewport.x || posX - width / 2 >= camera->viewport.x + G_ScreenWidth)
+		&& sprite->GetIndex() != 0)
 	{
 		active = false;
 		return;
@@ -42,142 +34,136 @@ void Fleaman::Draw(GCamera* camera)
 		sprite->Draw(center.x, center.y);
 }
 
-void Fleaman::MoveUpdate(float deltaTime)
+void Fleaman::Collision(list<GameObject*> obj, int dt)
 {
-#pragma region __XU_LY_CHUYEN_DONG__
-
-	posX += vX * deltaTime;
-	posY += vY * deltaTime;
-	if (this->_currentState == FLEAMAN_STATE::WAIT) {
-		vX = 0;
-		vY = 0;
-		return;
-	}
-
-	else if (_currentState == FLEAMAN_STATE::MOVE) {
-		vX = 0.2f;
-		vY = -0.3*vX + 2;
-	}
-	
-
-	/*this->posX += this->vX*deltaTime;
-	this->posY += this->vY*deltaTime;*/
-	//if (vY <= -0.2)
-	//	//vY += 0.2;
-	//else
-	//	//vY = 1.5f; //GRAVITY;
-
-
-#pragma endregion
-
-}
-
-void Fleaman::SetFrame(float deltaTime)
-{
-#pragma region __XU_LY_CHUYEN_DOI_FRAME__
-	if (this->_isSleep) {
-		this->sprite->_start = 0;
-		this->sprite->_end = 0;
-	}
-	else {
-		this->sprite->_start = 0;
-		this->sprite->_end = 1;
-	}
-#pragma endregion
-}
-void Fleaman::ChangeState(int state) {
-
-	_currentState = state;
-	switch (state)
+	list<GameObject*>::iterator _itBegin;
+	for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
-	case FLEAMAN_STATE::WAIT:
-		_isSleep = true;
-		break;
-	case FLEAMAN_STATE::MOVE:
-		_isSleep = false;
-		_countdown = 0;
+		float moveX;
+		float moveY;
+		float normalx;
+		float normaly;
+		GameObject* other = (*_itBegin);
+		if (other->id == EnumID::Brick_ID)
+		{
+			Box box = this->GetBox();
+			Box boxOther = other->GetBox();
 
-		/*vX = -0.005f;
-		vY = -0.003f;*/
-		break;
+			if (AABB(box, boxOther, moveX, moveY) == true)
+			{
+				if (vY < 0)
+				{
+					posY += moveY;
+					if (_hasJump && _heightJump <= 0)
+					{
+						_hasJump = false;
+						if (vX < 0)
+							vX = SPEED_X;
+						else
+						{
+							vX = -SPEED_X;
+						}
+						vY = 0;
+					}
+					return;
+				}
+				if ((posX - width / 2 - (other->posX - other->width / 2) <= 0
+					|| posX + width / 2 - (other->posX + other->width / 2) >= 0)
+					&& vY == 0)
+					Jump();
+			}
+
+			if (AABB(box, boxOther, moveX, moveY) == false)
+			{
+				if (other->canMove == true)
+				{
+					box.vx -= boxOther.vx;
+					box.vy -= boxOther.vy;
+					boxOther.vx = 0;
+					boxOther.vy = 0;
+				}
+				Box broadphasebox = GetSweptBroadphaseBox(box, dt);
+				if (AABBCheck(GetSweptBroadphaseBox(box, dt), boxOther) == true)
+				{
+					float collisiontime = SweptAABB(box, boxOther, normalx, normaly, dt);
+					if (collisiontime > 0.0f && collisiontime < 1.0f)
+					{
+						ECollisionDirect colDirect = GetCollisionDirect(normalx, normaly);
+						// perform response here
+						switch (colDirect)
+						{
+						case Colls_Left:
+							if (vX > 0)
+								vX = -vX;
+							break;
+						case Colls_Right:
+							if (vX < 0)
+								vX = -vX;
+							break;
+						case Colls_Bot:
+							posY += vY * collisiontime;
+							vY = 0;
+							break;
+						}
+					}
+				}
+			}
+		}
 	}
 }
-void Fleaman::Update(int deltaTime)
+
+void Fleaman::Update(int dt)
 {
-
-	if (hp == 0) {
-		this->death = true;
-	//	this->_timeDeath += deltatime;
-	//	this->_spriteDeath->Update(deltatime);
-	}
-
-	if (this->death) {
+	if (sprite->GetIndex() == 0)
 		return;
-	}
-	if (_countdown >= TIME_WATING)
-		ChangeState(FLEAMAN_STATE::MOVE);
-	if ((_currentState == FLEAMAN_STATE::WAIT)) //&& _firstActive)
-		_countdown += deltaTime;
-	this->MoveUpdate(deltaTime);
-	this->SetFrame(deltaTime);
-	this->sprite->Update(deltaTime);
-}
-
-void Fleaman::Update(Box playerBox, int dt) {
-	float moveX = 0;
-	float moveY = 0;
-	float normalx;
-	float normaly;
-
-	// can player'box voi 
-
-	Box fleamanBox = Box(posX, posY, width + 100, height + 100);
-	Box _playerBox = playerBox;
-	//getPlayer here
-
-
-
-	if (hp == 0) {
-		this->death = true;
-		//	this->_timeDeath += deltatime;
-		//	this->_spriteDeath->Update(deltatime);
-	}
-
-	if (this->death) {
-		return;
-	}
-
-	if (AABB(fleamanBox, playerBox, moveX, moveY) == true)
+	posX += vX *dt;
+	if (posX <= width / 2 + 5 || posX >= G_MapWidth - width / 2 - 5)
+		vX = -vX;
+	posY += vY *dt;
+	if (!_hasJump)
+		sprite->Update(dt);
+	if (_hasJump)
 	{
-		_currentState = FLEAMAN_STATE::MOVE;
+		_heightJump += vY * dt;
+		if (_heightJump >= MAX_HEIGHT)
+		{
+			vY = -(SPEED_Y + 0.2f);
+		}
 	}
-
-	this->MoveUpdate(dt);
-	this->SetFrame(dt);
-	this->sprite->Update(dt);
-
-
-
-
-
-}
-
-
-void Fleaman::Collision(list<GameObject*> obj, int dt) {
-
 }
 
 void Fleaman::SetActive(float x, float y)
 {
-	if (abs(posX - x) <= 300 && abs(posY - y) <= 300)
+	if (abs(posX - x) <= 200)
 	{
-		if (posX - x > 0)
+		if (abs(posY - y) <= 50)
 		{
-			vX = -0.2f;
+			vX = -SPEED_X;
+			sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Fleaman_ID), 1, 3, 60);
 		}
-		else vX = 0.2f;
-		getUp = true;
-		sprite->_start = 1;
+		else
+		{
+			if (abs(posY - y) <= 150)
+			{
+				Jump();
+			}
+		}
 	}
 }
 
+void Fleaman::Jump()
+{
+	if (vX > 0)
+		vX = SPEED_X + 0.1f;
+	else
+		vX = -(SPEED_X + 0.1f);
+	vY = SPEED_Y;
+	_hasJump = true;
+	_heightJump = 0.0f;
+	sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Fleaman_ID), 0, 1, 120);
+	//sprite->SelectIndex(1);
+}
+
+Fleaman::~Fleaman(void)
+{
+}

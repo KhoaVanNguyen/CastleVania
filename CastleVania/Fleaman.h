@@ -3,40 +3,22 @@
 
 #include "DynamicObject.h"
 #include "CEnum.h"
-#include "CustomBox.h"
-#include "SweptAABB.h"
-#define TIME_WATING 100
 
-class Fleaman : public DynamicObject
+class Fleaman :public DynamicObject
 {
-
 private:
-	bool _isSleep; // dang dung im tren tuong.
-	int _xDestinate = 0;
-	int _yDestinate = 0;
-	int _countdown = 0;
-	int _currentState = FLEAMAN_STATE::WAIT;
-	bool _firstActive = false;
-
-	bool getUp;
-
-	float limit;
+	void Jump();
 public:
+	bool _hasJump;
+	float _heightJump;
 
-	
 	Fleaman(void);
-	Fleaman(float x, float y);
-	~Fleaman(void);
-	void MoveUpdate(float deltatime);
-	void SetFrame(float deltattime);
-	void ChangeState(int state);
-
-	void Update(int deltaTime);
-
-	virtual void Update(Box playerBox, int dt);
-	void Draw(GCamera* camera);
-	void SetActive(float x, float y);
+	Fleaman(float _x, float _y);
+	void Update(int dt);
 	void Collision(list<GameObject*> obj, int dt);
-	
+	void SetActive(float x, float y);
+	void Draw(GCamera* camera);
+	~Fleaman(void);
 };
+
 #endif
