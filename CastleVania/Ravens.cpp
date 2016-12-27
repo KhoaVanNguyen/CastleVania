@@ -11,7 +11,7 @@ Ravens::~Ravens()
 {
 }
 
-Ravens::Ravens(float posX_, float posY_) :DynamicObject(posX_, posY_, 0.3f, 0.3f, EnumID::Ravens_ID)
+Ravens::Ravens(float posX_, float posY_) :DynamicObject(posX_, posY_, 1.0f, 1.0f, EnumID::Ravens_ID)
 {
 	_localTime = 0;
 	active = true;
@@ -19,105 +19,162 @@ Ravens::Ravens(float posX_, float posY_) :DynamicObject(posX_, posY_, 0.3f, 0.3f
 	hp = 50;
 	damage = 4;
 	canBeKilled = true;
-	_state = Stoping0;
+	_state = ERavenState::moving;
+	_isSleeping = true;
+	_attackmode = true;
+	//vX = vY = RAVENS_STATE;
+	deltaX = 0;
+	oldX = posX;
+	timeDelay = _timeDelay;
 }
+
+//void Ravens::Stoping(int deltaTime_)
+//{
+//	
+//	switch (_state)
+//	{
+//	case Stoping0:
+//	{
+//		_localTime += deltaTime_;
+//		sprite->Update(deltaTime_);
+//		if (_localTime > 1000 / RAVENS_STOP_STATE)
+//		{
+//			_localTime = 0;
+//			_state = ERavenState::Moving01;
+//			break;
+//		}
+//	}
+//		
+//		break;
+//		
+//
+//	case Stoping1:
+//	{
+//		sprite->Update(deltaTime_);
+//		_localTime += deltaTime_;
+//		if (_localTime > 1000 / RAVENS_STOP_STATE)
+//		{
+//			_localTime = 0;
+//			_state = ERavenState::Moving12;
+//			break;
+//		}
+//	}
+//		
+//		break;
+//	case Stoping2:
+//	{
+//		sprite->Update(deltaTime_);
+//		_localTime += deltaTime_;
+//		if (_localTime > 1000 / RAVENS_STOP_STATE)
+//		{
+//			_localTime = 0;
+//			_state = ERavenState::Moving23;
+//			break;
+//		}
+//	}
+//		
+//		break;
+//	default :
+//		break;
+//		
+//
+//	}
+//}
+
+//void Ravens::Moving(int deltaTime_)
+//{
+//	
+//	switch (_state)
+//	{
+//	case Moving01:
+//	{
+//		posX += vX*deltaTime_;
+//		posY = 2 * posX + 4;
+//		//posX = 3650;
+//		//posY = 96;
+//		_localTime += deltaTime_;
+//		if (_localTime > 500)
+//		{
+//			_localTime = 0;
+//			_state = ERavenState::Stoping1;
+//			break;
+//		}
+//	}
+//	
+//		break;
+//		
+//	case Moving12:
+//	{
+//		//posX = 3709;
+//		//posY = 286;
+//		posX += vX*deltaTime_;
+//		posY = -posX + 4;
+//		_localTime += deltaTime_;
+//		if (_localTime >500)
+//		{
+//			_localTime = 0;
+//			_state = ERavenState::Stoping2;
+//			break;
+//		}
+//	}
+//		
+//		break;
+//	
+//	case Moving23:
+//		////posX = 3992;
+//		//posY = 222;
+//		posX += vX*deltaTime_;
+//
+//		break;
+//	}
+//
+//}
+
 
 void Ravens::Stoping(int deltaTime_)
 {
-	
-	switch (_state)
+      sprite->Update(deltaTime_);
+	_localTime += deltaTime_;
+	if (_localTime >= 1000)
 	{
-	case Stoping0:
-		_localTime += deltaTime_;
-		sprite->Update(deltaTime_);
-		if (_localTime > 1000 / RAVENS_STOP_STATE)
-		{
-			_localTime = 0;
-			_state= Moving01;
-		}
-		break;
-
-	case Stoping1:
-		sprite->Update(deltaTime_);
-		_localTime += deltaTime_;
-		if (_localTime > 1000 / RAVENS_STOP_STATE)
-		{
-			_localTime = 0;
-			_state = Moving12;
-		}
-		break;
-	case Stoping2:
-		sprite->Update(deltaTime_);
-		_localTime += deltaTime_;
-		if (_localTime > 1000 / RAVENS_STOP_STATE)
-		{
-			_localTime = 0;
-			_state = Moving23;
-		}
-		break;
-	default :
-		break;
-		
-
+		_localTime = 0;
+		_state = ERavenState::moving;
+		return;
 	}
 }
 
 void Ravens::Moving(int deltaTime_)
 {
-	
-	switch (_state)
+	deltaX += (abs(oldX - posX));
+	oldX = posX;
+	posX += vX*deltaTime_;
+	posY += vY*deltaTime_;
+	sprite->Update(deltaTime_);
+	if (deltaX >= 50)
 	{
-	case Moving01:
-		//posX += vX*deltaTime_;
-		//posY = 3*vX + 4;
-		posX = 3650;
-		posY = 96;
-		_localTime += deltaTime_;
-		if (_localTime > 1000 / RAVENS_STOP_STATE)
-		{
-			_localTime = 0;
-			_state = Stoping1;
-		}
-		break;
-	case Moving12:
-		posX = 3709;
-		posY = 286;
-		//posX += vX*deltaTime_;
-		//posY = -3 * posX + 4;
-		_localTime += deltaTime_;
-		if (_localTime > 1000 / RAVENS_STOP_STATE)
-		{
-			_localTime = 0;
-			_state = Stoping2;
-		}
-
-		break;
-	case Moving23:
-		posX = 3992;
-		posY = 222;
-		posX += vX*deltaTime_;
-
-		break;
+		this->_state = ERavenState::Stoping;
+		return;
 	}
-
+	
+	
 }
 
-void Ravens::Update(int deltaTime_)
+void Ravens::Update(int deltaTime)
 {
-	
 	switch (_state)
 	{
-	case Moving01:
-	case Moving12:
-	case Moving23:
-		Moving(deltaTime_);
+	case ERavenState::Stoping:
+		Stoping(deltaTime);
 		break;
-	case Stoping0:
-	case Stoping1:
-	case Stoping2:
-		Stoping(deltaTime_);
+	case ERavenState::moving:
+		Moving(deltaTime);
 		break;
+	default :
+		break;
+
 	}
+		
+	
 }
 
 // neu va cham voi vien gach thi chuyen qua stage moving 
@@ -140,7 +197,7 @@ void Ravens::Collision(list<GameObject*> obj, int dt)
 
 			if (AABB(box, boxOther, moveX, moveY) == true)
 			{
-				ERavenState::Stoping0;
+				//ERavenState::Stoping0;
 			}
 		}
 	}

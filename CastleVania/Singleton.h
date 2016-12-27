@@ -19,6 +19,7 @@ private:
 	GTexture *AxeKnights;
 	GTexture *Ghosts;
 	GTexture *Ravens;
+	GTexture *Fleamen;
 	
 	GTexture* BoneTowers;
 	

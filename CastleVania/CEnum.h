@@ -29,6 +29,7 @@ enum EnumID
 	Ghouls_ID,
 	Ghosts_ID,
 	Ravens_ID,
+	Fleamen_ID,
 	//groud
 	MovingPlatform_ID,
 	StairUpLeft_ID,

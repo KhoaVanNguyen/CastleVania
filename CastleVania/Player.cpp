@@ -1394,3 +1394,12 @@ void Player::DecreaseHP(GameObject* other) {
 
 	}
 }
+
+//Player* Player::_player = 0;
+int  Player::getCurrentPosXPlayer(){
+	//if (!_player)
+	//int x = posX;
+	//player = new Player(this->posX, this->posY);
+	return posX;
+}
+
