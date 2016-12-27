@@ -58,6 +58,7 @@
     <ClCompile Include="Water.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Barrier.cpp" />
+    <ClCompile Include="Fleaman.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -120,5 +121,6 @@
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="Barrier.h" />
+    <ClInclude Include="Fleaman.h" />
   </ItemGroup>
 </Project>

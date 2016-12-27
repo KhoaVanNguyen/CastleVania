@@ -152,4 +152,9 @@ enum EStateCamera
 	Update_Camera,
 	NoUpdate_Camera
 };
+
+enum FLEAMAN_STATE {
+	WAIT = 0,
+	MOVE = 1
+};
 #endif

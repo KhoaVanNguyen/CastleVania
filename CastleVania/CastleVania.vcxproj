@@ -100,6 +100,7 @@
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="FireBossDie.cpp" />
     <ClCompile Include="Fishmen.cpp" />
+    <ClCompile Include="Fleaman.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameUI.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Fire.h" />
     <ClInclude Include="FireBossDie.h" />
     <ClInclude Include="Fishmen.h" />
+    <ClInclude Include="Fleaman.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameUI.h" />
