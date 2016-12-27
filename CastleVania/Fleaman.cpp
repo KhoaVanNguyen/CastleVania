@@ -13,6 +13,8 @@ Fleaman::Fleaman(float x, float y) : DynamicObject(x, y, 0.2f, 0, EnumID::Fleama
 	//point = 200;
 	active = true;
 	getUp = false;
+	_currentState = FLEAMAN_STATE::WAIT;
+	_isSleep = true;
 }
 
 Fleaman::~Fleaman(void)
@@ -88,8 +90,8 @@ void Fleaman::ChangeState(int state) {
 		{
 			_vx = -1.5f;
 		}*/
-		vX = -1.5f;
-		vY = -3.0f;
+		vX = -0.005f;
+		vY = -0.003f;
 		break;
 	}
 }
@@ -107,7 +109,7 @@ void Fleaman::Update(int deltaTime)
 	}
 	if (_countdown >= TIME_WATING)
 		ChangeState(FLEAMAN_STATE::MOVE);
-	if ((_currentState == FLEAMAN_STATE::WAIT) && _firstActive)
+	if ((_currentState == FLEAMAN_STATE::WAIT)) //&& _firstActive)
 		_countdown += deltaTime;
 	this->MoveUpdate(deltaTime);
 	this->SetFrame(deltaTime);

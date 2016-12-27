@@ -3,7 +3,7 @@
 
 #include "DynamicObject.h"
 #include "CEnum.h"
-#define TIME_WATING 300
+#define TIME_WATING 100
 
 class Fleaman : public DynamicObject
 {
