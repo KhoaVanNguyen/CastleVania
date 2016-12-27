@@ -244,6 +244,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			}
 		}
 
+		
 
 		player->Collision(*(qGameObject->_staticObject), t);
 		player->Collision(*(qGameObject->_dynamicObject), t);

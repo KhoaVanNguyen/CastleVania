@@ -70,8 +70,8 @@ void DynamicObject::Collision(list<GameObject*> obj, int dt)
 	list<GameObject*>::iterator _itBegin;
 	for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
-		float moveX;
-		float moveY;
+		float moveX = 0 ;
+		float moveY = 0;
 		float normalx;
 		float normaly;
 		GameObject* other = (*_itBegin);
@@ -84,7 +84,7 @@ void DynamicObject::Collision(list<GameObject*> obj, int dt)
 			{
 				if (vY < 0)
 				{
-					posY += moveY;
+					posY += moveY + 20;
 					vY = 0;
 					return;
 				}
@@ -102,6 +102,7 @@ void DynamicObject::Collision(list<GameObject*> obj, int dt)
 						boxOther.vx = 0;
 						boxOther.vy = 0;
 					}
+					
 
 				}
 		}
