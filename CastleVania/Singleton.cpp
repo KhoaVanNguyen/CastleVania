@@ -33,7 +33,7 @@ Singleton::Singleton()
 	BoneTowers = new GTexture("Resources/enemy/8.png", 1, 1, 1);
 	Ghosts = new GTexture("Resources/enemy/9.png", 2, 1, 2);
 	Skeletons = new GTexture("Resources/enemy/7.png",2,1,2);
-
+	Fleaman = new GTexture("Resources/enemy/10.png", 2, 1, 2);
 	//ground
 	candle = new GTexture("Resources/ground/1.png", 4, 1, 4);
 	largeCandle = new GTexture("Resources/ground/0.png", 2, 1, 2);
@@ -127,6 +127,8 @@ GTexture* Singleton::getTexture(EnumID id)
 		return Ghosts;
 	case EnumID::Skeletons_ID:
 		return Skeletons;
+	case EnumID::Fleaman_ID:
+		return Fleaman;
 		//ground
 	case EnumID::Candle_ID:
 		return candle;

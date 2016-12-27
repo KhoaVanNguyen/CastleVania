@@ -58,8 +58,13 @@
     <ClCompile Include="Water.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Barrier.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="BrickHide.cpp" />
     <ClCompile Include="Skeletons.cpp" />
+=======
+    <ClCompile Include="Fleaman.cpp" />
+    <ClCompile Include="CustomBox.cpp" />
+>>>>>>> 12e2efaab33bd44fd978b62c6bbef0e5511c2c11
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
@@ -122,7 +127,12 @@
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="Barrier.h" />
+<<<<<<< HEAD
     <ClInclude Include="BrickHide.h" />
     <ClInclude Include="Skeletons.h" />
+=======
+    <ClInclude Include="Fleaman.h" />
+    <ClInclude Include="CustomBox.h" />
+>>>>>>> 12e2efaab33bd44fd978b62c6bbef0e5511c2c11
   </ItemGroup>
 </Project>

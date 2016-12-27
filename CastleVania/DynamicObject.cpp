@@ -30,6 +30,19 @@ void DynamicObject::Update(int deltaTime)
 	posY += vY*deltaTime;
 	sprite->Update(deltaTime);
 }
+//void DynamicObject::Update(Player player, int dt) {
+//
+//}
+
+void DynamicObject::Update(Box playerBox, int dt) {
+	if (sprite == NULL || !active)
+		return;
+	posX += vX*dt;
+	if (posX <= width / 2 + 2 || posX >= G_MapWidth - (width / 2 - 2))
+		vX = -vX;
+	posY += vY*dt;
+	sprite->Update(dt);
+}
 
 void DynamicObject::Draw(GCamera* camera)
 {

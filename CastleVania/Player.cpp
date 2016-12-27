@@ -877,7 +877,9 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 	for (list<GameObject*>::iterator _itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
 		GameObject* other = (*_itBegin);
-		if (((other->id == EnumID::Bats_ID ||other->id ==EnumID::Skeletons_ID  ) && other->sprite->GetIndex() == 0))
+		if (((other->id == EnumID::Bats_ID ||other->id ==EnumID::Skeletons_ID || other->id == Fleaman_ID) && other->sprite->GetIndex() == 0))
+
+		
 			other->SetActive(posX, posY);
 		float moveX = 0;
 		float moveY = 0;

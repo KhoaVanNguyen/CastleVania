@@ -229,6 +229,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			player->hearts -= 6;
 		}
 
+		//qGameObject->Update(player->GetBox(), t);
 		qGameObject->Update(t);
 		bg->GetAvailableTiles(camera->viewport.x, camera->viewport.y);
 

@@ -92,6 +92,7 @@
     <ClCompile Include="BoneTowers.cpp" />
     <ClCompile Include="BrickHide.cpp" />
     <ClCompile Include="CastleGate.cpp" />
+    <ClCompile Include="CustomBox.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Boomerang.cpp" />
     <ClCompile Include="Brick.cpp" />
@@ -101,6 +102,7 @@
     <ClCompile Include="Fire.cpp" />
     <ClCompile Include="FireBossDie.cpp" />
     <ClCompile Include="Fishmen.cpp" />
+    <ClCompile Include="Fleaman.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameUI.cpp" />
@@ -157,12 +159,14 @@
     <ClInclude Include="Candle.h" />
     <ClInclude Include="CastleGate.h" />
     <ClInclude Include="CEnum.h" />
+    <ClInclude Include="CustomBox.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Dagger.h" />
     <ClInclude Include="DynamicObject.h" />
     <ClInclude Include="Fire.h" />
     <ClInclude Include="FireBossDie.h" />
     <ClInclude Include="Fishmen.h" />
+    <ClInclude Include="Fleaman.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameUI.h" />
