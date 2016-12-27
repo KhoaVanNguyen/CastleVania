@@ -92,7 +92,7 @@ void GameObject::Update(int deltaTime)
 	if (sprite != NULL)
 		sprite->Update(deltaTime);
 }
-void GameObject::Update(Box playerBox, int dt) {
+void GameObject::Update(int, int, int dt) {
 
 }
 void GameObject::Draw(GCamera* camera)

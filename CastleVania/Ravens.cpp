@@ -13,6 +13,7 @@ Ravens::~Ravens()
 
 Ravens::Ravens(float posX_, float posY_) :DynamicObject(posX_, posY_, 1.0f, 1.0f, EnumID::Ravens_ID)
 {
+	neededPlayerPosition = true;
 	_localTime = 0;
 	active = true;
 	type = ObjectType::Enemy_Type;
@@ -28,107 +29,6 @@ Ravens::Ravens(float posX_, float posY_) :DynamicObject(posX_, posY_, 1.0f, 1.0f
 	timeDelay = _timeDelay;
 }
 
-//void Ravens::Stoping(int deltaTime_)
-//{
-//	
-//	switch (_state)
-//	{
-//	case Stoping0:
-//	{
-//		_localTime += deltaTime_;
-//		sprite->Update(deltaTime_);
-//		if (_localTime > 1000 / RAVENS_STOP_STATE)
-//		{
-//			_localTime = 0;
-//			_state = ERavenState::Moving01;
-//			break;
-//		}
-//	}
-//		
-//		break;
-//		
-//
-//	case Stoping1:
-//	{
-//		sprite->Update(deltaTime_);
-//		_localTime += deltaTime_;
-//		if (_localTime > 1000 / RAVENS_STOP_STATE)
-//		{
-//			_localTime = 0;
-//			_state = ERavenState::Moving12;
-//			break;
-//		}
-//	}
-//		
-//		break;
-//	case Stoping2:
-//	{
-//		sprite->Update(deltaTime_);
-//		_localTime += deltaTime_;
-//		if (_localTime > 1000 / RAVENS_STOP_STATE)
-//		{
-//			_localTime = 0;
-//			_state = ERavenState::Moving23;
-//			break;
-//		}
-//	}
-//		
-//		break;
-//	default :
-//		break;
-//		
-//
-//	}
-//}
-
-//void Ravens::Moving(int deltaTime_)
-//{
-//	
-//	switch (_state)
-//	{
-//	case Moving01:
-//	{
-//		posX += vX*deltaTime_;
-//		posY = 2 * posX + 4;
-//		//posX = 3650;
-//		//posY = 96;
-//		_localTime += deltaTime_;
-//		if (_localTime > 500)
-//		{
-//			_localTime = 0;
-//			_state = ERavenState::Stoping1;
-//			break;
-//		}
-//	}
-//	
-//		break;
-//		
-//	case Moving12:
-//	{
-//		//posX = 3709;
-//		//posY = 286;
-//		posX += vX*deltaTime_;
-//		posY = -posX + 4;
-//		_localTime += deltaTime_;
-//		if (_localTime >500)
-//		{
-//			_localTime = 0;
-//			_state = ERavenState::Stoping2;
-//			break;
-//		}
-//	}
-//		
-//		break;
-//	
-//	case Moving23:
-//		////posX = 3992;
-//		//posY = 222;
-//		posX += vX*deltaTime_;
-//
-//		break;
-//	}
-//
-//}
 
 
 void Ravens::Stoping(int deltaTime_)
@@ -159,6 +59,22 @@ void Ravens::Moving(int deltaTime_)
 	
 }
 
+void Ravens::Draw(GCamera* camera)
+{
+	if (sprite == NULL || !active)
+		return;
+	/*if (posX + width / 2 <= camera->viewport.x || posX - width / 2 >= camera->viewport.x + G_ScreenWidth)
+	{
+		active = false;
+		return;
+	}*/
+	D3DXVECTOR2 center = camera->Transform(posX, posY);
+	if (_drawLeft )
+		sprite->Draw(center.x, center.y);
+	else
+		sprite->DrawFlipX(center.x, center.y);
+}
+
 void Ravens::Update(int deltaTime)
 {
 	switch (_state)
@@ -173,8 +89,73 @@ void Ravens::Update(int deltaTime)
 		break;
 
 	}
+}
+
+void Ravens::Update(int playerX, int playerY, int deltaTime)
+{
+
+	switch (_state)
+	{
+	case ERavenState::Stoping:
 		
-	
+
+		sprite->Update(deltaTime);
+		_localTime += deltaTime;
+		if (_localTime >= 800)
+		{
+			_localTime = 0;
+			_state = ERavenState::moving;
+			return;
+		}
+
+
+		break;
+	case ERavenState::moving:
+		
+
+		deltaX += (abs(oldX - posX));
+		oldX = posX;
+		
+		if (posY <= playerY && posX > playerX) {
+			posX -= vX*deltaTime;
+			posY += vY*deltaTime;
+			_drawLeft = true;
+		}
+
+		else if (posY <= playerY && posX < playerX){
+			posX += vX*deltaTime;
+			posY += vY*deltaTime;
+			_drawLeft = false;
+		}
+		else if (posY >= playerY && posX > playerX){
+			posX -= vX*deltaTime;
+			posY -= vY*deltaTime;
+			_drawLeft = true;
+		}
+		else if (posY >= playerY && posX < playerX) {
+			posX += vX*deltaTime;
+			posY -= vY*deltaTime;
+			_drawLeft = false;
+		}
+
+
+		
+		sprite->Update(deltaTime);
+		if (deltaX >= 50)
+		{
+			deltaX = 0;
+			this->_state = ERavenState::Stoping;
+			return;
+		}
+
+
+		break;
+	default:
+		break;
+
+	}
+
+
 }
 
 // neu va cham voi vien gach thi chuyen qua stage moving 

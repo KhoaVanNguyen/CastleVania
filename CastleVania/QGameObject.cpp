@@ -267,7 +267,7 @@ void QGameObject::Update(int deltaTime)
 		++it;
 	}
 }
-void QGameObject::Update(Box playerBox, int deltaTime)
+void QGameObject::Update(int playerX, int playerY, int deltaTime)
 {
 	list<GameObject*>::iterator it = _staticObject->begin();
 	while (it != _staticObject->end())
@@ -297,7 +297,7 @@ void QGameObject::Update(Box playerBox, int deltaTime)
 				{
 
 					if ((*it)->neededPlayerPosition) {
-						(*it)->Update(playerBox, deltaTime);
+						(*it)->Update(playerX, playerY, deltaTime);
 					}
 					else {
 						(*it)->Update(deltaTime);

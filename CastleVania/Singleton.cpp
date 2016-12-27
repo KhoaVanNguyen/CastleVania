@@ -32,7 +32,7 @@ Singleton::Singleton()
 	AxeKnights = new GTexture("Resources/enemy/5.png", 4, 1, 4);
 	BoneTowers = new GTexture("Resources/enemy/8.png", 1, 1, 1);
 	Ghosts = new GTexture("Resources/enemy/9.png", 2, 1, 2);
-	Ravens = new GTexture("Resources/boss/3.png", 3, 1, 3);
+	Ravens = new GTexture("Resources/enemy/11.png", 4, 1, 4);
 	
 	Skeletons = new GTexture("Resources/enemy/7.png",2,1,2);
 	Fleaman = new GTexture("Resources/enemy/10.png", 2, 1, 2);

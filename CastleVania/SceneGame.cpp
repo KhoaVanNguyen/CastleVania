@@ -230,7 +230,9 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		}
 
 		//qGameObject->Update(player->GetBox(), t);
-		qGameObject->Update(t);
+	//	qGameObject->Update(t);
+
+		qGameObject->Update(player->posX, player->posY, t);
 		bg->GetAvailableTiles(camera->viewport.x, camera->viewport.y);
 
 		player->Update(t);

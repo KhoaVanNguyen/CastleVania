@@ -34,7 +34,7 @@ public:
 
 	virtual void Update(int dt);
 	virtual void Draw(GCamera*);
-	virtual void Update(Box playerBox, int dt);
+	virtual void Update(int , int, int dt);
 
 	virtual void ProcessInput(LPDIRECT3DDEVICE9 d3ddv, int t);
 	virtual void OnKeyDown(int KeyCode);
