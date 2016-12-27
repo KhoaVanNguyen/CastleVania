@@ -87,6 +87,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AxeKnights.cpp" />
+    <ClCompile Include="Bandages.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bats.cpp" />
     <ClCompile Include="BoneTowers.cpp" />
@@ -120,6 +121,7 @@
     <ClCompile Include="MorningStar.cpp" />
     <ClCompile Include="MorningStarSprite.cpp" />
     <ClCompile Include="MovingPlatform.cpp" />
+    <ClCompile Include="Mummy.cpp" />
     <ClCompile Include="OpenDoor.cpp" />
     <ClCompile Include="Panthers.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -151,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AxeKnights.h" />
+    <ClInclude Include="Bandages.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bats.h" />
     <ClInclude Include="BoneTowers.h" />
@@ -187,6 +190,7 @@
     <ClInclude Include="MorningStar.h" />
     <ClInclude Include="MorningStarSprite.h" />
     <ClInclude Include="MovingPlatform.h" />
+    <ClInclude Include="Mummy.h" />
     <ClInclude Include="OpenDoor.h" />
     <ClInclude Include="Panthers.h" />
     <ClInclude Include="Player.h" />

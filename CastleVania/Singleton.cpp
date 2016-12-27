@@ -47,6 +47,12 @@ Singleton::Singleton()
 	phantombat = new GTexture("Resources/boss/0.png", 3, 1, 3);
 	littleSnake = new GTexture("Resources/boss/2.png", 2, 1, 2);
 
+	mummy = new GTexture("Resources/boss/3.png", 3, 1, 3);
+
+	bandages = new GTexture("Resources/boss/6.png", 3, 1, 3);
+
+
+	// item
 	largeHeart = new GTexture("Resources/item/1.png", 1, 1, 1);
 	smallHeart = new GTexture("Resources/item/0.png", 1, 1, 1);
 	moneyBagItem = new GTexture("Resources/item/2.png", 3, 1, 3);
@@ -153,6 +159,11 @@ GTexture* Singleton::getTexture(EnumID id)
 		return Medusa;
 	case EnumID::LittleSnake_ID:
 		return littleSnake;
+	case EnumID::Bandage_ID:
+		return bandages;
+
+	case EnumID::Mummy_ID:
+		return mummy;
 		// Other
 		
 	case EnumID::FireBossDie_ID:

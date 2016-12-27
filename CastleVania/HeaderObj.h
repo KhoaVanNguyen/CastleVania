@@ -29,4 +29,5 @@
 #include "BrickHide.h"
 #include "Skeletons.h"
 #include "Fleaman.h"
+#include "Mummy.h"
 #endif
