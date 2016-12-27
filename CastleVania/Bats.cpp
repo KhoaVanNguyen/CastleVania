@@ -51,7 +51,9 @@ void Bats::Update(int deltaTime)
 	}
 }
 
-void Bats::Collision(list<GameObject*> obj, int dt) {}
+void Bats::Collision(list<GameObject*> obj, int dt) {
+
+}
 
 void Bats::SetActive(float x, float y)
 {
