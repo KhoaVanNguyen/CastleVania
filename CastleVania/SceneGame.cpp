@@ -3,8 +3,8 @@
 #define BACKGROUND_FILE "Resources/black.png"
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 1;
-	_stageNow = 1;
+	_levelNow = 2;
+	_stageNow = 11;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -61,13 +61,25 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	case 2:
 	{
 
-		camera->viewport.y = 485; // 485
+		camera->viewport.y = 1253; // 869; // 485
 		bg = new QBackground(level);
 		bg->LoadQuadTreeFromFile();
 		//player = new Player(600, 90);
-		player->posX = 600;
-		player->posY = 140;
-		_stageReset = 7;
+		//player->posX = 600;
+		//player->posY = 140;
+
+		// stage 8 
+		//player = new Player(406, 510);
+
+		//player = new Player(1641, 606);
+
+
+		//stage 9 :
+		player = new Player(2403, 606);
+
+		//stage 11
+		player = new Player(4205, 1040);
+		_stageReset = 11;
 		player->Initialize();
 		//player->hp = 20;
 		//player->hearts = 50;
@@ -370,6 +382,13 @@ void SceneGame::LoadStage(int stage)
 
 	}
 	break;
+	case 11:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage11.txt");
+		posDoor = qGameObject->GetPosDoor();
+
+	}
+	break;
 	default:
 		break;
 	}
@@ -426,9 +445,9 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			_beginMoveCamera = true;
 			_moveCameraHaft = false;
 			_moveCameraDone = false;
-			_rangeMoveCamera = 270;
-			_rangeMoveCamera2 = 224;
-			_rangeMoveplayer = 120;
+			_rangeMoveCamera = 264;
+			_rangeMoveCamera2 = 252;
+			_rangeMoveplayer = 80;
 			_doorDirect = 1;
 		}
 		break;
