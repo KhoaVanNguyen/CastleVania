@@ -4,7 +4,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 2;
-	_stageNow = 9;
+	_stageNow = 11;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -61,7 +61,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	case 2:
 	{
 
-		camera->viewport.y = 869; // 485
+		camera->viewport.y = 1253; // 869; // 485
 		bg = new QBackground(level);
 		bg->LoadQuadTreeFromFile();
 		//player = new Player(600, 90);
@@ -77,7 +77,9 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		//stage 9 :
 		player = new Player(2403, 606);
 
-		_stageReset = 9;
+		//stage 11
+		player = new Player(4205, 1040);
+		_stageReset = 11;
 		player->Initialize();
 		//player->hp = 20;
 		//player->hearts = 50;
@@ -376,6 +378,13 @@ void SceneGame::LoadStage(int stage)
 	case 10:
 	{
 		qGameObject = new QGameObject("Resources/Maps/Stage10.txt");
+		posDoor = qGameObject->GetPosDoor();
+
+	}
+	break;
+	case 11:
+	{
+		qGameObject = new QGameObject("Resources/Maps/Stage11.txt");
 		posDoor = qGameObject->GetPosDoor();
 
 	}
