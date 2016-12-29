@@ -54,6 +54,8 @@ private:
 	GTexture* Medusa;
 	GTexture* littleSnake;
 
+	GTexture* mummy;
+	GTexture* bandages;
 	//other
 	GTexture* fireBossDie;
 	GTexture* water;

@@ -53,7 +53,8 @@ enum EnumID
 	PhantomBat_ID,
 	Medusa_ID,
 	LittleSnake_ID,
-
+	Mummy_ID,
+	Bandage_ID,
 	//other
 	Water_ID,
 	Fire_ID,

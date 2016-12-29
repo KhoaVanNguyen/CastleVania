@@ -165,6 +165,9 @@ QGameObject::QGameObject(string fileName)
 			case 34:
 				_dynamicObject->push_back(new Ravens(posX, posY));
 				break;
+			case 35:
+				_dynamicObject->push_back(new Mummy(posX, posY));
+				break;
 			default:
 				break;
 			}
