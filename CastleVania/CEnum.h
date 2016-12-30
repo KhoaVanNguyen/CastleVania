@@ -33,6 +33,7 @@ enum EnumID
 	Fleamen_ID,
 	Skeletons_ID,
 	Fleaman_ID,
+	Bone_ID,
 
 	//groud
 	MovingPlatform_ID,

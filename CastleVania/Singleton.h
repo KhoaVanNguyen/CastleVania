@@ -21,6 +21,8 @@ private:
 	GTexture *Ravens;
 	GTexture *Fleaman;
 	GTexture *Skeletons;
+	GTexture *bones;
+
 	GTexture* BoneTowers;
 	
 	//ground

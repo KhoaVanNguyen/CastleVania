@@ -34,7 +34,7 @@ void Medusa::_Stoping(int deltaTime_)
 {
 	this->_fightSprite->Update(deltaTime_);
 	_localTime += deltaTime_;
-	if (_localTime > 1000 / QUEEN_medusa_STOP_STATE)
+	if (_localTime > 1000 / STOP_STATE)
 	{
 		_localTime = 0;
 		switch (_currentStopPos)
@@ -56,7 +56,7 @@ void Medusa::_Stoping(int deltaTime_)
 			_previousStopPos = _currentStopPos;
 			_currentStopPos = 0;
 			float deltaX = posX - _playerPos->x; // tinh do chenh lech tao do cua Player va boss de lay chieu Vx Snake
-			float littleSnakeVx = -deltaX / abs(deltaX)*LITTLE_SNAKE_SPEED_X; // Tinh Vx cua Snake
+			float littleSnakeVx = -deltaX / abs(deltaX)*BANDAGE_SPEED_X; // Tinh Vx cua Snake
 			_LittleSnake->push_back(new LittleSnake(posX, posY, littleSnakeVx, -0.2f, EnumID::LittleSnake_ID));
 		}
 		break;
@@ -84,7 +84,7 @@ void Medusa::_Stoping(int deltaTime_)
 			_previousStopPos = _currentStopPos;
 			_currentStopPos = 4;
 			float deltaX = posX - _playerPos->x; 
-			float littleSnakeVx = -deltaX / abs(deltaX)*LITTLE_SNAKE_SPEED_X;
+			float littleSnakeVx = -deltaX / abs(deltaX)*BANDAGE_SPEED_X;
 			
 			_LittleSnake->push_back(new LittleSnake(posX, posY, littleSnakeVx, -0.2f, EnumID::LittleSnake_ID));
 		}
@@ -218,12 +218,12 @@ Medusa::Medusa(void)
 	this->_initialize();
 }
 
-Medusa::Medusa(float posX_, float posY_, EnumID id_) :DynamicObject(posX_, posY_, QUEEN_medusa_SPEED_X, 0, id_)
+Medusa::Medusa(float posX_, float posY_, EnumID id_) :DynamicObject(posX_, posY_, SPEED_X, 0, id_)
 {
 	_initialize();
-	_sleepSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 4, 4, 1000 / QUEEN_medusa_SLEEP_STATE);
+	_sleepSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 4, 4, 1000 / SLEEP_STATE);
 	_fightSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 0, 3, 1000 / QUEEN_medusa_STATE);
-	_deadSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::FireBossDie_ID), 0, 2, 1000 / QUEEN_medusa_DIE_RATE);
+	_deadSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::FireBossDie_ID), 0, 2, 1000 / DIE_RATE);
 }
 
 
