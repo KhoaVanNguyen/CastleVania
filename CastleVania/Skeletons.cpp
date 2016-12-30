@@ -1,21 +1,36 @@
 #include "Skeletons.h"
-#define SPEED_X 0.4f
-#define SPEED_Y 0.6f
+#define SPEED_X 0.3f
+#define SPEED_Y 0.5f
 #define MAX_HEIGHT 20.0f
 
 Skeletons::Skeletons(void) :DynamicObject()
 {
 }
 
-Skeletons::Skeletons(float x, float y) : DynamicObject(x, y, 0, -0.4, EnumID::Skeletons_ID)
+Skeletons::Skeletons(float x, float y) : DynamicObject(x, y, 0, 0, EnumID::Skeletons_ID)
 {
+	_nextStopPos = new D3DXVECTOR2(0, 0);
 	active = true;
 	canBeKilled = true;
+	neededPlayerPosition = true;
 	_bones = new list<DynamicObject*>();
 	_hasJump = false;
 	_heightJump = 0;
 	type = ObjectType::Enemy_Type;
+	_localTime = 0;
 	point = 200;
+	_state = ESkeletonState::Skeleton_Stoping;
+
+
+	///
+
+	_anpha = THROW_AXE_ANPHA;
+	_posX0 = posX = x + 20;
+	_nextStopPos->x = posX + 100;
+
+
+	_anpha = _anpha*(3.14 / 180);
+	_posY0 = posY = y + 20;
 }
 
 void Skeletons::Draw(GCamera* camera)
@@ -29,33 +44,20 @@ void Skeletons::Draw(GCamera* camera)
 		return;
 	}
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
-	if (vX > 0)
-		sprite->DrawFlipX(center.x, center.y);
-	else
+	if (_drawLeft)
 		sprite->Draw(center.x, center.y);
+	else
+		sprite->DrawFlipX(center.x, center.y);
 
 
 	DrawBones(camera);
 }
 
 
-void Skeletons::Update(int dt)
+void Skeletons::Update(int playerX, int playerY, int dt)
 {
 
 
-	_timeSpan += dt;
-	if (_timeSpan % 5 == 0) {
-		_bones->push_back(new Bone(posX, posY + 10, EnumID::Bone_ID));
-
-
-	}
-
-	if (sprite->GetIndex() == 0)
-		return;
-	//posX += vX *dt;
-	if (posX <= width / 2 + 5 || posX >= G_MapWidth - width / 2 - 5)
-		vX = -vX;
-	posY += vY *dt;
 	if (!_hasJump)
 		sprite->Update(dt);
 	if (_hasJump)
@@ -66,26 +68,93 @@ void Skeletons::Update(int dt)
 			vY = -(SPEED_Y + 0.2f);
 		}
 	}
+
+
+
+
+	_timeSpan += dt;
+	if (_timeSpan % 25 == 0) {
+		_bones->push_back(new Bone(posX, posY + 10, EnumID::Bone_ID));
+
+
+	}
+	int randomDeltaX;
+	switch (_state)
+	{
+	case ESkeletonState::Skeleton_Stoping:
+
+	
+		_localTime += dt;
+		
+
+		
+		distanceXToPlayer = abs(playerX - posX);
+		distanceYToPlayer = abs(playerY - posY);
+		 if (distanceXToPlayer <= 200 && distanceYToPlayer <= 100) {
+			_state = ESkeletonState::Skeleton_Moving;
+			return;
+		}
+
+		break;
+	case ESkeletonState::Skeleton_Moving:
+
+
+		deltaX += (abs(oldX - posX));
+		oldX = posX;
+
+
+		if (playerX > posX) {
+			_drawLeft = false;
+			posX += vX*dt;
+
+			// Jump to Right here
+			Jump();
+		}
+		else {
+			// Jump to Left here
+
+			posX -= vX*dt;
+			_drawLeft = true;
+		}
+	
+		distanceXToPlayer = abs(playerX - posX);
+		distanceYToPlayer = abs(playerY - posY);
+		if (distanceXToPlayer >= 200 && distanceYToPlayer >= 150) {
+			_state = ESkeletonState::Skeleton_Stoping;
+			_hasJump = false;
+			return;
+		}
+		
+
+
+		break;
+
+	default:
+		break;
+
+	}
+
+
 	UpdateBones(dt);
 }
 
 void Skeletons::SetActive(float x, float y)
 {
-	if (abs(posX - x) <= 200)
-	{
-		if (abs(posY - y) <= 50)
-		{
-			//vX = -SPEED_X;
-			sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Skeletons_ID), 1, 1, 60);
-		}
-		else
-		{
-			if (abs(posY - y) <= 150)
-			{
-				Jump();
-			}
-		}
-	}
+	//if (abs(posX - x) <= 200)
+	//{
+	//	if (abs(posY - y) <= 50)
+	//	{
+	//		//vX = -SPEED_X;
+	//		sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Skeletons_ID), 1, 1, 60);
+	//	}
+	//	else
+	//	{
+	//		if (abs(posY - y) <= 150)
+	//		{
+	//			Jump();
+	//		}
+	//	}
+	//}
 }
 
 void Skeletons::Jump()

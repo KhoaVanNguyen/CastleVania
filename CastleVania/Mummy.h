@@ -21,7 +21,7 @@ using namespace std;
 enum EMummyState
 {
 	Mummy_Stoping,
-	Mummy_moving
+	Mummy_Moving
 };
 
 class Mummy : public DynamicObject

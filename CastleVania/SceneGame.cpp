@@ -64,7 +64,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		camera->viewport.y = 485; // 869; // 485
 		bg = new QBackground(level);
 		bg->LoadQuadTreeFromFile();
-		player = new Player(300, 94);
+		player = new Player(400, 94);
 		//player->posX = 600;
 		//player->posY = 140;
 
