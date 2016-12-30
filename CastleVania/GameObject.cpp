@@ -41,9 +41,6 @@ void GameObject::CreateSprite()
 {
 	switch (id)
 	{
-	case EnumID::Player_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
-		break;
 	case EnumID::Brick_ID:
 	case EnumID::StairUpRight_ID:
 	case EnumID::StairUpLeft_ID:
@@ -56,6 +53,9 @@ void GameObject::CreateSprite()
 	case EnumID::TeleUp_ID:
 	case EnumID::Barrier_ID:
 		sprite = NULL;
+		break;
+	case EnumID::Player_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID:: Candle_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
@@ -77,11 +77,15 @@ void GameObject::CreateSprite()
 		break;
 	case EnumID ::Ravens_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 2, 100);
+		break;
 	case EnumID::Fleaman_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 0, 1000);
 		break;
 	case EnumID::Mummy_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		break;
+	case EnumID::Skeletons_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 500);
 		break;
 	case EnumID::Bandage_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 2, 100);

@@ -4,7 +4,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 2;
-	_stageNow = 11;
+	_stageNow = 7;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -61,10 +61,10 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	case 2:
 	{
 
-		camera->viewport.y = 1253; // 869; // 485
+		camera->viewport.y = 485; // 869; // 485
 		bg = new QBackground(level);
 		bg->LoadQuadTreeFromFile();
-		//player = new Player(600, 90);
+		player = new Player(300, 94);
 		//player->posX = 600;
 		//player->posY = 140;
 
@@ -75,11 +75,11 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 
 
 		//stage 9 :
-		player = new Player(2403, 606);
+		//player = new Player(2403, 606);
 
 		//stage 11
-		player = new Player(4205, 1040);
-		_stageReset = 11;
+		//player = new Player(4205, 1040);
+		_stageReset = 7;
 		player->Initialize();
 		//player->hp = 20;
 		//player->hearts = 50;
