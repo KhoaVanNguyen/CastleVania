@@ -1,19 +1,59 @@
 #include "Bone.h"
 
+#define SPEED_X 0.2f
 
-Bone::Bone(void)
+Bone::Bone(void) : DynamicObject()
 {
 }
 
-Bone::Bone(float _posX, float _posY, float _vX, float _vY, EnumID _id)
-	: DynamicObject(_posX, _posY, _vX, _vY, _id)
+Bone::Bone(float x, float y, EnumID id) : DynamicObject(x, y, 0.5, 0, id)
 {
+
+	_nextStopPos = new D3DXVECTOR2(0, 0);
+	_anpha = 0;
+	_posX0 = posX;
+	_posY0 = posY;
+
+
+	_anpha = THROW_AXE_ANPHA;
+	_posX0 = posX = x + 20;
+	_nextStopPos->x = posX + 100;
+
+
+	_anpha = _anpha*(3.14 / 180);
+	_posY0 = posY = y + 20;
+
+
+
+	_timeSpawn = 0;
 	active = true;
-	canBeKilled = true;
 	type = ObjectType::Enemy_Type;
 }
 
-void Bone::Draw(GCamera* camera)
+void Bone::Update(int dt)
+{
+	_timeSpawn += dt;
+	posX += vX * dt;
+	if (_timeSpawn >= 500)
+		active = false;
+
+
+
+	this->sprite->Update(dt);
+	vX = THROW_AXE_SPEED_X*cos(_anpha);
+	vY = THROW_AXE_SPEED_X*sin(_anpha) - G*dt;
+	posX += vX*dt;
+	float deltaPosX = posX - _posX0;
+	posY = _posY0 + vY*deltaPosX / vX - 0.5*G*pow((deltaPosX / vX), 2);
+
+
+}
+
+Bone::~Bone(void)
+{
+}
+
+void Bone::Draw(GCamera *camera)
 {
 	if (sprite == NULL || !active)
 		return;
@@ -55,8 +95,4 @@ void Bone::Collision(list<GameObject*> obj, int dt)
 			}
 		}
 	}
-}
-
-Bone::~Bone(void)
-{
 }

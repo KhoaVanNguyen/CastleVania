@@ -46,16 +46,6 @@ protected:
 
 	list<DynamicObject*> *_bandages;
 
-	
-	D3DXVECTOR2* _playerPos;
-	float _deltaPhi;
-	float _posY0;
-
-
-	void _initialize();
-
-
-	bool _leaveStopPos(D3DXVECTOR2 boss_, D3DXVECTOR2 _nextStopPos);
 
 	void _drawBandages(GCamera* camera_);
 
@@ -71,10 +61,8 @@ public:
 //	void Update(int deltaTime_, D3DXVECTOR2* playerPos_);
 	virtual void Draw(GCamera* camera_);
 	virtual void Collision(list<GameObject*> obj, int dt);
-	void getUp();
-	void setDead();
 	//void ReceiveDamage(int damagePoint);
-	bool StateCancel();
+
 	~Mummy(void);
 public:
 

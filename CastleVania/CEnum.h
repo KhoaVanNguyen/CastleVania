@@ -90,6 +90,7 @@ enum EnumID
 	Throw_Axe_ID,
 	HolyWater_ID,
 	Boomerang_ID,
+	Boomerang_Weapon_ID,
 	StopWatch_ID,
 
 

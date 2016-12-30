@@ -37,7 +37,7 @@ Singleton::Singleton()
 	Ravens = new GTexture("Resources/enemy/11.png", 4, 1, 4);
 	
 	Skeletons = new GTexture("Resources/enemy/7.png",2,1,2);
-	bones = new GTexture("Resources/enemy/7.png", 3, 1, 3);
+	bones = new GTexture("Resources/enemy/12.png", 3, 1, 3);
 	Fleaman = new GTexture("Resources/enemy/10.png", 2, 1, 2);
 
 	//ground
@@ -58,6 +58,12 @@ Singleton::Singleton()
 
 	fireBossDie = new GTexture("Resources/other/1.png", 3, 1, 3);
 
+
+	// weapons:
+
+	boomerang = new GTexture("Resources/weapon/4.png", 3, 1, 3);
+
+
 	// item
 	largeHeart = new GTexture("Resources/item/1.png", 1, 1, 1);
 	smallHeart = new GTexture("Resources/item/0.png", 1, 1, 1);
@@ -65,7 +71,7 @@ Singleton::Singleton()
 	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
 	holyWater = new GTexture("Resources/weapon/2.png", 3, 1, 3);
 	dagger = new GTexture("Resources/item/4.png", 1, 1, 1);
-	boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
+	
 	axe = new GTexture("Resources/item/7.png", 1, 1, 1);
 
 	throwAxe = new GTexture("Resources/item/7.png", 1, 1, 1);
@@ -95,7 +101,8 @@ Singleton::Singleton()
 	porkChop = new GTexture("Resources/item/10.png", 1, 1, 1);
 	holyWaterItem = new GTexture("Resources/item/9.png", 1, 1, 1);
 	
-	
+	// GameUI
+	boomerangItem = new GTexture("Resources/item/8.png", 1, 1, 1);
 	watchItem = new GTexture("Resources/item/5.png", 1, 1, 1);
 
 }
@@ -182,6 +189,9 @@ GTexture* Singleton::getTexture(EnumID id)
 		return gameScore;
 
 		// Items:
+	
+	case EnumID::Boomerang_ID:
+		return boomerangItem;
 
 	
 	case EnumID::Large_Heart:
@@ -206,11 +216,11 @@ GTexture* Singleton::getTexture(EnumID id)
 		return throwAxe;
 	case EnumID::HolyWater_ID:
 		return holyWater;
-	case EnumID::Boomerang_ID:
-		return boomerangItem;
+	
 	case EnumID::StopWatch_ID:
 		return stopWatch;
-		
+	case EnumID::Boomerang_Weapon_ID:
+		return boomerang;
 	case EnumID::MagicalBall_ID:
 		return MagicalBall;
 

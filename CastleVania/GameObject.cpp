@@ -88,10 +88,14 @@ void GameObject::CreateSprite()
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 500);
 		break;
 	case EnumID::Bone_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 12);
 		break;
 	case EnumID::Bandage_ID:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 2, 100);
+		break;
+	case EnumID::Boomerang_Weapon_ID:
+		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 16);
+		break;
 	default:
 		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 100);
 		break;
