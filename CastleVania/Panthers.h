@@ -2,7 +2,7 @@
 #define _Panthers_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class Panthers :public DynamicObject
 {

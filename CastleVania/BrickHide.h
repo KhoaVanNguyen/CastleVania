@@ -2,7 +2,7 @@
 #define _BRICK_HIDE_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class BrickHide :public DynamicObject
 {

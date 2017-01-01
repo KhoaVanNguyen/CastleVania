@@ -24,8 +24,8 @@ void Medusa::_initialize()
 	active = true;
 	type = ObjectType::None;
 	HasGetUp = false;
-	hp = 100;
-	damage = 4;
+	hp = 400;
+	damage = 10;
 	canBeKilled = true;
 }
 
@@ -150,8 +150,8 @@ void Medusa::getUp()
 	this->_state = EMedusaState::Stop;
 	if (!HasGetUp)
 	{
-		//Sound::GetInst()->RemoveAllBGM();
-		//Sound::GetInst()->PlayBGSound(EBGSound::EBoss);
+		Sound::GetInst()->RemoveAllBGM();
+		Sound::GetInst()->PlayBGSound(EBGSound::EBoss);
 		type = ObjectType::Enemy_Type;
 		HasGetUp = true;
 		G_RightCamera = G_LeftCamera + G_ScreenWidth;
@@ -221,9 +221,9 @@ Medusa::Medusa(void)
 Medusa::Medusa(float posX_, float posY_, EnumID id_) :DynamicObject(posX_, posY_, SPEED_X, 0, id_)
 {
 	_initialize();
-	_sleepSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 4, 4, 1000 / SLEEP_STATE);
-	_fightSprite = new GSprite(Singleton::getInstance()->getTexture(id_), 0, 3, 1000 / QUEEN_medusa_STATE);
-	_deadSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::FireBossDie_ID), 0, 2, 1000 / DIE_RATE);
+	_sleepSprite = new GSprite(TextureManager::getInstance()->getTexture(id_), 4, 4, 1000 / SLEEP_STATE);
+	_fightSprite = new GSprite(TextureManager::getInstance()->getTexture(id_), 0, 3, 1000 / QUEEN_medusa_STATE);
+	_deadSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::FireBossDie_ID), 0, 2, 1000 / DIE_RATE);
 }
 
 

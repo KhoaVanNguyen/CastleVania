@@ -1,143 +1,458 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="AxeKnights.cpp" />
-    <ClCompile Include="Barrier.cpp" />
-    <ClCompile Include="Bats.cpp" />
-    <ClCompile Include="BoneTowers.cpp" />
-    <ClCompile Include="BrickHide.cpp" />
-    <ClCompile Include="CastleGate.cpp" />
-    <ClCompile Include="CustomBox.cpp" />
-    <ClCompile Include="Door.cpp" />
-    <ClCompile Include="Boomerang.cpp" />
-    <ClCompile Include="Brick.cpp" />
-    <ClCompile Include="Candle.cpp" />
-    <ClCompile Include="Dagger.cpp" />
-    <ClCompile Include="DynamicObject.cpp" />
-    <ClCompile Include="Fire.cpp" />
-    <ClCompile Include="FireBossDie.cpp" />
-    <ClCompile Include="Fishmen.cpp" />
-    <ClCompile Include="Fleaman.cpp" />
-    <ClCompile Include="Font.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="GameUI.cpp" />
-    <ClCompile Include="GAudio.cpp" />
-    <ClCompile Include="GCamera.cpp" />
-    <ClCompile Include="dsutil.cpp" />
-    <ClCompile Include="CustomRect.cpp" />
-    <ClCompile Include="Ghosts.cpp" />
-    <ClCompile Include="HolyWater.cpp" />
-    <ClCompile Include="LargeCandle.cpp" />
-    <ClCompile Include="LittleSnake.cpp" />
-    <ClCompile Include="MagicalBall.cpp" />
-    <ClCompile Include="Medusa.cpp" />
-    <ClCompile Include="MedusaHeads.cpp" />
-    <ClCompile Include="MorningStar.cpp" />
-    <ClCompile Include="MorningStarSprite.cpp" />
-    <ClCompile Include="MovingPlatform.cpp" />
-    <ClCompile Include="OpenDoor.cpp" />
-    <ClCompile Include="Panthers.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="QBackground.cpp" />
-    <ClCompile Include="QGameObject.cpp" />
-    <ClCompile Include="QNode.cpp" />
-    <ClCompile Include="Ravens.cpp" />
-    <ClCompile Include="RewardItem.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneGame.cpp" />
-    <ClCompile Include="SceneControl.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Global.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="GSprite.cpp" />
-    <ClCompile Include="GTexture.cpp" />
-    <ClCompile Include="SceneMenu.cpp" />
-    <ClCompile Include="Singleton.cpp" />
-    <ClCompile Include="Skeletons.cpp" />
-    <ClCompile Include="Sound.cpp" />
-    <ClCompile Include="Stair.cpp" />
-    <ClCompile Include="ThrowAxe.cpp" />
-    <ClCompile Include="Tile.cpp" />
-    <ClCompile Include="TrapDoor.cpp" />
-    <ClCompile Include="Utils.cpp" />
-    <ClCompile Include="Ghouls.cpp" />
-    <ClCompile Include="Water.cpp" />
-    <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="Mummy.cpp" />
-    <ClCompile Include="Bandages.cpp" />
-    <ClCompile Include="Bone.cpp" />
+    <ClCompile Include="OpenDoor.cpp">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="RewardItem.cpp">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="AxeKnights.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Bandages.cpp">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="BoneTowers.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicObject.cpp">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghosts.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghouls.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Panthers.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Ravens.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Boomerang.cpp">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Mummy.cpp">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject\DynamicGameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Barrier.cpp">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomBox.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomRect.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="MedusaHeads.cpp">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Medusa.cpp">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="LittleSnake.cpp">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Bone.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Bats.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Fleaman.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="QBackground.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="QGameObject.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="QNode.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="Dagger.cpp">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="HolyWater.cpp">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="MorningStar.cpp">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Skeletons.cpp">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="dsutil.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUI.cpp">
+      <Filter>FrameWork\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>FrameWork\GameUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GCamera.cpp">
+      <Filter>FrameWork\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="GSprite.cpp">
+      <Filter>FrameWork\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GTexture.cpp">
+      <Filter>FrameWork\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="GAudio.cpp">
+      <Filter>FrameWork\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="ThrowAxe.cpp">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BrickHide.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Candle.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Fire.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="FireBossDie.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="LargeCandle.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingPlatform.cpp">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Stair.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TrapDoor.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MorningStarSprite.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGame.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneControl.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>WinMain</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>FrameWork\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MagicalBall.cpp">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>FrameWork\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AxeKnights.h" />
-    <ClInclude Include="Barrier.h" />
-    <ClInclude Include="Bats.h" />
-    <ClInclude Include="BoneTowers.h" />
-    <ClInclude Include="Boomerang.h" />
-    <ClInclude Include="Brick.h" />
-    <ClInclude Include="BrickHide.h" />
-    <ClInclude Include="Candle.h" />
-    <ClInclude Include="CastleGate.h" />
-    <ClInclude Include="CEnum.h" />
-    <ClInclude Include="CustomBox.h" />
-    <ClInclude Include="Door.h" />
-    <ClInclude Include="Dagger.h" />
-    <ClInclude Include="DynamicObject.h" />
-    <ClInclude Include="Fire.h" />
-    <ClInclude Include="FireBossDie.h" />
-    <ClInclude Include="Fishmen.h" />
-    <ClInclude Include="Fleaman.h" />
-    <ClInclude Include="Font.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GameUI.h" />
-    <ClInclude Include="GAudio.h" />
-    <ClInclude Include="GCamera.h" />
-    <ClInclude Include="dsutil.h" />
-    <ClInclude Include="dxutil.h" />
-    <ClInclude Include="Ghosts.h" />
-    <ClInclude Include="HeaderObj.h" />
-    <ClInclude Include="CustomRect.h" />
-    <ClInclude Include="HolyWater.h" />
-    <ClInclude Include="LargeCandle.h" />
-    <ClInclude Include="LittleSnake.h" />
-    <ClInclude Include="MagicalBall.h" />
-    <ClInclude Include="Medusa.h" />
-    <ClInclude Include="MedusaHeads.h" />
-    <ClInclude Include="MorningStar.h" />
-    <ClInclude Include="MorningStarSprite.h" />
-    <ClInclude Include="MovingPlatform.h" />
-    <ClInclude Include="OpenDoor.h" />
-    <ClInclude Include="Panthers.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="QBackground.h" />
-    <ClInclude Include="QGameObject.h" />
-    <ClInclude Include="QNode.h" />
-    <ClInclude Include="Ravens.h" />
-    <ClInclude Include="RewardItem.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneGame.h" />
-    <ClInclude Include="SceneControl.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Global.h" />
-    <ClInclude Include="GSprite.h" />
-    <ClInclude Include="GTexture.h" />
-    <ClInclude Include="SceneMenu.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Skeletons.h" />
-    <ClInclude Include="Sound.h" />
-    <ClInclude Include="Stair.h" />
-    <ClInclude Include="SweptAABB.h" />
-    <ClInclude Include="ThrowAxe.h" />
-    <ClInclude Include="Tile.h" />
-    <ClInclude Include="TrapDoor.h" />
-    <ClInclude Include="Utils.h" />
-    <ClInclude Include="Ghouls.h" />
-    <ClInclude Include="Water.h" />
-    <ClInclude Include="Weapon.h" />
-    <ClInclude Include="Mummy.h" />
-    <ClInclude Include="Bandages.h" />
-    <ClInclude Include="Bone.h" />
+    <ClInclude Include="OpenDoor.h">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="RewardItem.h">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="AxeKnights.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Bandages.h">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BoneTowers.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicObject.h">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Ghosts.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Ghouls.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Panthers.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Ravens.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Boomerang.h">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Mummy.h">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject\DynamicGameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Barrier.h">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomBox.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="MedusaHeads.h">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Medusa.h">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="LittleSnake.h">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Bone.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Bats.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Fleaman.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="QGameObject.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="QBackground.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="QNode.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="Dagger.h">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="HolyWater.h">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="MorningStar.h">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Skeletons.h">
+      <Filter>GameObject\DynamicGameObject\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomRect.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="dsutil.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="dxutil.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameUI.h">
+      <Filter>FrameWork\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>FrameWork\GameUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GCamera.h">
+      <Filter>FrameWork\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="GSprite.h">
+      <Filter>FrameWork\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GTexture.h">
+      <Filter>FrameWork\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="GAudio.h">
+      <Filter>FrameWork\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrowAxe.h">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>GameObject\DynamicGameObject\Weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BrickHide.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Candle.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Fire.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="FireBossDie.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="LargeCandle.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingPlatform.h">
+      <Filter>GameObject\DynamicGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Stair.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="TrapDoor.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>GameObject\StaticGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="HeaderObj.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="MorningStarSprite.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGame.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneControl.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>FrameWork\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="EnumManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="SweptAABB.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="MagicalBall.h">
+      <Filter>GameObject\DynamicGameObject\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>FrameWork\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{7a5c335d-9c04-45c6-9a24-ef71cecf969a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\DynamicGameObject">
+      <UniqueIdentifier>{ec3a1f4f-97b4-4924-bc8e-3206261a07aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\DynamicGameObject\Enemy">
+      <UniqueIdentifier>{fe946d25-ac45-4a93-83b4-e7873868d517}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\DynamicGameObject\Boss">
+      <UniqueIdentifier>{fd4cc8a3-bf5e-417f-8f3b-de924dc951ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\DynamicGameObject\Weapon">
+      <UniqueIdentifier>{81c64230-56ba-4026-b857-c5e7b720126c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\DynamicGameObject\Player">
+      <UniqueIdentifier>{c36de7f3-69a4-4c15-a3a9-a2a2d9554100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\StaticGameObject">
+      <UniqueIdentifier>{0ce57e8c-e4ad-4e76-b0a3-1e1793748d02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{948a8227-8a57-4c86-97ca-1c84b3bac025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quadtree">
+      <UniqueIdentifier>{bb39f27f-2fe3-4e9e-a9ec-d0cc1ca3a546}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork">
+      <UniqueIdentifier>{5f1e0f4d-cec7-496a-8fc9-ee512bcd3957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Camera">
+      <UniqueIdentifier>{83e13508-e66a-4361-856a-00741b9e70d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Sound">
+      <UniqueIdentifier>{db9ab292-b057-480d-b3ba-8d315001df03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Graphics">
+      <UniqueIdentifier>{d9beba72-dc4b-417d-8716-34e4d866f132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\GameUI">
+      <UniqueIdentifier>{3acd348d-21ba-4ef3-9b19-404f75125d60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{ce222a7e-bc63-4aac-87af-758b89718f79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{d344f4d8-1738-41aa-9c17-df8c7df18760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{55013212-8bf1-4293-864a-76ab4aafa402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WinMain">
+      <UniqueIdentifier>{98507159-985b-4dce-8d55-f1f885c7deec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FrameWork\Game">
+      <UniqueIdentifier>{e4691cc1-3452-4892-92a3-45f53c80ff6e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd">
+      <Filter>Helpers</Filter>
+    </None>
   </ItemGroup>
 </Project>

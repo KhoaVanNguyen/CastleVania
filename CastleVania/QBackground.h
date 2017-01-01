@@ -3,7 +3,7 @@
 
 #include <list>
 #include <map>
-#include "Singleton.h"
+#include "TextureManager.h"
 #include "GCamera.h"
 #include <fstream>
 #include <iostream>

@@ -2,7 +2,7 @@
 #define _MagicalBall_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class MagicalBall : public DynamicObject
 {

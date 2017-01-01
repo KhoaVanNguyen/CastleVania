@@ -4,7 +4,7 @@
 #include "DynamicObject.h"
 #include <math.h>
 #include "MorningStar.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 //#include "Weapon.h"
 #include "Dagger.h"
 #include "ThrowAxe.h"

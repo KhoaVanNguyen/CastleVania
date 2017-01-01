@@ -56,9 +56,9 @@ LPD3DXSPRITE				G_SpriteHandler;	// spriteHandler to draw texture
 void GLTrace(char* format, ...)
 {	
 	char *_traceFile = "C:\\Temp\\Sample_TH_game.log";
-	int _traceNum = 1;
+	int _traEnumManager = 1;
 
-	if (!_traceNum) return;
+	if (!_traEnumManager) return;
 
 	FILE *f = stderr;
 	if (_traceFile!=NULL)

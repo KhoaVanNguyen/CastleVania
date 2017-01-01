@@ -11,13 +11,14 @@ enum ERavenState
 	moving
 };
 
+
+
 class Ravens : public DynamicObject
 {
 
 	bool _drawLeft;
 	bool _isSleeping;
 	ERavenState _state;
-	bool _attackmode ;
 	int deltaX;
 	int oldX;
 	int timeDelay;
@@ -28,12 +29,9 @@ public:
 	~Ravens();
 	void Stoping(int deltatime);
 	void Moving(int deltatime);
-	
-
-
-
+	void  SetActive(float x, float y);
 	void Draw(GCamera* camera);
-	virtual void Update(int deltatime);
+	//virtual void Update(int deltatime);
 	virtual void Update(int, int, int);
 	virtual void Collision(list<GameObject*> obj, int dt);
 

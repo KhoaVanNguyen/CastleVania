@@ -66,7 +66,7 @@ void Panthers::SetActive(float x, float y)
 		if (abs(posY - y) <= 50)
 		{
 			vX = -SPEED_X;
-			sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Panthers_ID), 1, 3, 60);
+			sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Panthers_ID), 1, 3, 60);
 		}
 		else
 		{
@@ -87,7 +87,7 @@ void Panthers::Jump()
 	vY = SPEED_Y;
 	_hasJump = true;
 	_heightJump = 0.0f;
-	sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Panthers_ID), 1, 3, 60);
+	sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Panthers_ID), 1, 3, 60);
 	sprite->SelectIndex(3);
 }
 

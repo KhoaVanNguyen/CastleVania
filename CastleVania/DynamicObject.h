@@ -20,7 +20,6 @@ public:
 	DynamicObject(void);
 	DynamicObject(float posX, float posY, float vX, float vY, EnumID id);
 	virtual void Update(int dt);
-
 	virtual void Update(Box playerBox, int dt);
 //	virtual void Update(Player player, int dt);
 

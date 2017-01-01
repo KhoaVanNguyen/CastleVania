@@ -139,7 +139,7 @@ void Fleaman::SetActive(float x, float y)
 		if (abs(posY - y) <= 50)
 		{
 			vX = -SPEED_X;
-			sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Fleaman_ID), 1, 1, 60);
+			sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Fleaman_ID), 1, 1, 60);
 		}
 		else
 		{
@@ -160,7 +160,7 @@ void Fleaman::Jump()
 	vY = SPEED_Y;
 	_hasJump = true;
 	_heightJump = 0.0f;
-	sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Fleaman_ID), 0, 1, 120);
+	sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Fleaman_ID), 0, 1, 120);
 }
 
 Fleaman::~Fleaman(void)

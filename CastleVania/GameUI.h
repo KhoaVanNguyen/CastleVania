@@ -1,6 +1,6 @@
 #pragma once
 #include "GSprite.h"
-#include "Singleton.h"
+#include "TextureManager.h"
 #include "Font.h"
 #include <vector>
 using namespace std;

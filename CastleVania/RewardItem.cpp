@@ -39,7 +39,7 @@ void RewardItem::Update(int dt)
 		
 		if (_isCrown) {
 			id = EnumID::Crown_ID;
-			sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Crown_ID), 150);
+			sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Crown_ID), 150);
 		}
 		else {
 			srand(time(0));
@@ -54,13 +54,13 @@ void RewardItem::Update(int dt)
 				if (random != 0) {
 					id = EnumID::Small_Heart;
 					hearts = 1;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Small_Heart), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Small_Heart), 1000);
 					vY = vY / 2;
 				}
 				else {
 					id = EnumID::Large_Heart;
 					hearts = 3;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Large_Heart), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Large_Heart), 1000);
 				}
 
 			}
@@ -73,54 +73,54 @@ void RewardItem::Update(int dt)
 
 				case 0:
 					id = EnumID::Whip_Upgrade;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Whip_Upgrade), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Whip_Upgrade), 1000);
 					break;
 				case 1:
 					id = EnumID::Dagger_ID;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Dagger_ID), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Dagger_ID), 1000);
 					break;
 				case 2:
 					id = EnumID::Throw_Axe_ID;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1000);
 					break;
 				case 7:
 					id = EnumID::HolyWater_ID;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::HolyWater_ID), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::HolyWater_ID), 1000);
 					break;
 				case 8:
 					id = EnumID::Boomerang_ID;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang_ID), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Boomerang_ID), 1000);
 					break;
 					/*case 9:
 					id = EnumID::StopWatch_ID;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::StopWatch_ID), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::StopWatch_ID), 1000);
 					break;*/
 				case 10:
 					id = EnumID::White_Money_Bag;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::White_Money_Bag), 150);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::White_Money_Bag), 150);
 					sprite->SelectIndex(1);
 					point = 100;
 					break;
 				case 11:
 					id = EnumID::Purple_Money_Bag;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Purple_Money_Bag), 150);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Purple_Money_Bag), 150);
 					sprite->SelectIndex(2);
 					point = 200;
 					break;
 				case 12:
 					id = EnumID::CrossItem_ID;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::CrossItem_ID), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::CrossItem_ID), 1000);
 					break;
 				case 13:
 					id = EnumID::PorkChop_ID;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::PorkChop_ID), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::PorkChop_ID), 1000);
 					break;
 				case 14:
 					id = EnumID::StopWatch_ID;
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::StopWatch_ID), 1000);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::StopWatch_ID), 1000);
 					break;
 				default:
-					sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::MoneyBagItem_ID), 150);
+					sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::MoneyBagItem_ID), 150);
 					switch (random)
 					{
 					case 3:

@@ -2,7 +2,7 @@
 #define _GAMEOBJECT_H_
 
 #include "GSprite.h"
-#include "Singleton.h"
+#include "TextureManager.h"
 #include "GCamera.h"
 #include "SweptAABB.h"
 #include <list>

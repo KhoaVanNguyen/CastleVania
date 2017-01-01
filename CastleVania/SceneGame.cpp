@@ -5,7 +5,9 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 2;
-	_stageNow = 9;
+
+	_stageNow = 11;
+
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -56,32 +58,29 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	break;
 	case 2:
 	{
-		camera->viewport.y = 869; // 869; // 485
+		camera->viewport.y = 1253; // 869; // 485
+
+	
 		bg = new QBackground(level);
 		bg->LoadQuadTreeFromFile();
-		//player = new Player(400, 94);
+	//	player = new Player(400, 94);
 		//player->posX = 600;
 		//player->posY = 140;
 
-		// stage 8 
-		//player = new Player(406, 510);
-
-		player = new Player(2170, 576);
-//
 
 		//stage 9 :
 		//player = new Player(2403, 606);
 
 		//stage 11
-		//player = new Player(4205, 1040);
+		player = new Player(5855, 1040);
 		_stageReset = 7;
 		player->Initialize();
 		//player->hp = 20;
 		//player->hearts = 50;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
-		/*Sound::GetInst()->RemoveAllBGM();
-		Sound::GetInst()->PlayBGSound(EBGSound::ESoundLevel1);*/
+		Sound::GetInst()->RemoveAllBGM();
+		Sound::GetInst()->PlayBGSound(EBGSound::ESoundLevel1);
 	}
 
 	break;
@@ -234,12 +233,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			player->_usingStopWatch = false;
 			player->hearts -= 6;
 		}
-		if (player->_getCrown) {
-			knight = new AxeKnights(3794, 94);
-			knight->Update(t);
-			//crown->active = true;
-			player->_getCrown = false;
-		}
+	
 
 		//qGameObject->Update(player->GetBox(), t);
 	//	qGameObject->Update(t);

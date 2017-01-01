@@ -1,6 +1,6 @@
 #pragma once
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 #define PI 3.14f
 #define T 1000
 #define A 10

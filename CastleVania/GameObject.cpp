@@ -55,49 +55,49 @@ void GameObject::CreateSprite()
 		sprite = NULL;
 		break;
 	case EnumID::Player_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID:: Candle_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID::BrickHide_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 0, 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 0, 100);
 		break;
 	case EnumID ::MedusaHeads_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 1, 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 1, 100);
 		break;
 	case EnumID::Bats_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID::Fishmen_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 150);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 150);
 		break;
 	case EnumID::OpenDoor_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 0, 10);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 0, 10);
 		break;
 	case EnumID ::Ravens_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 2, 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 2, 100);
 		break;
 	case EnumID::Fleaman_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 0, 1000);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 0, 1000);
 		break;
 	case EnumID::Mummy_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 3, 100);
 		break;
 	case EnumID::Skeletons_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 3, 500);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 3, 500);
 		break;
 	case EnumID::Bone_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 12);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 12);
 		break;
 	case EnumID::Bandage_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 0, 2, 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 2, 100);
 		break;
 	case EnumID::Boomerang_Weapon_ID:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 16);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 16);
 		break;
 	default:
-		sprite = new GSprite(Singleton::getInstance()->getTexture(id), 100);
+		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 100);
 		break;
 	}
 }

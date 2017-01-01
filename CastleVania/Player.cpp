@@ -54,17 +54,17 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	hearts = 100;
 	_weaponID = EnumID::None_ID;
 	weapons = new list<Weapon*>();
-	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
+	playerJump = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
 
-	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
-	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
-	playerFightingDownStairSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 18, 21, 1000 / PLAYER_FIGHT_RATE);
-	playerFightingUpStairSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
-	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
+	fightingSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
+	fightingSittingSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
+	playerFightingDownStairSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 18, 21, 1000 / PLAYER_FIGHT_RATE);
+	playerFightingUpStairSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
+	playerStair = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
-	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
+	playerKnockBack = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
 
-	playerDeathSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::PlayerDeath_ID), 0, 0, 100);
+	playerDeathSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::PlayerDeath_ID), 0, 0, 100);
 	Initialize();
 }
 
@@ -882,9 +882,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 	for (list<GameObject*>::iterator _itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
 		GameObject* other = (*_itBegin);
-		if (((other->id == EnumID::Bats_ID ||other->id ==EnumID::Skeletons_ID || other->id == Fleaman_ID) && other->sprite->GetIndex() == 0))
-
-		
+		if (((other->id == EnumID::Bats_ID ||other->id ==EnumID::Skeletons_ID || other->id == Fleaman_ID||other->id==Ravens_ID) && other->sprite->GetIndex() == 0))
 			other->SetActive(posX, posY);
 		float moveX = 0;
 		float moveY = 0;
@@ -907,7 +905,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 
 
-					case EnumID::Whip_Upgrade: // not yet
+					case EnumID::Whip_Upgrade: 
 						this->UpgradeMorningStar();
 						break;
 					case EnumID::Small_Heart:
@@ -930,11 +928,12 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					case EnumID::MagicalBall_ID:
 						//Qua man
 						_hasMagicalBall = true;
-						//SoundManager::GetInst()->RemoveAllBGM();
-						//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_StageClear);
+						//Sound::GetInst()->RemoveAllBGM();
+						//Sound::GetInst()->PlaySoundEffect(ESoundEffect::);
 						break;
 
 					}
+					Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 				}
 #pragma endregion 
 
@@ -1214,6 +1213,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							_colDoor = true;
 						}
 						_door = other;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 					}
 					break;
 					case EnumID::DoorLeft_ID:
@@ -1406,19 +1406,23 @@ void Player::SetWeapon() {
 	{
 	case EnumID::StopWatch_ID:
 		_usingStopWatch = true;
-		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundMagicBall);
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_StopTimer);
 		break;
 	case EnumID::Throw_Axe_ID:
 		weapons->push_back(new ThrowAxe(posX, posY, _vLast));
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_HolyCross);
 		break;
 	case EnumID::Boomerang_ID:
 		weapons->push_back(new Boomerang(posX, posY, _vLast));
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 		break;
 	case EnumID::Dagger_ID:
 		weapons->push_back(new Dagger(posX, posY, _vLast));
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 		break;
 	case EnumID::HolyWater_ID:
 		weapons->push_back(new HolyWater(posX, posY, _vLast));
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_HolyWater);
 		break;
 	}
 	_hasWeapon = false;
@@ -1461,6 +1465,7 @@ void Player::Die(int &_timeCount)
 			_allowPress = true;
 			_isReset = true;
 		}
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_LifeLost);
 	}
 }
 

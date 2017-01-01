@@ -27,13 +27,10 @@ enum EMummyState
 class Mummy : public DynamicObject
 {
 protected:
-	
-
 	int _timeSpan;
 	bool _drawLeft;
 	bool _isSleeping;
 	EMummyState _state;
-	bool _attackmode;
 	int deltaX;
 	int oldX;
 	int timeDelay;
@@ -43,12 +40,8 @@ protected:
 	int _previousStopPos;
 	int _currentStopPos;
 	DWORD _localTime;
-
 	list<DynamicObject*> *_bandages;
-
-
 	void _drawBandages(GCamera* camera_);
-
 	void _updateBandages(int deltaTime_);
 
 public:
@@ -56,13 +49,8 @@ public:
 	bool HasGetUp;
 	Mummy(void);
 	Mummy(float posX, float posY);
-	//virtual void Update(int deltaTime_);
-	virtual void Update(int, int, int);
-//	void Update(int deltaTime_, D3DXVECTOR2* playerPos_);
 	virtual void Draw(GCamera* camera_);
-	virtual void Collision(list<GameObject*> obj, int dt);
-	//void ReceiveDamage(int damagePoint);
-
+	virtual void Update(int playerX, int playerY, int deltaTime);
 	~Mummy(void);
 public:
 

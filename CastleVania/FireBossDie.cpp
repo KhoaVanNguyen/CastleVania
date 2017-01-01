@@ -39,7 +39,7 @@ GameObject(_posX, _posY, EnumID::FireBossDie_ID)
 //		{
 //			id = EnumID::SmallHeartItem_ID;
 //			hearts = 1;
-//			sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::SmallHeartItem_ID), 1000);
+//			sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::SmallHeartItem_ID), 1000);
 //			vY = vY / 2;
 //		}
 //		else
@@ -49,7 +49,7 @@ GameObject(_posX, _posY, EnumID::FireBossDie_ID)
 //			{
 //				id = EnumID::LargeHeartItem_ID;
 //				hearts = 3;
-//				sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::LargeHeartItem_ID), 1000);
+//				sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::LargeHeartItem_ID), 1000);
 //			}
 //			else
 //			{
@@ -58,34 +58,34 @@ GameObject(_posX, _posY, EnumID::FireBossDie_ID)
 //				{
 //				case 0:
 //					id = EnumID::FireBombItem_ID;
-//					sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::FireBombItem_ID), 1000);
+//					sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::FireBombItem_ID), 1000);
 //					break;
 //				case 1:
 //					id = EnumID::WatchItem_ID;
-//					sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::WatchItem_ID), 1000);
+//					sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::WatchItem_ID), 1000);
 //					break;
 //				case 2:
 //					id = EnumID::CrossItem_ID;
-//					sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::CrossItem_ID), 1000);
+//					sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::CrossItem_ID), 1000);
 //					break;
 //				case 7:
 //					id = EnumID::MorningStarItem_ID;
-//					sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::MorningStarItem_ID), 1000);
+//					sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::MorningStarItem_ID), 1000);
 //					break;
 //				case 8:
 //					id = EnumID::DaggerItem_ID;
-//					sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::DaggerItem_ID), 1000);
+//					sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::DaggerItem_ID), 1000);
 //					break;
 //				case 9:
 //					id = EnumID::AxeItem_ID;
-//					sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::AxeItem_ID), 1000);
+//					sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::AxeItem_ID), 1000);
 //					break;
 //				case 10:
 //					id = EnumID::BoomerangItem_ID;
-//					sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::BoomerangItem_ID), 1000);
+//					sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::BoomerangItem_ID), 1000);
 //					break;
 //				default:
-//					sprite = new CSprite(Singleton::getInstance()->getTexture(EnumID::MoneyBagItem_ID), 150);
+//					sprite = new CSprite(TextureManager::getInstance()->getTexture(EnumID::MoneyBagItem_ID), 150);
 //					switch (stt)
 //					{
 //					case 3:

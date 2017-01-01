@@ -2,7 +2,7 @@
 #define _DOOR_H_
 
 #include "GameObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class Door : public GameObject
 {

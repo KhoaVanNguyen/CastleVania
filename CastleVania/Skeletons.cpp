@@ -145,7 +145,7 @@ void Skeletons::SetActive(float x, float y)
 	//	if (abs(posY - y) <= 50)
 	//	{
 	//		//vX = -SPEED_X;
-	//		sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Skeletons_ID), 1, 1, 60);
+	//		sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Skeletons_ID), 1, 1, 60);
 	//	}
 	//	else
 	//	{
@@ -166,7 +166,7 @@ void Skeletons::Jump()
 	vY = SPEED_Y;
 	_hasJump = true;
 	_heightJump = 0.0f;
-	sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Skeletons_ID), 0,1, 60);
+	sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Skeletons_ID), 0,1, 60);
 	sprite->SelectIndex(0);
 }
 

@@ -11,10 +11,10 @@ MorningStar::MorningStar(int posX_, int posY_, float vx_, float vy_, EnumID id_,
 	vX = vx_;
 	vY = vy_;
 
-	damage = 50;//50
+	damage = 50;
 	point = 0;
 
-	_morningStarSprite = new MorningStarSprite(Singleton::getInstance()->getTexture(EnumID::MorningStar_ID), 0, 2, timeAnimation_);
+	_morningStarSprite = new MorningStarSprite(TextureManager::getInstance()->getTexture(EnumID::MorningStar_ID), 0, 2, timeAnimation_);
 }
 
 void MorningStar::reset()

@@ -11,19 +11,17 @@ Ravens::~Ravens()
 {
 }
 
-Ravens::Ravens(float posX_, float posY_) :DynamicObject(posX_, posY_, 1.0f, 1.0f, EnumID::Ravens_ID)
+Ravens::Ravens(float posX_, float posY_) :DynamicObject(posX_, posY_, 1.2f, 1.2f, EnumID::Ravens_ID)
 {
 	neededPlayerPosition = true;
 	_localTime = 0;
-	active = true;
+	active = false;
 	type = ObjectType::Enemy_Type;
 	hp = 50;
 	damage = 4;
 	canBeKilled = true;
 	_state = ERavenState::moving;
 	_isSleeping = true;
-	_attackmode = true;
-	//vX = vY = RAVENS_STATE;
 	deltaX = 0;
 	oldX = posX;
 	timeDelay = _timeDelay;
@@ -35,7 +33,7 @@ void Ravens::Stoping(int deltaTime_)
 {
       sprite->Update(deltaTime_);
 	_localTime += deltaTime_;
-	if (_localTime >= 1000)
+	if (_localTime >= 50)
 	{
 		_localTime = 0;
 		_state = ERavenState::moving;
@@ -50,7 +48,7 @@ void Ravens::Moving(int deltaTime_)
 	posX += vX*deltaTime_;
 	posY += vY*deltaTime_;
 	sprite->Update(deltaTime_);
-	if (deltaX >= 50)
+	if (deltaX >= 55)
 	{
 		this->_state = ERavenState::Stoping;
 		return;
@@ -63,11 +61,6 @@ void Ravens::Draw(GCamera* camera)
 {
 	if (sprite == NULL || !active)
 		return;
-	/*if (posX + width / 2 <= camera->viewport.x || posX - width / 2 >= camera->viewport.x + G_ScreenWidth)
-	{
-		active = false;
-		return;
-	}*/
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
 	if (_drawLeft )
 		sprite->Draw(center.x, center.y);
@@ -75,85 +68,64 @@ void Ravens::Draw(GCamera* camera)
 		sprite->DrawFlipX(center.x, center.y);
 }
 
-void Ravens::Update(int deltaTime)
-{
-	switch (_state)
-	{
-	case ERavenState::Stoping:
-		Stoping(deltaTime);
-		break;
-	case ERavenState::moving:
-		Moving(deltaTime);
-		break;
-	default :
-		break;
-
-	}
-}
 
 void Ravens::Update(int playerX, int playerY, int deltaTime)
 {
-
-	switch (_state)
+	if (active)
 	{
-	case ERavenState::Stoping:
-		
-
-		sprite->Update(deltaTime);
-		_localTime += deltaTime;
-		if (_localTime >= 800)
+		switch (_state)
 		{
-			_localTime = 0;
-			_state = ERavenState::moving;
-			return;
+		case ERavenState::Stoping:
+
+
+			sprite->Update(deltaTime);
+			_localTime += deltaTime;
+			if (_localTime >= 100)
+			{
+				_localTime = 0;
+				_state = ERavenState::moving;
+				return;
+			}
+			break;
+		case ERavenState::moving:
+			deltaX += (abs(oldX - posX));
+			oldX = posX;
+
+			if (posY <= playerY && posX > playerX) {
+				posX += vX*deltaTime;
+				posY += vY*deltaTime;
+				_drawLeft = true;
+			}
+
+			else if (posY <= playerY && posX < playerX){
+				posX -= vX*deltaTime;
+				posY += vY*deltaTime;
+				_drawLeft = false;
+			}
+			else if (posY >= playerY && posX > playerX){
+				posX += vX*deltaTime;
+				posY -= vY*deltaTime;
+				_drawLeft = true;
+			}
+			else if (posY >= playerY && posX < playerX) {
+				posX -= vX*deltaTime;
+				posY -= vY*deltaTime;
+				_drawLeft = false;
+			}
+			sprite->Update(deltaTime);
+			if (deltaX >= 50)
+			{
+				deltaX = 0;
+				this->_state = ERavenState::Stoping;
+				return;
+			}
+			break;
+		default:
+			break;
+
 		}
-
-
-		break;
-	case ERavenState::moving:
-		
-
-		deltaX += (abs(oldX - posX));
-		oldX = posX;
-		
-		if (posY <= playerY && posX > playerX) {
-			posX -= vX*deltaTime;
-			posY += vY*deltaTime;
-			_drawLeft = true;
-		}
-
-		else if (posY <= playerY && posX < playerX){
-			posX += vX*deltaTime;
-			posY += vY*deltaTime;
-			_drawLeft = false;
-		}
-		else if (posY >= playerY && posX > playerX){
-			posX -= vX*deltaTime;
-			posY -= vY*deltaTime;
-			_drawLeft = true;
-		}
-		else if (posY >= playerY && posX < playerX) {
-			posX += vX*deltaTime;
-			posY -= vY*deltaTime;
-			_drawLeft = false;
-		}
-
-
-		
-		sprite->Update(deltaTime);
-		if (deltaX >= 50)
-		{
-			deltaX = 0;
-			this->_state = ERavenState::Stoping;
-			return;
-		}
-
-
-		break;
-	default:
-		break;
-
 	}
+	
 
 
 }
@@ -181,5 +153,21 @@ void Ravens::Collision(list<GameObject*> obj, int dt)
 				//ERavenState::Stoping0;
 			}
 		}
+	}
+}
+
+
+void Ravens::SetActive(float x, float y)
+{
+
+	if (active) return;
+	if (abs(posX - x) <= 200 && abs(posY - y) <= 200)
+	{
+
+		if (posX - x > 0)
+		{
+			vX = -vX;
+		}
+		active = true;
 	}
 }

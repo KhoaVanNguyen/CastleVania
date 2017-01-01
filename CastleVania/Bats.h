@@ -2,7 +2,7 @@
 #define _BAT_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class Bats :public DynamicObject
 {

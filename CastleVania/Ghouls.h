@@ -2,7 +2,7 @@
 #define _Ghouls_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class Ghouls :public DynamicObject
 {

@@ -10,26 +10,25 @@ BoneTowers::BoneTowers(float x, float y) : DynamicObject(x, y, 0, 0, EnumID::Bon
 {
 	_listFire = new list<DynamicObject*>();
 	type = ObjectType::Enemy_Type;
-	point = 400;
-	hp = 4;
+	hp = 200;
 	active = true;
-
 	_timeSpan = 0;
 
 }
 
 void BoneTowers::Update(int dt)
 {
-
-	_timeSpan += dt;
-	if (_timeSpan % 13 == 0)
+	if (active)
 	{
-		_listFire->push_back(new Fire(posX, posY+10, EnumID::Fire_ID));
+		_timeSpan += dt;
+		if (_timeSpan % 30 == 0)
+		{
+			_listFire->push_back(new Fire(posX, posY + 10, EnumID::Fire_ID));
+		}
+
+		_upDateFire(dt);
+
 	}
-
-	_upDateFire(dt);
-	
-
 }
 
 void BoneTowers::Draw(GCamera* camera)

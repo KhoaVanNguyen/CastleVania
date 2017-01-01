@@ -2,7 +2,7 @@
 #define _SCENECONTROL_H_
 
 #include "Game.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 #include "Scene.h"
 #include "SceneMenu.h"
 #include "SceneGame.h"
