@@ -32,7 +32,7 @@ private:
 	GTexture* movingPlatform;
 	GTexture* openDoor;
 	GTexture* TrapDoor;
-	GTexture* BrickHide;
+	GTexture* BreakableBrick;
 	
 	//weapon
 	GTexture* morningStar;

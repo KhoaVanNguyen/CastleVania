@@ -152,7 +152,7 @@ QGameObject::QGameObject(string fileName)
 				_dynamicObject->push_back(new Fleaman(posX, posY));
 				break;
 			case 32:
-				_staticObject->push_back(new BrickHide(posX, posY));
+				_staticObject->push_back(new BreakableBrick(posX, posY));
 				break;
 			case 33:
 				_dynamicObject->push_back(new Skeletons(posX, posY));

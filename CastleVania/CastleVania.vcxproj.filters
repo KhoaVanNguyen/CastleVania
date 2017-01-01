@@ -67,9 +67,6 @@
     <ClCompile Include="Fleaman.cpp">
       <Filter>GameObject\DynamicGameObject\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="QBackground.cpp">
-      <Filter>Quadtree</Filter>
-    </ClCompile>
     <ClCompile Include="QGameObject.cpp">
       <Filter>Quadtree</Filter>
     </ClCompile>
@@ -125,9 +122,6 @@
       <Filter>GameObject\DynamicGameObject\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="Brick.cpp">
-      <Filter>GameObject\StaticGameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="BrickHide.cpp">
       <Filter>GameObject\StaticGameObject</Filter>
     </ClCompile>
     <ClCompile Include="Candle.cpp">
@@ -189,6 +183,12 @@
     </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>FrameWork\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundController.cpp">
+      <Filter>Quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakableBrick.cpp">
+      <Filter>GameObject\DynamicGameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,9 +258,6 @@
     <ClInclude Include="QGameObject.h">
       <Filter>Quadtree</Filter>
     </ClInclude>
-    <ClInclude Include="QBackground.h">
-      <Filter>Quadtree</Filter>
-    </ClInclude>
     <ClInclude Include="QNode.h">
       <Filter>Quadtree</Filter>
     </ClInclude>
@@ -319,9 +316,6 @@
       <Filter>GameObject\DynamicGameObject\Weapon</Filter>
     </ClInclude>
     <ClInclude Include="Brick.h">
-      <Filter>GameObject\StaticGameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="BrickHide.h">
       <Filter>GameObject\StaticGameObject</Filter>
     </ClInclude>
     <ClInclude Include="Candle.h">
@@ -389,6 +383,12 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>FrameWork\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundController.h">
+      <Filter>Quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakableBrick.h">
+      <Filter>GameObject\DynamicGameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

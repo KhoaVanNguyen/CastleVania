@@ -60,7 +60,7 @@ void GameObject::CreateSprite()
 	case EnumID:: Candle_ID:
 		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 3, 100);
 		break;
-	case EnumID::BrickHide_ID:
+	case EnumID::BreakableBrick_ID:
 		sprite = new GSprite(TextureManager::getInstance()->getTexture(id), 0, 0, 100);
 		break;
 	case EnumID ::MedusaHeads_ID:

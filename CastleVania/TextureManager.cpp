@@ -91,7 +91,7 @@ TextureManager::TextureManager()
 	fallingCastle = new GTexture("Resources/FallingCastle.png", 3, 1, 3);
 	
 	//hide brick
-	BrickHide = new GTexture("Resources/ground/2-3.png", 1, 1, 1);
+	BreakableBrick = new GTexture("Resources/ground/2-3.png", 1, 1, 1);
 	//door
 	openDoor = new GTexture("Resources/ground/Gate1.png", 4, 1, 4);
 
@@ -156,8 +156,8 @@ GTexture* TextureManager::getTexture(EnumID id)
 		return morningStar;
 	case EnumID::Water_ID:
 		return water;
-	case EnumID::BrickHide_ID:
-		return BrickHide;
+	case EnumID::BreakableBrick_ID:
+		return BreakableBrick;
 		//Boss
 	case EnumID::PhantomBat_ID:
 		return phantombat;

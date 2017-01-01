@@ -74,7 +74,7 @@ void Weapon::Collision(list<GameObject*> &obj, int dt)
 						else
 							qm->getUp();
 					}
-					else if (other->id == EnumID::BrickHide_ID) {
+					else if (other->id == EnumID::BreakableBrick_ID) {
 						point += other->point;
 						(*_itBegin) = new RewardItem(3822, 94, true);
 					}

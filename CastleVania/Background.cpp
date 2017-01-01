@@ -1,6 +1,6 @@
-#include "QBackground.h"
+#include "BackgroundController.h"
 
-QBackground::QBackground(void)
+BackgroundController::BackgroundController(void)
 {
 	tree = NULL;
 	listObjects = NULL; // => list object, tất cả tile 
@@ -8,7 +8,7 @@ QBackground::QBackground(void)
 	currentTiles = NULL; 
 }
 
-QBackground::QBackground(int level)
+BackgroundController::BackgroundController(int level)
 {
 	string fileName;
 	switch (level)
@@ -84,13 +84,13 @@ QBackground::QBackground(int level)
 	}
 }
 
-void QBackground::GetAvailableTiles(int viewportX, int viewportY)
+void BackgroundController::GetAvailableTiles(int viewportX, int viewportY)
 {
 	currentTiles->clear();
 	GetObjectsIn(viewportX, viewportY, tree);
 }
 
-void QBackground::GetObjectsIn(int viewportX, int viewportY, QNode* _node)
+void BackgroundController::GetObjectsIn(int viewportX, int viewportY, QNode* _node)
 {
 	if (_node->leftTop != NULL)
 	{
@@ -112,7 +112,7 @@ void QBackground::GetObjectsIn(int viewportX, int viewportY, QNode* _node)
 	}
 }
 
-void QBackground::LoadQuadTreeFromFile()
+void BackgroundController::LoadQuadTreeFromFile()
 {
 	
 	Load(0, tree);
@@ -120,7 +120,7 @@ void QBackground::LoadQuadTreeFromFile()
 
 }
 
-void QBackground::Load(int id, QNode *& _nodeTree)
+void BackgroundController::Load(int id, QNode *& _nodeTree)
 {
 	map<int, QNode*>::iterator _node = nodes->find(id);
 	if (_node != nodes->end())
@@ -133,7 +133,7 @@ void QBackground::Load(int id, QNode *& _nodeTree)
 	}
 }
 
-void QBackground::Draw(GCamera *camera)
+void BackgroundController::Draw(GCamera *camera)
 {
 	for (list<int>::iterator _itBegin = currentTiles->begin(); _itBegin != currentTiles->end(); _itBegin++)
 	{
@@ -143,6 +143,6 @@ void QBackground::Draw(GCamera *camera)
 	}
 }
 
-QBackground::~QBackground(void)
+BackgroundController::~BackgroundController(void)
 {
 }

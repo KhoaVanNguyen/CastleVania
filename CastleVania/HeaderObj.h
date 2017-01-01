@@ -24,7 +24,7 @@
 #include "Ghosts.h"
 #include "Ravens.h"
 #include "Barrier.h"
-#include "BrickHide.h"
+#include "BreakableBrick.h"
 #include "Skeletons.h"
 #include "Fleaman.h"
 #include "Mummy.h"

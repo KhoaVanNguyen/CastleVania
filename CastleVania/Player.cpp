@@ -1028,8 +1028,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					}
 					break;
 #pragma endregion
-#pragma region va chạm với BrickHide
-					case EnumID::BrickHide_ID:
+#pragma region va chạm với BreakableBrick
+					case EnumID::BreakableBrick_ID:
 
 						_getCrown = true;
 						return;

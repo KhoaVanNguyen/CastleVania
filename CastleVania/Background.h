@@ -1,5 +1,5 @@
-﻿#ifndef _QBACKGROUND_H_
-#define _QBACKGROUND_H_
+﻿#ifndef _BackgroundController_H_
+#define _BackgroundController_H_
 
 #include <list>
 #include <map>
@@ -14,7 +14,7 @@
 
 using namespace std;
 
-class QBackground
+class BackgroundController
 {
 	void Load(int, QNode*&);
 	void GetObjectsIn(int, int, QNode*);// lấy tất cả các object xuất hiện trên màn hình.
@@ -25,12 +25,12 @@ public:
 	map<int, QNode*> *nodes; // tổng số nodes 
 	list<int> *currentTiles; // danh sách các tile xuất hiện trong màn hình để vẽ
 
-	QBackground(void);
-	QBackground(int);
+	BackgroundController(void);
+	BackgroundController(int);
 	void LoadQuadTreeFromFile(); // Load quadtree từ file
 	void GetAvailableTiles(int, int); // Lấy danh sách các tiles vào biến currentTiles
 	void Draw(GCamera *camera);
-	~QBackground(void);
+	~BackgroundController(void);
 };
 
 #endif

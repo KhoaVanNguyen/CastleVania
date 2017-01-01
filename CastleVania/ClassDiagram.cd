@@ -56,11 +56,11 @@
       <FileName>Brick.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BrickHide" Collapsed="true">
+  <Class Name="BreakableBrick" Collapsed="true">
     <Position X="83.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>BrickHide.h</FileName>
+      <FileName>BreakableBrick.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Candle" Collapsed="true">
@@ -308,11 +308,11 @@
       <FileName>Player.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="QBackground" Collapsed="true">
+  <Class Name="BackgroundController" Collapsed="true">
     <Position X="90.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAgAAABAAAAgEAgAAAAAIAAAAIEAAAAQAAAAAAIAA=</HashCode>
-      <FileName>QBackground.h</FileName>
+      <FileName>BackgroundController.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="QGameObject" Collapsed="true">

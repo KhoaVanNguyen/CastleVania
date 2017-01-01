@@ -2,7 +2,7 @@
 #define _SCENE1_H_
 
 #include "HeaderObj.h"
-#include "QBackground.h"
+#include "BackgroundController.h"
 #include "Player.h"
 #include "Scene.h"
 #include "QGameObject.h"
@@ -24,7 +24,7 @@ protected:
 	D3DXVECTOR2 posCamera;
 	D3DXVECTOR2 posStageToReset; //Vi tri hoi sinh
 	D3DXVECTOR2 posDoor;
-	QBackground *bg;
+	BackgroundController *bg;
 	QGameObject* qGameObject;
 
 

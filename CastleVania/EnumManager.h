@@ -49,7 +49,7 @@ enum EnumID
 	OpenDoor_ID,
 	TrapDoor_ID,
 	CastleGate_ID,
-	BrickHide_ID,
+	BreakableBrick_ID,
 	//boss
 	PhantomBat_ID,
 	Medusa_ID,
