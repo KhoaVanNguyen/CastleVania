@@ -2,7 +2,6 @@
 #define _Fishmen_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
 #include "Water.h"
 #include "Fire.h"
 

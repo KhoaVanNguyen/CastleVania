@@ -392,11 +392,11 @@
       <FileName>SceneMenu.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Singleton" Collapsed="true">
+  <Class Name="TextureManager" Collapsed="true">
     <Position X="95.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AkFAAAEACBBBEkSEAIChkAJAVIkEBAURJGhEAUEQKAQ=</HashCode>
-      <FileName>Singleton.h</FileName>
+      <FileName>TextureManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Skeletons" Collapsed="true">
@@ -473,70 +473,70 @@
     <Position X="92" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAEAAAABAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EnumID" Collapsed="true">
     <Position X="97.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAEUAMHAA0DGERKJklBAgQYKgAQFsGCD+XAAiKQ=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EKindStair" Collapsed="true">
     <Position X="92" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAQAgAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAIAABAAA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ObjectType" Collapsed="true">
     <Position X="93.75" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAAAAAAIAAAAAAAAAAEAAAAAAAAAAAAAAEAAAA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Action" Collapsed="true">
     <Position X="90.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAABAAgAIAAAAAAAEAAoAAAAAAAAAAAAAAAAAQIA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ECameraState" Collapsed="true">
     <Position X="95.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ECollisionDirect" Collapsed="true">
     <Position X="97.25" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAAEIAABAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EDirectDoor" Collapsed="true">
     <Position X="90.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAIQAAAAAAAACAAACAAAAAAAAAAAAAA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="EStateCamera" Collapsed="true">
     <Position X="97.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIgAAAAAAAAA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="FLEAMAN_STATE" Collapsed="true">
     <Position X="92" Y="8.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAIA=</HashCode>
-      <FileName>CEnum.h</FileName>
+      <FileName>EnumManager.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="TIMER_COMMAND" Collapsed="true">

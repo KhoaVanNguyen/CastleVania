@@ -1,5 +1,5 @@
 #include "Candle.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 Candle::Candle(void) : GameObject()
 {

@@ -11,7 +11,7 @@
 #include <sstream>
 #include "GCamera.h"
 //#include "Sound.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 #include "Game.h"
 
 class Scene

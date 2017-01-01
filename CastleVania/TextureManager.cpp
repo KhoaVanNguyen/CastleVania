@@ -1,4 +1,4 @@
-﻿#include "Singleton.h"
+﻿#include "TextureManager.h"
 #include <string>
 #include <sstream>
 #include <windows.h>
@@ -7,16 +7,16 @@
 
 using namespace std;
 
-Singleton* Singleton::single = NULL;
+TextureManager* TextureManager::single = NULL;
 
-Singleton* Singleton::getInstance()
+TextureManager* TextureManager::getInstance()
 {
 	if (single == NULL)
-		single = new Singleton();
+		single = new TextureManager();
 	return single;
 }
 
-Singleton::Singleton()
+TextureManager::TextureManager()
 {
 	// Player
 	player = new GTexture("Resources/player.png", 8, 3, 24);
@@ -108,7 +108,7 @@ Singleton::Singleton()
 
 }
 
-GTexture* Singleton::getTexture(EnumID id)
+GTexture* TextureManager::getTexture(EnumID id)
 {
 	switch (id)
 	{

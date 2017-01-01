@@ -2,7 +2,7 @@
 #define _WATER_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class Water : public DynamicObject
 {

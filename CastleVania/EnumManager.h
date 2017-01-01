@@ -1,6 +1,6 @@
 
-#ifndef _CENUM_H_
-#define _CENUM_H_
+#ifndef _EnumManager_H_
+#define _EnumManager_H_
 
 static enum ESceneState
 {

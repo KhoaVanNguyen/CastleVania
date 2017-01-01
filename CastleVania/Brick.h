@@ -2,7 +2,7 @@
 #define _BRICK_H_
 
 #include "GameObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class Brick : public GameObject
 {

@@ -2,7 +2,7 @@
 #define _FireBossDie_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 #include <time.h>
 #include <random>
 

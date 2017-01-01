@@ -2,7 +2,7 @@
 #define _medusaHeads_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class MedusaHeads :public DynamicObject
 {

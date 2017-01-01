@@ -54,17 +54,17 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 	hearts = 100;
 	_weaponID = EnumID::None_ID;
 	weapons = new list<Weapon*>();
-	playerJump = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
+	playerJump = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 4, 4, 300);
 
-	fightingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
-	fightingSittingSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
-	playerFightingDownStairSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 18, 21, 1000 / PLAYER_FIGHT_RATE);
-	playerFightingUpStairSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
-	playerStair = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
+	fightingSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 5, 8, 1000 / PLAYER_FIGHT_RATE);
+	fightingSittingSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 15, 18, 1000 / PLAYER_FIGHT_RATE);
+	playerFightingDownStairSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 18, 21, 1000 / PLAYER_FIGHT_RATE);
+	playerFightingUpStairSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 21, 24, 1000 / PLAYER_FIGHT_RATE);
+	playerStair = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 10, 13, 320);
 	morningStar = new MorningStar(_posX, _posY, 0, 0, EnumID::MorningStar_ID, 1000 / PLAYER_FIGHT_RATE);
-	playerKnockBack = new GSprite(Singleton::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
+	playerKnockBack = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Player_ID), 8, 8, 100);
 
-	playerDeathSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::PlayerDeath_ID), 0, 0, 100);
+	playerDeathSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::PlayerDeath_ID), 0, 0, 100);
 	Initialize();
 }
 

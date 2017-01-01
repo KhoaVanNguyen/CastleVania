@@ -4,7 +4,7 @@
 #include <list>
 #include <map>
 #include "HeaderObj.h"
-#include "Singleton.h"
+#include "TextureManager.h"
 #include "GCamera.h"
 #include <fstream>
 #include <iostream>

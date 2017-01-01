@@ -1,10 +1,10 @@
-#ifndef _SINGLETON_H_
-#define _SINGLETON_H_
+#ifndef _TextureManager_H_
+#define _TextureManager_H_
 
 #include "GTexture.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
-class Singleton
+class TextureManager
 {
 private:
 	GTexture* player;
@@ -80,16 +80,16 @@ private:
 	GTexture* holyWaterItem;
 	//weapon
 	
-	static Singleton *single;
+	static TextureManager *single;
 
 	
 
 
-	Singleton();
+	TextureManager();
 
 public:
-	static Singleton* getInstance();
-	~Singleton();
+	static TextureManager* getInstance();
+	~TextureManager();
 	GTexture* getTexture(EnumID id);
 };
 

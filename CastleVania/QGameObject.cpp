@@ -89,9 +89,7 @@ QGameObject::QGameObject(string fileName)
 			case 7:
 				_dynamicObject->push_back(new Panthers(posX, posY));
 				break;
-			case 8:
-				_dynamicObject->push_back(new Fishmen(posX, posY));
-				break;
+		
 			case 9:
 				_dynamicObject->push_back(new Bats(posX, posY));
 				break;
@@ -128,9 +126,6 @@ QGameObject::QGameObject(string fileName)
 				break;
 			case 19:
 				G_RightCamera = posX;
-				break;
-			case 20:
-				_staticObject->push_back(new CastleGate(posX, posY, width, height));
 				break;
 			case 21:
 				_staticObject->push_back(new Door(posX, posY, width, height, EnumID::DoorLeft_ID));

@@ -1,5 +1,5 @@
 #include "OpenDoor.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 OpenDoor::OpenDoor(void) : GameObject()
 {

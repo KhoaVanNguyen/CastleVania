@@ -2,7 +2,7 @@
 #define _FLEAMAN_H_
 
 #include "DynamicObject.h"
-#include "CEnum.h"
+#include "EnumManager.h"
 
 class Fleaman :public DynamicObject
 {

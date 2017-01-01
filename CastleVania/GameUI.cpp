@@ -6,21 +6,21 @@ void GameUI::_initialize()
 	// init weaponSprite
 	// _currentWeapon dùng để vẽ hình weapon trên UI thôi
 	weapons = vector<GSprite*>();
-	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Dagger_ID), 1));
-	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Boomerang_ID), 1));
-	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1));
-	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::StopWatch_ID), 1));
-	weapons.push_back(new GSprite(Singleton::getInstance()->getTexture(EnumID::HolyWaterItem_ID), 1));
+	weapons.push_back(new GSprite(TextureManager::getInstance()->getTexture(EnumID::Dagger_ID), 1));
+	weapons.push_back(new GSprite(TextureManager::getInstance()->getTexture(EnumID::Boomerang_ID), 1));
+	weapons.push_back(new GSprite(TextureManager::getInstance()->getTexture(EnumID::Throw_Axe_ID), 1));
+	weapons.push_back(new GSprite(TextureManager::getInstance()->getTexture(EnumID::StopWatch_ID), 1));
+	weapons.push_back(new GSprite(TextureManager::getInstance()->getTexture(EnumID::HolyWaterItem_ID), 1));
 
 	// init hp sprite
-	_hpSprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::HP_ID), 1);
+	_hpSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::HP_ID), 1);
 
 	_gameTimer = 0;
 }
 GameUI::GameUI(LPDIRECT3DDEVICE9 d3ddev_, int size_, int screenWidth_, int screenHeight_)
 {
 	this->_initialize();
-	_sprite = new GSprite(Singleton::getInstance()->getTexture(EnumID::GameUI_ID), 1);
+	_sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::GameUI_ID), 1);
 	_arial = new Font(d3ddev_, size_, screenWidth_, screenHeight_);
 }
 void GameUI::drawTable()
