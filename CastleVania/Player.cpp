@@ -1000,10 +1000,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						{
 
 							// Rơi tự do được
-							vY = -(SPEED_Y + 0.4f);
+							//vY = -(SPEED_Y + 0.4f);
 
 							// Ko roi tu do dc
-							//vY = 0;
+							vY = 0;
 							//_beFallOutScreen = true;
 						}
 						//--------------------

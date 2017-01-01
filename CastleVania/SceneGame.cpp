@@ -1,11 +1,11 @@
 #include "SceneGame.h"
 
 #define BACKGROUND_FILE "Resources/black.png"
-#define CAMERA_MOVE_SPEED 8
+#define CAMERA_MOVE_SPEED 4
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 1;
-	_stageNow = 1;
+	_levelNow = 2;
+	_stageNow = 9;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -56,18 +56,18 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	break;
 	case 2:
 	{
-		camera->viewport.y = 485; // 869; // 485
+		camera->viewport.y = 869; // 869; // 485
 		bg = new QBackground(level);
 		bg->LoadQuadTreeFromFile();
-		player = new Player(400, 94);
+		//player = new Player(400, 94);
 		//player->posX = 600;
 		//player->posY = 140;
 
 		// stage 8 
 		//player = new Player(406, 510);
 
-		//player = new Player(1641, 606);
-
+		player = new Player(2170, 576);
+//
 
 		//stage 9 :
 		//player = new Player(2403, 606);
@@ -437,8 +437,8 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 			_firstMoveCameraDone = false;
 			_secondMoveCameraDone = false;
 			_rangeMoveCamera = 264;
-			_rangeMoveCamera2 = 252;
-			_rangeMovePlayer = 80;
+			_rangeMoveCamera2 = 264;
+			_rangeMovePlayer = 120;
 			_doorDirect = 1;
 		}
 		break;
@@ -484,6 +484,7 @@ void SceneGame::MoveCamera(int &_moveRange)
 			_beginMoveCamera = false;
 			_secondMoveCameraDone = true;
 			_stageNow++;
+			
 			LoadStage(_stageNow);
 			_stateCamera = EStateCamera::Update_Camera;
 			player->SetDirectDoor(EDirectDoor::NoneDoor);
