@@ -4,7 +4,7 @@
 #include "DynamicObject.h"
 #include "CEnum.h"
 
-class BrickHide :public GameObject
+class BrickHide :public DynamicObject
 {
 public:
 	BrickHide(void);

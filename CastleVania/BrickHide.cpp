@@ -1,13 +1,15 @@
 #include "BrickHide.h"
 
 
-BrickHide::BrickHide(void) : GameObject()
+BrickHide::BrickHide(void) : DynamicObject()
 {
+
 }
 
-BrickHide::BrickHide(float _x, float _y) : GameObject(_x, _y, EnumID::BrickHide_ID)
+BrickHide::BrickHide(float _x, float _y) : DynamicObject(_x, _y, 0, 0, EnumID::BrickHide_ID)
 {
 	canBeKilled = true;
+	active = true;
 	point = 5;
 	hp = 1;
 }
