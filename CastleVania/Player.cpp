@@ -882,9 +882,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 	for (list<GameObject*>::iterator _itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
 	{
 		GameObject* other = (*_itBegin);
-		if (((other->id == EnumID::Bats_ID ||other->id ==EnumID::Skeletons_ID || other->id == Fleaman_ID) && other->sprite->GetIndex() == 0))
-
-		
+		if (((other->id == EnumID::Bats_ID ||other->id ==EnumID::Skeletons_ID || other->id == Fleaman_ID||other->id==Ravens_ID) && other->sprite->GetIndex() == 0))
 			other->SetActive(posX, posY);
 		float moveX = 0;
 		float moveY = 0;
@@ -907,7 +905,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					{
 
 
-					case EnumID::Whip_Upgrade: // not yet
+					case EnumID::Whip_Upgrade: 
 						this->UpgradeMorningStar();
 						break;
 					case EnumID::Small_Heart:
@@ -930,11 +928,12 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					case EnumID::MagicalBall_ID:
 						//Qua man
 						_hasMagicalBall = true;
-						//SoundManager::GetInst()->RemoveAllBGM();
-						//SoundManager::GetInst()->PlaySoundEffect(ESoundEffect::ES_StageClear);
+						//Sound::GetInst()->RemoveAllBGM();
+						//Sound::GetInst()->PlaySoundEffect(ESoundEffect::);
 						break;
 
 					}
+					Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 				}
 #pragma endregion 
 
@@ -1207,6 +1206,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 							_colDoor = true;
 						}
 						_door = other;
+						Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 					}
 					break;
 					case EnumID::DoorLeft_ID:
@@ -1399,19 +1399,23 @@ void Player::SetWeapon() {
 	{
 	case EnumID::StopWatch_ID:
 		_usingStopWatch = true;
-		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundMagicBall);
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_StopTimer);
 		break;
 	case EnumID::Throw_Axe_ID:
 		weapons->push_back(new ThrowAxe(posX, posY, _vLast));
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_HolyCross);
 		break;
 	case EnumID::Boomerang_ID:
 		weapons->push_back(new Boomerang(posX, posY, _vLast));
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 		break;
 	case EnumID::Dagger_ID:
 		weapons->push_back(new Dagger(posX, posY, _vLast));
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_CollectItem);
 		break;
 	case EnumID::HolyWater_ID:
 		weapons->push_back(new HolyWater(posX, posY, _vLast));
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_HolyWater);
 		break;
 	}
 	_hasWeapon = false;
@@ -1454,6 +1458,7 @@ void Player::Die(int &_timeCount)
 			_allowPress = true;
 			_isReset = true;
 		}
+		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ES_LifeLost);
 	}
 }
 

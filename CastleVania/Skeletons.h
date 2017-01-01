@@ -22,7 +22,6 @@ private:
 	int _timeSpan;
 	bool _drawLeft;
 	bool _isSleeping;
-	bool _attackmode;
 	int deltaX;
 	int oldX;
 	int timeDelay;

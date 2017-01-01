@@ -57,6 +57,7 @@ void DynamicObject::Draw(GCamera* camera)
 
 void DynamicObject::SetActive(float x, float y)
 {
+
 	if (active) return;
 	if (abs(posX - x) <= 350 && abs(posY - y) <= 200)
 	{

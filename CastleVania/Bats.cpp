@@ -57,6 +57,7 @@ void Bats::Collision(list<GameObject*> obj, int dt) {
 
 void Bats::SetActive(float x, float y)
 {
+
 	if (abs(posX - x) <= 300 && abs(posY - y) <= 300)
 	{
 		if (posX - x > 0)

@@ -4,8 +4,8 @@
 #define CAMERA_MOVE_SPEED 8
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 1;
-	_stageNow = 1;
+	_levelNow = 2;
+	_stageNow = 11;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -56,32 +56,19 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	break;
 	case 2:
 	{
-		camera->viewport.y = 485; // 869; // 485
+		camera->viewport.y = 1253; // 869; // 485
 		bg = new QBackground(level);
 		bg->LoadQuadTreeFromFile();
-		player = new Player(400, 94);
-		//player->posX = 600;
-		//player->posY = 140;
-
-		// stage 8 
-		//player = new Player(406, 510);
-
-		//player = new Player(1641, 606);
-
-
-		//stage 9 :
-		//player = new Player(2403, 606);
-
-		//stage 11
-		//player = new Player(4205, 1040);
+//		player = new Player(400, 94);
+		player = new Player(4205, 1040);
 		_stageReset = 7;
 		player->Initialize();
 		//player->hp = 20;
 		//player->hearts = 50;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
-		/*Sound::GetInst()->RemoveAllBGM();
-		Sound::GetInst()->PlayBGSound(EBGSound::ESoundLevel1);*/
+		Sound::GetInst()->RemoveAllBGM();
+		Sound::GetInst()->PlayBGSound(EBGSound::ESoundLevel1);
 	}
 
 	break;
