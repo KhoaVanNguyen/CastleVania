@@ -137,4 +137,7 @@
     <ClInclude Include="Bandages.h" />
     <ClInclude Include="Bone.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>

@@ -32,8 +32,11 @@ D3DXVECTOR3 GCamera::CenterSprite(int x, int y)
 	return pCenter;
 }
 
+// REVIEW
 void GCamera::UpdateCamera(int x)
 {
+	// camera ko vẽ ra ngoài
+	// luôn để player nằm giữa màn hình
 	if (x > viewport.x + G_ScreenWidth || x < viewport.x)
 	{
 		viewport.x = x - G_ScreenWidth / 2;
