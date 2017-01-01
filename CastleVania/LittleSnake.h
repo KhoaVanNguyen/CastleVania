@@ -1,5 +1,5 @@
 #pragma once
-#include "dynamicobject.h"
+#include "DynamicObject.h"
 class LittleSnake :
 	public DynamicObject
 {

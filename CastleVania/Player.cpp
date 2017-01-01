@@ -6,11 +6,14 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define MAX_HEIGHT 140.0f
+#define SPEED_FALL -0.4f
+#define MAX_HEIGHT 70.0f
 #define A 0.005f
 
 #define MAX_HEIGHT_KNOCKBACK 32.0f
 #define MAX_WIDTH_KNOCKBACK 38.0f
+
+#define AUTO_MOVE_RANGE 5
 Player::Player(void) : DynamicObject()
 {
 }
@@ -121,7 +124,7 @@ void Player::Update(int deltaTime)
 					vX += (_a)* deltaTime;
 				else vX = 0;
 			}
-			if (vY > -0.6f)
+			if (vY > SPEED_FALL)
 				vY += _a * deltaTime;
 			return;
 		}
@@ -136,7 +139,7 @@ void Player::Update(int deltaTime)
 		{
 			sprite->SelectIndex(4);
 			posY += vY * deltaTime + 0.4 * deltaTime * deltaTime * _a;
-			if (vY > -0.6f)
+			if (vY > SPEED_FALL)
 				vY += _a * deltaTime;
 			//if (posY < 64)//xét va chạm thì thay tại đây
 			//{
@@ -147,9 +150,12 @@ void Player::Update(int deltaTime)
 			//}
 			return;
 		}
+		else {
+			posY += vY *deltaTime;
+		}
 #pragma endregion
 
-		posY += vY *deltaTime;
+		
 	}
 }
 void Player::Draw(GCamera* camera)
@@ -279,22 +285,22 @@ void Player::UpdatePlayerStair(int t)
 			if (_kindStair == EKindStair::UpRight)
 			{
 				_vLast = vX = 1;
-				_timeSpawn += 1;
-				if (_timeSpawn <= 10)
+				_timeOnAStair += 1;
+				if (_timeOnAStair <= 10)
 				{
 
 					posX += 1.6;
 					posY += 1.6;
-					if (_timeSpawn > 1 && _timeSpawn < 7)
+					if (_timeOnAStair > 1 && _timeOnAStair < 6)
 						playerStair->SelectIndex(13);
 					else
 					{
 						playerStair->SelectIndex(12);
 					}
-					if (_timeSpawn == 10)
+					if (_timeOnAStair == 10)
 					{
 						_stopOnStair = true;
-						_timeSpawn = 0;
+						_timeOnAStair = 0;
 						return;
 					}
 				}
@@ -302,22 +308,22 @@ void Player::UpdatePlayerStair(int t)
 			else if (_kindStair == EKindStair::UpLeft)
 			{
 				_vLast = vX = -1;
-				_timeSpawn += 1;
-				if (_timeSpawn <= 10)
+				_timeOnAStair += 1;
+				if (_timeOnAStair <= 10)
 				{
 
 					posX -= 1.6;
 					posY += 1.6;
-					if (_timeSpawn > 1 && _timeSpawn < 7)
+					if (_timeOnAStair > 1 && _timeOnAStair < 7)
 						playerStair->SelectIndex(13);
 					else
 					{
 						playerStair->SelectIndex(12);
 					}
-					if (_timeSpawn == 10)
+					if (_timeOnAStair == 10)
 					{
 						_stopOnStair = true;
-						_timeSpawn = 0;
+						_timeOnAStair = 0;
 						return;
 					}
 				}
@@ -328,21 +334,21 @@ void Player::UpdatePlayerStair(int t)
 			if (_kindStair == EKindStair::DownLeft)
 			{
 				_vLast = vX = -1;
-				_timeSpawn += 1;
-				if (_timeSpawn <= 10)
+				_timeOnAStair += 1;
+				if (_timeOnAStair <= 10)
 				{
 					posX -= 1.6;
 					posY -= 1.6;
-					if (_timeSpawn > 1 && _timeSpawn < 7)
+					if (_timeOnAStair > 1 && _timeOnAStair < 7)
 						playerStair->SelectIndex(11);
 					else
 					{
 						playerStair->SelectIndex(10);
 					}
-					if (_timeSpawn == 10)
+					if (_timeOnAStair == 10)
 					{
 						_stopOnStair = true;
-						_timeSpawn = 0;
+						_timeOnAStair = 0;
 						return;
 					}
 				}
@@ -350,21 +356,21 @@ void Player::UpdatePlayerStair(int t)
 			else if (_kindStair == EKindStair::DownRight)
 			{
 				_vLast = vX = 1;
-				_timeSpawn += 1;
-				if (_timeSpawn <= 10)
+				_timeOnAStair += 1;
+				if (_timeOnAStair <= 10)
 				{
 					posX += 1.6;
 					posY -= 1.6;
-					if (_timeSpawn > 1 && _timeSpawn < 7)
+					if (_timeOnAStair > 1 && _timeOnAStair < 7)
 						playerStair->SelectIndex(11);
 					else
 					{
 						playerStair->SelectIndex(10);
 					}
-					if (_timeSpawn == 10)
+					if (_timeOnAStair == 10)
 					{
 						_stopOnStair = true;
-						_timeSpawn = 0;
+						_timeOnAStair = 0;
 						return;
 					}
 				}
@@ -420,7 +426,7 @@ void Player::UpdatePlayerStair(int t)
 				}
 
 				_onStair = true;
-				_timeSpawn = 0;
+				_timeOnAStair = 0;
 				if (_kindStair == EKindStair::UpRight || _kindStair == EKindStair::UpLeft)
 				{
 					posY += 2;
@@ -518,7 +524,6 @@ void Player::Jump()
 			//posY += 30;
 			_a = -A;
 			vY = sqrt(-2 * _a*MAX_HEIGHT);
-			//_heightJump = 0;
 			sprite->SelectIndex(4);
 			_action = Action::Jump;
 			_hasJump = true;
@@ -531,7 +536,6 @@ void Player::Fall()
 {
 	_action = Action::Fall;
 	vX = 0;
-	vY = -(SPEED_Y + 0.3f);
 }
 void Player::Sit()
 {
@@ -629,7 +633,7 @@ void Player::Stop() {
 	if (_usingWeapon)
 		_usingWeapon = false;
 
-	if (_stopOnStair && _timeSpawn == 0)
+	if (_stopOnStair && _timeOnAStair == 0)
 	{
 		_upStair = false;
 		_downStair = false;
@@ -696,7 +700,7 @@ void Player::UpStair()
 			else
 			{
 				_onStair = true;
-				_timeSpawn = 0;
+				_timeOnAStair = 0;
 			}
 			if (rangeStair != 0)
 			{
@@ -717,7 +721,7 @@ void Player::UpStair()
 					_kindStair = EKindStair::UpLeft;
 				}
 				playerStair->SelectIndex(13);
-				_timeSpawn = 0;
+				_timeOnAStair = 0;
 			}
 		}
 	}
@@ -759,7 +763,7 @@ void Player::DownStair()
 			else
 			{
 				_onStair = true;
-				_timeSpawn = 0;
+				_timeOnAStair = 0;
 			}
 			if (rangeStair != 0)
 			{
@@ -781,7 +785,7 @@ void Player::DownStair()
 				}
 				_onStair = true;
 				playerStair->SelectIndex(11);
-				_timeSpawn = 0;
+				_timeOnAStair = 0;
 			}
 		}
 	}
@@ -823,6 +827,7 @@ void Player::OutStair()
 }
 bool Player::OnStair()
 {
+	//stair->posY == posY - 14: xét xem stair có đang rơi xuống mà đã đứng trên brick chưa?
 	if ((_colStair && _stair->posY == posY - 14 && (_stair->id == EnumID::StairDownLeft_ID || _stair->id == EnumID::StairDownRight_ID)) || _onStair)
 		return true;
 	return false;
@@ -847,7 +852,7 @@ void Player::UpgradeMorningStar() {
 }
 Box Player::GetBox()
 {
-	if ((_hasJump && _heightJump >= MAX_HEIGHT / 2) || _hasSit)
+	if ((_hasJump  >= MAX_HEIGHT / 2) || _hasSit)
 	{
 		return Box(posX - width / 2 + 14.5f, posY + height / 2 - 3, width - 29, height - 22);
 	}
@@ -1274,6 +1279,48 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 				}
 
 			}
+			else {
+				if (other->type != ObjectType::Item && (boxOther, boxPlayer, moveX, moveY) == false)
+				{
+					if (other->canMove == true)
+					{
+						boxPlayer.vx -= boxOther.vx;
+						boxPlayer.vy -= boxOther.vy;
+						boxOther.vx = 0;
+						boxOther.vy = 0;
+					}
+					Box broadphasebox = GetSweptBroadphaseBox(boxPlayer, dt);
+					if (AABBCheck(GetSweptBroadphaseBox(boxPlayer, dt), boxOther) == true)
+					{
+						float collisiontime = SweptAABB(boxPlayer, boxOther, normalx, normaly, dt);
+
+						if (collisiontime > 0.0f && collisiontime < 1.0f)
+						{
+							ECollisionDirect colDirect = GetCollisionDirect(normalx, normaly);
+							switch (other->id)
+							{
+								//----------------------------------
+							case EnumID::Brick_ID:
+								switch (colDirect)
+								{
+								case Colls_Left:
+									posX -= (boxOther.w * collisiontime * other->width + 1);
+									break;
+								case Colls_Right:
+									posY += (boxOther.w * collisiontime * other->width + 1);
+									break;
+								case Colls_Bot:
+									posY += boxOther.h * collisiontime;
+									vY = 0;
+									break;
+								}
+								break;
+								//-----------------------------------
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -1289,7 +1336,6 @@ EDirectDoor Player::GetDirectDoor()
 		switch (_door->id)
 		{
 		case TeleDown_ID:
-
 			_directDoor = EDirectDoor::TeleDown;
 			break;
 		case TeleUp_ID:
@@ -1315,13 +1361,13 @@ bool Player::AutoMove(int &range, int dt)
 		return true;
 	if (range > 0)
 	{
-		range -= 4;
-		posX += 4;
+		range -= AUTO_MOVE_RANGE;
+		posX += AUTO_MOVE_RANGE;
 	}
 	else
 	{
-		range += 4;
-		posX -= 4;
+		range += AUTO_MOVE_RANGE;
+		posX -= AUTO_MOVE_RANGE;
 	}
 	sprite->Update(dt);
 	return false;
@@ -1338,7 +1384,6 @@ void Player::KnockBack()
 		else if (vX < 0 || _vLast < 0)
 			vX = (sqrt(-2 * _a * MAX_WIDTH_KNOCKBACK));
 		vY = sqrt(-2 * _a * MAX_HEIGHT_KNOCKBACK);
-		_heightJump = 0;
 		_hasJump = false;
 		_hasKnockBack = true;
 	}
@@ -1356,11 +1401,9 @@ void Player::SetWeapon() {
 		_usingStopWatch = true;
 		Sound::GetInst()->PlaySoundEffect(ESoundEffect::ESoundMagicBall);
 		break;
-
 	case EnumID::Throw_Axe_ID:
 		weapons->push_back(new ThrowAxe(posX, posY, _vLast));
 		break;
-
 	case EnumID::Boomerang_ID:
 		weapons->push_back(new Boomerang(posX, posY, _vLast));
 		break;
@@ -1375,7 +1418,6 @@ void Player::SetWeapon() {
 }
 void Player::ChangeWeapon(EnumID weaponId) {
 	_weaponID = weaponId;
-
 }
 
 // xem player có đang bị sát thương hay không?

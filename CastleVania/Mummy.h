@@ -7,21 +7,21 @@
 #include "Bandages.h"
 using namespace std;
 
-#define QUEEN_medusa_SLEEP_STATE 10
-#define QUEEN_medusa_STOP_STATE 2
-#define QUEEN_medusa_SPEED_X 0.3f
-#define LITTLE_SNAKE_SPEED_X 0.3f
-#define QUEEN_medusa_DIE_RATE 10
+#define SLEEP_STATE 10
+#define STOP_STATE 2
+#define SPEED_X 0.3f
+#define BANDAGE_SPEED_X 0.3f
+#define DIE_RATE 10
 #define DEAD_TIME 1500
 #define PI 3.14f
 #define T 1000
 #define A 20
-#define QUEEN_medusa_SleepinG_RightCameraATE 1
+#define Sleeping_RightCameraATE 1
 
 enum EMummyState
 {
 	Mummy_Stoping,
-	Mummy_moving
+	Mummy_Moving
 };
 
 class Mummy : public DynamicObject
@@ -46,16 +46,6 @@ protected:
 
 	list<DynamicObject*> *_bandages;
 
-	
-	D3DXVECTOR2* _playerPos;
-	float _deltaPhi;
-	float _posY0;
-
-
-	void _initialize();
-
-
-	bool _leaveStopPos(D3DXVECTOR2 boss_, D3DXVECTOR2 _nextStopPos);
 
 	void _drawBandages(GCamera* camera_);
 
@@ -71,10 +61,8 @@ public:
 //	void Update(int deltaTime_, D3DXVECTOR2* playerPos_);
 	virtual void Draw(GCamera* camera_);
 	virtual void Collision(list<GameObject*> obj, int dt);
-	void getUp();
-	void setDead();
 	//void ReceiveDamage(int damagePoint);
-	bool StateCancel();
+
 	~Mummy(void);
 public:
 

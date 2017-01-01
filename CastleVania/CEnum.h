@@ -33,6 +33,7 @@ enum EnumID
 	Fleamen_ID,
 	Skeletons_ID,
 	Fleaman_ID,
+	Bone_ID,
 
 	//groud
 	MovingPlatform_ID,
@@ -89,6 +90,7 @@ enum EnumID
 	Throw_Axe_ID,
 	HolyWater_ID,
 	Boomerang_ID,
+	Boomerang_Weapon_ID,
 	StopWatch_ID,
 
 

@@ -10,6 +10,7 @@
 class ThrowAxe : public Weapon
 {
 protected:
+	
 	D3DXVECTOR2* _nextStopPos;
 	float _anpha;
 	float _posX0;

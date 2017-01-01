@@ -21,7 +21,7 @@ Mummy::Mummy(float posX_, float posY_) : DynamicObject(posX_, posY_, 1.0f, 1.0f,
 	hp = 50;
 	damage = 4;
 	canBeKilled = true;
-	_state = EMummyState::Mummy_moving;
+	_state = EMummyState::Mummy_Moving;
 	_isSleeping = true;
 	_attackmode = true;
 	//vX = vY = Mummy_STATE;
@@ -80,13 +80,13 @@ void Mummy::Update(int playerX, int playerY, int deltaTime)
 		if (_localTime >= 700)
 		{
 			_localTime = 0;
-			_state = EMummyState::Mummy_moving;
+			_state = EMummyState::Mummy_Moving;
 			return;
 		}
 
 
 		break;
-	case EMummyState::Mummy_moving:
+	case EMummyState::Mummy_Moving:
 
 
 		deltaX += (abs(oldX - posX));

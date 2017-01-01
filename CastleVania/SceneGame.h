@@ -42,18 +42,17 @@ protected:
 	void ChangeCamera(EDirectDoor _directDoor);
 	EStateCamera _stateCamera;
 	int _rangeMoveCamera;
-	int _rangeMoveplayer;
 	int _rangeMoveCamera2;
+	int _rangeMovePlayer;
+	
 
 	// door open and close
 	OpenDoor* openDoor;
 	int _stageReset;
 	
 
-
-
-	bool _moveCameraHaft;	//Di chuyen camera lan 1
-	bool _moveCameraDone;	//Di chuyen camera lan 2
+	bool _firstMoveCameraDone;	//Di chuyen camera lan 1
+	bool _secondMoveCameraDone;	//Di chuyen camera lan 2
 	int _doorDirect; //Huong mo cua
 
 	GameUI* gameUI;

@@ -90,6 +90,7 @@
     <ClCompile Include="Bandages.cpp" />
     <ClCompile Include="Barrier.cpp" />
     <ClCompile Include="Bats.cpp" />
+    <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoneTowers.cpp" />
     <ClCompile Include="BrickHide.cpp" />
     <ClCompile Include="CastleGate.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Bandages.h" />
     <ClInclude Include="Barrier.h" />
     <ClInclude Include="Bats.h" />
+    <ClInclude Include="Bone.h" />
     <ClInclude Include="BoneTowers.h" />
     <ClInclude Include="Boomerang.h" />
     <ClInclude Include="Brick.h" />
@@ -219,6 +221,9 @@
     <ClInclude Include="Ghouls.h" />
     <ClInclude Include="Water.h" />
     <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

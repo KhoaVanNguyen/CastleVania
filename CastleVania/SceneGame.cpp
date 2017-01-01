@@ -1,22 +1,20 @@
 #include "SceneGame.h"
 
 #define BACKGROUND_FILE "Resources/black.png"
+#define CAMERA_MOVE_SPEED 8
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 2;
-	_stageNow = 11;
+	_levelNow = 1;
+	_stageNow = 1;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
 	gameUI = NULL;
 	score = 0;
-
 	totalResets = 3;
 }
-
 SceneGame::~SceneGame()
 {
-
 }
 void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	srand((unsigned)time(NULL));
@@ -40,7 +38,6 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		delete qGameObject;
 	switch (level)
 	{
-
 	case 1:
 	{
 		camera->viewport.y = 485; // 485 - stage 6: 1637
@@ -55,16 +52,14 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		gameUI->initTimer(100);
 		Sound::GetInst()->RemoveAllBGM();
 		Sound::GetInst()->PlayBGSound(EBGSound::ESoundLevel2);
-
 	}
 	break;
 	case 2:
 	{
-
-		camera->viewport.y = 1253; // 869; // 485
+		camera->viewport.y = 485; // 869; // 485
 		bg = new QBackground(level);
 		bg->LoadQuadTreeFromFile();
-		//player = new Player(600, 90);
+		player = new Player(400, 94);
 		//player->posX = 600;
 		//player->posY = 140;
 
@@ -75,11 +70,11 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 
 
 		//stage 9 :
-		player = new Player(2403, 606);
+		//player = new Player(2403, 606);
 
 		//stage 11
-		player = new Player(4205, 1040);
-		_stageReset = 11;
+		//player = new Player(4205, 1040);
+		_stageReset = 7;
 		player->Initialize();
 		//player->hp = 20;
 		//player->hearts = 50;
@@ -87,7 +82,6 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		gameUI->initTimer(100);
 		/*Sound::GetInst()->RemoveAllBGM();
 		Sound::GetInst()->PlayBGSound(EBGSound::ESoundLevel1);*/
-
 	}
 
 	break;
@@ -114,7 +108,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		}
 		else {
 #pragma region Chuyen canh, dich chuyen camera
-			//if (!_moveCameraHaft && !_beginMoveCamera && _moveCameraDone)
+			//if (!_firstMoveCameraDone && !_beginMoveCamera && _secondMoveCameraDone)
 			//{
 			//	player->Stop();
 			//	player->_allowPress = true;
@@ -124,14 +118,14 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 				qGameObject->RemoveAllObject();
 				MoveCamera(_rangeMoveCamera);
 			}
-			if (_moveCameraHaft)
+			if (_firstMoveCameraDone)
 			{
 				if (openDoor->GetOpenDoor())
 					openDoor->RenderOpen();
 				if (openDoor->GetOpenDoor() == false)
 				{
-					player->AutoMove(_rangeMoveplayer, t);
-					if (_rangeMoveplayer == 0)
+					player->AutoMove(_rangeMovePlayer, t);
+					if (_rangeMovePlayer == 0)
 					{
 						player->SetDirectDoor(EDirectDoor::NoneDoor);
 						openDoor->RenderClose();
@@ -143,7 +137,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 						}
 						else
 						{
-							//if (!_moveCameraHaft)
+							//if (!_firstMoveCameraDone)
 							//{
 							//	player->Stop();
 							//	player->_allowPress = true;
@@ -258,14 +252,8 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 				camera->SetSizeMap(G_RightCamera, G_LeftCamera);
 			}
 		}
-
-		
-
 		player->Collision(*(qGameObject->_staticObject), t);
 		player->Collision(*(qGameObject->_dynamicObject), t);
-
-
-
 		if (player->_usingCross) // player->GetCrossStatus()  )//player->GetUsingCross())
 		{
 
@@ -291,16 +279,13 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 				NULL,
 				D3DTEXF_NONE);
 		}
-
-
 		qGameObject->Collision(t);
 		G_SpriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
-
 		bg->Draw(camera);
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect,_stageNow);
 		//gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
-		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _moveCameraDone, player->vY, player->abc, player->vX);
+		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _secondMoveCameraDone, player->vY, player->abc, player->vX);
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
@@ -408,7 +393,7 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 		case TeleDown:
 		{
 			camera->viewport.y -= (32 * 12); //do cao 1 stage = 32pixcel * 12 dong
-			player->posY -= 64;
+			player->posY -= 32;
 			player->SetDirectDoor(EDirectDoor::NoneDoor);
 
 			if (_stageNow >= 1) {
@@ -431,11 +416,11 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 		{
 			_stateCamera = EStateCamera::NoUpdate_Camera;
 			_beginMoveCamera = true;
-			_moveCameraHaft = false;
-			_moveCameraDone = false;
+			_firstMoveCameraDone = false;
+			_secondMoveCameraDone = false;
 			_rangeMoveCamera = -264;//-264;
-			_rangeMoveCamera2 = -252;
-			_rangeMoveplayer = -120; // -120;
+			_rangeMoveCamera2 = -264;
+			_rangeMovePlayer = -120; // -120;
 			_doorDirect = -1;
 		}
 		break;
@@ -443,11 +428,11 @@ void SceneGame::ChangeCamera(EDirectDoor _directDoor)
 		{
 			_stateCamera = EStateCamera::NoUpdate_Camera;
 			_beginMoveCamera = true;
-			_moveCameraHaft = false;
-			_moveCameraDone = false;
+			_firstMoveCameraDone = false;
+			_secondMoveCameraDone = false;
 			_rangeMoveCamera = 264;
 			_rangeMoveCamera2 = 252;
-			_rangeMoveplayer = 80;
+			_rangeMovePlayer = 80;
 			_doorDirect = 1;
 		}
 		break;
@@ -465,31 +450,33 @@ void SceneGame::MoveCamera(int &_moveRange)
 	if (_beginMoveCamera)
 	{
 		player->Stop();
-		if (_rangeMoveCamera == 0 && !_moveCameraHaft)
+		if (_rangeMoveCamera == 0 && !_firstMoveCameraDone)
 		{
-			_moveCameraHaft = true;
+			_firstMoveCameraDone = true;
 			_beginMoveCamera = false;
 			return;
 		}
+		// qua phải
 		if (_rangeMoveCamera > 0)
 		{
-			_rangeMoveCamera -= 4;
-			camera->viewport.x += 4;
+			_rangeMoveCamera -= CAMERA_MOVE_SPEED;
+			camera->viewport.x += CAMERA_MOVE_SPEED;
 		}
+		// qua trái
 		else
 		{
-			_rangeMoveCamera += 4;
-			camera->viewport.x -= 4;
+			_rangeMoveCamera += CAMERA_MOVE_SPEED;
+			camera->viewport.x -= CAMERA_MOVE_SPEED;
 		}
 	}
-	else if (_moveCameraHaft)
+	else if (_firstMoveCameraDone)
 	{
 		player->Stop();
-		if (_rangeMoveCamera2 == 0 && !_moveCameraDone)
+		if (_rangeMoveCamera2 == 0 && !_secondMoveCameraDone)
 		{
-			_moveCameraHaft = false;
+			_firstMoveCameraDone = false;
 			_beginMoveCamera = false;
-			_moveCameraDone = true;
+			_secondMoveCameraDone = true;
 			_stageNow++;
 			LoadStage(_stageNow);
 			_stateCamera = EStateCamera::Update_Camera;
@@ -505,13 +492,13 @@ void SceneGame::MoveCamera(int &_moveRange)
 		}
 		if (_rangeMoveCamera2 > 0)
 		{
-			_rangeMoveCamera2 -= 4;
-			camera->viewport.x += 4;
+			_rangeMoveCamera2 -= CAMERA_MOVE_SPEED;
+			camera->viewport.x += CAMERA_MOVE_SPEED;
 		}
 		else
 		{
-			_rangeMoveCamera2 += 4;
-			camera->viewport.x -= 4;
+			_rangeMoveCamera2 += CAMERA_MOVE_SPEED;
+			camera->viewport.x -= CAMERA_MOVE_SPEED;
 		}
 	}
 
@@ -521,8 +508,6 @@ void SceneGame::ProcessInput(int KeyCode) {
 
 	switch (KeyCode)
 	{
-
-
 	case DIK_RIGHT:
 		player->TurnRight();
 	case DIK_D:
