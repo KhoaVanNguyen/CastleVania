@@ -124,7 +124,7 @@ void Player::Update(int deltaTime)
 					vX += (_a)* deltaTime;
 				else vX = 0;
 			}
-			if (vY > -0.6f)
+			if (vY > SPEED_FALL)
 				vY += _a * deltaTime;
 			return;
 		}
@@ -524,7 +524,6 @@ void Player::Jump()
 			//posY += 30;
 			_a = -A;
 			vY = sqrt(-2 * _a*MAX_HEIGHT);
-			//_heightJump = 0;
 			sprite->SelectIndex(4);
 			_action = Action::Jump;
 			_hasJump = true;
@@ -853,7 +852,7 @@ void Player::UpgradeMorningStar() {
 }
 Box Player::GetBox()
 {
-	if ((_hasJump && _heightJump >= MAX_HEIGHT / 2) || _hasSit)
+	if ((_hasJump  >= MAX_HEIGHT / 2) || _hasSit)
 	{
 		return Box(posX - width / 2 + 14.5f, posY + height / 2 - 3, width - 29, height - 22);
 	}
@@ -1280,6 +1279,48 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 				}
 
 			}
+			else {
+				if (other->type != ObjectType::Item && (boxOther, boxPlayer, moveX, moveY) == false)
+				{
+					if (other->canMove == true)
+					{
+						boxPlayer.vx -= boxOther.vx;
+						boxPlayer.vy -= boxOther.vy;
+						boxOther.vx = 0;
+						boxOther.vy = 0;
+					}
+					Box broadphasebox = GetSweptBroadphaseBox(boxPlayer, dt);
+					if (AABBCheck(GetSweptBroadphaseBox(boxPlayer, dt), boxOther) == true)
+					{
+						float collisiontime = SweptAABB(boxPlayer, boxOther, normalx, normaly, dt);
+
+						if (collisiontime > 0.0f && collisiontime < 1.0f)
+						{
+							ECollisionDirect colDirect = GetCollisionDirect(normalx, normaly);
+							switch (other->id)
+							{
+								//----------------------------------
+							case EnumID::Brick_ID:
+								switch (colDirect)
+								{
+								case Colls_Left:
+									posX -= (boxOther.w * collisiontime * other->width + 1);
+									break;
+								case Colls_Right:
+									posY += (boxOther.w * collisiontime * other->width + 1);
+									break;
+								case Colls_Bot:
+									posY += boxOther.h * collisiontime;
+									vY = 0;
+									break;
+								}
+								break;
+								//-----------------------------------
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -1343,7 +1384,6 @@ void Player::KnockBack()
 		else if (vX < 0 || _vLast < 0)
 			vX = (sqrt(-2 * _a * MAX_WIDTH_KNOCKBACK));
 		vY = sqrt(-2 * _a * MAX_HEIGHT_KNOCKBACK);
-		_heightJump = 0;
 		_hasJump = false;
 		_hasKnockBack = true;
 	}

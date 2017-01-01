@@ -38,7 +38,6 @@ public:
 
 	float _vLast;
 	Action _action;
-	float _heightJump;
 	bool _allowPress;
 	bool _hasSit;
 	bool _hasKnockBack;
