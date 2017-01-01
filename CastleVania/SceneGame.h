@@ -51,8 +51,6 @@ protected:
 	int _stageReset;
 	
 
-
-
 	bool _firstMoveCameraDone;	//Di chuyen camera lan 1
 	bool _secondMoveCameraDone;	//Di chuyen camera lan 2
 	int _doorDirect; //Huong mo cua

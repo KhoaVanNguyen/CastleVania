@@ -508,8 +508,6 @@ void SceneGame::ProcessInput(int KeyCode) {
 
 	switch (KeyCode)
 	{
-
-
 	case DIK_RIGHT:
 		player->TurnRight();
 	case DIK_D:
