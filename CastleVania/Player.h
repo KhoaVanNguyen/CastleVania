@@ -18,6 +18,7 @@ private:
 
 
 public:
+	bool _getCrown = false;
 	int  getCurrentPosXPlayer();
 	// for testing
 	int currentCollideWithID;
@@ -50,7 +51,7 @@ public:
 
 	bool abc;
 	bool getdata();
-
+	
 	bool _isHurted; // Có đang bị mất máu không?
 	bool _onMovingPlatform;
 	bool _movingByMovingPlatform;

@@ -234,6 +234,12 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 			player->_usingStopWatch = false;
 			player->hearts -= 6;
 		}
+		if (player->_getCrown) {
+			knight = new AxeKnights(3794, 94);
+			knight->Update(t);
+			//crown->active = true;
+			player->_getCrown = false;
+		}
 
 		//qGameObject->Update(player->GetBox(), t);
 	//	qGameObject->Update(t);

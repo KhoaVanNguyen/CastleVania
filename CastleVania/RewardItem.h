@@ -10,9 +10,11 @@
 class RewardItem :public DynamicObject
 {
 public:
+	bool _isCrown;
 	int deltatime;
 	RewardItem(void);
 	RewardItem(float x, float y);
+	RewardItem(float x, float y, bool isCrown);
 	void Update(int dt);
 	void Collision(list<GameObject*> obj, int dt);
 	~RewardItem(void);

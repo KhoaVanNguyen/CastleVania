@@ -147,6 +147,10 @@ void MorningStar::Collision(list<GameObject*> &obj, int dt){
 							else
 								qm->getUp();
 						}
+						else if (other->id == EnumID::BrickHide_ID) {
+							point += other->point;
+							(*_itBegin) = new RewardItem(3822, 94,true);
+						}
 						else
 						{
 							other->ReceiveDamage(damage);

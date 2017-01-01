@@ -96,6 +96,7 @@ Singleton::Singleton()
 	openDoor = new GTexture("Resources/ground/Gate1.png", 4, 1, 4);
 
 	// Item
+	crown = new GTexture("Resources/item/crown.png", 1, 1, 1);
 	rewardedItem = new GTexture("Resources/other/1.png", 3, 1, 3);
 	crossItem = new GTexture("Resources/item/6.png", 1, 1, 1);
 	porkChop = new GTexture("Resources/item/10.png", 1, 1, 1);
@@ -190,6 +191,8 @@ GTexture* Singleton::getTexture(EnumID id)
 
 		// Items:
 	
+	case EnumID::Crown_ID:
+		return crown;
 	case EnumID::Boomerang_ID:
 		return boomerangItem;
 

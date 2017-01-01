@@ -26,6 +26,9 @@ protected:
 	D3DXVECTOR2 posDoor;
 	QBackground *bg;
 	QGameObject* qGameObject;
+
+
+	AxeKnights* knight;
 	int _levelNow, _stageNow;
 	GCamera *camera;
 	Player* player;

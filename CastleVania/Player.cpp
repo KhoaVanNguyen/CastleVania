@@ -1015,7 +1015,6 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 
 #pragma region va chạm với Barrier
 					case EnumID::Barrier_ID:
-					case EnumID::BrickHide_ID:
 					{
 						vX = 0;
 						if ((_vLast > 0 && _action == Action::Run_Left) || (_vLast < 0 && _action == Action::Run_Right))
@@ -1028,8 +1027,16 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						}
 
 					}
-						break;
+					break;
 #pragma endregion
+#pragma region va chạm với BrickHide
+					case EnumID::BrickHide_ID:
+
+						_getCrown = true;
+						return;
+					break;
+#pragma endregion
+
 
 #pragma region Va chạm với MovingPlatform
 					case EnumID::MovingPlatform_ID:

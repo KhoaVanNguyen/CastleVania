@@ -65,6 +65,7 @@ enum EnumID
 
 
 	//Item
+	Crown_ID,
 	Invisibility_Potion,
 	PorkChop_ID,
 	Double_Shot,

@@ -73,7 +73,7 @@ private:
 	GTexture* playerInCastle;
 
 	// Items
-
+	GTexture* crown;
 	GTexture* rewardedItem;
 	GTexture* porkChop;
 	
