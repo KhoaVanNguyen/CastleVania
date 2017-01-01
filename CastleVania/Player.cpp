@@ -11,6 +11,8 @@
 
 #define MAX_HEIGHT_KNOCKBACK 32.0f
 #define MAX_WIDTH_KNOCKBACK 38.0f
+
+#define AUTO_MOVE_RANGE 5
 Player::Player(void) : DynamicObject()
 {
 }
@@ -1289,7 +1291,6 @@ EDirectDoor Player::GetDirectDoor()
 		switch (_door->id)
 		{
 		case TeleDown_ID:
-
 			_directDoor = EDirectDoor::TeleDown;
 			break;
 		case TeleUp_ID:
@@ -1315,13 +1316,13 @@ bool Player::AutoMove(int &range, int dt)
 		return true;
 	if (range > 0)
 	{
-		range -= 4;
-		posX += 4;
+		range -= AUTO_MOVE_RANGE;
+		posX += AUTO_MOVE_RANGE;
 	}
 	else
 	{
-		range += 4;
-		posX -= 4;
+		range += AUTO_MOVE_RANGE;
+		posX -= AUTO_MOVE_RANGE;
 	}
 	sprite->Update(dt);
 	return false;

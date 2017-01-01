@@ -7,8 +7,8 @@ GCamera::GCamera()
 
 void GCamera::SetSizeMap(int _max, int _min)
 {
-	_maxSize = _max;
-	_minSize = _min;
+	right = _max;
+	left = _min;
 }
 D3DXVECTOR2 GCamera::Transform(int x, int y)
 {
@@ -26,11 +26,7 @@ D3DXVECTOR2 GCamera::Transform(int x, int y)
 	return result;
 }
 
-D3DXVECTOR3 GCamera::CenterSprite(int x, int y)
-{
-	D3DXVECTOR3 pCenter = D3DXVECTOR3(x/2, y/2, 0);
-	return pCenter;
-}
+
 
 // REVIEW
 void GCamera::UpdateCamera(int x)
@@ -41,15 +37,15 @@ void GCamera::UpdateCamera(int x)
 	{
 		viewport.x = x - G_ScreenWidth / 2;
 	}
-	if (x  < _maxSize - G_ScreenWidth / 2)
+	if (x  < right - G_ScreenWidth / 2)
 		viewport.x = x - G_ScreenWidth / 2;
-	if (viewport.x < _minSize)
-		viewport.x = _minSize;
-	if (viewport.x + G_ScreenWidth > _maxSize)
-		viewport.x = _maxSize - G_ScreenWidth;
-}
 
-void GCamera::UpdateCamera(int &w, int &h)
-{
-	//Tự viết dựa vào hướng dẫn của GV LT
+
+	// viewport left == left
+	if (viewport.x < left)
+		viewport.x = left;
+
+	// viewport right = right
+	if (viewport.x + G_ScreenWidth > right)
+		viewport.x = right - G_ScreenWidth;
 }
