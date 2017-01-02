@@ -38,6 +38,7 @@ protected:
 	// Score
 	int score;
 	// Player die
+	bool _playerDie;
 	int totalResets;
 	int resetTime;
 	//camera

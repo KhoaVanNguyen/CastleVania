@@ -21,7 +21,7 @@ Player::Player(void) : DynamicObject()
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
 
-	hp = 40;
+	hp = 2;
 	vColMoving = 0;
 	_isHurted = false;
 	_startToHiddenTime = 0;
