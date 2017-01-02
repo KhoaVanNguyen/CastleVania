@@ -16,6 +16,7 @@ void GameUI::_initialize()
 	_hpSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::HP_ID), 1);
 
 	_gameTimer = 0;
+	_enemyHP = 0;
 }
 GameUI::GameUI(LPDIRECT3DDEVICE9 d3ddev_, int size_, int screenWidth_, int screenHeight_)
 {

@@ -24,7 +24,7 @@ void Medusa::_initialize()
 	active = true;
 	type = ObjectType::None;
 	HasGetUp = false;
-	hp = 400;
+	hp = 40;
 	damage = 10;
 	canBeKilled = true;
 }
@@ -297,7 +297,9 @@ void Medusa::Collision(list<GameObject*> obj, int dt)
 		
 	}
 }
-
+int Medusa::getHp() {
+	return hp;
+}
 
 Medusa::~Medusa(void)
 {

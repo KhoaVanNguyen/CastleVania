@@ -63,8 +63,8 @@ void Mummy::Update(int playerX, int playerY, int deltaTime)
 		}
 		break;
 	case EMummyState::Mummy_Moving:
-		if (posX <= 6686 || posX >=7125 )
-			vX = -vX;
+		/*if (posX <= 6686 || posX >=7125 )
+			vX = -vX;*/
 		deltaX += (abs(oldX - posX));
 		oldX = posX;
 		if (playerX > posX){

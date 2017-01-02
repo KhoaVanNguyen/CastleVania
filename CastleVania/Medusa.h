@@ -70,6 +70,7 @@ public:
 	void setDead();
 	void ReceiveDamage(int damagePoint);
 	bool StateCancel();
+	int getHp();
 	~Medusa(void);
 public:
 

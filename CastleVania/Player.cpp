@@ -21,7 +21,7 @@ Player::Player(void) : DynamicObject()
 Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, EnumID::Player_ID)
 {
 
-	hp = 12;
+	hp = 40;
 	vColMoving = 0;
 	_isHurted = false;
 	_startToHiddenTime = 0;
@@ -915,6 +915,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 					case EnumID::Red_Money_Bag:
 					case EnumID::Purple_Money_Bag:
 					case EnumID::White_Money_Bag:
+					case EnumID::Crown_ID:
 						//cong tien
 						point += other->point;
 						break;
@@ -999,10 +1000,10 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						{
 
 							// Rơi tự do được
-							//vY = -(SPEED_Y + 0.4f);
+							vY = -(SPEED_Y + 0.4f);
 
 							// Ko roi tu do dc
-							vY = 0;
+							//vY = 0;
 							//_beFallOutScreen = true;
 						}
 						//--------------------

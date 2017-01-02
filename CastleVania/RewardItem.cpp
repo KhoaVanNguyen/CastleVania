@@ -38,6 +38,7 @@ void RewardItem::Update(int dt)
 	{
 		
 		if (_isCrown) {
+			point = 2000;
 			id = EnumID::Crown_ID;
 			sprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::Crown_ID), 150);
 		}

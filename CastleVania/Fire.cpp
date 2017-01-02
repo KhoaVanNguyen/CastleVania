@@ -10,6 +10,7 @@ Fire::Fire(float x, float y, EnumID id) : DynamicObject(x, y, 0.5, 0, id)
 {
 	_timeSpawn = 0;
 	active = true;
+	canBeKilled = true;
 	_timeSpawn = 0;
 	damage = 4;
 	type = ObjectType::Enemy_Type;

@@ -15,6 +15,8 @@ Fleaman::Fleaman(float x, float y) : DynamicObject(x, y, 0, -0.4, EnumID::Fleama
 	_heightJump = 0;
 	type = ObjectType::Enemy_Type;
 	point = 200;
+	hp = 1;
+	canBeKilled = true;
 }
 
 void Fleaman::Draw(GCamera* camera)
@@ -109,6 +111,7 @@ void Fleaman::Collision(list<GameObject*> obj, int dt)
 				}
 			}
 		}
+	
 	}
 }
 
