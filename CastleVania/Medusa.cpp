@@ -24,7 +24,7 @@ void Medusa::_initialize()
 	active = true;
 	type = ObjectType::None;
 	HasGetUp = false;
-	hp = 40;
+	hp = 20;
 	damage = 10;
 	canBeKilled = true;
 }

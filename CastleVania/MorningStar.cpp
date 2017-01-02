@@ -10,10 +10,7 @@ MorningStar::MorningStar(int posX_, int posY_, float vx_, float vy_, EnumID id_,
 	abc = true;
 	vX = vx_;
 	vY = vy_;
-
-	damage = 50;
-	point = 0;
-
+	damage = 1;
 	_morningStarSprite = new MorningStarSprite(TextureManager::getInstance()->getTexture(EnumID::MorningStar_ID), 0, 2, timeAnimation_);
 }
 

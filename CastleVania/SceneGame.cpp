@@ -5,7 +5,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 1;
-	_stageNow = 6;
+	_stageNow = 1;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -40,13 +40,13 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	{
 	case 1:
 	{
-		camera->viewport.y = 1637; //  485; // 485 - stage 6: 1637
+		camera->viewport.y = 485;  //1637; //  485; // 485 - stage 6: 1637
 		bg = new BackgroundController(level);
 		bg->LoadQuadTreeFromFile();
-		player = new Player(345, 1310); //-> Stage 6
+		//player = new Player(345, 1310); //-> Stage 6
 		//player = new Player(287, 1310);
 
-		//player = new Player(3776, 96); // stage 1
+		player = new Player(3776, 96); // stage 1
 		_stageReset = 1;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
@@ -242,12 +242,14 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		if (_stageNow == 6)
 		{
 			_medusa->Update(t, player->getPos());
-			gameUI->updateScore(_stageNow, player->point, t, (int)((player->hp + 1) / 2), player->hearts, totalResets, player->_weaponID,90
-				, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _secondMoveCameraDone, player->vY, player->abc, player->vX);
+			gameUI->updateScore(_stageNow, player->point, t, (int)((player->hp + 1) / 2), player->hearts, totalResets, player->_weaponID, _medusa->hp, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _secondMoveCameraDone, player->vY, player->abc, player->vX);
 			if (_medusa->type == ObjectType::Enemy_Type)
 			{
 				camera->SetSizeMap(G_RightCamera, G_LeftCamera);
 			}
+		}
+		else {
+			gameUI->updateScore(_stageNow, player->point, t, (int)((player->hp + 1) / 2), player->hearts, totalResets, player->_weaponID, 0, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _secondMoveCameraDone, player->vY, player->abc, player->vX);
 		}
 		player->Collision(*(qGameObject->_staticObject), t);
 		player->Collision(*(qGameObject->_dynamicObject), t);
@@ -282,7 +284,7 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		qGameObject->Draw(camera);
 		openDoor->Draw(camera, _doorDirect,_stageNow);
 		//gameUI->updateScore(_stageNow, player->point, t, player->hp, player->hearts, 5, player->_weaponID, 5, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, player->_colStair, player->rangeStair, player->_onStair);
-		gameUI->updateScore(_stageNow, player->point, t,(int)(( player->hp+1)/ 2), player->hearts, totalResets, player->_weaponID, 0, player->posX, player->posY, (int)camera->viewport.x, (int)camera->viewport.y, player->currentCollideWithID, _secondMoveCameraDone, player->vY, player->abc, player->vX);
+		
 		gameUI->drawTable();
 		player->Draw(camera);
 		G_SpriteHandler->End();
