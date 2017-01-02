@@ -10,7 +10,7 @@ BoneTowers::BoneTowers(float x, float y) : DynamicObject(x, y, 0, 0, EnumID::Bon
 {
 	_listFire = new list<DynamicObject*>();
 	type = ObjectType::Enemy_Type;
-	hp = 20;
+	hp = 8;
 	active = true;
 	_timeSpan = 0;
 	canBeKilled = true;

@@ -16,7 +16,6 @@ void GameUI::_initialize()
 	_hpSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::HP_ID), 1);
 
 	_gameTimer = 0;
-	_enemyHP = 0;
 }
 GameUI::GameUI(LPDIRECT3DDEVICE9 d3ddev_, int size_, int screenWidth_, int screenHeight_)
 {
@@ -41,12 +40,13 @@ void GameUI::drawTable()
 	// boss
 	for (int i = 0; i<_enemyHP; i++)
 	{
-		_hpSprite->DrawIndex(2, 100 + 10 * i, 50);
+		_hpSprite->DrawIndex(0, 100 + 10 * i, 50);
 	}
 	for (int i = _enemyHP; i<MAX_HP; i++)
 	{
 		_hpSprite->DrawIndex(1, 100 + 10 * i, 50);
 	}
+
 
 
 	// draw weapon
@@ -220,7 +220,7 @@ void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int p
 
 void GameUI::updateScore(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, int weaponCount_, EnumID weaponID_, int enemyHP_, int _x, int _y, int viewPortX, int viewPortY, int collideId, bool abc, int rang, bool onstair,float checkCameraHaft)
 {
-	//(int gameStage_, int playerScore_, int deltaTime_, int playerHP_, int liveCount_, EnumID weaponID_, int weaponCount_, int enemyHP_)
+
 	_gameStage = gameStage_;
 	_playerScore = playerScore_;
 	if (_gameTimer <= 0)

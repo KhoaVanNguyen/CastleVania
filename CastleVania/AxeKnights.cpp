@@ -10,7 +10,7 @@ AxeKnights::AxeKnights(float x, float y) : DynamicObject(x, y, 0.08f, 0, EnumID:
 {
 	type = ObjectType::Enemy_Type;
 	point = 400;
-	hp = 2;
+	hp = 3;
 	damage = 2;
 	canBeKilled = true;
 }

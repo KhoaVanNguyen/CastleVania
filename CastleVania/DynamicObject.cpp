@@ -17,6 +17,7 @@ DynamicObject::DynamicObject(float _posX, float _posY, float _vX, float _vY, Enu
 	active = true;
 	damage = 1;
 	Initialize();
+	point = 400;
 	//
 }
 
