@@ -130,6 +130,7 @@
     <ClCompile Include="Ravens.cpp" />
     <ClCompile Include="RewardItem.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneEndGame.cpp" />
     <ClCompile Include="SceneGame.cpp" />
     <ClCompile Include="SceneControl.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Ravens.h" />
     <ClInclude Include="RewardItem.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneEndGame.h" />
     <ClInclude Include="SceneGame.h" />
     <ClInclude Include="SceneControl.h" />
     <ClInclude Include="Game.h" />

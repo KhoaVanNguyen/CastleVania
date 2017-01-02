@@ -1468,7 +1468,7 @@ bool Player::IsHurting()
 
 	if (!_hidden)
 		return false;
-	bool result = false;
+	bool result = _bHurt;
 	DWORD now = GetTickCount();
 	DWORD deltaTime = now - _startToHiddenTime;
 	if (deltaTime >= 1500)

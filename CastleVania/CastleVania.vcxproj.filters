@@ -190,6 +190,9 @@
     <ClCompile Include="BreakableBrick.cpp">
       <Filter>GameObject\DynamicGameObject</Filter>
     </ClCompile>
+    <ClCompile Include="SceneEndGame.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenDoor.h">
@@ -389,6 +392,9 @@
     </ClInclude>
     <ClInclude Include="BreakableBrick.h">
       <Filter>GameObject\DynamicGameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneEndGame.h">
+      <Filter>Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

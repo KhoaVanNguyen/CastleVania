@@ -98,11 +98,11 @@ void OpenDoor::Draw(GCamera* camera, int vX,int stage)
 {
 
 	D3DXVECTOR2 center = camera->Transform(posX, posY);
-//	if (stage == 2)
-	//{
-	//	sprite->DrawFlipX(center.x, center.y);
-	//	return;
-	//}	
+	if (stage == 2)
+	{
+		sprite->DrawFlipX(center.x, center.y);
+		return;
+	}	
 	if (vX < 0)
 	{
 		sprite->DrawFlipX(center.x, center.y);

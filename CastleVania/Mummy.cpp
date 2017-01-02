@@ -11,7 +11,7 @@ Mummy::~Mummy()
 {
 }
 
-Mummy::Mummy(float posX_, float posY_) : DynamicObject(posX_, posY_, 1.0f, 1.0f, EnumID::Mummy_ID)
+Mummy::Mummy(float posX_, float posY_) : DynamicObject(posX_, posY_, 0.8f, 0, EnumID::Mummy_ID)
 {
 	_bandages = new list<DynamicObject*>();
 	_localTime = 0;
@@ -20,6 +20,7 @@ Mummy::Mummy(float posX_, float posY_) : DynamicObject(posX_, posY_, 1.0f, 1.0f,
 	hp = 50;
 	damage = 4;
 	canBeKilled = true;
+	neededPlayerPosition = true;
 	_state = EMummyState::Mummy_Moving;
 	_isSleeping = true;
 	deltaX = 0;
@@ -63,8 +64,8 @@ void Mummy::Update(int playerX, int playerY, int deltaTime)
 		}
 		break;
 	case EMummyState::Mummy_Moving:
-		/*if (posX <= 6686 || posX >=7125 )
-			vX = -vX;*/
+		if (posX <= 6800 || posX >=7125 )
+			vX = -vX;
 		deltaX += (abs(oldX - posX));
 		oldX = posX;
 		if (playerX > posX){

@@ -6,6 +6,7 @@
 #include "Scene.h"
 #include "SceneMenu.h"
 #include "SceneGame.h"
+#include "SceneEndGame.h"
 class SceneControl: public CGame
 {
 public: 	
