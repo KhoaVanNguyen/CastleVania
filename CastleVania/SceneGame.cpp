@@ -5,7 +5,7 @@
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
 	_levelNow = 1;
-	_stageNow = 6;
+	_stageNow = 1;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -40,13 +40,13 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	{
 	case 1:
 	{
-		camera->viewport.y = 1637; //  485; // 485 - stage 6: 1637
+		camera->viewport.y = 485; //  485; // 485 - stage 6: 1637
 		bg = new BackgroundController(level);
 		bg->LoadQuadTreeFromFile();
-		player = new Player(345, 1310); //-> Stage 6
+		//player = new Player(345, 1310); //-> Stage 6
 		//player = new Player(287, 1310);
 
-		//player = new Player(3776, 96); // stage 1
+		player = new Player(3776, 96); // stage 1
 		_stageReset = 1;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);

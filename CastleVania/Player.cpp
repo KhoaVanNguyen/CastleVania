@@ -584,17 +584,31 @@ void Player::OnFight(int t)
 	if (_hasSit) {
 		fightingSittingSprite->Update(t);
 	}
-	else {
+	else if (_onStair)
+	{
+		if (_kindStair == EKindStair::DownLeft || _kindStair == EKindStair::DownRight)
+			playerFightingDownStairSprite->Update(t);
+		else
+			playerFightingUpStairSprite->Update(t);
+	}
+	else
+	{
 		fightingSprite->Update(t);
 	}
 
 
 	if (_usingWeapon && _hasWeapon)
 	{
-
-		this->SetWeapon();
+		if (fightingSittingSprite->GetIndex() == 17
+			|| fightingSprite->GetIndex() == 7
+			|| playerFightingDownStairSprite->GetIndex() >= 21
+			|| playerFightingUpStairSprite->GetIndex() >= 24)
+		{
+			this->SetWeapon();
+		}
 	}
-	else {
+	//else 
+	{
 		morningStar->Update(t);
 
 		// Update the Vx of morningStar
@@ -605,7 +619,23 @@ void Player::OnFight(int t)
 
 		morningStar->updateXY(posX, posY);
 	}
-	if (!_hasSit && fightingSprite->GetIndex() >= 8)
+	if (_onStair)
+	{
+		if ((_kindStair == EKindStair::DownLeft || _kindStair == EKindStair::DownRight)
+			&& playerFightingDownStairSprite->GetIndex() >= 21)
+		{
+			_action = Action::Idle;
+			playerFightingDownStairSprite->Reset();
+			morningStar->reset();
+		}
+		else if (playerFightingUpStairSprite->GetIndex() >= 24)
+		{
+			_action = Action::Idle;
+			playerFightingUpStairSprite->Reset();
+			morningStar->reset();
+		}
+	}
+	else if (!_hasSit && fightingSprite->GetIndex() >= 8)
 	{
 		_action = Action::Idle;
 		fightingSprite->Reset();
@@ -848,7 +878,7 @@ D3DXVECTOR2* Player::getPos()
 	return new D3DXVECTOR2(this->posX, this->posY);
 }
 void Player::UpgradeMorningStar() {
-
+	morningStar->updateLevel();
 }
 Box Player::GetBox()
 {
