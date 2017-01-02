@@ -68,7 +68,10 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		//player = new Player(2403, 606);
 
 		//stage 11 5855 //4420
-		player = new Player(5855, 1040);
+		//player = new Player(5855, 1040);
+
+		//stage 11 at boss
+		player = new Player(6578, 1112);
 		_stageReset = 7;
 		player->Initialize();
 		//player->hp = 20;

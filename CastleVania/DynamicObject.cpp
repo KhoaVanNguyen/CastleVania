@@ -117,8 +117,6 @@ void DynamicObject::Collision(list<GameObject*> obj, int dt)
 						boxOther.vx = 0;
 						boxOther.vy = 0;
 					}
-					
-
 				}
 		}
 	}

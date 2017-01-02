@@ -11,14 +11,14 @@ Mummy::~Mummy()
 {
 }
 
-Mummy::Mummy(float posX_, float posY_) : DynamicObject(posX_, posY_, 0.8f, 0, EnumID::Mummy_ID)
+Mummy::Mummy(float posX_, float posY_) : DynamicObject(posX_, posY_, 1.8f, 0, EnumID::Mummy_ID)
 {
 	_bandages = new list<DynamicObject*>();
 	_localTime = 0;
 	active = true;
 	type = ObjectType::Enemy_Type;
 	hp = 50;
-	damage = 4;
+	damage = 5;
 	canBeKilled = true;
 	neededPlayerPosition = true;
 	_state = EMummyState::Mummy_Moving;
@@ -49,14 +49,14 @@ void Mummy::Update(int playerX, int playerY, int deltaTime)
 	int randomDeltaX;
 	_timeSpan+= deltaTime;
 	if (_timeSpan % 25 == 0){
-		_bandages->push_back(new Bandages(posX, posY, vX*0.24f, 0.0f, EnumID::Bandage_ID));
+		_bandages->push_back(new Bandages(posX, posY, vX*0.06f, 0.0f, EnumID::Bandage_ID));
 	}
 	switch (_state)
 	{
 	case EMummyState::Mummy_Stoping:
 		sprite->Update(deltaTime);
 		_localTime += deltaTime;
-		if (_localTime >= 700)
+		if (_localTime >= 400)
 		{
 			_localTime = 0;
 			_state = EMummyState::Mummy_Moving;
@@ -118,5 +118,36 @@ void Mummy::_drawBandages(GCamera* camera_)
 	{
 		DynamicObject* tempSnake = (*iter);
 		tempSnake->Draw(camera_);
+	}
+}
+
+void Mummy::Collision(list<GameObject*> obj, int dt) {
+	list<GameObject*>::iterator _itBegin;
+	for (_itBegin = obj.begin(); _itBegin != obj.end(); _itBegin++)
+	{
+		float moveX = 0;
+		float moveY = 0;
+		float normalx;
+		float normaly;
+		GameObject* other = (*_itBegin);
+		if (other->id == EnumID::Brick_ID)
+		{
+			Box box = this->GetBox();
+			Box boxOther = other->GetBox();
+
+			if (AABB(box, boxOther, moveX, moveY) == true)
+			{
+				/*if (vY < 0)
+				{
+					posY += moveY + 20;
+					vY = 0;
+					return;
+				}
+				if ((posX - width / 2 + 10) - (other->posX - other->width / 2) <= 0
+					|| (posX + width / 2 - 10) - (other->posX + other->width / 2) >= 0)
+					vX = -vX;*/
+			}
+			
+		}
 	}
 }

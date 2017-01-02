@@ -1276,8 +1276,11 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma region Va chạm với Enemy
 						case ObjectType::Enemy_Type:
 							// nếu ở trên cầu thang thì chỉ bị mất máu, không bị Knockback, và ngược lại
+
+							
 							if (!_onStair) //&& !_colBottomStair)
 							{
+								
 								if (!_hidden)
 								{
 									_hidden = true;
@@ -1286,13 +1289,8 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 									_startToHiddenTime = GetTickCount();
 									if (hp > 0)
 									{
-										if (hp <= 3)
-										{
-											hp -= 1;
-										}
-										else
-											hp -= other->damage;
-										//hp -= other->damage;
+							
+										hp -= other->damage;
 									}
 
 								}

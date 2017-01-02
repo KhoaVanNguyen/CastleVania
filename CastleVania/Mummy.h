@@ -51,6 +51,7 @@ public:
 	Mummy(float posX, float posY);
 	virtual void Draw(GCamera* camera_);
 	virtual void Update(int playerX, int playerY, int deltaTime);
+	virtual void Collision(list<GameObject*> obj, int dt);
 	~Mummy(void);
 public:
 
