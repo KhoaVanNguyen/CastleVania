@@ -4,8 +4,9 @@
 #define CAMERA_MOVE_SPEED 4
 SceneGame::SceneGame(void) : Scene(ESceneState::Scene_Game)
 {
-	_levelNow = 2;
-	_stageNow = 11;
+	_levelNow = 1;
+	_stageNow = 1;
+	_playerDie = false;
 	camera = new GCamera();
 	bg = NULL;
 	_stateCamera = EStateCamera::Update_Camera;
@@ -154,38 +155,51 @@ void SceneGame::RenderFrame(LPDIRECT3DDEVICE9 d3ddv, int t) {
 		// đã chết, trở về chỗ hồi sinh
 		if (player->_isDie)
 		{
-				player->_isDie = false;
-				player = new Player(posStageToReset.x, posStageToReset.y);
-				if (gameUI->getTimer() <= 0)
+			//code thay đổi hình ở đây
+			if (resetTime > 0)
+			{
+				if (!_playerDie)
 				{
-					if (_levelNow == 1)
-						gameUI->initTimer(200);
-					else gameUI->initTimer(300);
+					_playerDie = true;
 				}
-				LoadStage(_stageReset);
-				camera->viewport = posCamera;
-				_stageNow = _stageReset;
-				totalResets--;
-				if (totalResets <= 0)
+				player->Die(resetTime);
+}
+		else
+			{
+
+			_playerDie = false;
+			player->_isDie = false;
+			player = new Player(posStageToReset.x, posStageToReset.y);
+			if (gameUI->getTimer() <= 0)
+			{
+				if (_levelNow == 1)
+					gameUI->initTimer(200);
+				else gameUI->initTimer(300);
+			}
+			LoadStage(_stageReset);
+			camera->viewport = posCamera;
+			_stageNow = _stageReset;
+			totalResets--;
+			if (totalResets <= 0)
+			{
+				sceneState = ESceneState::Scene_End;
+			}
+			else
+			{
+				if (_stageNow <= 6) // LEVEL1
 				{
-					sceneState = ESceneState::Scene_End;
+					// SOUND
+					//SoundManager::GetInst()->RemoveAllBGM();
+					//SoundManager::GetInst()->PlayBGSound(EBGSound::EStage1Sound);
 				}
-				else
+				else if (_stageNow >= 7) // LEVEL2
 				{
-					if (_stageNow <= 6) // LEVEL1
-					{
-						// SOUND
-						//SoundManager::GetInst()->RemoveAllBGM();
-						//SoundManager::GetInst()->PlayBGSound(EBGSound::EStage1Sound);
-					}
-					else if (_stageNow >= 7) // LEVEL2
-					{
-						// SOUND
-						//SoundManager::GetInst()->RemoveAllBGM();
-						//SoundManager::GetInst()->PlayBGSound(EBGSound::EStage2Sound);
-					}
+					// SOUND
+					//SoundManager::GetInst()->RemoveAllBGM();
+					//SoundManager::GetInst()->PlayBGSound(EBGSound::EStage2Sound);
 				}
-			
+			}
+		}
 			
 		}
 #pragma endregion 
