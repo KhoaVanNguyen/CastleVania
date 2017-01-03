@@ -69,6 +69,7 @@ static bool AABB(Box b1, Box b2, float& moveX, float& moveY)
 }
 
 // returns a box the spans both a current box and the destination box
+// t?o 1 hình ch? nh?t d?a trên v? trí ban ??u và k? ti?p, sau ?ó l?y hình ch? nh?t ?ó xét xem có ch?ng lên v?i hình kia không. N?u có thì va ch?m, còn không thì ch?c ch?n không th? nên không c?n xét ti?p.
 static Box GetSweptBroadphaseBox(Box b, int dt)
 {
 	Box broadphasebox(0.0f, 0.0f, 0.0f, 0.0f);
@@ -91,6 +92,8 @@ static float SweptAABB(Box b1, Box b2, float& normalx, float& normaly, int dt)
 	float xInvExit, yInvExit;
 
 	// find the distance between the objects on the near and far sides for both x and y
+
+	// ??ng b? d?u cho cùng h??ng thôi
 	if (b1.vx > 0.0f)
 	{
 		xInvEntry = b2.x - (b1.x + b1.w);
@@ -114,6 +117,8 @@ static float SweptAABB(Box b1, Box b2, float& normalx, float& normaly, int dt)
 	}
 
 	// find time of collision and time of leaving for each axis (if statement is to prevent divide by zero)
+
+	//tìm th?i gian ?? b?t ??u và k?t thúc va ch?m :
 	float xEntry, yEntry;
 	float xExit, yExit;
 
@@ -139,8 +144,10 @@ static float SweptAABB(Box b1, Box b2, float& normalx, float& normaly, int dt)
 		yExit = yInvExit / (b1.vy * dt);
 	}
 
-	// find the earliest/latest times of collision
+  // th?i gian va ch?m là th?i gian l?n nh?t c?a 2 tr?c (2 tr?c ph?i cùng ti?p xúc thì m?i va ch?m)
+
 	float entryTime = max(xEntry, yEntry);
+// th?i gian h?t va ch?m là th?i gian c?a 2 tr?c, (1 cái ra kh?i là object h?t va ch?m)
 	float exitTime = min(xExit, yExit);
 
 	// if there was no collision

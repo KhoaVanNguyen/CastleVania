@@ -10,7 +10,6 @@ GSprite::GSprite()
 	_index = 0;
 	_timeLocal = 0;
 }
-
 GSprite::GSprite(const GSprite &sprite)
 {
 	_texture = sprite._texture;
@@ -95,6 +94,7 @@ void GSprite::Draw(int X, int Y)
 		&srect,
 		&center,
 		&position,
+		//0x0000000
 		0xFFFFFFFF //color
 	);
 }

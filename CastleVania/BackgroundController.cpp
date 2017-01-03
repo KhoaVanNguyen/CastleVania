@@ -142,7 +142,6 @@ void BackgroundController::Draw(GCamera *camera)
 		bgSprite->DrawIndex(obj->idTile, t.x, t.y);
 	}
 }
-
 BackgroundController::~BackgroundController(void)
 {
 }

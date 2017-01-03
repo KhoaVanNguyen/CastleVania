@@ -109,8 +109,8 @@ void SceneMenu::LoadResources(LPDIRECT3DDEVICE9 d3ddv)
 	_smallFont = new Font(d3ddv, 22, G_ScreenWidth, G_ScreenHeight);
 	_bigFont = new Font(d3ddv, 40, G_ScreenWidth, G_ScreenHeight);
 
-	//Sound::GetInst()->RemoveAllBGM();
-	//Sound::GetInst()->PlayBGSound(EBGSound::EMenuSound);
+	Sound::GetInst()->RemoveAllBGM();
+	Sound::GetInst()->PlayBGSound(EBGSound::EMenuSound);
 }
 
 SceneMenu::~SceneMenu(void)

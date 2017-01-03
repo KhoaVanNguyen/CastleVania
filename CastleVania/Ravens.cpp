@@ -17,7 +17,7 @@ Ravens::Ravens(float posX_, float posY_) :DynamicObject(posX_, posY_, 1.2f, 1.2f
 	_localTime = 0;
 	active = false;
 	type = ObjectType::Enemy_Type;
-	hp = 50;
+	hp = 3;
 	damage = 4;
 	canBeKilled = true;
 	_state = ERavenState::moving;
@@ -161,7 +161,7 @@ void Ravens::SetActive(float x, float y)
 {
 
 	if (active) return;
-	if (abs(posX - x) <= 200 && abs(posY - y) <= 200)
+	if (abs(posX - x) <= 400 && abs(posY - y) <= 400)
 	{
 
 		if (posX - x > 0)

@@ -93,7 +93,6 @@
     <ClCompile Include="Bone.cpp" />
     <ClCompile Include="BoneTowers.cpp" />
     <ClCompile Include="BreakableBrick.cpp" />
-    <ClCompile Include="CustomBox.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Boomerang.cpp" />
     <ClCompile Include="Brick.cpp" />
@@ -163,7 +162,6 @@
     <ClInclude Include="Brick.h" />
     <ClInclude Include="Candle.h" />
     <ClInclude Include="EnumManager.h" />
-    <ClInclude Include="CustomBox.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="Dagger.h" />
     <ClInclude Include="DynamicObject.h" />

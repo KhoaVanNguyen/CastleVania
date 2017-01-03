@@ -12,7 +12,7 @@ RewardItem::RewardItem(float x, float y) : DynamicObject(x, y, 0, -0.4f, EnumID:
 	type = ObjectType::Item;
 	_isCrown = false;
 }
-RewardItem::RewardItem(float x, float y, bool isCrown) : DynamicObject(x, y, 0, -0.4f, EnumID::RewardedItem_ID)
+RewardItem::RewardItem(float x, float y, bool isCrown) : DynamicObject(x, y, 0, -0.6f, EnumID::RewardedItem_ID)
 {
 	deltatime = 0;
 	active = true;

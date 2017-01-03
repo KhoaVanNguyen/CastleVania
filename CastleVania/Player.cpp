@@ -6,7 +6,7 @@
 
 #define SPEED_X 0.3f
 #define SPEED_Y 0.4f
-#define SPEED_FALL -0.4f
+#define SPEED_FALL -0.6f
 #define MAX_HEIGHT 70.0f
 #define A 0.005f
 
@@ -66,6 +66,7 @@ Player::Player(int _posX, int _posY) : DynamicObject(_posX, _posY, 0, -SPEED_Y, 
 
 	playerDeathSprite = new GSprite(TextureManager::getInstance()->getTexture(EnumID::PlayerDeath_ID), 0, 0, 100);
 	Initialize();
+	UpgradeMorningStar();
 }
 
 
@@ -596,7 +597,7 @@ void Player::OnFight(int t)
 		fightingSprite->Update(t);
 	}
 
-
+	//this->SetWeapon();
 	if (_usingWeapon && _hasWeapon)
 	{
 		if (fightingSittingSprite->GetIndex() == 17
@@ -604,6 +605,7 @@ void Player::OnFight(int t)
 			|| playerFightingDownStairSprite->GetIndex() >= 21
 			|| playerFightingUpStairSprite->GetIndex() >= 24)
 		{
+			// không thì vẽ 24 lần sprite của player
 			this->SetWeapon();
 		}
 	}
@@ -977,7 +979,7 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 						//_onStair = false;
 
 						// số 32 ? số càng bé càng khó bắt đc va chạm vs gạch
-						if (vY < 0 && moveY < 16)
+						if (vY < 0 && moveY < 26)
 						{
 
 
@@ -1061,9 +1063,20 @@ void Player::Collision(list<GameObject*> &obj, float dt) {
 #pragma endregion
 #pragma region va chạm với BreakableBrick
 					case EnumID::BreakableBrick_ID:
-
+					{
+						vX = 0;
+						if ((_vLast > 0 && _action == Action::Run_Left) || (_vLast < 0 && _action == Action::Run_Right))
+						{
+							_stop = false;
+						}
+						else
+						{
+							_stop = true;
+						}
 						_getCrown = true;
 						return;
+					}
+						
 					break;
 #pragma endregion
 

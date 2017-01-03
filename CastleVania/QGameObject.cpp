@@ -1,6 +1,6 @@
 ﻿#include "QGameObject.h"
 
-#define STOP_WATCH_TIME = 1200.0
+
 QGameObject::QGameObject(void)
 {
 	

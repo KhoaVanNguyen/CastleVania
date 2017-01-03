@@ -41,7 +41,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	{
 	case 1:
 	{
-		camera->viewport.y = 485; //869; //485 ;  //1637; //  485; // 485 - stage 6: 1637
+		camera->viewport.y = 485;// 485; //869; //485 ;  //1637; //  485; // 485 - stage 6: 1637
 		bg = new BackgroundController(level);
 		bg->LoadQuadTreeFromFile();
 		//player = new Player(345, 1310); //-> Stage 6
@@ -50,6 +50,10 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		player = new Player(3776, 96); // stage 1
 		//stage2
 		//player = new Player(3170, 670);
+
+		// stage 5: - trapdoor, viewport = 1253
+//		player = new Player(1146, 860); 
+
 		_stageReset = 1;
 		gameUI = new GameUI(G_Device, 22, G_ScreenWidth, G_ScreenHeight);
 		gameUI->initTimer(100);
@@ -59,12 +63,12 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 	break;
 	case 2:
 	{
-		camera->viewport.y = 1253; //485; //1253; // 869; // 485
+		camera->viewport.y = 485; // 1253; //485; //1253; // 869; // 485
 
 	
 		bg = new BackgroundController(level);
 		bg->LoadQuadTreeFromFile();
-		//player = new Player(400, 94);
+		player = new Player(1439, 140);
 		//player->posX = 600;
 		//player->posY = 140;
 		//stage 9 :
@@ -74,7 +78,7 @@ void SceneGame::LoadResources(LPDIRECT3DDEVICE9 d3ddv) {
 		//player = new Player(5855, 1040);
 
 		//stage 11 at boss
-		player = new Player(6578, 1112);
+	//	player = new Player(6578, 1112);
 		_stageReset = 7;
 		player->Initialize();
 		//player->hp = 20;

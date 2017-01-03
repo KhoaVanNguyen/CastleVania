@@ -34,13 +34,25 @@ MorningStarSprite::MorningStarSprite(GTexture* texture, int start, int end, int 
 
 void MorningStarSprite::updateLevel()
 {
+	
 	// there are 9 sprites 
 	int currentLevel = _start / 3;
 	if (currentLevel == 2)
 		return;
+	// c?ng lên level ti?p theo
 	_start += 3;
 	_end += 3;
 	_index = _start;
+
+	//// level 2
+	//_start = 3;
+	//_end = 5;
+	//_index = 3;
+
+	// level 3
+	_start = 6;
+	_end = 8;
+	_index = 6;
 }
 
 
